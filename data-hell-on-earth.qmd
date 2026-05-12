@@ -1,0 +1,432 @@
+---
+title: Data Hell on Earth
+subtitle: >
+    As mais variadas formas de seus arquivos de dados textuais
+    <br>
+    te darem dor de cabeça na hora da importação
+    <br>
+    *ou*
+    <br>
+    Como algo que era para ser simples pode ser tão complicado?
+author: Marcelo Ventura Freire
+date: 2026-05-11
+lang: pt-br
+format: 
+  revealjs: 
+    theme: blood
+    slide-level: 3
+    slide-number: c/t
+    # slide-number: true
+    # slide-number: h/v
+    show-slide-number: speaker
+    transition: 
+      none
+      # zoom
+    # smaller: true
+    chalkboard: true
+---
+
+# Introdução 
+(*ou* "PQ CMG?!?!?!?!? 😭")
+
+### Situação (que era para ser) típica
+
+exemplo
+
+### Situação típica de verdade
+
+exemplo
+
+# Roadmap de onde pode dar merda
+
+## Onde pode dar merda?
+
+- Codificação do dado textual (*encoding*)
+- Armazenamento dodado em memória/disco
+- Estrutura do arquivo
+- Corrupção de dados no transporte e manuseio
+
+# Codificação do dado textual
+
+## Começando do princípio
+(*ou* "E no princípio era ~~o verbo~~ \ ~~o ascii~~ \ ~~o byte~~ \ o bit")
+
+## Bits e bytes
+
+- 1 bit = 0 ou 1
+- 8 bits = 1 byte
+- 1 byte = 1 letra
+- 1 conjunto de letras = 1 linha
+- 1 conjunto de linhas = 1 arquivo de dados textuais
+
+Simples, certo?
+
+. . .
+
+> "Achou errado, otário!" --- Rogerinho do Ingá
+
+### *Encoding*
+
+> "There is no spoon" (Matrix)
+
+- Não existem letras dentro do computador, somente número em base binária, onde
+  cada bit pode ser 0 ou 1
+- O que chamamos de caracteres ("letras") são uma *convenção **arbitrária*** de
+  associação específica entre um conjunto de valores numéricos e um conjunto de
+  letra
+- Pode haver várias formas de fazer essa associação entre valor numérico e 
+  caracter --- cada uma dessas formas é chamada de *enconding*
+
+### *Encoding*
+
+- Problema 1: no início da computação, cada fabricante de computador criou o seu
+  próprio *encoding* próprio
+    - com conjuntos de caracteres diferentes:
+        - Letra em um *encoding* sem correspondência em outro
+        - *Encoding* com letras maiúsculas e minúsculas e *encoding* só com
+          maiúsculas
+    - usando *quantidades de bits* diferentes:
+        - fabricantes usavam 6, 7 ou 8 bits para armazenar um caracter
+
+### *Encoding*
+
+- Problema 2: além dos caracteres *imprimíveis* (letras, dígitos, sinais
+  de pontuação, alguns símbolos matemáticos ou alguns símbolos como `@`, `#`,
+  `$` etc.), parte dos caracteres eram usados pelo computador para se comunicar
+  com alguns de seus dispositivos (como teclado, impressora e monitor de vídeo)
+  e com outros computadores -- os *caracteres de controle*
+    - por exemplo, havia um caracter de controle para avisar a impressora para
+      subir uma linha e um outro para avisar a impressora para trazer de volta
+      o carro com a cabeça de impressão para o início da linha
+
+### *Encoding*
+
+- Resultado: passar dados de um computador de um fabricante para o computador de
+  um outro fabricante exigia fazer algum tipo de *conversão*
+- Essa conversão dependia de quais eram os fabricantes dos computadores
+
+ Entra o padrão ASCII na jogada
+
+## O *encoding* ASCII
+
+- A *American National Standards Institute* (ANSI, na época ainda chamada
+  *American Standards Association*) estabeleceu um *encoding* ao qual os
+  fabricantes deveriam aderir
+- Esse é o ASCII -- *American Standard Code for Information Interchange* (mas
+  se fala ~~"ó-quis-sô"~~ \ ~~"ôxo"~~ \ ásqui)
+
+
+## O *encoding* ASCII
+
+- Ele define um padrão de *encoding* para um byte de 8 bits (logo com espaço
+  para 256 carcateres) usando só 7 bits (logo só para 128 caracteres ao qual)
+- Ele só cobre o caracteres do alfabeto latino usados na língua inglesa -- sem
+  caracteres acentuados do próprio alfabeto latino, sem caracteres de outros
+  alfabetos (como cirílico, chinês, japonês, coreano)
+
+:::{.callout-warning}
+É daqui que virá um porrilhão de problemas
+:::
+
+## Como armazenar esses milhões de outros caracteres?!?
+
+Saiu do ASCII, fudeu!
+
+### Codepages: o início da confusão
+
+### Unicode: a solução final! (pelo menos, era para ser)
+
+### UTF: botando o Unicode para funcionar
+
+### UTF-8 do Linux, do MacOS e da internet vs UTF-16 do Windows
+
+
+
+
+
+## UTF
+
+### UTF-8, a internet e o Linux
+
+
+
+
+
+## Números e Caracteres
+
+Vamos falar sobre quebras de linhas que te quebram as perna?
+
+
+### Decimal e Hexadecimal
+
+- Base decimal usa 10 dígitos --- do 0 ao 9 (último número antes do 10) ---
+  para compor unidades, dezenas, centenas etc.
+- A base hexadecimal usa 16 dígitos --- do 0 ao 9, passando pelo 10 ao 15
+  (último número antes do 16) --- para compor unidades, dezenas (na verdade,
+  serão hexadezenas) etc.
+  - Usamos os caracteres `a`, `b`, `c`, `d`, `e` e `f` para representar como
+    dígitos os números 10, 11, 12, 13, 14 e 15
+
+### Decimal e Hexadecimal {.smaller}
+
+Comparando
+
+\begin{align*}
+(12)_{16}&=(10)_{16}+(2)_{16}=(1\times16)_{10}+(2)_{10}=(18)_{10}\\ \\
+(2f)_{16}&=(20)_{16}+(f)_{16}=(2\times16)_{10}+(15)_{10}=(47)_{10}\\ \\
+(3f7b)_{16}
+  & =(3000)_{16}+(f00)_{16}+(70)_{16}+(b)_{16} \\
+  & =(3\times16^3)_{10}+(15\times16^2)_{10}+(7\times16^1)_{10}+(11)_{10}\\
+  & =(16251)_{10}
+\end{align*}
+
+
+### Representações de números em base hexadecimal 
+
+- Representações de números em base hexadecimal sempre pipocam por aí quando
+  você trabalha com computador
+- No R, tem dois exemplos bem manjados:
+  - o caracter de tabulação `"\\t"` pode ser escrito também como `"\\x09"` ou
+    `"\\x9"` (que é 9 em decimal e em hexadecimal)
+  - o caracter de quebra de linha `"\\n"` pode ser escrito como `"\\x0a"` ou
+    `"\\xa"`
+
+
+### Representações de números em base hexadecimal 
+
+- Em URLs, o `%20` de `https://www.dominio.com.br/foto%20de%20hoje.jpg` é o
+  caracter espaço (32 em decimal = 20 em hexadecimal) representando em
+  hexadecimal
+- Em representação RGB de cores, `#203040` em CSS ou `"#d05010"` em R
+
+
+## Linhas nos arquivos
+
+Lembra que eu mencionei que isto 👇 não é verdade?
+
+> - 1 conjunto de letras = 1 linha
+> - 1 conjunto de linhas = 1 arquivo de dados textuais
+
+Pois é, realmente:
+
+> "There is no spoon" (Matrix)
+
+Arquivos são grandes sequências *contínuas* de caracteres
+
+
+### Linhas nos arquivos
+
+- Não existem realmente linhas em um arquivo de texto
+    - A ideia de linhas em um arquivo é só uma ficção útil
+- Quem marca a "separação" entre duas "linhas" em um arquivo são caracteres de
+  controle:
+    - Na época das impressoras matriciais, o que marcava o final de uma linha
+      era o momento em que a cabeça de impressão voltava ao início da área de
+      impressão (à esquerda) e avançada o papel (na época, em formulário
+      contínuo)
+
+Aqui surge mais um problema
+
+### Linhas nos arquivos
+
+O caracter usado como delimitador de linha ("quebra de linha") depende do sistema operacional do computador
+
+- O Linux usa o caracter *carriage return* (CR, retorno de carro) `"\\x0d"` (13 em decimal)
+    - Esse é o padrão usado para transmissão de dados na internet
+- O MacOS usa o caracter *line feed* (LF, avanço de linha) `"\\x0a"` (10 em decimal)
+- O Windows usa *os dois*: CR+LF ou `"\\x0d\\x0a"`
+
+Assim, surge o novo problema potencial
+
+### Linhas nos arquivos
+
+:::{.callout-important text="Problema Potencial"}
+Quando você trabalhando com dados gerados em outra plataforma, *pode* acontecer de os dados virem com a quebra de linha de outro sistema operacional e a sua importação dê algum erro
+:::
+
+### Linhas nos arquivos
+
+Quando a transferência do arquivo de texto é realizada em modo texto, o próprio
+sistema operacional já faz a conversões necessárias para o uso local.
+
+O problema ocorre quando o arquivo texto é transferido em modo binário, quando essa conversão não é feita.
+
+Esse é um erro razoavelmente frequente, apesar de a maioria das vezes dos sistemas operacionais fazer a conversão para o sistema de quebra
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Armazenamento do dado em memória/disco
+
+## Armazenamento do dado em memória/disco
+
+Com o ASCII, uniformizou-se o padrão de byte de 8 bits e a transmissão de dados até hoje é orientada a bytes desse tamanho
+
+Contudo a questão do *armazenamento em disco* desse dado tem reentrância
+
+Com o ASCII, os computadores passaram a armazenar *words* (menor unidade de armazenamento em memória, disco etc.) de 8 bits, com 1 *word* = 1 *byte*
+
+Porém, hoje em dia, os computadores têm words de 16, de 32 e até 64 bits; ou seja, *words* de 2, 4 e até 8 *bytes*.
+
+Quando as *words* começaram a ser compostas de 2 bytes 
+
+Isso levou a algumas
+
+
+## *Endianness*
+
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+
+
+## O BOM que só dá ruim
+
+:::{.callout-important text="Problema Potencial"}
+O BOM (Byte-Order Marker) é uma meeeeeeeeeeeerda.
+
+Quando presente, ele ocupa os dois ou quatro primeiros bytes do arquivo e é invisibilizado pelo sistema
+
+AQUI AQUI AQUI AQUI AQUI AQUI
+
+:::
+
+
+## Voltando ao UTF...
+
+### UTF-16 e o Windows
+
+### UTF-16 do Windows versus UTF-8 da internet inteira, do Linux e do MacOS
+
+### UTF-32 e UTF-64 (os "não falamos do Bruno" do Unicode)
+
+
+
+
+
+
+================================================================
+
+
+
+# Formatos de Arquivos
+(*ou* "Num era pra texto ser o tipo de arquivo de dados mais simples?!?")
+
+## Arquivos de Dados Textuais 
+
+- Arquivos são grandes sequências *contínuas* de caracteres
+- "There is no spoon" (Matrix): 
+  - Não existem realmente linhas em um arquivo de texto
+  - As linhas são uma ficção benévola
+  - Existe a convenção (da época das impressoras matriciais) de que um conjunto
+      de caracteres representam o ponto em que a impressora avança uma linha e
+      retorna a cabeça de impressão para o início da linha
+    - no Windows, são usados os caracteres *linefeed* e *carriage return*
+
+- Linhas separadas por um caracter de fim de linha
+  - o Windows usa a combinação
+
+---
+
+## Formatos de Arquivos de Dados Textuais 
+
+- Dados tabulares
+- Dados hierárquicos
+- Dados não estruturados
+
+---
+
+### Dados tabulares
+
+- Organizado em linhas e colunas
+- Cada linha é uma observação/unidade/instância/ocorrência/indivíduo/respondente/etc.
+- Cada coluna é uma característica/variável/atributo/campo da observação
+- Todas as linhas têm o mesmo número de coluna
+- As variáveis estão sempre na mesma ordem
+
+---
+
+### Exemplos de formato de dados tabulares {.smaller}
+
+- FWF (fixed width fields)
+  - cada coluna tem um tamanho fixo
+  - preenchimento com caracter espaço em branco (ascii 32 ou 20 em hexadecimal) ou outro
+  - alinhamento visual das colunas ao longo das linhas
+- Delimitados por caracter
+  - um caracter específico separa os campos dentro de uma linha
+  - sem alinhamento visual entre os campos/colunas
+  - campos com largura variável
+  - possível uso de aspas simples `'` ou duplas `"` para delimitar as strings
+  - TSV (tab separated values)
+    - separador de campos: caracter de tabulação (tab; ascii 9)
+    - geralmente, sem uso de aspas simples `'` ou duplas `"` 
+  - CSV (comma separated values)
+    - caracter vírgula `,` separa os campos/colunas
+    - geralmente 
+  - "CSV 2" 
+    - caracter ponto-e-vírgula
+
+---
+
+### Dados hierárquicos
+
+- 
+
+
+---
+
+### Dados não estruturados
+
+
+
+
+
+Tipos:
+
+- CSV (comma separated values)
+    - 
+- CSV aca para nosotros
+
+
+
+# Começando do princípio
+(*ou* "E no princípio era o ~~verbo~~ ascii")
+
+## Bits e bytes
+
+1 bit = 0 ou 1
+
+1 byte = 8 bytes
+
+Simples, certo?
+
+### Errado: 
+
+No início, os computadores armazenavam *palavras*  (*word*, menor unidade de
+armazenamento em memória, disco etc.) de 8 bits, logo 1 *word* = 1 *byte*, mas,
+hoje em dia, alguns computadores têm palavras de 16, de 32 e até 64 bits; 
+ou seja, 2, 4 e até 8 *bytes*.
+
+Por outro lado, a transmissão de dados continua orientada por bits e bytes de 8 
+bits.
+
+## ASCII
+
+### O início
+
+
