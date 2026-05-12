@@ -23,13 +23,13 @@ com foco em:
 Com o Quarto instalado:
 
 ```bash
-cd /home/runner/work/hell-data-on-earth/hell-data-on-earth
+cd <raiz-do-repositorio>
 quarto render
 ```
 
 Ou, para abrir em modo interativo:
 
 ```bash
-cd /home/runner/work/hell-data-on-earth/hell-data-on-earth
+cd <raiz-do-repositorio>
 quarto preview
 ```
