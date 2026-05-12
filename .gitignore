@@ -20,6 +20,7 @@
 
 # RStudio files
 .Rproj.user/
+*.Rproj
 
 # produced vignettes
 vignettes/*.html
@@ -32,9 +33,15 @@ vignettes/*.pdf
 *_cache/
 /cache/
 
+# caches do pandoc
+*_files/
+
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+*.tex
+*.aux
+*.log
 
 # R Environment Variables
 .Renviron
@@ -47,3 +54,13 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+.positai
+
+# arquivos de output da renderização
+*.pdf
+*.docx
+*.html
+*.pptx
+
+# diretório de arquivos de dados
+data/
