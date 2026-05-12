@@ -34,7 +34,7 @@ Quando a importação falha, os sintomas costumam aparecer como:
 
 | Tema | Pergunta prática |
 |---|---|
-| ASCII | O arquivo usa só 7 bits e falha com acentos? |
+| ASCII | O arquivo contém apenas caracteres ASCII de 7 bits e falha com acentos? |
 | UTF-8 | O produtor gravou em Unicode moderno sem BOM? |
 | UTF-16 | Há pares de bytes e possível BOM indicando endianess? |
 | Windows-1252 | Os bytes “funcionam” só em ambiente Windows? |
@@ -95,7 +95,7 @@ Ordenar texto não depende só das letras visíveis:
 
 ```r
 readr::read_lines("arquivo.txt")
-readr::guess_encoding(readBin("arquivo.txt", what = "raw", n = 1e5))
+readr::guess_encoding("arquivo.txt")
 iconv(x, from = "Windows-1252", to = "UTF-8")
 stringi::stri_sort(x, locale = "pt_BR")
 ```
