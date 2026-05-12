@@ -23,13 +23,13 @@ com foco em:
 Com o Quarto instalado:
 
 ```bash
-cd <raiz-do-repositorio>
+cd <raiz-do-repositório>
 quarto render
 ```
 
 Ou, para abrir em modo interativo:
 
 ```bash
-cd <raiz-do-repositorio>
+cd <raiz-do-repositório>
 quarto preview
 ```
