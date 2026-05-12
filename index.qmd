@@ -1,0 +1,135 @@
+---
+title: "Hell Data on Earth"
+subtitle: "Slides sobre importação e leitura de dados textuais"
+author: "Série R_Brasil |> bate::papo()"
+---
+
+## De onde vem o inferno?
+
+Dados textuais parecem simples, mas carregam camadas invisíveis:
+
+- encoding;
+- byte order;
+- fim de linha;
+- presença de `BOM`;
+- collation e ordenação;
+- convenções diferentes entre sistemas operacionais.
+
+::: notes
+Base inicial para consolidar postagens do grupo R Brasil no Telegram e expandir
+com novos exemplos conforme o garimpo avançar.
+:::
+
+## O que costuma quebrar
+
+Quando a importação falha, os sintomas costumam aparecer como:
+
+- `"cafÃ©"` no lugar de `"café"`;
+- colunas com caracteres truncados;
+- linhas “grudadas” ou vazias por causa de `LF`, `CRLF` e `CR`;
+- cabeçalhos com caractere invisível no começo por causa de `BOM`;
+- ordenação inesperada de `"ação"`, `"Água"` e `"zebra"`.
+
+## Encoding não é detalhe
+
+| Tema | Pergunta prática |
+|---|---|
+| ASCII | O arquivo contém apenas caracteres ASCII de 7 bits e não suporta acentos? |
+| UTF-8 | O produtor gravou em Unicode moderno sem BOM? |
+| UTF-16 | Há pares de bytes e possível BOM indicando endianess? |
+| Windows-1252 | Os bytes “funcionam” só em ambiente Windows? |
+| Codepages | A origem depende de locale, sistema legado ou exportação antiga? |
+
+## ASCII, UTF-8, UTF-16 e Windows-1252
+
+::: columns
+::: {.column width="50%"}
+### Regra prática
+
+- `ASCII` cobre só o básico.
+- `UTF-8` virou o padrão de fato.
+- `UTF-16` aparece em exports de planilhas e sistemas corporativos.
+- `Windows-1252` ainda surge em arquivos `.csv` e `.txt` antigos.
+:::
+
+::: {.column width="50%"}
+### Antipadrão comum
+
+Assumir que:
+
+> “se abriu no editor, então o encoding está certo”.
+
+Editor tolerante não garante leitura correta em script, banco ou pipeline.
+:::
+:::
+
+## Fim de linha também é dado
+
+| Convenção | Sistema mais comum | Efeito típico |
+|---|---|---|
+| `LF` (`\n`) | Unix / Linux / macOS atual | padrão mais previsível |
+| `CRLF` (`\r\n`) | Windows | linhas extras ou quebra dupla em parser simplificado |
+| `CR` (`\r`) | Mac clássico / legado | arquivo parece “embaralhado” |
+
+## BOM: um invisível barulhento
+
+`BOM` (*byte order mark*) pode:
+
+- ajudar a identificar `UTF-16`;
+- aparecer no início do primeiro nome de coluna;
+- causar diferença entre “parece igual” e “é igual”;
+- contaminar joins, filtros e checagens de nomes.
+
+## Ordenação e collation
+
+Ordenar texto não depende só das letras visíveis:
+
+- locale muda a regra de comparação;
+- acentos podem pesar mais, menos ou nada;
+- maiúsculas/minúsculas podem alterar a ordem;
+- bytes idênticos em encodings diferentes podem produzir resultados incompatíveis.
+
+**Conclusão:** ordenar texto “corretamente” exige contexto, não só `sort()`.
+
+## Exemplos para discutir em R
+
+```r
+readr::read_lines("arquivo.txt")
+readr::guess_encoding("arquivo.txt")
+iconv(x, from = "Windows-1252", to = "UTF-8")
+stringi::stri_sort(x, locale = "pt_BR")
+```
+
+Perguntas úteis:
+
+- o problema está na leitura ou no arquivo de origem?
+- o parser respeita o encoding declarado?
+- o locale da sessão interfere na ordenação?
+
+## Demo interativa em ReactJS
+
+Selecione um cenário para ver rapidamente onde costumam surgir os erros:
+
+<div id="encoding-react-demo"></div>
+
+## Pistas para o garimpo contínuo
+
+Próximos tópicos candidatos para expandir a apresentação:
+
+- separadores de campo vs separadores decimais;
+- aspas, escapes e delimitadores quebrados;
+- texto com caracteres nulos;
+- diferenças entre Excel, editores e parsers;
+- heurísticas ruins de autodetecção.
+
+## Mensagem final
+
+Antes de culpar o `read_csv()`, pergunte:
+
+1. quais bytes chegaram?
+2. em que encoding eles foram gravados?
+3. qual convenção de linha está no arquivo?
+4. existe `BOM`?
+5. qual regra de ordenação está sendo aplicada?
+
+Se você não responder isso, o inferno dos dados textuais responde por você.

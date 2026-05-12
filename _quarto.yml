@@ -1,0 +1,16 @@
+project:
+  title: "hell-data-on-earth"
+  output-dir: _site
+  render:
+    - index.qmd
+
+lang: pt-BR
+
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    transition: fade
+    incremental: true
+    css: styles.css
+    include-after-body: react-demo.html

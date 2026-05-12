@@ -1,0 +1,73 @@
+:root {
+  --demo-bg: #111827;
+  --demo-card: #1f2937;
+  --demo-border: #374151;
+  --demo-accent: #22d3ee;
+  --demo-text: #f9fafb;
+  --demo-muted: #cbd5e1;
+}
+
+.reveal .slides section .small-table table {
+  font-size: 0.9em;
+}
+
+#encoding-react-demo {
+  margin-top: 1.5rem;
+}
+
+.encoding-demo {
+  background: var(--demo-bg);
+  border: 1px solid var(--demo-border);
+  border-radius: 18px;
+  color: var(--demo-text);
+  padding: 1.25rem;
+}
+
+.encoding-demo__controls {
+  margin-bottom: 1rem;
+}
+
+.encoding-demo__controls label,
+.encoding-demo__controls select {
+  font-size: 0.9em;
+}
+
+.encoding-demo__controls select {
+  background: #fff;
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.encoding-demo__grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.encoding-demo__card {
+  background: var(--demo-card);
+  border: 1px solid var(--demo-border);
+  border-radius: 14px;
+  padding: 0.85rem;
+}
+
+.encoding-demo__card h4 {
+  color: var(--demo-accent);
+  font-size: 0.8em;
+  letter-spacing: 0.03em;
+  margin: 0 0 0.4rem;
+  text-transform: uppercase;
+}
+
+.encoding-demo__card p {
+  color: var(--demo-muted);
+  font-size: 0.82em;
+  margin: 0;
+}
+
+.encoding-demo__sample {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
