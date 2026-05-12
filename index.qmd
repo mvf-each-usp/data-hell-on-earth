@@ -68,7 +68,7 @@ Editor tolerante não garante leitura correta em script, banco ou pipeline.
 | Convenção | Sistema mais comum | Efeito típico |
 |---|---|---|
 | `LF` (`\\n`) | Unix / Linux / macOS atual | padrão mais previsível |
-| `CRLF` (`\\r\\n`) | Windows | linhas extras ou quebra dupla em parser ingênuo |
+| `CRLF` (`\\r\\n`) | Windows | linhas extras ou quebra dupla em parser simplificado |
 | `CR` (`\\r`) | Mac clássico / legado | arquivo parece “embaralhado” |
 
 ## BOM: um invisível barulhento
