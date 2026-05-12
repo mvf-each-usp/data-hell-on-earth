@@ -1,2 +1,2 @@
 # hell-data-on-earth
-Apresentação para a Série `R_Brasil |> bate::papo()`
+Apresentação para a Série `R_Brasil |> bate::papo()` da Comunidade R Brasil no Telegram
