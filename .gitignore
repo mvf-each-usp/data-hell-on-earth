@@ -47,3 +47,10 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Quarto output/cache
+.quarto/
+_site/
+
+/.quarto/
+**/*.quarto_ipynb

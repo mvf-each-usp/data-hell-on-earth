@@ -1,0 +1,100 @@
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var container = document.getElementById("encoding-react-demo");
+
+    if (!container || !window.React || !window.ReactDOM) {
+      return;
+    }
+
+    var e = window.React.createElement;
+    var useState = window.React.useState;
+
+    var scenarios = [
+      {
+        id: "cafe",
+        label: "Acentos corrompidos",
+        sample: "cafÃ© → café",
+        encoding: "Arquivo em UTF-8 lido como Windows-1252.",
+        lineEnding: "O fim de linha pode estar correto e mesmo assim o texto quebrar.",
+        bom: "Sem BOM explícito, a heurística pode errar.",
+        sorting: "A ordenação posterior herda os caracteres já corrompidos."
+      },
+      {
+        id: "excel",
+        label: "Export do Excel",
+        sample: "ï»¿coluna_1",
+        encoding: "BOM UTF-8 vazando para o cabeçalho.",
+        lineEnding: "Frequente junto com CRLF em CSV exportado no Windows.",
+        bom: "O parser precisa remover o marcador do primeiro campo.",
+        sorting: "Joins e renomeações falham porque o nome não bate exatamente."
+      },
+      {
+        id: "utf16",
+        label: "TXT UTF-16",
+        sample: "S\\0ã\\0o\\0",
+        encoding: "Texto UTF-16 tratado como sequência simples de bytes.",
+        lineEnding: "Quebras de linha ocupam mais bytes do que o parser espera.",
+        bom: "Aqui o BOM costuma ser pista útil para endianess.",
+        sorting: "Comparações byte a byte deixam de fazer sentido."
+      }
+    ];
+
+    function Card(title, text) {
+      return e(
+        "div",
+        { className: "encoding-demo__card" },
+        e("h4", null, title),
+        e("p", null, text)
+      );
+    }
+
+    function Demo() {
+      var _useState = useState(scenarios[0].id);
+      var selectedId = _useState[0];
+      var setSelectedId = _useState[1];
+      var scenario = scenarios.find(function (item) {
+        return item.id === selectedId;
+      }) || scenarios[0];
+
+      return e(
+        "div",
+        { className: "encoding-demo" },
+        e(
+          "div",
+          { className: "encoding-demo__controls" },
+          e("label", { htmlFor: "encoding-scenario" }, "Cenário:"),
+          e(
+            "select",
+            {
+              id: "encoding-scenario",
+              value: selectedId,
+              onChange: function (event) {
+                setSelectedId(event.target.value);
+              }
+            },
+            scenarios.map(function (item) {
+              return e(
+                "option",
+                { key: item.id, value: item.id },
+                item.label
+              );
+            })
+          )
+        ),
+        e("div", { className: "encoding-demo__sample" }, scenario.sample),
+        e(
+          "div",
+          { className: "encoding-demo__grid" },
+          Card("Encoding", scenario.encoding),
+          Card("Fim de linha", scenario.lineEnding),
+          Card("BOM", scenario.bom),
+          Card("Ordenação", scenario.sorting)
+        )
+      );
+    }
+
+    window.ReactDOM.createRoot(container).render(e(Demo));
+  });
+</script>
