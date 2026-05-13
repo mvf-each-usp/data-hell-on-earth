@@ -42,7 +42,7 @@ exemplo
 ## Onde pode dar merda?
 
 - Codificação do dado textual (*encoding*)
-- Armazenamento dodado em memória/disco
+- Armazenamento do dado em memória/disco
 - Estrutura do arquivo
 - Corrupção de dados no transporte e manuseio
 
@@ -154,7 +154,7 @@ Saiu do ASCII, fudeu!
 
 ## Números e Caracteres
 
-Vamos falar sobre quebras de linhas que te quebram as perna?
+Vamos falar sobre as quebras de linhas que te quebram as perna?
 
 
 ### Decimal e Hexadecimal
