@@ -55,15 +55,11 @@ system.time(
             node |>
             html_element(".from_name") |>
             html_text(),
-          texto =
+          texto.bruto =
             node |>
             html_element(".text") |>
-            html_text(),
-          links =
-            node |>
-            html_element(".text") |>
-            html_element("a[href]") |> 
-            html_attr("href"),
+            # TODO : ver se {htmltools ajuda}
+            html_text(), # essa fç simplesmente perde todas as tags internas, pulo de linha etc.; nem tenta trocar por "\n", só apaga
           reply.to =
             node |> 
             html_element(".reply_to") |> 
@@ -77,7 +73,19 @@ system.time(
             node |> 
             html_element(".media") |> 
             html_element(".details") |> 
-            html_text()
+            html_text(),
+          # TODO
+          #  descobrir como extrair:
+          #  - reações
+          #  - menções, e.g. <a href="https://t.me/LincolnSotto">@LincolnSotto</a>
+          #  - presença de links externos: <a href="https://www.google.com">google</a>
+          #  - presença de chunks: <pre> código </pre>
+          #    - não era para existor alguma classe, tipo <pre lang="R"> código R </pre>
+          #  - extrair os próprios chunks
+          #  - 
+          #
+          #  - todas podem ocorrer múltiplas vezes em cada nó
+          
         )
       },
       .progress = TRUE
@@ -101,6 +109,12 @@ system.time(
       tam.texto = 
         texto |> 
         nchar(),
+      ### teve que sair de lá de cima, mas não quero perder
+      # links =
+      #   node |>
+      #   html_element(".text") |>
+      #   html_element("a[href]") |> 
+      #   html_attr("href"),
       reply.to = 
         reply.to |> 
         str_remove("#go_to_message") |> 
