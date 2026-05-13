@@ -139,18 +139,9 @@ Saiu do ASCII, fudeu!
 
 ### UTF: botando o Unicode para funcionar
 
-### UTF-8 do Linux, do MacOS e da internet vs UTF-16 do Windows
+### UTF-8 e a internet
 
-
-
-
-
-## UTF
-
-### UTF-8, a internet e o Linux
-
-
-
+### UTF-8: a sacada genial de quem bolou esse troço
 
 
 ## Números e Caracteres
