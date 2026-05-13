@@ -14,13 +14,83 @@ library(tidyverse)
 ```
 # importação
 
-importando banco de mensagens limpo
+importando banco de mensagens bruto
 
 ```{r}
 #| label: importa
 
-msgs <- read_rds("data/msgs.rds")
+system.time(
+  msgs.bruto <- 
+    "data/ChatExport_2026-05-13_JSON/msgs-compact.json" |> 
+    read_json(
+      simplifyVector = TRUE
+    ) |> 
+    pluck("messages")
+)
 ```
+
+
+# montando
+
+estudando a estrutura presente
+
+```{r}
+#| label: vendo-estrutura
+
+msgs.bruto |> 
+  str()
+```
+
+preciso ter pelo menos:
+
+
+```
+- msg
+  - id
+  - type
+  - date
+  - cont
+- author
+  - login
+  - name
+  - id
+- text
+  - raw
+  - entities
+- reply.to
+  - msg.id
+- media
+  - type
+  - size
+- reactions
+  [
+    - actor
+      - login
+      - name
+      - id
+    - reaction
+  ]
+- citations: <a href="https://t.me/AlbersonMiranda">Alberson</a>
+  [
+    - actor.name
+    - actor.id
+  ]
+- links
+  [
+    - url
+  ]
+- chunks: `<pre> código </pre>`
+  [
+    - code
+  ]
+    - ??? n era p existir alguma classe em `<pre>`, tipo `<pre lang="R">`???
+```
+
+
+
+
+
+
 
 # manuseio
 
@@ -29,9 +99,16 @@ selecionando as mensagens que postei
 ```{r}
 #| label: filtra-minhas-msgs
 
+minha.id <- 198276
+
 minhas.msgs <- 
-  msgs |> 
-  filter(autor == "Marcelo Ventura")
+  msgs.bruto |> 
+  filter(from == "Marcelo Ventura")
+
+minhas.msgs |> 
+  nrow()
+msgs.bruto |> 
+  filter(id == "198276")
 ```
 
 colapsando as mensagens que são continuação
