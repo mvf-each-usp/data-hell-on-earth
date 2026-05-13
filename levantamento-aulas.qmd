@@ -99,16 +99,29 @@ selecionando as mensagens que postei
 ```{r}
 #| label: filtra-minhas-msgs
 
-minha.id <- 198276
-
 minhas.msgs <- 
   msgs.bruto |> 
   filter(from == "Marcelo Ventura")
+```
 
+verificando se puxei tudo
+
+```{r}
 minhas.msgs |> 
   nrow()
+(meu.id <- minhas.msgs |> head(1) |> pluck("from_id"))
 msgs.bruto |> 
-  filter(id == "198276")
+  filter(from_id == meu.id) |> 
+  nrow()
+```
+
+
+uma msg que eu postei
+
+```{r}
+msgs.bruto |> 
+  filter(id == 198276) |> 
+  print()
 ```
 
 colapsando as mensagens que são continuação
