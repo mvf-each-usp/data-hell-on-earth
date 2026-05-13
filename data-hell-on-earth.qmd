@@ -314,6 +314,11 @@ AQUI AQUI AQUI AQUI AQUI AQUI
 
 ### UTF-16 do Windows versus UTF-8 da internet inteira, do Linux e do MacOS
 
+menos espaço (utf8) vs mais rápido de acessar (utf16)
+
+lembrar do endianness
+
+
 ### UTF-32 e UTF-64 (os "não falamos do Bruno" do Unicode)
 
 
