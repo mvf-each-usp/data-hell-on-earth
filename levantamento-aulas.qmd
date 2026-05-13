@@ -1,0 +1,63 @@
+---
+title: Levantamento das "aulas" que já postei no grupo
+format: 
+  html
+execute: 
+  cache: true
+  echo: fenced
+---
+
+```{r}
+#| label: setup
+
+library(tidyverse)
+```
+# importação
+
+importando banco de mensagens limpo
+
+```{r}
+#| label: importa
+
+msgs <- read_rds("data/msgs.rds")
+```
+
+# manuseio
+
+selecionando as mensagens que postei
+
+```{r}
+#| label: filtra-minhas-msgs
+
+minhas.msgs <- 
+  msgs |> 
+  filter(autor == "Marcelo Ventura")
+```
+
+colapsando as mensagens que são continuação
+
+```{r}
+msgs.colapsadas <- 
+  minhas.msgs |> 
+  mutate(
+    grupo =
+      (1 - continuação) |> 
+      cumsum(),
+    .before = everything()
+  ) |> 
+  summarise(
+    texto = 
+      str_c(texto, collapse = "\n\n"),
+    ids =
+      str_c(min(id), max(id), sep = ":"),
+    início = min(data),
+    fim = max(data)
+      
+  )
+```
+
+
+
+# pegando as maiores
+
+
