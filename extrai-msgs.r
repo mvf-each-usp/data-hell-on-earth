@@ -128,3 +128,8 @@ system.time(
     ) |> 
     saveRDS("data/msgs.rds")
 )
+
+msgs |> 
+  filter(id == 198276) |> 
+  pull(texto) |> 
+  str_detect("\n")
