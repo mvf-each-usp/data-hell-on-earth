@@ -3,6 +3,9 @@
 # ### #
 # extrai e filtra as mensagens mais interessantes que já escrevi pro R Brasil
 # sobre importação dados etc
+# ### #
+# versão html -- com dados extraídos há mais tempo
+# descontinuado em favor do script extrai-msgs-json.r
 # ############################################################################ #
 
 # carregando pacotes ----
