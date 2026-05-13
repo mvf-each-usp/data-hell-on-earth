@@ -44,7 +44,8 @@ exemplo
 - Codificação do dado textual (*encoding*)
 - Armazenamento do dado em memória/disco
 - Estrutura do arquivo
-- Corrupção de dados no transporte e manuseio
+- Corrupção de dados na geração e armazenamento
+- Corrupção de dados na transmissão e manuseio
 
 # Codificação do dado textual
 
