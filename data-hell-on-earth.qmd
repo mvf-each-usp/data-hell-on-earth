@@ -15,14 +15,15 @@ format:
   revealjs: 
     theme: blood
     slide-level: 3
-    slide-number: c/t
-    # slide-number: true
-    # slide-number: h/v
+    slide-number: 
+      c/t
+      # true
+      # h/v
     show-slide-number: speaker
     transition: 
       none
       # zoom
-    # smaller: true
+    # smaller: true   # a tentação é grande
     chalkboard: true
 ---
 
