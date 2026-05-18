@@ -46,7 +46,28 @@ estudando a estrutura presente
 #| label: vendo-estrutura
 
 msgs.bruto |> 
-  str()
+  count(type)
+msgs.bruto |> 
+  count(action) |> 
+  arrange(desc(n))
+msgs.bruto |> 
+  count(actor_id)
+msgs.bruto |> 
+  count(type, action)
+msgs.bruto |> 
+  filter(type == "service") |> 
+  count(action, actor_id) |> 
+  filter(n == 1) |> 
+  count(action)
+msgs.bruto |> 
+  filter(
+    type == "service"
+    , action %notin% c("invite_members", "join_group_by_link")
+  ) |> 
+  count(action, actor_id) |> 
+  arrange(desc(n))
+```
+
 ```
 
 preciso ter pelo menos:
