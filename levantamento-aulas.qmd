@@ -11,6 +11,7 @@ execute:
 #| label: setup
 
 library(tidyverse)
+library(jsonlite)
 ```
 # importação
 
