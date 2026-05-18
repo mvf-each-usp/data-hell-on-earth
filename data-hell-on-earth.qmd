@@ -83,29 +83,56 @@ Simples, certo?
   associação específica entre um conjunto de valores numéricos e um conjunto de
   letra
 - Pode haver várias formas de fazer essa associação entre valor numérico e 
-  caracter --- cada uma dessas formas é chamada de *enconding*
+  caracter
 
-### *Encoding*
+. . .
 
-- Problema 1: no início da computação, cada fabricante de computador criou o seu
-  próprio *encoding* próprio
-    - com conjuntos de caracteres diferentes:
-        - Letra em um *encoding* sem correspondência em outro
-        - *Encoding* com letras maiúsculas e minúsculas e *encoding* só com
-          maiúsculas
-    - usando *quantidades de bits* diferentes:
-        - fabricantes usavam 6, 7 ou 8 bits para armazenar um caracter
+Cada uma dessas formas é chamada de *enconding*
 
-### *Encoding*
 
-- Problema 2: além dos caracteres *imprimíveis* (letras, dígitos, sinais
-  de pontuação, alguns símbolos matemáticos ou alguns símbolos como `@`, `#`,
-  `$` etc.), parte dos caracteres eram usados pelo computador para se comunicar
-  com alguns de seus dispositivos (como teclado, impressora e monitor de vídeo)
-  e com outros computadores -- os *caracteres de controle*
-    - por exemplo, havia um caracter de controle para avisar a impressora para
-      subir uma linha e um outro para avisar a impressora para trazer de volta
-      o carro com a cabeça de impressão para o início da linha
+
+### *Encoding*  {.smaller}
+#### Problema 1
+
+No início da computação, cada fabricante de computador criou o seu próprio 
+*encoding* próprio:
+
+- com conjuntos de caracteres diferentes:
+    - caracter em um *encoding* sem correspondência em outro
+    - *encoding* com letras maiúsculas e minúsculas vs *encoding* só com
+      maiúsculas
+- usando *quantidades de bits* diferentes:
+    - alguns fabricantes usavam bytes de 6 bits
+    - outros usavam bytes de 7 
+    - outros ainda usavam bytes de 8 bits
+
+
+### *Encoding*  {.smaller}
+#### Problema 2
+
+Eram necessários
+
+- *caracteres imprimíveis*: letras, dígitos, sinais de pontuação, símbolos
+  matemáticos ou símbolos como `@`, `#`, `$` etc.
+- caracteres também para computador se comunicar
+    - com os seus dispositivos
+        - teclado, impressora, leitora de cartão perfurado, teletipo,
+          perfuradora de cartão, modem, unidade de fita magnética, monitor de
+          vídeo etc.
+    - com outros computadores
+    - esses são os *caracteres de controle*
+
+
+<!---
+### *Encoding*  {.smaller}
+#### Exemplo de caracteres de controle
+
+- um para mandar a impressora para subir uma linha
+- outro para mandar a impressora trazer o carro com a cabeça de impressão
+  para o início da linha
+- outro ainda para mandar a impressora emitir um aviso sonoro
+--->
+
 
 ### *Encoding*
 
@@ -113,71 +140,667 @@ Simples, certo?
   um outro fabricante exigia fazer algum tipo de *conversão*
 - Essa conversão dependia de quais eram os fabricantes dos computadores
 
- Entra o padrão ASCII na jogada
+. . .
 
-## O *encoding* ASCII
-
-- A *American National Standards Institute* (ANSI, na época ainda chamada
-  *American Standards Association*) estabeleceu um *encoding* ao qual os
-  fabricantes deveriam aderir
-- Esse é o ASCII -- *American Standard Code for Information Interchange* (mas
-  se fala ~~"ó-quis-sô"~~ \ ~~"ôxo"~~ \ ásqui)
+Entra o padrão **ASCII** na jogada
 
 
 ## O *encoding* ASCII
 
-- Ele define um padrão de *encoding* para um byte de 8 bits (logo com espaço
-  para 256 carcateres) usando só 7 bits (logo só para 128 caracteres ao qual)
-- Ele só cobre o caracteres do alfabeto latino usados na língua inglesa -- sem
-  caracteres acentuados do próprio alfabeto latino, sem caracteres de outros
-  alfabetos (como cirílico, chinês, japonês, coreano)
+A *American Standards Association* (ASA, atual ANSI) estabeleceu entre 1963 e 1967
+um *encoding* ao qual os fabricantes de computador deveriam aderir
+
+Esse padrão é o ASCII
+
+- *American Standard Code for Information Interchange*
+    - mas se fala \ ~~"ó-qui-sô"~~ \ ~~"ôxo"~~ \ ásqui
+- um dos padrões utilizado então em telegrafia pelos teletipos da época
+- Padrão ISO/IEC 646
+
+
+## O *encoding* ASCII {.smaller}
+
+- Também conhecido como *Tabela ASCII*
+- O ASCII define 128 caracteres dividido em dois grupos
+    - 33 caracteres de controle, não imprimíveis
+    - 95 caracteres imprimíveis
+        - 26 letras maiúsculas do alfabeto latino
+        - 26 letras minúsculas do alfabeto latino
+        - 10 algarismos indo-arábicos
+        - 8 sinais de pontuação
+        - 11 símbolos matemáticos
+        - 14 símbolos diversos
+
+
+### Caracteres de Controle do ASCII {.smaller}
+
+::::: {style="font-size: 0.5em;"}
+:::: {.columns}
+::: {.column}
+|  Dec  |  Hex  |  Abrev  |  Escape  | Nome                      |
+|:-----:|:-----:|:-------:|:--------:|:--------------------------|
+|  00   |  00   |   NUL   |   \\0    | Null                      |
+|  01   |  01   |   SOH   |          | Start of Header           |
+|  02   |  02   |   STX   |          | Start of Text             |
+|  03   |  03   |   ETX   |          | End of Text               |
+|  04   |  04   |   EOT   |          | End of Transmission       |
+|  05   |  05   |   ENQ   |          | Enquiry                   |
+|  06   |  06   |   ACK   |          | Acknowledge               |
+|  07   |  07   |   BEL   |   \\a    | Bell                      |
+|  08   |  08   |   BS    |   \\b    | Back-space                |
+|  09   |  09   |   HT    |   \\t    | Horizontal Tabulation     |
+|  10   |  0A   |   LF    |   \\n    | Line Feed                 |
+|  11   |  0B   |   VT    |   \\v    | Vertical Tabulation       |
+|  12   |  0C   |   FF    |   \\f    | Form Feed                 |
+|  13   |  0D   |   CR    |   \\r    | Carriage Return           |
+|  14   |  0E   |   SO    |          | Shift Out                 |
+|  15   |  0F   |   SI    |          | Shift In                  |
+|  16   |  10   |   DLE   |          | Data-Link Escape          |
+:::
+::: {.column}
+|  Dec  |  Hex  |  Abrev  |  Escape  | Nome                      |
+|:-----:|:-----:|:-------:|:--------:|:--------------------------|
+|  17   |  11   |   DC1   |          | Device Control 1          |
+|  18   |  12   |   DC2   |          | Device Control 2          |
+|  19   |  13   |   DC3   |          | Device Control 3          |
+|  20   |  14   |   DC4   |          | Device Control 4          |
+|  21   |  15   |   NAK   |          | Negative-Acknowledge      |
+|  22   |  16   |   SYN   |          | Synchronous Idle          |
+|  23   |  17   |   ETB   |          | End of Transmission Block |
+|  24   |  18   |   CAN   |          | Cancel                    |
+|  25   |  19   |   EM    |          | End of Medium             |
+|  26   |  1A   |   SUB   |          | Substitute                |
+|  27   |  1B   |   ESC   |          | Escape                    |
+|  28   |  1C   |   FS    |          | File Separator            |
+|  29   |  1D   |   GS    |   \\e    | Group Separator           |
+|  30   |  1E   |   RS    |          | Record Separator          |
+|  31   |  1F   |   US    |          | Unit Separator            |
+|  127  |  7F   |   DEL   |          | Delete                    |
+:::
+::::
+:::::
+
+- A maioria dessas funções ninguém mais usa do jeito original
+- Ainda nos deparamos com `\t`, `\n` e `\r` no R
+- O caracter `\0` ainda é usado interamente no computador de diversas formas
+    - mas não tente usar se você não souber o que está fazendo
+
+
+
+### Caracteres Imprimíveis do ASCII {.smaller}
+
+::::: {style="font-size: 0.5em;"}
+:::: {.columns n=6}
+::: {.column width="16%"}
+|  Dec  |  Hex  |  Caract  |
+|:-----:|:-----:|:--------:|
+|  32  |  20  | `r "\u2423"` |  <!--- espaço em branco --->
+|  33  |  21  |  !  | 
+|  34  |  22  |  "  | 
+|  35  |  23  |  #  | 
+|  36  |  24  |  $  | 
+|  37  |  25  |  %  | 
+|  38  |  26  |  &  | 
+|  39  |  27  |  '  | 
+|  40  |  28  |  (  | 
+|  41  |  29  |  )  | 
+|  42  |  2a  |  *  | 
+|  43  |  2b  |  +  | 
+|  44  |  2c  |  ,  | 
+|  45  |  2d  |  -  | 
+|  46  |  2e  |  .  | 
+|  47  |  2f  |  /  |
+:::
+::: {.column width="16%"}
+|  Dec  |  Hex  |  Caract  |
+|:-----:|:-----:|:--------:|
+|  48  |  30  |  0  | 
+|  49  |  31  |  1  | 
+|  50  |  32  |  2  | 
+|  51  |  33  |  3  | 
+|  52  |  34  |  4  | 
+|  53  |  35  |  5  | 
+|  54  |  36  |  6  | 
+|  55  |  37  |  7  | 
+|  56  |  38  |  8  | 
+|  57  |  39  |  9  | 
+|  58  |  3a  |  :  | 
+|  59  |  3b  |  ;  | 
+|  60  |  3c  |  <  | 
+|  61  |  3d  |  =  | 
+|  62  |  3e  |  >  | 
+|  63  |  3f  |  ?  |
+:::
+::: {.column width="16%"}
+|  Dec  |  Hex  |  Caract  |
+|:-----:|:-----:|:--------:|
+|  64  |  40  |  @  | 
+|  65  |  41  |  A  | 
+|  66  |  42  |  B  | 
+|  67  |  43  |  C  | 
+|  68  |  44  |  D  | 
+|  69  |  45  |  E  | 
+|  70  |  46  |  F  | 
+|  71  |  47  |  G  | 
+|  72  |  48  |  H  | 
+|  73  |  49  |  I  | 
+|  74  |  4a  |  J  | 
+|  75  |  4b  |  K  | 
+|  76  |  4c  |  L  | 
+|  77  |  4d  |  M  | 
+|  78  |  4e  |  N  | 
+|  79  |  4f  |  O  |
+:::
+::: {.column width="16%"}
+|  Dec  |  Hex  |  Caract  |
+|:-----:|:-----:|:--------:|
+|  80  |  50  |  P  | 
+|  81  |  51  |  Q  | 
+|  82  |  52  |  R  | 
+|  83  |  53  |  S  | 
+|  84  |  54  |  T  | 
+|  85  |  55  |  U  | 
+|  86  |  56  |  V  | 
+|  87  |  57  |  W  | 
+|  88  |  58  |  X  | 
+|  89  |  59  |  Y  | 
+|  90  |  5a  |  Z  | 
+|  91  |  5b  |  [  | 
+|  92  |  5c  |  \  | 
+|  93  |  5d  |  ]  | 
+|  94  |  5e  |  ^  | 
+|  95  |  5f  |  _  |
+:::
+::: {.column width="16%"}
+|  Dec  |  Hex  |  Caract  |
+|:-----:|:-----:|:--------:|
+|  96  |  60  |  `  | 
+|  97  |  61  |  a  | 
+|  98  |  62  |  b  | 
+|  99  |  63  |  c  | 
+|  100  |  64  |  d  | 
+|  101  |  65  |  e  | 
+|  102  |  66  |  f  | 
+|  103  |  67  |  g  | 
+|  104  |  68  |  h  | 
+|  105  |  69  |  i  | 
+|  106  |  6a  |  j  | 
+|  107  |  6b  |  k  | 
+|  108  |  6c  |  l  | 
+|  109  |  6d  |  m  | 
+|  110  |  6e  |  n  | 
+|  111  |  6f  |  o  |
+:::
+::: {.column width="16%"}
+|  Dec  |  Hex  |  Caract  |
+|:-----:|:-----:|:--------:|
+|  112  |  70  |  p  | 
+|  113  |  71  |  q  | 
+|  114  |  72  |  r  | 
+|  115  |  73  |  s  | 
+|  116  |  74  |  t  | 
+|  117  |  75  |  u  | 
+|  118  |  76  |  v  | 
+|  119  |  77  |  w  | 
+|  120  |  78  |  x  | 
+|  121  |  79  |  y  | 
+|  122  |  7a  |  z  | 
+|  123  |  7b  |  {  | 
+|  124  |  7c  |  \|  | 
+|  125  |  7d  |  }  | 
+|  126  |  7e  |  ~  | 
+:::
+::::
+:::::
+
+Aqui, `r "\u2423"` representa o caracter de espaço no *codepoint* 32
+
+```{r}
+#| include: false
+#| eval: false
+
+lista <- list()
+
+for (n in 0:5) lista[[n + 1]] <- 32 + 16 * n + (0:15)
+
+lista |> 
+  map(
+    \(x) {
+      paste(
+        "| ",
+        x |> as.character(),
+        " | ",
+        x |> as.hexmode(),
+        " | ",
+        x |> intToUtf8(multiple = TRUE),
+        " | ",
+        sep = " ",
+        collapse = "\n"
+      )
+    }
+  ) |>
+  unlist() |> 
+  walk(cat)
+```
+
+
+## O *encoding* ASCII
+
+- Padrão de *encoding* para um byte de 8 bits 
+    - logo tem espaço para 256 codepoints
+- Mas usa só os primeiros 7 bits do byte
+    - logo só define caracteres para 128 codepoints
+
+
+## O *encoding* ASCII
+
+- Ele só cobre o caracteres do alfabeto latino usados na língua inglesa 
+    - sem caracteres acentuados do próprio alfabeto latino 
+        - português, francês, italiano, alemão etc.
+    - sem caracteres de outros alfabetos
+        - cirílico, chinês, japonês, coreano, árabe etc.
+
+. . .
 
 :::{.callout-warning}
 É daqui que virá um porrilhão de problemas
 :::
 
-## Como armazenar esses milhões de outros caracteres?!?
+
+### Faltou cobrir quantos caracteres? {.smaller}
+
+- 62 caracteres acentuados do alfabeto latino de diversas línguas 
+- 447 caracteres do alfabeto cirílico, incluindo variações
+- entre 10.000 e 12.000 caracteres kanji, hiragana e katatana do japonês
+- 11.172 caracteres hangul do coreano
+- entre 50.000 e 100.000 caracteres hanzi do chinês
+- fora muitos outros sistemas de escrita do mundo inteiro
+
+. . .
+
+Ao todo, seria necessário algo na ordem 150.000 codepoints
+
+. . .
+
+\ \ 
+
+**Mas como representar essa muntueira de outros caracteres?!?**
+
+\ \ 
+
+. . .
 
 Saiu do ASCII, fudeu!
 
-### Codepages: o início da confusão
+### *Code Pages* {.smaller}
+#### O início da confusão
 
-### Unicode: a solução final! (pelo menos, era para ser)
+O *encoding* ASCII 
 
-### UTF: botando o Unicode para funcionar
+- caracteres para os valores entre 0 e 127, 
+- mas deixou os valores de 128 a 255 sem definição.
 
-### UTF-8 e a internet
+Um *monte* de gente teve a mesma ideia ao mesmo tempo:
 
-### UTF-8: a sacada genial de quem bolou esse troço
+\ \ 
+
+:::{.callout-important}
+Tive uma ideia inovadora!!!
+
+Vou usar os caracteres 128 a 255 para colocar os caracteres que o ASCII não cobriu!
+:::
+
+\ \ 
+
+Mas cada um foi propondo uma coisa diferente:
 
 
-## Números e Caracteres
 
-Vamos falar sobre as quebras de linhas que te quebram as perna?
+### *Code Pages* {.smaller}
+#### Azideiadoscara:
 
+É um furdunço (v. <https://en.wikipedia.org/wiki/Character_encoding>):
+
+- ISO/IEC: 8859-1 a 8859-16  (lembre: ASCII=ISO/IEC 646)
+- Microsoft Windows Character Sets: *Windows-1250* a *Windows-1258*
+- IBM: CP437, CP720, CP737, CP850, CP852, CP855, CP857, CP858, CP860, CP861,
+  CP862, CP863, CP865, CP866, CP869 e CP872
+- Japão: JIS X 0208 (Shift JIS/MS CP-932, EUC-JP, ISO-2022-JP),
+  JIS X 0213 (Shift_JIS-2004, EUC-JIS-2004, ISO-2022-JP-2004)
+- China: Chinese Guobiao (GB 2312, GBK/MS CP-936, GB 18030),
+  Taiwan Big5 (MS CP-950, Hong Kong HKSCS)
+- Coreia: Korean (KS X 1001, EUC-KR, ISO-2022-KR)
+- Russosfera: KOI8-R, KOI8-U, KOI-7, MIK
+- Índia: ISCII (hindi) e TSCII (tamil)
+- Vietnã e a sua miríade de diacríticos: VISCII
+
+
+### *Code Pages* {.smaller}
+#### Exemplo: as *code pages* da ISO/IEC 8859
+
+Para ter uma ideia do quão diferentes são as *encodings* das versões da ISO/IEC
+8859, abaixo estão os símbolos que correspondem aos caracteres `C0`, `C1`, `E0`
+e `E1` em ISO/IEAC 8859-1 a 8859-16:
+
+| Dec | Hex |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  |  11  |  12  |  13  |  14  |  15  |  16  |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 192 | C0  |  À  |  Ŕ  |  À  |  Ā  |  Р  |     |  ΐ  |     |  À  |  Ā  |  ภ  |  Ą  |  À  |  À  |  À  |
+| 193 | C1  |  Á  |  Á  |  Á  |  Á  |  С  |  ء  |  Α  |     |  Á  |  Á  |  ม  |  Į  |  Á  |  Á  |  Á  |
+| 224 | E0  |  à  |  ŕ  |  à  |  ā  |  р  |  ـ  |  ΰ  |  א  |  à  |  ā  |  เ  |  ą  |  à  |  à  |  à  |
+| 225 | E1  |  á  |  á  |  á  |  á  |  с  |  ف  |  α  |  ב  |  á  |  á  |  แ  |  į  |  á  |  á  |  á  |
+
+
+### *Code Pages* {.smaller}
+
+*Code pages* que são fortes candidatos a *encoding* daqueles dados ilegíveis:
+
+- 8859-1 (Latin-1)
+- Windows-1252 (CP-1252)
+- CP437 (MSDOS Latin US) e CP850 (DOS Latin 1) da era do PC-DOS/MS-DOS
+
+\ \ 
+
+. . .
+
+:::{.callout-tip}
+Lembre deles na hora do `read.csv(encoding = ???)` no seu script
+:::
+
+. . .
+
+\ \ 
+
+Veja também <https://en.wikipedia.org/wiki/Western_Latin_character_sets>
+
+
+## Unicode: a solução final! 
+
+. . .
+
+(ou pelo menos, era para ser)
+
+
+### Unicode
+
+- É simplesmente uma lista de associação entre *codepoints* (valores numéricos) e
+símbolos
+- Como esse valor numérico vai ser codificado (*encoded*) em bytes é uma segunda 
+história, como vamos ver em breve
+- Essa lista é mantida pela Unicode Consortium <https://unicode.org/about.html> e 
+pode ser visualizada por inteiro em <https://home.unicode.org/>.
+
+
+### Unicode {.smaller}
+#### Codepoints
+
+- O valor numérico (*codepoint*) de cada caracter é representado em hexadecimal,
+  precedida pelo prefixo `U+` e seguido de 4 a 6 dígitos hexadecimal:
+    - `U+004A` = J
+    - `U+00E7` = ç
+    - `U+06F2` = `r "06F2" |> strtoi(16) |> intToUtf8()`
+    - `U+361E` = `r "361E" |> strtoi(16) |> intToUtf8()`
+    - `U+2A4F5`
+
+<https://www.unicode.org/charts/>
+
+
+### Unicode {.smaller}
+
+\ \ 
+
+Assim, o Unicode surgiu como A solução unificadora na codificação universal
+entre os povos do universo inteiro
+
+\ \ 
+
+. . .
+
+Pena que, em algum ponto, tem que transformar *codepoint* em bytes e, nessa
+hora, volta a fuder tudo de novo de volta.
+
+
+
+## UTF: botando o Unicode para funcionar
+
+. . .
+
+Unicode e *codepoint* é muito bonitinho, mas como é que faz pra virar bytes no
+disco?
+
+. . .
+
+Nessa hora, você precisa transformar os *codepoints* do Unicode com uma escolha
+de formato
+
+. . .
+
+Entra o UTF na jogada
+
+
+### UTF: botando o Unicode para funcionar {.smaller}
+
+O UTF (Unicode Transformation Format) é um conjunto de três formas alternativas
+de representar em bytes um *codepoint*
+
+- UTF-8: codificação com comprimento variável de bytes; é o padrão *de facto*
+  para transmissão de dados na internet e nos sistemas GNU/Linux e MacOS
+- UTF-16: codificação com comprimento variável de blocos de dois bytes;
+  utilizado nos sistemas Windows; introduz as complicações do *endianness* e do
+  *byte ordem marker*
+- UTF-32: codificação com comprimento fixo de 4 bytes; praticamente não é usado
+  pela ineficiência de uso do espaço em disco; introduz as duas complicações
+  acima
+
+
+
+<!--- TODO --->
+
+### UTF-8
+
+\ \ 
+
+Um dia em 1992, Ken Thompson e Rob Pike foram tomar uma breja e rabiscaram em
+uma toalha de papel da mesa do buteco como fazer uma codificação para o Unicode
+com comprimento variável
+
+\ \ 
+
+E pronto. Estava inventado o UTF-8  😆😆😆
+
+
+### UTF-8 {.smaller}
+#### UTF-8: a sacada genial de quem bolou esse troço
+
+A ideia central do *encoding* UTF-8 é representar cada *codepoint* do Unicode
+com um caracter de comprimento variável entre 1 e 4 bytes, usando a seguinte
+regra:
+
+1. se o comprimento do caracter for 1 byte,
+    - o bit inicial desse byte será `0`
+1. se o comprimento do caracter for 2 bytes,
+    - os bits iniciais do primeiro byte serão `110` e os do segundo serão `10`
+1. se o codepoint for representado com 3 bytes, 
+    - os bits iniciais do byte inicial serão `1110` e os do dois restantes serão `10`
+1. se o codepoint for representado com 4 bytes, 
+    - os bits iniciais do byte inicial serão `11110` e os dos três restantes serão `10`
+1. todos os outros bits serão usados para armazenar qual é o valor do *codepoint*
+
+
+### UTF-8
+#### Retrocompatibilidade com o ASCII
+
+
+:::{.callout-important}
+A primeira regra garante que um caracter ASCII será representado pelo mesmo 
+caracter de 1 byte do *encoding* UTF-8
+
+O menor *codepoint* no ASCII é 0 = (00000000)~2~
+
+O maior é 127 = 2^7^ - 1 = (01111111)~2~
+:::
+
+
+
+
+### UTF-8
+
+Com essas regras, os primeiros bits do primeiro byte indicam o comprimento do 
+caracter:
+
+- `0` = 1 byte, 
+- `110` = 2 bytes,
+- `1110` = 3 bytes,
+- `11110` = 4 bytes
+
+E os primeiros bits de todos os bytes que forem continuação serão `10`
+
+
+### UTF-8
+
+Como os outros bits podem ser usados para armazenar o valor do *codepoint*,
+então os bytes terão o padrão:
+
+- 1 byte: `0xxxxxxx`
+- 2 bytes: `110xxxxx`+`10yyyyyy`
+- 3 bytes: `1110xxxx`+`10yyyyyy`+`10zzzzzz`
+- 4 bytes: `11110xxx`+`10yyyyyy`+`10zzzzzz`+`10wwwwww`
+
+em que `x`, `y`, `z` e `w` podem ser 0 ou 1 para armazenar o valor do
+*codepoint*.
+
+
+### UTF-8
+
+Os valores de *codepoint* que podem ser armazenados em cada caracter serão:
+
+- 1 byte: `xxxxxxx`, 
+    $2^{7} = 128$ valores
+- 2 bytes: `xxxxxyyyyyy`, 
+    $2^{11} = 2048$ valores
+- 3 bytes: `xxxxyyyyyyzzzzzz`, 
+    $2^{16} = 65536$ valores
+- 4 bytes: `xxxyyyyyyzzzzzzwwwwww`, 
+    $2^{21} = 2097152$ valores
+
+```{r}
+#| include: false
+#| eval: false
+
+c(7, (2:4) |> (\(n) 8 - (n + 1) + (n - 1) * 6)()) |> 
+  (\(x) paste0("$2^{", x, "} = ", 2^x, "$"))() |> 
+  cat(sep = "\n")
+```
+
+
+### UTF-8
+
+:::{.callout-note}
+O primeiro *codepoint* com 2 bytes será o *codepoint* **seguinte** ao último
+*codepoint* com 1 byte e assim para 3 bytes em 4 bytes também
+:::
+
+Então os *codepoints* que serão codificados serão:
+
+- 1 byte: de 0 até 2^7^ - 1 = 127
+- 2 bytes: de 128 até 128 + 2^11^ - 1 = 2175
+- 3 bytes: de 2176 até 2176 + 2^16^ - 1 = 67711
+- 4 bytes: de 67712 até 67712 + 2^21^ - 1 = 2164863
+
+```{r}
+#| include: false
+#| eval: false
+
+c(7, (2:4) |> (\(n) 8 - (n + 1) + (n - 1) * 6)()) |>
+  (\(m) 2^m)() |>
+  cumsum() |> 
+  (
+    \(k) 
+      c(
+        k |> lag(default = 0),
+        k - 1
+      ) |> 
+        matrix(ncol = 2, byrow = FALSE)
+  )() |> 
+  apply(1,\(x) list(x)) |> 
+  unlist(recursive = FALSE) |> 
+  map(\(x) paste("de", x[1], "a", x[2])) |> 
+  unlist() |> 
+  cat(sep = "\n")
+```
+
+### UTF-8
+#### Faixas de *codepoints*
+
+<!---
+
+| bytes | inicial         |  final           |
+|:-----:|:---------------:|:----------------:|
+|   1   |      0 (00)     |     127 (7f)     |
+|   2   |    128 (80)     |    2175 (87f)    |
+|   3   |   2176 (880)    |   67711 (1087f)  |
+|   4   |  67712 (10880)  | 2164863 (21087f) |
+
+Entre parênteses, o valor em hexadecimal
+
+---> 
+
+| bytes | inicial |   final   |
+|:-----:|:-------:|:---------:|
+|   1   |      0  |      127  |
+|   2   |    128  |     2175  |
+|   3   |   2176  |    67711  |
+|   4   |  67712  |  2164863  |
+
+
+```{r}
+#| include: false
+#| eval: false
+
+list(
+  c("00000000"),
+  c("01111111"),
+  c("11000000","10000000"),
+  c("11011111","10111111"),
+  c("11100000","10000000","10000000"),
+  c("11101111","10111111","10111111"),
+  c("11110000","10000000","10000000","10000000"),
+  c("11110111","10111111","10111111","10111111")
+) |> 
+  map(strtoi, base = 2) |> 
+  map(as.hexmode) |> 
+  map(\(x) paste0("`\"\\x", x, "\"`", collapse = "+")) |> 
+  unlist() |> 
+  cat(sep = "\n")
+```
+
+
+### Números e Caracteres
+#### Recuerdos: decimais e hexadecimais
+
+- Base decimal: 10 dígitos (do 0 ao 9, último número antes do 10) para compor
+  unidades, dezenas, centenas etc.
+- Base hexadecimal: 16 dígitos (do 0 ao 9 passando pelo 10 ao 15, último número
+  antes do 16) para compor unidades, dezenas (na verdade, serão hexadezenas)
+  etc.
+  - Usamos os caracteres `A`, `B`, `C`, `D`, `E` e `F` para representar como
+    dígitos os números 10, 11, 12, 13, 14 e 15
 
 ### Decimal e Hexadecimal
 
-- Base decimal usa 10 dígitos --- do 0 ao 9 (último número antes do 10) ---
-  para compor unidades, dezenas, centenas etc.
-- A base hexadecimal usa 16 dígitos --- do 0 ao 9, passando pelo 10 ao 15
-  (último número antes do 16) --- para compor unidades, dezenas (na verdade,
-  serão hexadezenas) etc.
-  - Usamos os caracteres `a`, `b`, `c`, `d`, `e` e `f` para representar como
-    dígitos os números 10, 11, 12, 13, 14 e 15
-
-### Decimal e Hexadecimal {.smaller}
-
 Comparando
 
-\begin{align*}
-(12)_{16}&=(10)_{16}+(2)_{16}=(1\times16)_{10}+(2)_{10}=(18)_{10}\\ \\
-(2f)_{16}&=(20)_{16}+(f)_{16}=(2\times16)_{10}+(15)_{10}=(47)_{10}\\ \\
-(3f7b)_{16}
-  & =(3000)_{16}+(f00)_{16}+(70)_{16}+(b)_{16} \\
-  & =(3\times16^3)_{10}+(15\times16^2)_{10}+(7\times16^1)_{10}+(11)_{10}\\
-  & =(16251)_{10}
-\end{align*}
+(12)~16~ = (10)~16~ +(2)~16~ = (1 $\times$ 16)~10~ +(2)~10~ = (18)~10~
+
+\ \ 
+
+(2F)~16~ = (20)~16~ +(F)~16~ = (2 $\times$ 16)~10~ +(15)~10~ = (47)~10~
+
+\ \ 
+
+(3F7B)~16~ 
+   = (3000)~16~ +(F00)~16~ +(70)~16~ +(B)~16~  
+   = (3 $\times$ 16^3^)~10~ +(15 $\times$ 16^2^)~10~ +(7 $\times$ 16^1^)~10~ +(11)~10~  
+   = (16251)~10~ 
 
 
 ### Representações de números em base hexadecimal 
@@ -185,10 +808,10 @@ Comparando
 - Representações de números em base hexadecimal sempre pipocam por aí quando
   você trabalha com computador
 - No R, tem dois exemplos bem manjados:
-  - o caracter de tabulação `"\\t"` pode ser escrito também como `"\\x09"` ou
-    `"\\x9"` (que é 9 em decimal e em hexadecimal)
-  - o caracter de quebra de linha `"\\n"` pode ser escrito como `"\\x0a"` ou
-    `"\\xa"`
+  - o caracter de tabulação `"\t"` pode ser escrito também como `"\x09"` ou
+    `"\x9"` (que é 9 em decimal e em hexadecimal)
+  - o caracter de quebra de linha `"\n"` pode ser escrito como `"\x0a"` ou
+    `"\xa"`
 
 
 ### Representações de números em base hexadecimal 
@@ -196,10 +819,108 @@ Comparando
 - Em URLs, o `%20` de `https://www.dominio.com.br/foto%20de%20hoje.jpg` é o
   caracter espaço (32 em decimal = 20 em hexadecimal) representando em
   hexadecimal
-- Em representação RGB de cores, `#203040` em CSS ou `"#d05010"` em R
+- Em representação RGB de cores, `#203040` em CSS ou `"#d05010"` com o
+  `{ggplot2}` em R
 
 
-## Linhas nos arquivos
+### Voltando ao Unicode e ao UTF-8
+
+Cada *codepoint* do Unicode pode ser representado com 1, 2, 3 ou 4 bytes,
+mas é exibido como um único caracter
+
+Certo?
+
+. . .
+
+Infelizmente, errado
+
+Alguns *codepoints* do Unicode compõem com o *codepoint* anterior, modificando e
+criando um novo símbolo a ser exibido
+
+
+### Voltando ao Unicode e ao UTF-8 {.smaller}
+#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+
+```{r}
+#| echo: true
+
+list("👩" , "👩🏻" , "👩🏼" , "👩‍🦱" , "👩🏻‍🦱" , "👩🏼‍🦱") |> 
+  map(\(x) str_c("U+", x |> utf8ToInt() |> as.hexmode() |> str_to_upper()))
+c("👩" , "👩🏻" , "👩🏼" , "👩‍🦱" , "👩🏻‍🦱" , "👩🏼‍🦱") |> 
+  nchar()
+```
+
+
+### Voltando ao Unicode e ao UTF-8 {.smaller}
+#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+
+- O 👩 tem um codepoint: `U+1F469`
+- Os emojis 👩🏻 e 👩🏼 têm dois *codepoints*: `U+1F469` seguido de `U+1F3FB` ou
+  `U+1F3FC` de tom de pele, que é conjugado com o *codepoint* de base do emoji
+- O emoji 👩‍🦱 tem três *codepoints*: `U+1F469` de base do emoji, seguido de
+  `U+0200D` (*zero width joiner*) e de `U+1F9B1` (*emoji component curly hair*)
+- Os emojis 👩🏻‍🦱 , 👩🏼‍🦱 têm quatro *codepoints*: `U+1F469` seguido do
+  *codepoint* de tom de pele seguido dos *codepoints* *zero width joiner* e
+  *emoji component curly hair*
+  
+Assim, um emoji pode ser representado por 1, 2, 3 ou 4 *codepoints* (ou até
+mais, dependendo da criatividade do vivente)
+
+
+### Voltando ao Unicode e ao UTF-8 {.smaller}
+#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+
+Agora o troço fica louco *mermo* quando você vai contar bytes:
+
+```{r}
+#| echo: true
+
+list("👩" , "👩🏼‍🦱") |> 
+  map(\(x) x |> charToRaw() |> as.integer() |> as.hexmode() |> str_to_upper() |> str_c(collapse = " ")) |> 
+  unlist()
+c("👩" , "👩🏼‍🦱") |> 
+  nchar(type = "bytes")
+```
+
+Ou seja, um unico emoji pode ocupar 15 bytes em disco 
+
+Isso é praticamente uma frase em ASCII
+
+
+### Voltando ao Unicode e ao UTF-8 {.smaller}
+#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+
+\ \ 
+
+A possibilidade de articular *codepoints* para compor um caracter amplia a
+quantidade real de caracteres que o Unicode consegue gerar
+
+\ \ 
+
+Mas isso tem um preço
+
+\ \ 
+
+:::{.callout-note}
+Basta o byte inicial de uma sequência de caracteres Unicode ser removido por
+acidente para que a sequência inteira fique ilegível na hora da importação.
+:::
+
+No exemplo anterior, se o primeiro byte (`F0`) for excluído acidentalmente,
+os outros 14 não farão sentido, o caracter não será renderizado e eles serão uma
+sequência de erros de leitura
+
+
+<!-- 
+
+AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+TODO
+
+-->
+
+
+## Linhas nos arquivos {.smaller}
 
 Lembra que eu mencionei que isto 👇 não é verdade?
 
@@ -210,10 +931,13 @@ Pois é, realmente:
 
 > "There is no spoon" (Matrix)
 
+Não existem linhas
+
 Arquivos são grandes sequências *contínuas* de caracteres
 
 
-### Linhas nos arquivos
+### Linhas nos arquivos {.smaller}
+#### Vamos falar sobre as quebras de linhas que te quebram as perna?
 
 - Não existem realmente linhas em um arquivo de texto
     - A ideia de linhas em um arquivo é só uma ficção útil
@@ -230,10 +954,10 @@ Aqui surge mais um problema
 
 O caracter usado como delimitador de linha ("quebra de linha") depende do sistema operacional do computador
 
-- O Linux usa o caracter *carriage return* (CR, retorno de carro) `"\\x0d"` (13 em decimal)
+- O Linux usa o caracter *carriage return* (CR, retorno de carro) `"\x0d"` (13 em decimal)
     - Esse é o padrão usado para transmissão de dados na internet
-- O MacOS usa o caracter *line feed* (LF, avanço de linha) `"\\x0a"` (10 em decimal)
-- O Windows usa *os dois*: CR+LF ou `"\\x0d\\x0a"`
+- O MacOS usa o caracter *line feed* (LF, avanço de linha) `"\x0a"` (10 em decimal)
+- O Windows usa *os dois*: CR+LF ou `"\x0d\x0a"`
 
 Assim, surge o novo problema potencial
 
