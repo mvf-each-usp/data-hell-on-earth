@@ -28,6 +28,9 @@ system.time(
     ) |> 
     pluck("messages")
 )
+
+msgs.bruto |> 
+  write_rds("data/msgs-bruto.rds", compress = "gz")
 ```
 
 
