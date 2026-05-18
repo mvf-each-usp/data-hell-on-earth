@@ -133,6 +133,26 @@ minhas.msgs <-
 # write_rds(minhas.msgs, "data/minhas-msgs.rds")
 ```
 
+vamos descobrir como extrair o texto das mensagens
+
+```{r}
+#| label: tenta-extrair-texto
+
+minhas.msgs$text |> 
+  map(length) |> 
+  unlist()
+
+minhas.msgs |> 
+  filter(map(text, length) > 2) |> 
+  summary()
+
+textos <- 
+  minhas.msgs |> 
+  filter(map(text, length) > 2) |> 
+  arrange(desc(map(text, length)))
+
+textos$date[4]
+
 ```
 
 preciso ter pelo menos:
