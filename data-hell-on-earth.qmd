@@ -689,20 +689,20 @@ em que `x`, `y`, `z` e `w` podem ser 0 ou 1 para armazenar o valor do
 Os valores de *codepoint* que podem ser armazenados em cada caracter serão:
 
 - 1 byte: `xxxxxxx`, 
-    $2^{7} = 128$ valores
+    2^7^ = 128 valores
 - 2 bytes: `xxxxxyyyyyy`, 
-    $2^{11} = 2048$ valores
+    2^11^ = 2048 valores
 - 3 bytes: `xxxxyyyyyyzzzzzz`, 
-    $2^{16} = 65536$ valores
+    2^16^ = 65536 valores
 - 4 bytes: `xxxyyyyyyzzzzzzwwwwww`, 
-    $2^{21} = 2097152$ valores
+    2^21^ = 2097152 valores
 
 ```{r}
 #| include: false
 #| eval: false
 
 c(7, (2:4) |> (\(n) 8 - (n + 1) + (n - 1) * 6)()) |> 
-  (\(x) paste0("$2^{", x, "} = ", 2^x, "$"))() |> 
+  (\(x) paste0("2^", x, "^ = ", 2^x))() |> 
   cat(sep = "\n")
 ```
 
