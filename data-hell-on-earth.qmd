@@ -39,11 +39,25 @@ library(tidyverse)
 
 ### Situação (que era para ser) típica
 
+\ \ 
+
 exemplo
+
+\ \ 
+
+<!--- AQUI!!! ---> TODO: arrumar um bom exemplo
+
 
 ### Situação típica de verdade
 
+\ \ 
+
 exemplo
+
+\ \ 
+
+<!--- AQUI!!! ---> TODO: arrumar um bom exemplo
+
 
 # Roadmap de onde pode dar merda
 
