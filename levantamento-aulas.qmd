@@ -95,6 +95,44 @@ dic_nomes <-
 ```
 
 
+```{r}
+#| label: minhas-msgs
+
+msgs.bruto |> 
+  filter(
+    type == "message"
+    , from == "Marcelo Ventura"
+  ) |> 
+  select(
+    !c(
+      type, date_unixtime, actor, actor_id, action, title, from, from_id, photo,
+      photo_file_size, width, height, file, thumbnail, thumbnail_file_size,
+      message_id, via_bot, edited, edited_unixtime, place_name, address,
+      location_information, inviter, contact_information, contact_vcard,
+      contact_vcard_file_size
+    )
+  ) |> 
+  summary()
+
+minhas.msgs <- 
+  msgs.bruto |> 
+  filter(
+    type == "message"
+    , from == "Marcelo Ventura"
+  ) |> 
+  select(
+    !c(
+      type, date_unixtime, actor, actor_id, action, title, from, from_id, photo,
+      photo_file_size, width, height, file, thumbnail, thumbnail_file_size,
+      message_id, via_bot, edited, edited_unixtime, place_name, address,
+      location_information, inviter, contact_information, contact_vcard,
+      contact_vcard_file_size
+    )
+  )
+
+# write_rds(minhas.msgs, "data/minhas-msgs.rds")
+```
+
 ```
 
 preciso ter pelo menos:
