@@ -68,6 +68,33 @@ msgs.bruto |>
   arrange(desc(n))
 ```
 
+```{r}
+#| label: monta-dic-nomes
+
+dic_nomes <- 
+  bind_rows(
+    msgs.bruto |> 
+      select(actor, actor_id) |> 
+      filter(!is.na(actor)) |> 
+      distinct() |> 
+      rename(nome = actor, id = actor_id),
+    msgs.bruto |> 
+      select(from, from_id) |> 
+      filter(!is.na(from)) |> 
+      distinct() |> 
+      rename(nome = from, id = from_id)
+  ) |> 
+  distinct() |> 
+  mutate(
+    id = 
+      id |> 
+      str_remove("user") |> 
+      as.integer()
+  ) |> 
+  arrange(id)
+```
+
+
 ```
 
 preciso ter pelo menos:
