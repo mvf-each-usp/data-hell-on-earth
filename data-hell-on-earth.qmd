@@ -1132,29 +1132,3 @@ Tipos:
 
 
 
-# Começando do princípio
-(*ou* "E no princípio era o ~~verbo~~ ascii")
-
-## Bits e bytes
-
-1 bit = 0 ou 1
-
-1 byte = 8 bytes
-
-Simples, certo?
-
-### Errado: 
-
-No início, os computadores armazenavam *palavras*  (*word*, menor unidade de
-armazenamento em memória, disco etc.) de 8 bits, logo 1 *word* = 1 *byte*, mas,
-hoje em dia, alguns computadores têm palavras de 16, de 32 e até 64 bits; 
-ou seja, 2, 4 e até 8 *bytes*.
-
-Por outro lado, a transmissão de dados continua orientada por bits e bytes de 8 
-bits.
-
-## ASCII
-
-### O início
-
-
