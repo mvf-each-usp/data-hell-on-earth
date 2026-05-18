@@ -23,6 +23,7 @@ importando banco de mensagens bruto
 if (file.exists("data/msgs-bruto.rds")) {
   msgs.bruto <- read_rds("data/msgs-bruto.rds")
 } else {
+  message("importando de novo")
   system.time(
     msgs.bruto <- 
       "data/ChatExport_2026-05-13_JSON/msgs-compact.json" |> 
