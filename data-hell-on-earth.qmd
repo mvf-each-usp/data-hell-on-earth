@@ -26,6 +26,13 @@ format:
     chalkboard: true
 ---
 
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+```
+
 # Introdução 
 (*ou* "PQ CMG?!?!?!?!? 😭")
 
