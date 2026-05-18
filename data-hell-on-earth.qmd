@@ -94,7 +94,9 @@ Simples, certo?
 
 > "Achou errado, otário!" --- Rogerinho do Ingá
 
-### *Encoding*
+## *Encoding*
+
+## *Encoding*
 
 > "There is no spoon" (Matrix)
 
@@ -112,8 +114,9 @@ Cada uma dessas formas é chamada de *enconding*
 
 
 
-### *Encoding*  {.smaller}
-#### Problema 1
+## *Encoding*
+
+Problema 1:
 
 No início da computação, cada fabricante de computador criou o seu próprio 
 *encoding* próprio:
@@ -128,8 +131,9 @@ No início da computação, cada fabricante de computador criou o seu próprio
     - outros ainda usavam bytes de 8 bits
 
 
-### *Encoding*  {.smaller}
-#### Problema 2
+## *Encoding*
+
+Problema 2
 
 Eram necessários
 
@@ -155,7 +159,7 @@ Eram necessários
 --->
 
 
-### *Encoding*
+## *Encoding*
 
 - Resultado: passar dados de um computador de um fabricante para o computador de
   um outro fabricante exigia fazer algum tipo de *conversão*
@@ -179,7 +183,7 @@ Esse padrão é o ASCII
 - Padrão ISO/IEC 646
 
 
-## O *encoding* ASCII {.smaller}
+## O *encoding* ASCII
 
 - Também conhecido como *Tabela ASCII*
 - O ASCII define 128 caracteres dividido em dois grupos
@@ -193,11 +197,12 @@ Esse padrão é o ASCII
         - 14 símbolos diversos
 
 
-### Caracteres de Controle do ASCII {.smaller}
+## Caracteres de Controle do ASCII
 
-::::: {style="font-size: 0.5em;"}
-:::: {.columns}
-::: {.column}
+:::::: {style="font-size: 0.6em;"}
+::::: {.columns}
+:::: {.column width="50%;"}
+::: {.center}
 |  Dec  |  Hex  |  Abrev  |  Escape  | Nome                      |
 |:-----:|:-----:|:-------:|:--------:|:--------------------------|
 |  00   |  00   |   NUL   |   \\0    | Null                      |
@@ -218,7 +223,9 @@ Esse padrão é o ASCII
 |  15   |  0F   |   SI    |          | Shift In                  |
 |  16   |  10   |   DLE   |          | Data-Link Escape          |
 :::
-::: {.column}
+::::
+:::: {.column width="50%;"}
+::: {.centering}
 |  Dec  |  Hex  |  Abrev  |  Escape  | Nome                      |
 |:-----:|:-----:|:-------:|:--------:|:--------------------------|
 |  17   |  11   |   DC1   |          | Device Control 1          |
@@ -240,19 +247,24 @@ Esse padrão é o ASCII
 :::
 ::::
 :::::
+::::::
+
+
+## Caracteres de Controle do ASCII
 
 - A maioria dessas funções ninguém mais usa do jeito original
 - Ainda nos deparamos com `\t`, `\n` e `\r` no R
-- O caracter `\0` ainda é usado interamente no computador de diversas formas
+- O byte `\0` ainda é usado interamente no computador de diversas formas
     - mas não tente usar se você não souber o que está fazendo
 
 
 
-### Caracteres Imprimíveis do ASCII {.smaller}
+## Caracteres Imprimíveis do ASCII
 
-::::: {style="font-size: 0.5em;"}
-:::: {.columns n=6}
-::: {.column width="16%"}
+:::::: {style="font-size: 0.6em;"}
+::::: {.columns}
+:::: {.column width="16%"}
+::: {.centering}
 |  Dec  |  Hex  |  Caract  |
 |:-----:|:-----:|:--------:|
 |  32  |  20  | `r "\u2423"` |  <!--- espaço em branco --->
@@ -272,7 +284,9 @@ Esse padrão é o ASCII
 |  46  |  2e  |  .  | 
 |  47  |  2f  |  /  |
 :::
-::: {.column width="16%"}
+::::
+:::: {.column width="16%"}
+::: {.centering}
 |  Dec  |  Hex  |  Caract  |
 |:-----:|:-----:|:--------:|
 |  48  |  30  |  0  | 
@@ -292,7 +306,9 @@ Esse padrão é o ASCII
 |  62  |  3e  |  >  | 
 |  63  |  3f  |  ?  |
 :::
-::: {.column width="16%"}
+::::
+:::: {.column width="16%"}
+::: {.centering}
 |  Dec  |  Hex  |  Caract  |
 |:-----:|:-----:|:--------:|
 |  64  |  40  |  @  | 
@@ -312,7 +328,9 @@ Esse padrão é o ASCII
 |  78  |  4e  |  N  | 
 |  79  |  4f  |  O  |
 :::
-::: {.column width="16%"}
+::::
+:::: {.column width="16%"}
+::: {.centering}
 |  Dec  |  Hex  |  Caract  |
 |:-----:|:-----:|:--------:|
 |  80  |  50  |  P  | 
@@ -332,7 +350,9 @@ Esse padrão é o ASCII
 |  94  |  5e  |  ^  | 
 |  95  |  5f  |  _  |
 :::
-::: {.column width="16%"}
+::::
+:::: {.column width="16%"}
+::: {.centering}
 |  Dec  |  Hex  |  Caract  |
 |:-----:|:-----:|:--------:|
 |  96  |  60  |  `  | 
@@ -352,7 +372,9 @@ Esse padrão é o ASCII
 |  110  |  6e  |  n  | 
 |  111  |  6f  |  o  |
 :::
-::: {.column width="16%"}
+::::
+:::: {.column width="16%"}
+::: {.centering}
 |  Dec  |  Hex  |  Caract  |
 |:-----:|:-----:|:--------:|
 |  112  |  70  |  p  | 
@@ -373,6 +395,7 @@ Esse padrão é o ASCII
 :::
 ::::
 :::::
+::::::
 
 Aqui, `r "\u2423"` representa o caracter de espaço no *codepoint* 32
 
@@ -410,11 +433,7 @@ lista |>
 - Padrão de *encoding* para um byte de 8 bits 
     - logo tem espaço para 256 codepoints
 - Mas usa só os primeiros 7 bits do byte
-    - logo só define caracteres para 128 codepoints
-
-
-## O *encoding* ASCII
-
+    - logo só define bytes para 128 codepoints
 - Ele só cobre o caracteres do alfabeto latino usados na língua inglesa 
     - sem caracteres acentuados do próprio alfabeto latino 
         - português, francês, italiano, alemão etc.
@@ -428,7 +447,7 @@ lista |>
 :::
 
 
-### Faltou cobrir quantos caracteres? {.smaller}
+## Faltou cobrir quantos caracteres?
 
 - 62 caracteres acentuados do alfabeto latino de diversas línguas 
 - 447 caracteres do alfabeto cirílico, incluindo variações
@@ -453,8 +472,10 @@ Ao todo, seria necessário algo na ordem 150.000 codepoints
 
 Saiu do ASCII, fudeu!
 
-### *Code Pages* {.smaller}
-#### O início da confusão
+## *Code Pages*
+
+
+## O início da confusão
 
 O *encoding* ASCII 
 
@@ -496,8 +517,10 @@ Mas cada um foi propondo uma coisa diferente:
 - Vietnã e a sua miríade de diacríticos: VISCII
 
 
-### *Code Pages* {.smaller}
-#### Exemplo: as *code pages* da ISO/IEC 8859
+
+## *Code Pages*
+
+Exemplo: as *code pages* da ISO/IEC 8859
 
 Para ter uma ideia do quão diferentes são as *encodings* das versões da ISO/IEC
 8859, abaixo estão os símbolos que correspondem aos caracteres `C0`, `C1`, `E0`
@@ -511,7 +534,8 @@ e `E1` em ISO/IEAC 8859-1 a 8859-16:
 | 225 | E1  |  á  |  á  |  á  |  á  |  с  |  ف  |  α  |  ב  |  á  |  á  |  แ  |  į  |  á  |  á  |  á  |
 
 
-### *Code Pages* {.smaller}
+
+## *Code Pages*
 
 *Code pages* que são fortes candidatos a *encoding* daqueles dados ilegíveis:
 
@@ -523,7 +547,7 @@ e `E1` em ISO/IEAC 8859-1 a 8859-16:
 
 . . .
 
-:::{.callout-tip}
+:::{.callout-tip style="font-size: 1.5em;"}
 Lembre deles na hora do `read.csv(encoding = ???)` no seu script
 :::
 
@@ -541,7 +565,7 @@ Veja também <https://en.wikipedia.org/wiki/Western_Latin_character_sets>
 (ou pelo menos, era para ser)
 
 
-### Unicode
+## Unicode
 
 - É simplesmente uma lista de associação entre *codepoints* (valores numéricos) e
 símbolos
@@ -551,8 +575,7 @@ história, como vamos ver em breve
 pode ser visualizada por inteiro em <https://home.unicode.org/>.
 
 
-### Unicode {.smaller}
-#### Codepoints
+## *Codepoints*
 
 - O valor numérico (*codepoint*) de cada caracter é representado em hexadecimal,
   precedida pelo prefixo `U+` e seguido de 4 a 6 dígitos hexadecimal:
@@ -565,7 +588,7 @@ pode ser visualizada por inteiro em <https://home.unicode.org/>.
 <https://www.unicode.org/charts/>
 
 
-### Unicode {.smaller}
+## Unicode
 
 \ \ 
 
@@ -598,7 +621,7 @@ de formato
 Entra o UTF na jogada
 
 
-### UTF: botando o Unicode para funcionar {.smaller}
+## Os sistemas de *encoding* UTF
 
 O UTF (Unicode Transformation Format) é um conjunto de três formas alternativas
 de representar em bytes um *codepoint*
@@ -824,7 +847,7 @@ Comparando
    = (16251)~10~ 
 
 
-### Representações de números em base hexadecimal 
+## Representação hexadecimal 
 
 - Representações de números em base hexadecimal sempre pipocam por aí quando
   você trabalha com computador
