@@ -398,7 +398,7 @@ Esse padrão é o ASCII
 :::::
 ::::::
 
-Aqui, `r "\u2423"` representa o caracter de espaço no *codepoint* 32
+Aqui, `r "\u2423"` representa o caracter "espaço em branco" com byte 32
 
 ```{r}
 #| include: false
@@ -463,11 +463,7 @@ Ao todo, seria necessário algo na ordem 150.000 codepoints
 
 . . .
 
-\ \ 
-
 **Mas como representar essa muntueira de outros caracteres?!?**
-
-\ \ 
 
 . . .
 
@@ -483,10 +479,17 @@ Saiu do ASCII, fudeu!
 
 ## O início da confusão
 
+\ \ 
+
 O *encoding* ASCII 
 
-- caracteres para os valores entre 0 e 127, 
-- mas deixou os valores de 128 a 255 sem definição.
+- caracteres para os bytes entre 0 e 127, 
+- mas deixou os bytes de 128 a 255 sem definição.
+
+. . . 
+
+\ \ 
+
 Daí, um *monte* de gente teve a **mesma** ideia ao mesmo tempo:
 
 
@@ -569,8 +572,6 @@ e `E1` em ISO/IEAC 8859-1 a 8859-16:
 - Windows-1252 (CP-1252)
 - CP437 (MSDOS Latin US) e CP850 (DOS Latin 1) da era do PC-DOS/MS-DOS
 
-\ \ 
-
 . . .
 
 :::{.callout-tip style="font-size: 1.5em;"}
@@ -578,8 +579,6 @@ Lembre deles na hora do `read.csv(encoding = ???)` no seu script
 :::
 
 . . .
-
-\ \ 
 
 Veja também <https://en.wikipedia.org/wiki/Western_Latin_character_sets>
 
@@ -618,7 +617,7 @@ pode ser visualizada por inteiro em <https://home.unicode.org/>.
 
 \ \ 
 
-Assim, o Unicode surgiu como A solução unificadora na codificação universal
+Assim, o Unicode surgiu como ***A*** solução unificadora na codificação universal
 entre os povos do universo inteiro
 
 \ \ 
@@ -649,8 +648,8 @@ Entra o UTF na jogada
 
 ## Os sistemas de *encoding* UTF
 
-O UTF (Unicode Transformation Format) é um conjunto de três formas alternativas
-de representar em bytes um *codepoint*
+Hoje em dia, o UTF (Unicode Transformation Format) é um conjunto de três formas
+alternativas de representar um *codepoint* em bytes:
 
 - UTF-8: codificação com comprimento variável de bytes; é o padrão *de facto*
   para transmissão de dados na internet e nos sistemas GNU/Linux e MacOS
