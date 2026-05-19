@@ -564,6 +564,22 @@ e `E1` em ISO/IEAC 8859-1 a 8859-16:
 
 
 
+## De quais vale a pena lembrar hoje em dia?
+
+Hoje em dia, até que dá para considerar apenas estas *codepages*
+
+- ISO/IEC: 8859-1 a 8859-16  (lembre: ASCII=ISO/IEC 646)
+- Microsoft Windows Character Sets: *Windows-1250* a *Windows-1258*
+
+Se seus dados vieram do tunel do tempo, lembre também destas
+
+- IBM: CP437, CP720, CP737, CP850, CP852, CP855, CP857, CP858, CP860, CP861,
+  CP862, CP863, CP865, CP866, CP869 e CP872
+  
+E, dependendo de quem te envia os dados, talvez precise considerar também a
+*codepage* asiáticas.
+
+
 ## *Code Pages*
 
 *Code pages* que são fortes candidatos a *encoding* daqueles dados ilegíveis:
