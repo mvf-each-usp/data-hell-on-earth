@@ -484,6 +484,9 @@ O *encoding* ASCII
 Daí, um *monte* de gente teve a **mesma** ideia ao mesmo tempo:
 
 
+
+## Azideiadoscara:
+
 \ \ 
 
 :::{.callout-important style="font-size: 1.5em;"}
@@ -503,25 +506,36 @@ combinassem adotar
 
 . . .
 
-### *Code Pages* {.smaller}
-#### Azideiadoscara:
 Só que esse *encoding* **não fica** registrado no conjunto de dados!!!
 
-É um furdunço (v. <https://en.wikipedia.org/wiki/Character_encoding>):
 
-- ISO/IEC: 8859-1 a 8859-16  (lembre: ASCII=ISO/IEC 646)
-- Microsoft Windows Character Sets: *Windows-1250* a *Windows-1258*
-- IBM: CP437, CP720, CP737, CP850, CP852, CP855, CP857, CP858, CP860, CP861,
-  CP862, CP863, CP865, CP866, CP869 e CP872
-- Japão: JIS X 0208 (Shift JIS/MS CP-932, EUC-JP, ISO-2022-JP),
-  JIS X 0213 (Shift_JIS-2004, EUC-JIS-2004, ISO-2022-JP-2004)
-- China: Chinese Guobiao (GB 2312, GBK/MS CP-936, GB 18030),
-  Taiwan Big5 (MS CP-950, Hong Kong HKSCS)
-- Coreia: Korean (KS X 1001, EUC-KR, ISO-2022-KR)
-- Russosfera: KOI8-R, KOI8-U, KOI-7, MIK
-- Índia: ISCII (hindi) e TSCII (tamil)
-- Vietnã e a sua miríade de diacríticos: VISCII
 
+## Resultado:
+
+Sairam criando *codepages* a torto e a direito.
+
+Hoje em dia, ainda sobrevivem:
+
+::: {style="font-size: .6em;"}
+- Abrangência mundial
+  - ISO/IEC: 8859-1 a 8859-16  (lembre: ASCII=ISO/IEC 646)
+- Ocidente
+  - Microsoft Windows Character Sets: *Windows-1250* a *Windows-1258*
+- Legacy
+  - IBM: CP437, CP720, CP737, CP850, CP852, CP855, CP857, CP858, CP860, CP861,
+    CP862, CP863, CP865, CP866, CP869 e CP872
+- Oriente
+  - Japão: JIS X 0208 (Shift JIS/MS CP-932, EUC-JP, ISO-2022-JP),
+    JIS X 0213 (Shift_JIS-2004, EUC-JIS-2004, ISO-2022-JP-2004)
+  - China: Chinese Guobiao (GB 2312, GBK/MS CP-936, GB 18030),
+    Taiwan Big5 (MS CP-950, Hong Kong HKSCS)
+  - Coreia: Korean (KS X 1001, EUC-KR, ISO-2022-KR)
+  - Russosfera: KOI8-R, KOI8-U, KOI-7, MIK
+  - Índia: ISCII (hindi) e TSCII (tamil)
+  - Vietnã e a sua miríade de diacríticos: VISCII
+:::
+
+Foi um furdunço só (v. <https://en.wikipedia.org/wiki/Character_encoding>)
 
 
 ## *Code Pages*
