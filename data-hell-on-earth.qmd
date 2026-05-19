@@ -486,10 +486,11 @@ Um *monte* de gente teve a mesma ideia ao mesmo tempo:
 
 \ \ 
 
-:::{.callout-important}
+:::{.callout-important style="font-size: 1.5em;"}
 Tive uma ideia inovadora!!!
 
-Vou usar os caracteres 128 a 255 para colocar os caracteres que o ASCII não cobriu!
+Vou usar os bytes 128 a 255 para colocar os caracteres
+que o ASCII não cobriu!
 :::
 
 \ \ 
