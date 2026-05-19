@@ -941,7 +941,7 @@ AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 -->
 
-### Voltando ao Unicode e ao UTF-8
+## Voltando ao Unicode e ao UTF-8
 
 Cada *codepoint* do Unicode pode ser representado com 1, 2, 3 ou 4 bytes,
 mas é exibido como um único caracter
@@ -956,8 +956,9 @@ Alguns *codepoints* do Unicode compõem com o *codepoint* anterior, modificando 
 criando um novo símbolo a ser exibido
 
 
-### Voltando ao Unicode e ao UTF-8 {.smaller}
-#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+## Voltando ao Unicode e ao UTF-8
+
+Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
 ```{r}
 #| echo: true
@@ -969,8 +970,9 @@ c("👩" , "👩🏻" , "👩🏼" , "👩‍🦱" , "👩🏻‍🦱" , "👩�
 ```
 
 
-### Voltando ao Unicode e ao UTF-8 {.smaller}
-#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+## Voltando ao Unicode e ao UTF-8
+
+Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
 - O 👩 tem um codepoint: `U+1F469`
 - Os emojis 👩🏻 e 👩🏼 têm dois *codepoints*: `U+1F469` seguido de `U+1F3FB` ou
@@ -985,8 +987,9 @@ Assim, um emoji pode ser representado por 1, 2, 3 ou 4 *codepoints* (ou até
 mais, dependendo da criatividade do vivente)
 
 
-### Voltando ao Unicode e ao UTF-8 {.smaller}
-#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+## Voltando ao Unicode e ao UTF-8
+
+Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
 Agora o troço fica louco *mermo* quando você vai contar bytes:
 
@@ -1005,19 +1008,14 @@ Ou seja, um unico emoji pode ocupar 15 bytes em disco
 Isso é praticamente uma frase em ASCII
 
 
-### Voltando ao Unicode e ao UTF-8 {.smaller}
-#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+## Voltando ao Unicode e ao UTF-8
 
-\ \ 
+Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
 A possibilidade de articular *codepoints* para compor um caracter amplia a
 quantidade real de caracteres que o Unicode consegue gerar
 
-\ \ 
-
 Mas isso tem um preço
-
-\ \ 
 
 :::{.callout-note}
 Basta o byte inicial de uma sequência de caracteres Unicode ser removido por
