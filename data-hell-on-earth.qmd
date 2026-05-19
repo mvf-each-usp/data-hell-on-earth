@@ -662,18 +662,22 @@ de representar em bytes um *codepoint*
   acima
 
 
-
-<!--- TODO --->
-
-### UTF-8
+## A origem épica do *encoding* do UTF-8 
 
 \ \ 
 
-Um dia em 1992, Ken Thompson e Rob Pike foram tomar uma breja e rabiscaram em
-uma toalha de papel da mesa do buteco como fazer uma codificação para o Unicode
-com comprimento variável
+Um dia em 1992, Ken Thompson e Rob Pike foram tomar uma breja.
 
-\ \ 
+. . .
+
+É, simplesmente \ *O* \ Ken Thompson (inventor da linguagem C, do sistema operacional Unix, dos aplicativo grep, ed, sed etc.) e \ *O* \ Rob Pike (inventor da linguagem Go, do primeiro sistema de janela gráficas).
+
+. . .
+
+Daí, ele pararam pra rabiscaram em uma toalha de papel da mesa do buteco como
+fazer uma codificação para o Unicode com comprimento variável.
+
+. . .
 
 E pronto. Estava inventado o UTF-8  😆😆😆
 
