@@ -186,6 +186,7 @@ Esse padrão é o ASCII
 ## O *encoding* ASCII
 
 - Também conhecido como *Tabela ASCII*
+- 1 byte = 1 caracter
 - O ASCII define 128 caracteres dividido em dois grupos
     - 33 caracteres de controle, não imprimíveis
     - 95 caracteres imprimíveis
@@ -473,6 +474,11 @@ Ao todo, seria necessário algo na ordem 150.000 codepoints
 Saiu do ASCII, fudeu!
 
 ## *Code Pages*
+
+. . . 
+
+*Ou* "A gente fazemos o que a gente podemos"
+
 
 
 ## O início da confusão
