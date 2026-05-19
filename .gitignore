@@ -62,5 +62,6 @@ rsconnect/
 *.html
 *.pptx
 
-# diretório de arquivos de dados
+# diretório e arquivos de dados
 data/
+*.csv
