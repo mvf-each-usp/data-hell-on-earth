@@ -901,16 +901,45 @@ Comparando
     `"\x9"` (que é 9 em decimal e em hexadecimal)
   - o caracter de quebra de linha `"\n"` pode ser escrito como `"\x0a"` ou
     `"\xa"`
-
-
-### Representações de números em base hexadecimal 
-
 - Em URLs, o `%20` de `https://www.dominio.com.br/foto%20de%20hoje.jpg` é o
   caracter espaço (32 em decimal = 20 em hexadecimal) representando em
   hexadecimal
-- Em representação RGB de cores, `#203040` em CSS ou `"#d05010"` com o
-  `{ggplot2}` em R
+- Para representar cores, o *colorcode* `#203040` do HTML usado no `{ggplot2}`
 
+
+## Representação hexadecimal 
+
+- Porque o hexadecimal é tão utilizado até hoje?
+  - Desde os primórdios da computação, a representação binária de um byte tem
+    sido e continua sendo muito útil para entender como um computador funciona
+  - A partir da representação binária de um byte, é mais imediato obter a
+    representação *hexadecimal* do byte do que a representação *decimal*
+  - Daí a referência ficou até hoje
+- Porquê é mais fácil?
+  - Os 8 bits do byte podem ser separados em 2 grupos de 4 bits
+  - Cada grupo de 4 bits pode ser convertido quase imediatamente após alguma
+    prática em um dígito hexadecima
+
+
+## Representação hexadecimal 
+
+- Exemplo: o caracter `S` maiúsculo (`01010011`)
+  - para o hexadecimal: `0101` e `0011` = (1+4) e (1+2) = (53)~16~ = `"\x53"`
+  - para decimal: (01010011)~2~ = 1+2+16+64 = 83
+- Exemplo: o *colorcode* do HTML
+  - cada cor RGB é representada por 1 byte para Red, 1 para Green e 1 para Blue
+  - cada byte varia de 0 (nenhuma emissão daquela cor) a 255 (emissão total)
+  - a cor `"steelblue"` do `{ggplot2}` tem *colorcode* igual a `#4682B4`
+    - Red = (46)~16~ = 70 = 27.45% de 255
+    - Green = (82)~16~ = 130 = 50.98% de 255
+    - Blue = (B4)~16~ = 180 = 70.59% de 255
+    - nesse contexto, (40)~16~=25%, (80)~16~=50%, (C0)~16~=75%, 
+
+<!-- 
+
+AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+-->
 
 ### Voltando ao Unicode e ao UTF-8
 
