@@ -481,8 +481,8 @@ O *encoding* ASCII
 
 - caracteres para os valores entre 0 e 127, 
 - mas deixou os valores de 128 a 255 sem definição.
+Daí, um *monte* de gente teve a **mesma** ideia ao mesmo tempo:
 
-Um *monte* de gente teve a mesma ideia ao mesmo tempo:
 
 \ \ 
 
@@ -495,12 +495,17 @@ que o ASCII não cobriu!
 
 \ \ 
 
-Mas cada um foi propondo uma coisa diferente:
+. . .
 
+Mas cada um foi propondo uma coisa diferente e assim o mesmo byte começou a
+significar coisas diferentes, dependendo do *encoding* que você e seus colegas
+combinassem adotar
 
+. . .
 
 ### *Code Pages* {.smaller}
 #### Azideiadoscara:
+Só que esse *encoding* **não fica** registrado no conjunto de dados!!!
 
 É um furdunço (v. <https://en.wikipedia.org/wiki/Character_encoding>):
 
