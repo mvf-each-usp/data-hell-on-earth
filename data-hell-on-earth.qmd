@@ -41,7 +41,12 @@ library(tidyverse)
 ```
 
 # Introdução 
-(*ou* "PQ CMG?!?!?!?!? 😭")
+
+. . .
+
+*ou* "PQ CMG?!?!?!?!? 😭"
+
+
 
 ### Situação (que era para ser) típica
 
