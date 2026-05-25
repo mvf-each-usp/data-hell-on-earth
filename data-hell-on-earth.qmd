@@ -90,9 +90,11 @@ exemplo
 - 1^o^ dia
   - Codificação do dado textual (*encoding*)
   - Armazenamento do dado em memória/disco
+  - [Aqui](data-hell-on-byte.html)
 - 2^o^ dia
   - Estrutura do arquivo
   - Corrupção de dados 
+  - [Aqui](data-hell-on-format.html)
 
 
 
