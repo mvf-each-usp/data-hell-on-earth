@@ -939,14 +939,29 @@ Agora o troço fica louco *mermo* quando você vai contar bytes:
 ```{r}
 #| echo: true
 
-list("👩" , "👩🏼‍🦱") |> 
-  map(\(x) x |> charToRaw() |> as.integer() |> as.hexmode() |> str_to_upper() |> str_c(collapse = " ")) |> 
-  unlist()
+c("👩" , "👩🏼‍🦱") |> 
+  map(
+    \(x) 
+    str_c(
+      "\"",
+      x,
+      "\"=",
+      x |> 
+        charToRaw() |>
+        as.integer() |>
+        as.hexmode() |> 
+        str_replace("(.*)", "\\\\x\\1") |> 
+        str_c(collapse = "") |> 
+        str_replace("(.*)", "\"\\1\"")
+    )
+  ) |> 
+  unlist() |>
+  cat(sep = "\n")
 c("👩" , "👩🏼‍🦱") |> 
   nchar(type = "bytes")
 ```
 
-Ou seja, um unico emoji pode ocupar 15 bytes em disco 
+Ou seja, um único emoji pode ocupar 15 bytes no arquivo (!)
 
 Isso é praticamente uma frase em ASCII
 
