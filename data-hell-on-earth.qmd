@@ -9,7 +9,7 @@ subtitle: >
     <br>
     Como algo que era para ser simples pode ser tão complicado?
 author: Marcelo Ventura Freire
-date: 2026-05-11
+# date: 2026-??-??
 lang: pt-br
 format: 
   revealjs: 
