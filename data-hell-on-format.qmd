@@ -1,0 +1,131 @@
+---
+title: "Data Hell on Format"
+subtitle: |
+    As mais variadas formas de seus arquivos de texto
+    te darem dor de cabeça na hora da importação
+    *ou*
+    Como algo que era para ser simples pode ser tão complicado?
+author: Marcelo Ventura Freire
+# date: 2026-??-??
+lang: pt-br
+format: 
+  revealjs: 
+    # # formato 1920x1080
+    # width: 1920
+    # height: 1080
+    # formato 1600x900
+    width: 1600
+    height: 900
+    theme: blood
+    slide-level: 3
+    slide-number: 
+      c/t
+      # true
+      # h/v
+    show-slide-number: speaker
+    transition: 
+      none
+      # zoom
+    # smaller: true   # a tentação é grande
+    chalkboard: true
+
+---
+
+
+# Roadmap desta apresentação
+
+---
+
+- 1^o^ dia
+  - Codificação do dado textual (*encoding*)
+  - Armazenamento do dado em memória/disco
+- 2^o^ dia
+  - Estrutura do arquivo
+  - Corrupção de dados 
+
+
+
+================================================================
+
+
+
+# Formatos de Arquivos
+(*ou* "Num era pra texto ser o tipo de arquivo de dados mais simples?!?")
+
+## Arquivos de Dados Textuais 
+
+- Arquivos são grandes sequências *contínuas* de caracteres
+- "There is no spoon" (Matrix): 
+  - Não existem realmente linhas em um arquivo de texto
+  - As linhas são uma ficção benévola
+  - Existe a convenção (da época das impressoras matriciais) de que um conjunto
+      de caracteres representam o ponto em que a impressora avança uma linha e
+      retorna a cabeça de impressão para o início da linha
+    - no Windows, são usados os caracteres *linefeed* e *carriage return*
+
+- Linhas separadas por um caracter de fim de linha
+  - o Windows usa a combinação
+
+---
+
+## Formatos de Arquivos de Dados Textuais 
+
+- Dados tabulares
+- Dados hierárquicos
+- Dados não estruturados
+
+---
+
+### Dados tabulares
+
+- Organizado em linhas e colunas
+- Cada linha é uma observação/unidade/instância/ocorrência/indivíduo/respondente/etc.
+- Cada coluna é uma característica/variável/atributo/campo da observação
+- Todas as linhas têm o mesmo número de coluna
+- As variáveis estão sempre na mesma ordem
+
+---
+
+### Exemplos de formato de dados tabulares {.smaller}
+
+- FWF (fixed width fields)
+  - cada coluna tem um tamanho fixo
+  - preenchimento com caracter espaço em branco (ascii 32 ou 20 em hexadecimal) ou outro
+  - alinhamento visual das colunas ao longo das linhas
+- Delimitados por caracter
+  - um caracter específico separa os campos dentro de uma linha
+  - sem alinhamento visual entre os campos/colunas
+  - campos com largura variável
+  - possível uso de aspas simples `'` ou duplas `"` para delimitar as strings
+  - TSV (tab separated values)
+    - separador de campos: caracter de tabulação (tab; ascii 9)
+    - geralmente, sem uso de aspas simples `'` ou duplas `"` 
+  - CSV (comma separated values)
+    - caracter vírgula `,` separa os campos/colunas
+    - geralmente 
+  - "CSV 2" 
+    - caracter ponto-e-vírgula
+
+---
+
+### Dados hierárquicos
+
+- 
+
+
+---
+
+### Dados não estruturados
+
+
+
+
+
+Tipos:
+
+- CSV (comma separated values)
+    - 
+- CSV aca para nosotros
+
+
+
