@@ -1,9 +1,11 @@
 ---
 title: "Data Hell on Byte"
-subtitle: |
+subtitle: >
     As mais variadas formas de seus caracteres
     te darem dor de cabeça na hora da importação
+    <br>
     *ou*
+    <br>
     Como algo que era para ser simples pode ser tão complicado?
 author: Marcelo Ventura Freire
 # date: 2026-??-??
