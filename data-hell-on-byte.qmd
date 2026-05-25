@@ -1071,9 +1071,25 @@ menos espaço (utf8) vs mais rápido de acessar (utf16)
 lembrar do endianness
 
 
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+
+
+
+
 ### UTF-32 e UTF-64 (os "não falamos do Bruno" do Unicode)
 
 
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
 
 
 
@@ -1083,7 +1099,6 @@ lembrar do endianness
 . . .
 
 *ou* "Num era pra arquivo de texto ser o tipo de arquivo mais simples?!?"
-
 
 
 ## Arquivos de Dados Textuais 
@@ -1099,4 +1114,12 @@ lembrar do endianness
 
 - Linhas separadas por um caracter de fim de linha
   - o Windows usa a combinação
+
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+
 
