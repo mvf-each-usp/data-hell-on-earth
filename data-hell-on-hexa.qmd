@@ -1,0 +1,225 @@
+---
+title: "Data Hell on Hexa"
+subtitle: |
+    As mais variadas formas de seus números te darem dor de cabeça na hora da ler
+
+    *ou*
+
+    Como algo que era para ser simples pode ser tão complicado?
+author: Marcelo Ventura Freire
+# date: 2026-??-??
+lang: pt-br
+format: 
+  revealjs: 
+    # # formato 1920x1080
+    # width: 1920
+    # height: 1080
+    # formato 1600x900
+    width: 1600
+    height: 900
+    theme: blood
+    slide-level: 3
+    slide-number: 
+      c/t
+      # true
+      # h/v
+    show-slide-number: speaker
+    transition: 
+      none
+      # zoom
+    # smaller: true   # a tentação é grande
+    chalkboard: true
+---
+
+# Números e Caracteres
+
+## Fazendo as bases com cuidado: <br> bases decimal, binária e hexadecimal
+
+## Decimais
+
+- Base decimal
+  - base 10: 10 digitos
+    - primeiro dígito é o número 0
+    - último dígito é o número 15 (último número antes da base)
+  - unidades (10^0^), dezenas[^dezena] (10^1^), centenas[^centena] (10^2^), milhares (10^3^) etc.
+  - 207 = (207)~10~ = 2 $\times$ 10^2^ + 0 $\times$ 10^1^ + 7 $\times$ 10^0^
+
+\ \ 
+
+\ \ 
+
+[^dezena]: *decem* (10 em latim) + *enus* > *decenus* > dezena
+[^centena]: *centum* (100 em latim) + *enus* > *centenus* > centena
+
+
+## Decimais e Binários
+
+- Base binária 
+  - base 2: 2 dígitos
+    - primeiro *dígito* é o *número* 0
+    - último dígito é o número 1 (último número antes da base)
+  - unidades (2^0^), duplas (2^1^), quáduplas (2^2^), octetos (2^3^), 
+    sedecenas[^sedecena] (2^4^) etc.
+  - 207 = (11110111)~2~ <br>
+    = 1 $\times$ 2^7^ + 1 $\times$ 2^6^ + 1 $\times$ 2^5^ + 1 $\times$ 2^4^ +
+      0 $\times$ 2^3^ + 1 $\times$ 2^2^ + 1 $\times$ 2^1^ + 1 $\times$ 2^0^
+
+\ \ 
+
+\ \ 
+
+[^sedecena]: *sedecim* (16 em latim) + *enus* > *sedecenus* > sedecena
+
+<!-- `r which(intToBits(247)==1) - 1` -->
+
+
+## Decimais e Hexadecimais
+
+- Base hexadecimal:
+  - base 16: 16 dígitos
+    - primeiro dígito é o número 0
+    - último dígito é o número 9 (último número antes da base)
+  - unidades (16^0^), sedecenas (16^1^), "ducentenasquinquagenassextetos"[^256] (16^2^)
+    etc.
+  - Usamos os caracteres `A`, `B`, `C`, `D`, `E` e `F` para representar os 
+    números 10, 11, 12, 13, 14 e 15 enquanto *dígitos*
+  - 207 = (CF)^16^ = 12 $\times$ 16^1^ + 15 $\times$ 16^0^
+
+\ \ 
+
+\ \ 
+
+[^256]:  ducentena = grupo de 200 itens; quiquagena = grupo de 50 itens; sexteto
+  = grupo de 6 items
+
+<!-- `r 207 |> as.hexmode()` -->
+
+
+
+## Decimais e Hexadecimais
+
+\ \ 
+
+(12)~16~ = (10)~16~ +(2)~16~ = (1 $\times$ 16)~10~ +(2)~10~ = (18)~10~
+
+\ \ 
+
+(2F)~16~ = (20)~16~ +(F)~16~ = (2 $\times$ 16)~10~ +(15)~10~ = (47)~10~
+
+\ \ 
+
+(3F7B)~16~ 
+   = (3000)~16~ +(F00)~16~ +(70)~16~ +(B)~16~  
+   = (3 $\times$ 16^3^)~10~ +(15 $\times$ 16^2^)~10~ +(7 $\times$ 16^1^)~10~ +(11)~10~  
+   = (16251)~10~ 
+
+
+## Representação hexadecimal 
+
+- No R: 
+  - o caracter de tabulação: `"\t"` = `"\x09"`  `"\x9"`
+  - o caracter de quebra de linha: `"\n"` = `"\x0a"` = `"\xa"`
+- Em URLs: o `%20` de `https://www.dominio.com.br/foto%20de%20hoje.jpg`
+  - (20)~16~=32
+- *Colorcodes*: `#203040` do HTML usado no `{ggplot2}`
+
+::: notes
+- Representações de números em base hexadecimal sempre pipocam por aí quando
+  você trabalha com computador
+- No R, tem dois exemplos bem manjados:
+  - o caracter de tabulação `"\t"` pode ser escrito também como `"\x09"` ou
+    `"\x9"` (que é 9 em decimal e em hexadecimal)
+  - o caracter de quebra de linha `"\n"` pode ser escrito como `"\x0a"` ou
+    `"\xa"`
+- Em URLs, 
+  - o `%20` de `https://www.dominio.com.br/foto%20de%20hoje.jpg` 
+  - é o caracter espaço: 20 em hexadecimal = 32 em decimal
+- Para representar cores, o *colorcode* `#203040` do HTML usado no `{ggplot2}`
+:::
+
+
+
+## Representação hexadecimal 
+
+- Porque o hexadecimal é tão utilizado até hoje?
+  - Representação binária de um byte
+  - Mais fácil: binário $\rightarrow$ hexadecimal 
+  - Menos imediato: binário $\rightarrow$ decimal
+
+::: notes
+- Porque o hexadecimal é tão utilizado até hoje?
+- Desde os primórdios da computação, a representação binária de um byte tem sido
+  (e continua sendo) muito útil para entender como um computador funciona
+- Mais fácil: binário $\rightarrow$ hexadecimal 
+- Menos imediato: binário $\rightarrow$ decimal
+- Daí a referência ficou até hoje
+:::
+
+
+
+## Representação hexadecimal 
+
+- Porquê é mais fácil?
+  - 1 grupo de 8 bits $\rightarrow$ 2 grupos de 4 bits
+  - 1 grupo de 4 bits $\rightarrow$ 1 dígito hexadecimal
+- Exemplo: o caracter `S` maiúsculo (`01010011`)
+  - $\rightarrow$ hexadecimal: 
+    `0101` e `0011` = (1+4) e (1+2) = (53)~16~ = `"\x53"`
+  - $\rightarrow$ decimal: (01010011)~2~ = 1+2+16+64 = 83
+
+::: notes
+- Porquê é mais fácil?
+  - Os 8 bits do byte podem ser separados em 2 grupos de 4 bits
+  - Cada grupo de 4 bits pode ser convertido quase imediatamente após alguma
+    prática em um dígito hexadecima
+- Exemplo: ~~no slide~~
+:::
+
+
+
+## Representação hexadecimal 
+
+- Exemplo: o *colorcode* do HTML
+  - RGB $\rightarrow$ Red, Green, Blue $\rightarrow$ 
+    (1 byte para Red, 1 byte para Green, 1 byte para Blue)
+  - 0 = nenhuma emissão da cor; \ 255 = emissão total da cor
+
+::::{.columns}
+:::{.column width="50%;" align="center;"}
+`"steelblue"` do `{ggplot2}`
+
+- *colorcode* = `#4682B4`
+- Red = (46)~16~ = 70 = 27.45% de 255
+- Green = (82)~16~ = 130 = 50.98% de 255
+- Blue = (B4)~16~ = 180 = 70.59% de 255
+:::
+:::{.column width="50%" align="center" style="font-size: 0.6em;"}
+| hexa |   %  | fração  |
+|:----:|:----:|:--------|
+|  00  |   0% | 0/8=0   |
+|  20  |      | 1/8     |
+|  40  |  25% | 2/8=1/4 |
+|  60  |      | 3/8     |
+|  80  |  50% | 4/8=1/2 |
+|  A0  |      | 5/8     |
+|  C0  |  75% | 6/8=3/4 |
+|  E0  |      | 7/8     |
+|  FF  | 100% | 8/8=1   |
+:::
+::::
+
+
+::: notes
+- Exemplo: o *colorcode* do HTML
+- cada cor RGB é representada por 1 byte para Red, 1 para Green e 1 para Blue
+- cada byte varia de 0 (nenhuma emissão daquela cor) a 255 (emissão total)
+- a cor `"steelblue"` do `{ggplot2}` tem *colorcode* igual a `#4682B4`
+- Red = (46)~16~ = 70 = 27.45% de 255
+- Green = (82)~16~ = 130 = 50.98% de 255
+- Blue = (B4)~16~ = 180 = 70.59% de 255
+- em hexadecimal,   
+80=1/2=4/8,   
+40=1/4=2/8, e C0=3/4=6/8,   
+20=1/8, 60=3/8, A0=5/8, E0=7/8
+:::
+
