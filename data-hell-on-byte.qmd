@@ -80,13 +80,27 @@ Simples, certo?
 
 > "There is no spoon" (Matrix)
 
-- Não existem letras dentro do computador, somente número em base binária, onde
-  cada bit pode ser 0 ou 1
-- O que chamamos de caracteres ("letras") são uma *convenção **arbitrária*** de
-  associação específica entre um conjunto de valores numéricos e um conjunto de
-  letra
+::: notes
+pode paracer besta, mas é importante lembrar/descobrir que ...
+:::
+
+. . .
+
+- letras $\not\in$ computador
+- Só números
+- Letras $\leftrightarrow$ números
+  - Como fazer essa associação?
+  - Várias possibilidades
+
+::: notes
+- ... não existem letras dentro do computador, 
+- somente número em base binária, onde cada bit pode ser 0 ou 1
+- O que chamamos de caracteres ("letras") são uma *convenção* ***arbitrária*** 
+  - associação específica entre um conjunto de valores numéricos e um conjunto
+    de letra
 - Pode haver várias formas de fazer essa associação entre valor numérico e 
   caracter
+:::
 
 . . .
 
@@ -94,13 +108,17 @@ Cada uma dessas formas é chamada de *enconding*
 
 
 
-## *Encoding*
+### A Treta Original 
 
-Problema 1:
+\ \ 
 
-No início da computação, cada fabricante de computador criou o seu próprio 
-*encoding* próprio:
+#### Início da era da computação digital
 
+Não havia nenhum tipo de padronização do que quer que seja!!!
+
+::: notes
+- no início da computação, cada fabricante de computador criou o seu próprio
+  *encoding* próprio
 - com conjuntos de caracteres diferentes:
     - caracter em um *encoding* sem correspondência em outro
     - *encoding* com letras maiúsculas e minúsculas vs *encoding* só com
@@ -109,58 +127,75 @@ No início da computação, cada fabricante de computador criou o seu próprio
     - alguns fabricantes usavam bytes de 6 bits
     - outros usavam bytes de 7 
     - outros ainda usavam bytes de 8 bits
+:::
 
+\ \ 
 
-## *Encoding*
+#### Resultado: 
 
-Problema 2
+- Incompatibilidade entre fabricantes
+- Necessidade de conversão para
 
-Eram necessários
-
-- *caracteres imprimíveis*: letras, dígitos, sinais de pontuação, símbolos
-  matemáticos ou símbolos como `@`, `#`, `$` etc.
-- caracteres também para computador se comunicar
-    - com os seus dispositivos
-        - teclado, impressora, leitora de cartão perfurado, teletipo,
-          perfuradora de cartão, modem, unidade de fita magnética, monitor de
-          vídeo etc.
-    - com outros computadores
-    - esses são os *caracteres de controle*
-
-
-<!---
-### *Encoding*  {.smaller}
-#### Exemplo de caracteres de controle
-
-- um para mandar a impressora para subir uma linha
-- outro para mandar a impressora trazer o carro com a cabeça de impressão
-  para o início da linha
-- outro ainda para mandar a impressora emitir um aviso sonoro
---->
-
-
-## *Encoding*
-
-- Resultado: passar dados de um computador de um fabricante para o computador de
+::: notes
+- passar dados de um computador de um fabricante para o computador de
   um outro fabricante exigia fazer algum tipo de *conversão*
 - Essa conversão dependia de quais eram os fabricantes dos computadores
+:::
 
-. . .
+\ \ 
+
+#### A solução
 
 Entra o padrão **ASCII** na jogada
 
 
+
+## Do que um computador precisava?
+
+\ \ 
+
+Eram necessários
+
+- caracteres imprimíveis
+- caracteres de controle
+
+::: notes
+- eram necessários CARACTERES IMPRIMÍVEIS
+    - letras, dígitos, sinais de pontuação, símbolos matemáticos ou símbolos
+      como `@`, `#`, `$` etc.
+- MAS TAMBÉM caracteres pro computador se comunicar com os seus dispositivos
+    - teclado, impressora, leitora de cartão perfurado, teletipo, perfuradora
+      de cartão, modem, unidade de fita magnética, monitor de vídeo etc.
+        - EXEMPLO
+        - um para mandar a impressora para subir uma linha
+        - outro para mandar a impressora trazer o carro com a cabeça de
+          impressão para o início da linha
+        - outro ainda para mandar a impressora emitir um aviso sonoro
+- TAMBÉM precisava de caracteres pro computador se comunicar com outros
+  computadores
+- esses são os caracteres de controle
+:::
+
+
+
 ## O *encoding* ASCII
 
-A *American Standards Association* (ASA, atual ANSI) estabeleceu entre 1963 e 1967
-um *encoding* ao qual os fabricantes de computador deveriam aderir
+- 1963--1967: ASA (atual ANSI) $\leftarrow$ *encoding* obrigatório
+    - Padrão ISO/IEC 646: ASCII 
+      (*American Standard Code for Information Interchange*)
+        - mas se fala \ ~~"ó-qui-sô"~~ \ ~~"ôxo"~~ \ ásqui
+    - origem: telegrafia
 
-Esse padrão é o ASCII
+::: notes
+- A *American Standards Association* = ASA (atual 
+  ANSI = *American Nation Standards Institute*) 
+  estabeleceu entre 1963 e 1967 um *encoding* ao qual os fabricantes de
+  computador deveriam aderir
+- o padrão é ASCII = *American Standard Code for Information Interchange*
+- criado a partir de um dos padrões utilizado na época em telegrafia nos
+  teletipos
+:::
 
-- *American Standard Code for Information Interchange*
-    - mas se fala \ ~~"ó-qui-sô"~~ \ ~~"ôxo"~~ \ ásqui
-- um dos padrões utilizado então em telegrafia pelos teletipos da época
-- Padrão ISO/IEC 646
 
 
 ## O *encoding* ASCII
@@ -176,6 +211,7 @@ Esse padrão é o ASCII
         - 8 sinais de pontuação
         - 11 símbolos matemáticos
         - 14 símbolos diversos
+
 
 
 ## Caracteres de Controle do ASCII
@@ -230,13 +266,13 @@ Esse padrão é o ASCII
 :::::
 ::::::
 
-
-## Caracteres de Controle do ASCII
-
+::: notes
 - A maioria dessas funções ninguém mais usa do jeito original
 - Ainda nos deparamos com `\t`, `\n` e `\r` no R
-- O byte `\0` ainda é usado interamente no computador de diversas formas
-    - mas não tente usar se você não souber o que está fazendo
+- O byte `\0` ainda é usado em diversas funções internas no computador
+    - mas não tente usar a não ser que você saiba exatamente o que você está
+      fazendo
+:::
 
 
 
@@ -378,9 +414,12 @@ Esse padrão é o ASCII
 :::::
 ::::::
 
-Aqui, `r "\u2423"` representa o caracter "espaço em branco" com byte 32
+::: notes
+Aqui, `r "\u2423"` representa o caracter "espaço em branco" no byte 32
+:::
 
 ```{r}
+#| label: tabela-ascii
 #| include: false
 #| eval: false
 
@@ -409,23 +448,35 @@ lista |>
 ```
 
 
+
 ## O *encoding* ASCII
 
-- Padrão de *encoding* para um byte de 8 bits 
-    - logo tem espaço para 256 codepoints
-- Mas usa só os primeiros 7 bits do byte
-    - logo só define bytes para 128 codepoints
-- Ele só cobre o caracteres do alfabeto latino usados na língua inglesa 
-    - sem caracteres acentuados do próprio alfabeto latino 
-        - português, francês, italiano, alemão etc.
+- Byte de 8 bits
+    - 256 codepoints
+- Só 7 bits são usado
+    - 128 codepoints
+- Só alfabeto latino do Inglês 
+    - sem caracteres acentuados
     - sem caracteres de outros alfabetos
-        - cirílico, chinês, japonês, coreano, árabe etc.
+
+::: notes
+- Padrão de *encoding* para um byte de 8 bits 
+  - logo tem espaço para 256 codepoints
+- Mas usa só os primeiros 7 bits do byte
+  - logo só define bytes para 128 codepoints
+- Ele só cobre o caracteres do alfabeto latino usados na língua inglesa 
+- sem caracteres acentuados do próprio alfabeto latino 
+  - português, francês, italiano, alemão etc.
+- sem caracteres de outros alfabetos
+  - cirílico, chinês, japonês, coreano, árabe etc.
+:::
 
 . . .
 
 :::{.callout-warning}
 É daqui que virá um porrilhão de problemas
 :::
+
 
 
 ## Faltou cobrir quantos caracteres?
@@ -445,9 +496,11 @@ Ao todo, seria necessário algo na ordem 150.000 codepoints
 
 **Mas como representar essa muntueira de outros caracteres?!?**
 
-. . .
-
+::: notes
 Saiu do ASCII, fudeu!
+:::
+
+
 
 ## *Code Pages*
 
@@ -463,8 +516,14 @@ Saiu do ASCII, fudeu!
 
 O *encoding* ASCII 
 
-- caracteres para os bytes entre 0 e 127, 
+- define bytes 0 a 127
+- bytes 128 a 255 sem definição
+
+::: notes
+- O *encoding* ASCII definiu caracteres para os bytes entre 0 e 127, 
 - mas deixou os bytes de 128 a 255 sem definição.
+- então você tinha uma demanda reprimida e um recurso ocioso
+:::
 
 . . . 
 
@@ -479,10 +538,10 @@ Daí, um *monte* de gente teve a **mesma** ideia ao mesmo tempo:
 \ \ 
 
 :::{.callout-important style="font-size: 1.5em;"}
-Tive uma ideia inovadora!!!
+"Tive uma ideia inovadora!!!"
 
-Vou usar os bytes 128 a 255 para colocar os caracteres
-que o ASCII não cobriu!
+"Vou usar os bytes 128 a 255 para colocar os caracteres
+que o ASCII não cobriu!"
 :::
 
 \ \ 
@@ -527,13 +586,9 @@ Hoje em dia, ainda sobrevivem:
 Foi um furdunço só (v. <https://en.wikipedia.org/wiki/Character_encoding>)
 
 
-## *Code Pages*
+## Exemplo: as *code pages* da ISO/IEC 8859
 
-Exemplo: as *code pages* da ISO/IEC 8859
-
-Para ter uma ideia do quão diferentes são as *encodings* das versões da ISO/IEC
-8859, abaixo estão os símbolos que correspondem aos caracteres `C0`, `C1`, `E0`
-e `E1` em ISO/IEAC 8859-1 a 8859-16:
+\ \ 
 
 | Dec | Hex |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  10  |  11  |  12  |  13  |  14  |  15  |  16  |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -542,58 +597,58 @@ e `E1` em ISO/IEAC 8859-1 a 8859-16:
 | 224 | E0  |  à  |  ŕ  |  à  |  ā  |  р  |  ـ  |  ΰ  |  א  |  à  |  ā  |  เ  |  ą  |  à  |  à  |  à  |
 | 225 | E1  |  á  |  á  |  á  |  á  |  с  |  ف  |  α  |  ב  |  á  |  á  |  แ  |  į  |  á  |  á  |  á  |
 
+::: notes
+Para ter uma ideia do quão diferentes são as *encodings* das versões da ISO/IEC
+8859, abaixo estão os símbolos que correspondem aos caracteres `C0`, `C1`, `E0`
+e `E1` em ISO/IEAC 8859-1 a 8859-16:
+:::
+
 
 
 ## De quais vale a pena lembrar hoje em dia?
 
-Hoje em dia, até que dá para considerar apenas estas *codepages*
-
-- ISO/IEC: 8859-1 a 8859-16  (lembre: ASCII=ISO/IEC 646)
-- Microsoft Windows Character Sets: *Windows-1250* a *Windows-1258*
-
-Se seus dados vieram do tunel do tempo, lembre também destas
-
-- IBM: CP437, CP720, CP737, CP850, CP852, CP855, CP857, CP858, CP860, CP861,
-  CP862, CP863, CP865, CP866, CP869 e CP872
-  
-E, dependendo de quem te envia os dados, talvez precise considerar também a
-*codepage* asiáticas.
-
-
-## *Code Pages*
-
-*Code pages* que são fortes candidatos a *encoding* daqueles dados ilegíveis:
+*Code pages* candidatos a *encoding* daqueles dados ilegíveis:
 
 - 8859-1 (Latin-1)
 - Windows-1252 (CP-1252)
 - CP437 (MSDOS Latin US) e CP850 (DOS Latin 1) da era do PC-DOS/MS-DOS
 
-. . .
-
-:::{.callout-tip style="font-size: 1.5em;"}
-Lembre deles na hora do `read.csv(encoding = ???)` no seu script
+::: notes
+- *Hoje em dia*, 
+- dá para considerar apenas as codepages
+- 8859-1 (Latin-1)
+- Windows-1250 / CP-1250
+- *Se* seus dados vieram do tunel do tempo, 
+- lembre das codepages da IBM
+- *Dependendo* de quem te envia os dados, 
+- talvez precise considerar também a codepage asiáticas.
 :::
 
 . . .
 
-Veja também <https://en.wikipedia.org/wiki/Western_Latin_character_sets>
+:::{.callout-tip style="font-size: 1.5em;"}
+Lembre disso na hora do `read.csv(encoding = ???)` no seu script
+:::
+
 
 
 ## Unicode: a solução final! 
 
 . . .
 
-(ou pelo menos, era para ser)
+(ou, pelo menos, era para ser)
+
 
 
 ## Unicode
 
-- É simplesmente uma lista de associação entre *codepoints* (valores numéricos) e
-símbolos
-- Como esse valor numérico vai ser codificado (*encoded*) em bytes é uma segunda 
-história, como vamos ver em breve
-- Essa lista é mantida pela Unicode Consortium <https://unicode.org/about.html> e 
-pode ser visualizada por inteiro em <https://home.unicode.org/>.
+- É simplesmente uma lista de associação entre *codepoints* (valores numéricos)
+  e símbolos
+- Como esse valor numérico vai ser codificado (*encoded*) em bytes é uma segunda
+  história, como vamos ver em breve
+- Essa lista é mantida pela Unicode Consortium <https://unicode.org/about.html>
+  e pode ser visualizada por inteiro em <https://home.unicode.org/>.
+
 
 
 ## *Codepoints*
@@ -609,12 +664,13 @@ pode ser visualizada por inteiro em <https://home.unicode.org/>.
 <https://www.unicode.org/charts/>
 
 
+
 ## Unicode
 
 \ \ 
 
-Assim, o Unicode surgiu como ***A*** solução unificadora na codificação universal
-entre os povos do universo inteiro
+Assim, o Unicode surgiu como ***A*** solução unificadora na codificação
+universal entre os povos do universo inteiro
 
 \ \ 
 
@@ -624,6 +680,8 @@ Pena que, em algum ponto, tem que transformar *codepoint* em bytes e, nessa
 hora, volta a fuder tudo de novo de volta.
 
 
+
+# Respresentando os caracteres na memória
 
 ## UTF: botando o Unicode para funcionar
 
@@ -642,62 +700,92 @@ de formato
 Entra o UTF na jogada
 
 
-## Os sistemas de *encoding* UTF
 
-Hoje em dia, o UTF (Unicode Transformation Format) é um conjunto de três formas
-alternativas de representar um *codepoint* em bytes:
+## Os sistemas de *encoding* UTF {.smaller}
 
-- UTF-8: codificação com comprimento variável de bytes; é o padrão *de facto*
-  para transmissão de dados na internet e nos sistemas GNU/Linux e MacOS
-- UTF-16: codificação com comprimento variável de blocos de dois bytes;
-  utilizado nos sistemas Windows; introduz as complicações do *endianness* e do
-  *byte ordem marker*
-- UTF-32: codificação com comprimento fixo de 4 bytes; praticamente não é usado
+- UTF-8
+  - comprimento variável de bytes
+  - padrão nos sistemas GNU/Linux e MacOS
+  - padrão *de facto* da internet
+- UTF-16 
+  - comprimento variável de blocos de dois bytes
+  - Windows
+  - *endianness* e *byte ordem marker*
+    - veremos em breve
+- UTF-32
+  - comprimento fixo de 4 bytes
+  - *endianness* e *byte ordem marker*
+  - praticamente não é usado
+
+::: notes
+- Hoje em dia, o UTF (Unicode Transformation Format) é um conjunto de três
+  formas alternativas de representar um mesmo codepoint em bytes
+- **UTF-8** é uma codificação com comprimento variável de bytes
+- é o padrão de fato para transmissão de dados na internet e nos sistemas
+  GNU/Linux e MacOS
+- **UTF-16** é uma codificação com comprimento variável de blocos de DOIS
+  bytes que é utilizado somente nos Windows-verso; introduz as complicações do
+  *endianness* e do *byte ordem marker*
+- **UTF-32**: codificação com comprimento fixo de 4 bytes; praticamente não é usado
   pela ineficiência de uso do espaço em disco; introduz as duas complicações
   acima
+:::
+
 
 
 ## A origem épica do *encoding* do UTF-8 
 
 \ \ 
 
-Um dia em 1992, Ken Thompson e Rob Pike foram tomar uma breja.
+Ken Thompson e Rob Pike em 1992
 
-. . .
+::: notes
+- Um dia em 1992, Ken Thompson e Rob Pike foram tomar uma breja.
 
-É, simplesmente \ *O* \ Ken Thompson (inventor da linguagem C, do sistema operacional Unix, dos aplicativo grep, ed, sed etc.) e \ *O* \ Rob Pike (inventor da linguagem Go, do primeiro sistema de janela gráficas).
-
-. . .
-
-Daí, ele pararam pra rabiscaram em uma toalha de papel da mesa do buteco como
+- É isso aí: foram  simplesmente \ *O* \ Ken Thompson (inventor da linguagem C,
+do sistema operacional Unix, dos aplicativo grep, ed, sed etc.) e \ *O* \ Rob
+Pike (inventor da linguagem Go, do primeiro sistema de janela gráficas).
+- Daí, ele pararam pra rabiscaram em uma toalha de papel da mesa do buteco como
 fazer uma codificação para o Unicode com comprimento variável.
+- E pronto. Estava inventado o UTF-8  😆😆😆
+:::
 
-. . .
-
-E pronto. Estava inventado o UTF-8  😆😆😆
-
-
-### UTF-8 {.smaller}
-#### UTF-8: a sacada genial de quem bolou esse troço
-
-A ideia central do *encoding* UTF-8 é representar cada *codepoint* do Unicode
-com um caracter de comprimento variável entre 1 e 4 bytes, usando a seguinte
-regra:
-
-1. se o comprimento do caracter for 1 byte,
-    - o bit inicial desse byte será `0`
-1. se o comprimento do caracter for 2 bytes,
-    - os bits iniciais do primeiro byte serão `110` e os do segundo serão `10`
-1. se o codepoint for representado com 3 bytes, 
-    - os bits iniciais do byte inicial serão `1110` e os do dois restantes serão `10`
-1. se o codepoint for representado com 4 bytes, 
-    - os bits iniciais do byte inicial serão `11110` e os dos três restantes serão `10`
-1. todos os outros bits serão usados para armazenar qual é o valor do *codepoint*
 
 
 ### UTF-8
-#### Retrocompatibilidade com o ASCII
+#### UTF-8: a sacada genial de quem bolou esse troço
 
+*Codepoint* Unicode com comprimento variável entre 1 e 4 bytes:
+
+1. se caracter com 1 byte,
+    - o bit inicial desse byte será `0`
+1. se caracter com 2 bytes,
+    - o byte inicial começa `110` e o segundo com `10`
+1. se caracter com 3 bytes, 
+    - o byte inicial começa com `1110` e os demais com `10`
+1. se caracter com 4 bytes, 
+    - o byte inicial começa com `11110` e os demais com `10`
+1. outros bits armazenam *codepoint*
+
+::: notes
+- a ideia central do *encoding* UTF-8 é representar cada *codepoint* do Unicode
+  com um caracter de comprimento variável entre 1 e 4 bytes, usando a seguinte
+  regra:
+- se o comprimento do caracter for 1 byte, o bit inicial desse byte será `0`
+- se o comprimento do caracter for 2 bytes, os bits iniciais do primeiro byte
+  serão `110` e os do segundo serão `10`
+- se o codepoint for representado com 3 bytes, os bits iniciais do byte inicial
+  serão `1110` e os do dois restantes serão `10`
+- se o codepoint for representado com 4 bytes, os bits iniciais do byte inicial
+  serão `11110` e os dos três restantes serão `10`
+- todos os outros bits serão usados para armazenar qual é o valor do *codepoint*
+:::
+
+
+
+## UTF-8
+
+Retrocompatibilidade com o ASCII
 
 :::{.callout-important}
 A primeira regra garante que um caracter ASCII será representado pelo mesmo 
@@ -710,48 +798,60 @@ O maior é 127 = 2^7^ - 1 = (01111111)~2~
 
 
 
+## UTF-8
 
-### UTF-8
+Posição do byte
 
-Com essas regras, os primeiros bits do primeiro byte indicam o comprimento do 
-caracter:
+| Bits iniciais | Qual byte?      |
+|---------------|-----------------|
+| `0`           | 1 byte          |
+| `110`         | 1^o^ de 2 bytes |
+| `1110`        | 1^o^ de 3 bytes |
+| `11110`       | 1^o^ de 4 bytes |
+| `10`          | continuação     |
 
+::: notes
+- Com essas regras, os primeiros bits do primeiro byte indicam o comprimento do 
+  caracter:
 - `0` = 1 byte, 
 - `110` = 2 bytes,
 - `1110` = 3 bytes,
 - `11110` = 4 bytes
-
-E os primeiros bits de todos os bytes que forem continuação serão `10`
-
-
-### UTF-8
-
-Como os outros bits podem ser usados para armazenar o valor do *codepoint*,
-então os bytes terão o padrão:
-
-- 1 byte: `0xxxxxxx`
-- 2 bytes: `110xxxxx`+`10yyyyyy`
-- 3 bytes: `1110xxxx`+`10yyyyyy`+`10zzzzzz`
-- 4 bytes: `11110xxx`+`10yyyyyy`+`10zzzzzz`+`10wwwwww`
-
-em que `x`, `y`, `z` e `w` podem ser 0 ou 1 para armazenar o valor do
-*codepoint*.
+- os primeiros bits de todos os bytes que forem continuação serão `10`
+:::
 
 
-### UTF-8
 
-Os valores de *codepoint* que podem ser armazenados em cada caracter serão:
+## UTF-8 {.smaller}
 
-- 1 byte: `xxxxxxx`, 
-    2^7^ = 128 valores
-- 2 bytes: `xxxxxyyyyyy`, 
-    2^11^ = 2048 valores
-- 3 bytes: `xxxxyyyyyyzzzzzz`, 
-    2^16^ = 65536 valores
-- 4 bytes: `xxxyyyyyyzzzzzzwwwwww`, 
-    2^21^ = 2097152 valores
+Armazenando o valor do *codepoint*
+
+| Bytes | Composição                                   | *Codepoint* armazenado | Quantos *codepoints*      |
+|-------|----------------------------------------------|------------------------|---------------------------|
+| 1     | `0xxxxxxx`                                   |`xxxxxxx`               | 2^7^ = 128 valores        |
+| 2     | `110xxxxx`+`10yyyyyy`                        |`xxxxxyyyyyy`           | 2^11^ = 2.048 valores     |
+| 3     | `1110xxxx`+`10yyyyyy`+`10zzzzzz`             |`xxxxyyyyyyzzzzzz`      | 2^16^ = 65.536 valores    |
+| 4     | `11110xxx`+`10yyyyyy`+`10zzzzzz`+`10wwwwww`  |`xxxyyyyyyzzzzzzwwwwww` | 2^21^ = 2.097.152 valores |
+
+::: notes
+- Como os outros bits podem ser usados para armazenar o valor do codepoint,
+  então os bytes terão o padrão:
+- 1 byte
+- 2 bytes
+- 3 bytes
+- 4 bytes
+- os bits nas posições `x`, `y`, `z` e `w` podem ser 0 ou 1 para armazenar o
+  valor do codepoint
+
+- Os valores de codepoint que podem ser armazenados em cada caracter serão:
+- 1 byte: `xxxxxxx`, 2^7^ = 128 valores
+- 2 bytes: `xxxxxyyyyyy`, 2^11^ = 2.048 valores
+- 3 bytes: `xxxxyyyyyyzzzzzz`, 2^16^ = 65.536 valores
+- 4 bytes: `xxxyyyyyyzzzzzzwwwwww`, 2^21^ = 2.097.152 valores
+:::
 
 ```{r}
+#| label: quantos-codepoints
 #| include: false
 #| eval: false
 
@@ -761,21 +861,33 @@ c(7, (2:4) |> (\(n) 8 - (n + 1) + (n - 1) * 6)()) |>
 ```
 
 
-### UTF-8
+## UTF-8
 
-:::{.callout-note}
-O primeiro *codepoint* com 2 bytes será o *codepoint* **seguinte** ao último
-*codepoint* com 1 byte e assim para 3 bytes em 4 bytes também
-:::
+Faixas de *codepoints*
 
-Então os *codepoints* que serão codificados serão:
+| bytes | quantos                        | inicial             |  final               |
+|:-----:|:------------------------------:|:-------------------:|:--------------------:|
+|   1   |    2^7^ = 128 = (80)~16~       |      0=(00)~16~     |     127=(7f)~16~     |
+|   2   |   2^11^ = 2048 = (800)~16~     |    128=(80)~16~     |    2175=(87f)~16~    |
+|   3   |  2^16^ = 65536 = (10000)~16~   |   2176=(880)~16~    |   67711=(1087f)~16~  |
+|   4   | 2^21^ = 2097152 = (200000)~16~ |  67712=(10880)~16~  | 2164863=(21087f)~16~ |
 
+::: notes
+- o primeiro codepoint com 2 bytes será o codepoint SEGUINTE ao último
+  codepoint com 1 byte
+- o primeiro codepoint com 3 bytes será o codepoint SEGUINTE ao último
+  codepoint com 2 byte
+- o primeiro codepoint com 4 bytes será o codepoint SEGUINTE ao último
+  codepoint com 3 byte
+- Então os codepoints que serão codificados serão:
 - 1 byte: de 0 até 2^7^ - 1 = 127
 - 2 bytes: de 128 até 128 + 2^11^ - 1 = 2175
 - 3 bytes: de 2176 até 2176 + 2^16^ - 1 = 67711
 - 4 bytes: de 67712 até 67712 + 2^21^ - 1 = 2164863
+:::
 
 ```{r}
+#| label: faixas-codepoints
 #| include: false
 #| eval: false
 
@@ -795,35 +907,6 @@ c(7, (2:4) |> (\(n) 8 - (n + 1) + (n - 1) * 6)()) |>
   map(\(x) paste("de", x[1], "a", x[2])) |> 
   unlist() |> 
   cat(sep = "\n")
-```
-
-### UTF-8
-#### Faixas de *codepoints*
-
-<!---
-
-| bytes | inicial         |  final           |
-|:-----:|:---------------:|:----------------:|
-|   1   |      0 (00)     |     127 (7f)     |
-|   2   |    128 (80)     |    2175 (87f)    |
-|   3   |   2176 (880)    |   67711 (1087f)  |
-|   4   |  67712 (10880)  | 2164863 (21087f) |
-
-Entre parênteses, o valor em hexadecimal
-
----> 
-
-| bytes | inicial |   final   |
-|:-----:|:-------:|:---------:|
-|   1   |      0  |      127  |
-|   2   |    128  |     2175  |
-|   3   |   2176  |    67711  |
-|   4   |  67712  |  2164863  |
-
-
-```{r}
-#| include: false
-#| eval: false
 
 list(
   c("00000000"),
@@ -845,73 +928,82 @@ list(
 
 ## Voltando ao Unicode e ao UTF-8
 
-Cada *codepoint* do Unicode pode ser representado com 1, 2, 3 ou 4 bytes,
+::: notes
+- cada codepoint do Unicode pode ser representado com 1, 2, 3 ou 4 BYTES,
 mas é exibido como um único caracter
-
-Certo?
+- certo?
+- infelizmente, errado
+- alguns codepoints do Unicode compõem com o codepoint anterior, modificando e
+criando um novo símbolo a ser exibido
+:::
 
 . . .
 
-Infelizmente, errado
-
-Alguns *codepoints* do Unicode compõem com o *codepoint* anterior, modificando e
-criando um novo símbolo a ser exibido
-
-
-## Voltando ao Unicode e ao UTF-8
-
 Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
+::: notes
+- PARECEM seis emojis representados com 1 caracter
+- MAS as aparências enganam!
+:::
+
+. . .
+
 ```{r}
+#| label: unicode-emojis
 #| echo: true
 
-list("👩" , "👩🏻" , "👩🏼" , "👩‍🦱" , "👩🏻‍🦱" , "👩🏼‍🦱") |> 
-  map(\(x) str_c("U+", x |> utf8ToInt() |> as.hexmode() |> str_to_upper()))
+c("👩" , "👩🏻" , "👩🏼" , "👩‍🦱" , "👩🏻‍🦱" , "👩🏼‍🦱") |> 
+  map(\(x) str_c("U+", x |> utf8ToInt() |> as.hexmode() |> str_to_upper(), collapse = " ")) |> 
+  unlist() |> 
+  cat(sep = "\n")
 c("👩" , "👩🏻" , "👩🏼" , "👩‍🦱" , "👩🏻‍🦱" , "👩🏼‍🦱") |> 
   nchar()
 ```
 
 
-## Voltando ao Unicode e ao UTF-8
-
-Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
-
-- O 👩 tem um codepoint: `U+1F469`
-- Os emojis 👩🏻 e 👩🏼 têm dois *codepoints*: `U+1F469` seguido de `U+1F3FB` ou
-  `U+1F3FC` de tom de pele, que é conjugado com o *codepoint* de base do emoji
-- O emoji 👩‍🦱 tem três *codepoints*: `U+1F469` de base do emoji, seguido de
-  `U+0200D` (*zero width joiner*) e de `U+1F9B1` (*emoji component curly hair*)
-- Os emojis 👩🏻‍🦱 , 👩🏼‍🦱 têm quatro *codepoints*: `U+1F469` seguido do
-  *codepoint* de tom de pele seguido dos *codepoints* *zero width joiner* e
-  *emoji component curly hair*
-  
-Assim, um emoji pode ser representado por 1, 2, 3 ou 4 *codepoints* (ou até
-mais, dependendo da criatividade do vivente)
-
 
 ## Voltando ao Unicode e ao UTF-8
 
 Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
-Agora o troço fica louco *mermo* quando você vai contar bytes:
+- 👩
+  - 1 codepoint (`U+1F469`)
+- 👩🏻 e 👩🏼
+  - `U+1F469` (emoji base) + `U+1F3FB` ou `U+1F3FC` (tom de pele)
+- 👩‍🦱
+  - `U+1F469` + `U+0200D` (*zero width joiner*) + `U+1F9B1`
+    (*emoji component curly hair*)
+- 👩🏻‍🦱  e 👩🏼‍🦱
+  - `U+1F469` + `U+1F3FB`/`U+1F3FC` + `U+0200D` + `U+1F9B1`
+
+::: notes
+- o 1^o^ emoji tem um codepoint
+- o 2^o^ e o 3^o^ têm dois *codepoints*: o codepoint do primeiro emoji como base
+  seguido de um emoji de tom de pele
+- o 4^o^ tem três *codepoints*: o de base, seguido de um caracter
+  *zero width joiner* e um codepoint *emoji component curly hair*
+- os dois últimos têm quatro *codepoints*: o de base, seguido de um de tom de
+  pele, seguido do *zero width joiner* e *emoji component curly hair*
+- assim, um emoji pode ser representado por 1, 2, 3 ou 4 *codepoints*
+- ou até mais, dependendo da criatividade do vivente
+:::
+
+
+## Voltando ao Unicode e ao UTF-8
+
+Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
 ```{r}
+#| label: bytes-emojis
 #| echo: true
 
 c("👩" , "👩🏼‍🦱") |> 
   map(
     \(x) 
     str_c(
-      "\"",
-      x,
-      "\"=",
-      x |> 
-        charToRaw() |>
-        as.integer() |>
-        as.hexmode() |> 
-        str_replace("(.*)", "\\\\x\\1") |> 
-        str_c(collapse = "") |> 
-        str_replace("(.*)", "\"\\1\"")
+      "\"", x, "\"==",
+      x |> charToRaw() |> as.integer() |> as.hexmode() |> str_replace("(.*)", "\\\\x\\1") |> 
+        str_c(collapse = "") |> str_replace("(.*)", "\"\\1\"")
     )
   ) |> 
   unlist() |>
@@ -920,9 +1012,12 @@ c("👩" , "👩🏼‍🦱") |>
   nchar(type = "bytes")
 ```
 
-Ou seja, um único emoji pode ocupar 15 bytes no arquivo (!)
+::: notes
+- Agora o troço fica louco *mermo* quando você vai contar bytes:
+- Ou seja, um único emoji pode ocupar 15 bytes no arquivo (!)
+- Isso é praticamente uma frase em ASCII
+:::
 
-Isso é praticamente uma frase em ASCII
 
 
 ## Voltando ao Unicode e ao UTF-8
