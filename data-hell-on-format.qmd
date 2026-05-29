@@ -64,7 +64,6 @@ format:
 - Formatos não estruturados
 
 
----
 
 ### Dados tabulares
 
@@ -74,7 +73,6 @@ format:
 - Todas as linhas têm o mesmo número de coluna
 - As variáveis estão sempre na mesma ordem
 
----
 
 ### Exemplos de formato de dados tabulares {.smaller}
 
@@ -96,14 +94,11 @@ format:
   - "CSV 2" 
     - caracter ponto-e-vírgula
 
----
 
 ### Dados hierárquicos
 
-- 
 
 
----
 
 ### Dados não estruturados
 
