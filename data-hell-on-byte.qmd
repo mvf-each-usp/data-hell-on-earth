@@ -59,6 +59,9 @@ library(tidyverse)
 # Codificação do dado textual
 
 ## Começando do princípio
+
+. . . 
+
 (*ou* "E no princípio era ~~o verbo~~ \ ~~o ascii~~ \ ~~o byte~~ \ o bit")
 
 ## Bits e bytes
@@ -682,11 +685,13 @@ hora, volta a fuder tudo de novo de volta.
 
 
 
-# Respresentando os caracteres na memória
+# Representando os caracteres na memória
+
+. . . 
+
+(*ou* "Ué, não era aquela história de 1 byte = 1 caracter?!?")
 
 ## UTF: botando o Unicode para funcionar
-
-. . .
 
 Unicode e *codepoint* é muito bonitinho, mas como é que faz pra virar bytes no
 disco?
@@ -704,6 +709,7 @@ Entra o UTF na jogada
 
 ## Os sistemas de *encoding* UTF {.smaller}
 
+- UTF = Unicode Transformation Format
 - UTF-8
   - comprimento variável de bytes
   - padrão nos sistemas GNU/Linux e MacOS
@@ -1040,79 +1046,149 @@ os outros 14 não farão sentido, o caracter não será renderizado e eles serã
 sequência de erros de leitura
 
 
-# PAREI AQUI!!!!!!!
-<!-- 
 
-AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Arquivos de Texto
 
-TODO
+. . .
 
--->
+(*ou* "Num era pra arquivo de texto ser o tipo de arquivo mais simples?!?")
+
+. . .
+
+(*ou* "E o que você faz quando uma linha não é uma linha, hein?")
 
 
-## Linhas nos arquivos {.smaller}
 
-Lembra que eu mencionei que isto 👇 não é verdade?
+## Arquivos de Dados Textuais
+
+Lembra que eu mencionei láááá no início que isto 👇 não é verdade?
 
 > - 1 conjunto de letras = 1 linha
 > - 1 conjunto de linhas = 1 arquivo de dados textuais
 
-Pois é, realmente:
+. . . 
 
-> "There is no spoon" (Matrix)
+Pois é, na verdade:
+
+. . .
 
 Não existem linhas
 
-Arquivos são grandes sequências *contínuas* de caracteres
+. . . 
+
+(tchan-tchan-tchan!)
+
+. . .
+
+> "There is no spoon" (*Matrix*)
+
+. . .
+
+As linhas são uma ficção benévola --- uma mentirinha que mais ajuda do que
+atrapalha.
 
 
-### Linhas nos arquivos {.smaller}
-#### Vamos falar sobre as quebras de linhas que te quebram as perna?
 
-- Não existem realmente linhas em um arquivo de texto
-    - A ideia de linhas em um arquivo é só uma ficção útil
-- Quem marca a "separação" entre duas "linhas" em um arquivo são caracteres de
-  controle:
-    - Na época das impressoras matriciais, o que marcava o final de uma linha
-      era o momento em que a cabeça de impressão voltava ao início da área de
-      impressão (à esquerda) e avançada o papel (na época, em formulário
-      contínuo)
 
-Aqui surge mais um problema
+## Linhas nos arquivos
 
-### Linhas nos arquivos
+. . .
 
-O caracter usado como delimitador de linha ("quebra de linha") depende do sistema operacional do computador
+(*ou* Vamos falar sobre as quebras de linhas que te quebram as perna?)
 
-- O Linux usa o caracter *carriage return* (CR, retorno de carro) `"\x0d"` (13 em decimal)
-    - Esse é o padrão usado para transmissão de dados na internet
-- O MacOS usa o caracter *line feed* (LF, avanço de linha) `"\x0a"` (10 em decimal)
-- O Windows usa *os dois*: CR+LF ou `"\x0d\x0a"`
 
-Assim, surge o novo problema potencial
 
-### Linhas nos arquivos
+### Linhas nos arquivos 
 
-:::{.callout-important text="Problema Potencial"}
-Quando você trabalhando com dados gerados em outra plataforma, *pode* acontecer de os dados virem com a quebra de linha de outro sistema operacional e a sua importação dê algum erro
+- Arquivos são grandes sequências *contínuas* de caracteres
+- Não existem realmente linhas
+  - É só uma abstração útil
+- Separação entre linhas = caracteres de controle
+
+::: notes
+- arquivos são grandes sequências *contínuas* de caracteres
+- "There is no spoon" (Matrix)
+- de verdade, não existem linhas em um arquivo de texto
+- as linhas são uma ficção benévola
+- o que se chama de "linha" são, na verdade, blocos de caracteres separados por caracteres de controle que marcam a mudança de linha
 :::
 
-### Linhas nos arquivos
-
-Quando a transferência do arquivo de texto é realizada em modo texto, o próprio
-sistema operacional já faz a conversões necessárias para o uso local.
-
-O problema ocorre quando o arquivo texto é transferido em modo binário, quando essa conversão não é feita.
-
-Esse é um erro razoavelmente frequente, apesar de a maioria das vezes dos sistemas operacionais fazer a conversão para o sistema de quebra
 
 
+## Linhas nos arquivos
+
+Problema: cada S.O. usa uma escolha diferente de caracteres de controle
+
+- Unix, GNU/Linux, BSD e MacOS moderno: `LF`=`"\n"`=`"\x0a"`
+- MacOS antigo: `CR`=`"\r"`=`"\x0d"`
+- Windows: `CR+LF`=`"\r\n"`=`"\x0d\x0a"`
+
+. . .
+::: notes 
+- surge assim aqui um problema
+- cada sistema operacional usa uma escolha diferente de caracteres de controle como delimitador de linha
+- o Unix e depois o GNU/Linux, o BSD e derivados usaram o *line feed*
+- o MacOS moderno (pós 2001, que é um derivado do BSD) também usa o *line feed*
+- o MacOS antigos (pré 2001, derivado do Lisa OS) usavam *carriage return*
+- o Windows usa a combinação dos caracteres *linefeed* e *carriage return*
+- *origem histórica dessa escolha no windows*:
+- essa era a sequência que você tinha que enviar para uma impressora de
+  formulário contínuo para ela começar uma nova linha:
+- um caracter de controle para sinalizar para a impressora trazer o carro de
+  impressão (com a cabeça de impressão) devolta para a margem esquerda e um
+  caracter de controle para sinalizar para a impressora avançar o formulário
+  contínuo a distância correspondente a uma linha linha
+:::
 
 
 
+## Linhas nos arquivos
+
+:::{.callout-important text="Problema Potencial" style="font-size: 1.5em;"}
+Quando você trabalha com dados gerados em outra plataforma, *pode* acontecer de o arquivo usar um padrão diferente de quebra de linha e a importação falhar parcial ou completamente.
+:::
+
+. . .
+
+Exemplos comuns:
+
+* Um script Linux tentando ler um CSV criado no Windows
+* Um parser esperando `LF` e recebendo `CR+LF`
+* Um arquivo aparentemente "normal" contendo caracteres invisíveis extras no final de cada linha
 
 
 
+## Linhas nos arquivos
+
+Quando esse problema ocorre?
+
+- transferência de arquivo *texto* em modo *binário*
+- erro comum em
+  - FTP antigo
+  - pipelines de dados
+  - arquivos exportados por sistemas legados
+  - integração entre Windows/Linux
+  - processamento automatizado de arquivos textuais
+
+
+::: notes
+- quando a transferência do arquivo texto é realizada em *modo texto*,
+  normalmente o próprio sistema operacional faz automaticamente a conversão das
+  quebras de linha para o padrão local
+- o problema acontece quando o arquivo é transferido em *modo binário*, quando
+  nenhuma conversão é feita e os caracteres originais são preservados exatamente
+  como estavam
+:::
+
+
+# PAREI AQUI !!!!!!!
+
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
 
 
 
@@ -1138,28 +1214,6 @@ Quando as *words* começaram a ser compostas de 2 bytes
 Isso levou a algumas
 
 
-## *Endianness*
-
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-
-
-## O BOM que só dá ruim
-
-:::{.callout-important text="Problema Potencial"}
-O BOM (Byte-Order Marker) é uma meeeeeeeeeeeerda.
-
-Quando presente, ele ocupa os dois ou quatro primeiros bytes do arquivo e é invisibilizado pelo sistema
-
-AQUI AQUI AQUI AQUI AQUI AQUI
-
-:::
-
-
 ## Voltando ao UTF...
 
 ### UTF-16 e o Windows
@@ -1181,7 +1235,11 @@ lembrar do endianness
 
 
 
-### UTF-32 e UTF-64 (os "não falamos do Bruno" do Unicode)
+### UTF-32 (o "não falamos do Bruno" do Unicode)
+
+usar 4 bytes sempre
+
+desperdício de espaço e de transmissão
 
 
 <!--- HERE TODO --->
@@ -1192,28 +1250,9 @@ lembrar do endianness
 <!--- HERE TODO --->
 
 
+## *Endianness*
 
-
-# Arquivos de Texto
-
-. . .
-
-*ou* "Num era pra arquivo de texto ser o tipo de arquivo mais simples?!?"
-
-
-## Arquivos de Dados Textuais 
-
-- Arquivos são grandes sequências *contínuas* de caracteres
-- "There is no spoon" (Matrix): 
-  - Não existem realmente linhas em um arquivo de texto
-  - As linhas são uma ficção benévola
-  - Existe a convenção (da época das impressoras matriciais) de que um conjunto
-      de caracteres representam o ponto em que a impressora avança uma linha e
-      retorna a cabeça de impressão para o início da linha
-    - no Windows, são usados os caracteres *linefeed* e *carriage return*
-
-- Linhas separadas por um caracter de fim de linha
-  - o Windows usa a combinação
+Little-end-ian-ness e bittle-end-ian-ness --> As aventuras de Gulliver
 
 <!--- HERE TODO --->
 <!--- HERE TODO --->
@@ -1221,5 +1260,40 @@ lembrar do endianness
 <!--- HERE TODO --->
 <!--- HERE TODO --->
 <!--- HERE TODO --->
+
+
+## O *BOM* que só dá ruim
+
+:::{.callout-important text="Problema Potencial"}
+O BOM (Byte-Order Marker) é uma meeeeeeeeeeeerda.
+
+É um metadado logo no início dos seus dados e isso dá a maior treta
+
+Quando presente, ele ocupa os dois ou quatro primeiros bytes do arquivo e é (ou era para ser) invisibilizado pelo sistema
+
+AQUI AQUI AQUI AQUI AQUI AQUI
+
+:::
+
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+<!--- HERE TODO --->
+
+
+# POSIX
+
+## POSIX
+
+Tentando botar ordem nos galinheiros
+
+<!--- HERE TODO --->
+
+## Padronizações do POSIX
+
+
+
 
 
