@@ -112,6 +112,59 @@ Problemas:
 
 
 
+## Codificação de Caracteres
+
+- UTF-8 não respeitada: Arquivo em Latin-1, Windows-1252, ISO-8859-1 causa caracteres estranhos (`"SÃ£o Paulo"` ao invés de `"São Paulo"`)
+- UTF-16 ou UTF-32 lido como UTF-8: Arquivo entupido de `"\0"`
+- Codificação mista: Diferentes partes do arquivo em codificações distintas
+- BOM (Byte Order Mark): BOM no início interpretado como caractere válido
+- UTF-8 sem BOM vs com BOM: Alguns sistemas exigem BOM explícito
+  - se não for UTF-8, nenhum registro é importado apesar de o arquivo ter dados
+
+
+
+
+## Aspas
+
+- Aspas desbalanceadas: Aspas de abertura sem fechamento
+- Aspas simples e duplas misturadas: Aspas `"` abrindo com `'` fechando e *vice versa*
+- Aspas curvas ("smart quotes"):
+  Possívelmente copiados de Word ou PDF,
+  que introduziu as aspas duplas curvas `“` (U+201C) e `”` (U+201C)
+  no lugar das aspas duplas retas `"` (ASCII)
+  ou 
+  que introduziu as aspas simples curvas `‘` (U+2018) e `’` (U+2019)
+  no lugar das aspas simples retas `'` (ASCII)
+
+
+
+## Escapes
+
+- Escapes inválidos: *e.g.*, um falso escape `\q` não existe
+- Barra invertida não escapada: `Caminho\Arquivo` precisa de escape `Caminho\\Arquivo`
+
+
+
+## Quebras de Linha
+
+- Mistura de convenções: Windows (`\r\n`), Unix (`\n`), Mac antigo (`\r`) no mesmo arquivo
+
+
+
+## Formato do Arquivo
+
+- Corrupção do arquivo: Arquivo truncado, incompleto, corrompido
+- Formato não suportado: Tentar importar `.ods`, `.parquet`, `.feather`
+- Compressão não detectada: `.csv.gz` ou `.zip` tentando ser lido como texto puro
+- Arquivo criptografado sem senha fornecida
+- Caminho não existe: Caminho de arquivo fonte não existe
+- Arquivo bloqueado: Arquivo aberto no Excel trava importação no R
+
+- Extensão incorreta: `.xls` com extensão `.xlsx` (binário vs XML)
+- Arquivo binário salvo como texto: Excel salvo como `.csv` mas com formatação binária
+
+
+
 # Problemas de Caracteres Especiais e Parsing
 
 ## Problemas de Caracteres Especiais e Parsing
@@ -119,6 +172,46 @@ Problemas:
 1. Caracteres que Quebram o Parsing
 2. Caracteres de Controle e Não-Printable
 3. Caracteres Unicode e Internacionalização
+
+
+
+## Caracteres que Quebram o Parsing
+
+- Apóstrofo não escapado: `O'Connor` em string SQL causa erro de parsing
+- Aspas duplas não escapadas: `"campo com "aspas""` quebra campo CSV
+- Barra invertida não escapada: `C:\Users\Teste` precisa ser `C:\\Users\\Teste`
+- Caractere de percentual: `%` em SQL sem escape (interpolado como placeholder)
+- Caractere de ponto-e-vírgula: `;` em SQL sem escape (injeta nova query)
+- Caractere de aspa simples: `'` em SQL sem escape (quebra string)
+- Tabulação em campo não-delimitado: `\t` interpretado como separador
+
+<!-- TODO AQUI!!!!  -->
+
+
+## Caracteres de Controle e Não-Printable
+
+- Caracteres de controle: `\x00` (null byte), `\x01`, `\x1F` no texto
+- Caracteres não printable: `\x00-\x1F` exceto `\n`, `\r`, `\t`
+- Zero-width characters: `\u200B` (zero-width space), `\u200C` invisíveis
+- Caractere de substituição: `�` (U+FFFD) no arquivo (indicador de erro de decodificação)
+- Nuevoline do Windows: `\r\n` tratado como dois caracteres em Unix
+
+<!-- TODO AQUI!!!!  -->
+
+
+
+## Caracteres Unicode e Internacionalização
+
+- Latin-1 não convertido: Arquivo em Latin-1 tratado como UTF-8
+- Windows-1252 não convertido: Arquivo em Windows-1252 tratado como UTF-8
+- ISO-8859-1 não convertido: Arquivo em ISO-8859-1 tratado como UTF-8
+- EUC-JP não convertido: Arquivo japonês em EUC-JP tratado como UTF-8
+- GBK não convertido: Arquivo chinês em GBK tratado como UTF-8
+- KOI8-R não convertido: Arquivo russo em KOI8-R tratado como UTF-8
+- Caracteres Asianos não suportados: Chinês, japonês, coreano em banco sem suporte
+- Caracteres de script diferente: Cirílico, árabe, hebraico não suportados
+
+<!-- TODO AQUI!!!!  -->
 
 
 
@@ -136,12 +229,75 @@ Problemas com:
 
 
 
+## Falhas de Conversão Básica
+
+- Conversão texto→número falha: `"abc"` para INTEGER
+- Conversão texto→data falha: `"segunda-feira"` para DATE
+- Conversão texto→booleano falha: `"talvez"`, `"?"` para BOOLEAN
+- Conversão com overflow: `999999999999` em INTEGER de 32 bits
+
+
+
+## Falhas de Conversão por Formato
+
+- Conversão `"5,00"` para INTEGER sem tratar decimal
+- Conversão `"2024-13-45"` para DATE (mês inválido)
+- Fração não convertida: `1/2`, `3/4` em coluna numérica
+- Científica não reconhecida: `1.5e10` não parseado
+
+
+
+
+## Perda de Precisão na Conversão
+
+- Conversão numérica→texto perde precisão: `1.005` → `"1.00"` ou `"1.01"`
+- Conversão perda de precisão: `123.456789` → `123.46` (arredondamento)
+
+
+
+
+## Formatação de Datas
+
+- Formato ambíguo: `01/02/2024` é 1º de fevereiro ou 2 de janeiro?
+- Separação inconsistente: `01/02/2024`, `01-02-2024`, `01.02.2024`, `2024-02-01`
+- Ambiguidade de data com ano com 2 dígitos: `01/02/24` é 2 de janeiro de 2024, 1^o^ de fevereiro de 2024 ou 24 e janeiro de 2001
+- Ambiguidade de ano com ano com 2 dígitos: `01/02/24` é 01/02/1924 vs 01/02/2024
+- Texto na data: `01-fev-2024`, `February 1, 2024`, `1º de fevereiro de 2024`
+- Data incompleta: `2024`, `01/2024`, `01/24`, `2024-02`, `31/01` (ano, mês-ano, ambíguo, data parcial)
+- Data inválida: `99/99/9999`, `00/00/0000`, `31/02/2024`
+
+
+
+## Formatação de Timestamp
+
+- Fuso horário não especificado: `2024-01-15 14:30` sem UTC, -03, etc.
+- Formato inconsistente: `2024-01-15 14:30`, `2024-01-15 14:30-03`, `2024-01-15T14:30`, `2024-01-15T14:30-03`, `2024-01-15T14:30UTC-03`, 
+
+
+
+
 # Problemas de Missings/Valores Válidos
 
 ## Problemas de Missings/Valores Válidos
 
 1. Representação de Missing
 2. Colunas/Registros Vazios
+
+
+
+## Representação de Missing
+
+- Representação inconsistente de missing: `"N/A"`, `"NA"`, `"null"`, `"NULL"`, `"."`, `"-"`, `""`, `0`
+- Missing implícito: Espaço `" "` em vez de valor vazio `""`
+- Missing em intervalo: `1,2,3,,,,,8,9,10` (vários missing consecutivos)
+
+
+
+## Colunas/Registros Vazios
+
+- Coluna inteira vazia: Coluna completa sem dados mas expected to have values
+- Cabeçalho apenas: Arquivo tem apenas cabeçalho, sem dados
+- Sem dados para importar: Nenhuma linha foi processada (arquivo vazio ou filtro excluiu tudo)
 
 
 
