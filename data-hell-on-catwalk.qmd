@@ -1,24 +1,25 @@
 ---
-title: Data Hell on Earth
+title: "Data Hell<br>on the Catwalk"
 subtitle: >
-    As mais variadas formas de seus arquivos de dados textuais
+    Um desfile de horrores cotidianos que caem no colo 
     <br>
-    te darem dor de cabeça na hora da importação
+    de quem importa dados quando menos se espera
     <br>
     *ou*
     <br>
-    Como algo que era para ser simples pode ser tão complicado?
+    Ah, qualé! Não é possível que isso pode acontecer!!!
 author: Marcelo Ventura Freire
 # date: 2026-??-??
 lang: pt-br
 format: 
   revealjs: 
-    # # formato 1920x1080
+    # ### formato 1920x1080
     # width: 1920
     # height: 1080
-    # formato 1600x900
+    ### formato 1600x900
     width: 1600
     height: 900
+    #
     theme: blood
     slide-level: 3
     slide-number: 
@@ -40,52 +41,9 @@ format:
 library(tidyverse)
 ```
 
-# Introdução 
-
-. . .
-
-*ou* "PQ CMG?!?!?!?!? 😭"
-
-
-
-### Situação (que era para ser) típica
-
-\ \ 
-
-exemplo
-
-\ \ 
-
-<!--- AQUI!!! ---> TODO: arrumar um bom exemplo
-
-
-### Situação típica de verdade
-
-\ \ 
-
-exemplo
-
-\ \ 
-
-<!--- AQUI!!! ---> TODO: arrumar um bom exemplo
-
-
-# Roadmap de onde pode dar merda
-
-## Onde pode dar merda?
-
-- Codificação do dado textual (*encoding*)
-- Armazenamento do dado em memória/disco
-- Estrutura do arquivo
-- Corrupção de dados 
-    - na geração e armazenamento
-    - na transmissão e manuseio
-
-
-
 # Roadmap desta apresentação
 
-##
+## Roadmap desta apresentação
 
 - 1^o^ dia: [Aqui](data-hell-on-byte.html)
   - Codificação do dado textual (*encoding*)
@@ -93,9 +51,8 @@ exemplo
 - 2^o^ dia: [Aqui](data-hell-on-format.html)
   - Estrutura do arquivo
   - Corrupção de dados 
-- 3^o^ dia: [Aqui](data-hell-on-catwalk.html)
+- 3^o^ dia: Esta apresentação
   - Um desfile de moda dos demônios dos sete círculos do inferno na passarela da
     importação de dados
-
 
 

@@ -44,6 +44,9 @@ format:
 - 2^o^ dia: Esta apresentação
   - Estrutura do arquivo
   - Corrupção de dados 
+- 3^o^ dia: [Aqui](data-hell-on-catwalk.html)
+  - Um desfile de moda dos demônios dos sete círculos do inferno na passarela da
+    importação de dados
 
 
 
