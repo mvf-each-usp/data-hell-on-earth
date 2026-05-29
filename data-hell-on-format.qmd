@@ -75,9 +75,10 @@ format:
 
 ## Formatos de Arquivos de Dados Textuais 
 
-- Dados tabulares
-- Dados hierárquicos
-- Dados não estruturados
+- Formatos tabulares
+- Formatos hierárquicos
+- Formatos não estruturados
+
 
 ---
 
