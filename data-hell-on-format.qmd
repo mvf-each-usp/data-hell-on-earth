@@ -57,22 +57,6 @@ format:
 # Formatos de Arquivos
 (*ou* "Num era pra texto ser o tipo de arquivo de dados mais simples?!?")
 
-## Arquivos de Dados Textuais 
-
-- Arquivos são grandes sequências *contínuas* de caracteres
-- "There is no spoon" (Matrix): 
-  - Não existem realmente linhas em um arquivo de texto
-  - As linhas são uma ficção benévola
-  - Existe a convenção (da época das impressoras matriciais) de que um conjunto
-      de caracteres representam o ponto em que a impressora avança uma linha e
-      retorna a cabeça de impressão para o início da linha
-    - no Windows, são usados os caracteres *linefeed* e *carriage return*
-
-- Linhas separadas por um caracter de fim de linha
-  - o Windows usa a combinação
-
----
-
 ## Formatos de Arquivos de Dados Textuais 
 
 - Formatos tabulares
