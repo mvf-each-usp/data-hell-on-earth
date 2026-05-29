@@ -83,9 +83,44 @@ exemplo
 
 
 
+# Quem é o público alvo desta apresentação?
+
+## Quem é o público alvo desta apresentação?
+
+\ \ 
+
+Se você 
+
+. . .
+
+- já quebrou a cara tentando importar arquivos de dados, 
+
+. . .
+
+- arrancou seus cabelos em fúria e som (geralmente xingamentos), 
+
+. . .
+
+- chegou a avaliar como *razoável* a possibilidade de esmurrar o seu computador até ele fazer o que você manda como forma de resolver o seu problema
+
+. . .
+
+- e sente que quer *aumentar* o seu *repertório* de truques na manga para a próxima vez que tiver que importar dados ingratos
+
+. . .
+
+
+então essa apresentação é para você.
+
+. . .
+
+Se você ainda não passou por isso, eu sugiro que você obtenha essa experiência ímpar antes de assistir, pois muuuuuita coisa fará mais sentido para você.
+
+
+
 # Roadmap desta apresentação
 
-##
+## Roadmap desta apresentação
 
 - 1^o^ dia: [Aqui](data-hell-on-byte.html)
   - Codificação do dado textual (*encoding*)
@@ -99,3 +134,4 @@ exemplo
 
 
 
+---
