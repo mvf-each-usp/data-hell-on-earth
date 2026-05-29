@@ -1,0 +1,190 @@
+---
+title: "Untitled"
+author: "eu"
+date: "2026-05-29"
+output: html_document
+---
+## Lista Reorganizada: Problemas de Importação vs. Problemas de Crítica
+
+### LISTA 1: Problemas de Importação de Dados
+*(Problemas que impedem, interrompem ou falham no processo técnico de leitura/parsing/carga dos dados)*
+
+
+### LISTA 2: Problemas de Crítica de Dados
+*(Problemas que permitem a importação técnica mas requerem validação de qualidade, consistência de negócio, ou regras de domínio)*
+
+1. Problemas de Qualidade e Validação de Conteúdo
+    1. Valores Faltantes (Business Logic)
+        - Valores faltantes em campos obrigatórios: Coluna required sem valor
+        - Valores faltantes mal posicionados: `1,2,,4,5` (valor 3 faltando) em coluna de texto
+    2. Formatação de Dados (Inconsistência)
+        - Formatação de números inconsistentes: `1.000,50` (Brasil) vs `1,000.50` (EUA)
+        - Sinais de moeda não removidos: `"R$ 1.500,00"` em vez de `1500.50`
+        - Porcentagem com símbolo: `"50%"` em vez de `0.5` ou `50`
+        - Números com texto anexado: `"5 kg"`, `"10 unidades"`, `"30%"`
+        - Texto em coluna de email: `"não possui"` em coluna EMAIL
+    3. Formatação de Datas (Validade)
+        - Formato ambíguo: `01/02/2024` é 1º de fevereiro ou 2 de janeiro?
+        - Separação inconsistente: `01/02/2024`, `01-02-2024`, `01.02.2024`, `2024-02-01`
+        - Ano com 2 dígitos: `01/02/24` vs `01/02/2024` (ambiguidade do século)
+        - Nome do mês em texto: `01-fev-2024`, `February 1, 2024`, `1º de fevereiro de 2024`
+        - Data incompleta: `2024`, `01/2024`, `2024-02` (ano, mês-ano, data parcial)
+        - Data inválida: `99/99/9999`, `00/00/0000`, `31/02/2024` (data inexistente)
+        - Data no futuro: Transação em data futura (ex: `2026-06-15` quando hoje é `2026-05-28`)
+        - Data muito antiga: Fora do período de retenção do sistema
+        - Fuso horário não especificado: `2024-01-15 14:30` sem UTC, -03, etc.
+        - Data cópia de outra: Mesma data para todas as linhas por erro de preenchimento
+    4. Formatação Numérica (Precisão)
+        - Precisão decimal inconsistente: `1.5`, `1.50`, `1.500` para mesmo valor
+        - Milhar e decimal trocados: `1,234.56` (EUA) vs `1.234,56` (Brasil)
+        - Espaço como separador de milhar: `1 000 000` (não reconhecido)
+        - Zero à esquerda: `00123` vs `123` (problema em IDs)
+        - Número negativo em formato diferente: `-5`, `(5)`, `5-`, `neg 5`
+        - Intervalo em vez de valor único: `10-20`, `15+` em coluna numérica
+    5. Duplicação de Negócio
+        - Dados duplicados com variação: `"São Paulo"` vs `"sao paulo"` vs `"SÃO PAULO"`
+        - Duplicação por timezone: Mesma transação em fusos diferentes aparece duas vezes
+        - Duplicação por atualização: Mesma entidade importada em batchs diferentes sem deleção
+        - Duplicação parcial: Mesma entidade com dados diferentes em linhas diferentes
+2. Problemas de Validação de Domínio
+    1. Valores Fora do Domínio
+        - Valores fora do domínio esperado: Categoria `"A"` quando só `"X"`, `"Y"`, `"Z"` são válidos
+        - Faixa de valor inválida: Idade `150`, temperatura `-500°C`, porcentagem `150%`
+    2. Formatos Inválidos
+        - Formato de telefone inválido: `12345`, `(11) 98765-4321` vs `11987654321`
+        - Formato de CPF/CNPJ inválido: `123.456.789-00` (formato errado), `12345678900` (sem formatação)
+        - Formato de email inválido: `teste@`, `teste@teste`, `@teste.com`, `teste@teste.com.br`
+        - Formato de URL inválido: `teste.com` (sem `http://`), `htp://erro.com`
+        - Telefone inválido: `12345` (muito curto), `99999999999` (muito longo)
+    3. Códigos Inválidos
+        - Estado/UF inválido: `"SP"` vs `"SP (Brasil)"` vs `"São Paulo"`
+        - País inválido: `"Brasil"` vs `"BRA"` vs `"BR"` vs `"Brazil"`
+        - CEP inválido: `12345-678` formatado mas `12345678` sem formatação
+        - CEP inexistente: CEP não existe na base de dados de CEPs
+        - IP inválido: `999.999.999.999`, `256.1.1.1`, `1.2.3`
+3. Problemas de Inconsistência Relacional
+    1. Chaves Estrangeiras
+        - Chave estrangeira não existente: `centro_custo_id = 500` mas só existem 1-100
+        - Nó órfão: `parent_id` não existe na árvore
+    2. Consistência de Dados Dependentes
+        - Dados dependentes inconsistentes: `estado = "SP"` mas `cidade = "Rio de Janeiro"`
+        - Cidade/estado inconsistentes: `cidade = "Campinas"` mas `estado = "RJ"`
+        - País/estado inconsistentes: `país = "Brasil"` mas `estado = "California"`
+    3. Hierarquia
+        - Hierarquia quebrada: `categoria_pai = 10` mas `categoria_filha = 15` (não é filho de 10)
+        - Ciclo na hierarquia: A → B → C → A (loop infinito)
+        - Profundidade excedida: Árvore com 15 níveis quando limite é 10
+        - ID raiz inválido: `parent_id = NULL` para nó que deveria ter pai
+        - Nó raiz duplicado: Múltiplos nós com `parent_id = NULL`
+        - Hierarquia incompleta: Falta nível intermediário na árvore
+        - Nó marcado como folha mas tem filhos: `is_leaf = TRUE` mas tem registros com `parent_id = X`
+    4. Consistência Temporal
+        - Consistência temporal: `data_fim < data_inicio`, `data_saida < data_entrada`
+    5. Consistência de Estado
+        - Consistência de estado: `status = "finalizado"` mas `data_fim = NULL`
+    6. Consistência de Cálculos
+        - Total inconsistente: `total ≠ soma(parciais)`
+        - Cálculo derivado inconsistente: `imposto ≠ base × alíquota`
+4. Problemas de Normalização e Padronização
+    1. Normalização de Texto
+        - Normalização não aplicada: `Brazil` vs `BRA` vs `BR` vs `Brasil`
+        - Nomes não normalizados: `"São Paulo"` vs `"SAO PAULO"` vs `"Sao Paulo"`
+        - Maiúsculas/minúsculas inconsistentes: `"SP"`, `"sp"`, `"Sp"`, `"sP"` para mesmo estado
+        - Casing inconsistente: `"São Paulo"` vs `"são paulo"` vs `"SÃO PAULO"`
+    2. Padronização de Unidades
+        - Unidade não padronizada: `kg`, `Kg`, `KG`, `quilograma` para mesma unidade
+        - Formato de moeda não padronizado: `R$`, `R$ `, `R$100`, `R$ 100,00`
+        - Endereços não padronizados: `"Av."` vs `"Avenida"` vs `"Av"`
+    3. Padronização de Espaços e Pontuação
+        - Espaços extras não removidos: `" São Paulo "` vs `"São Paulo"`
+        - Espaços múltiplos: `"São  Paulo"` (dois espaços) vs `"São Paulo"` (um espaço)
+        - Espaços no início/fim: `"  valor  "` não trimado
+        - Abreviações inconsistentes: `"Rua"`, `"R."`, `"R"` para mesmo tipo de logradouro
+        - Pontuação inconsistente: `"São Paulo-"` vs `"São Paulo"` vs `"São Paulo."`
+        - Diacritics mantidos: `"São Paulo"` vs `"Sao Paulo"` (sem acento)
+        - Hífen vs espaço: `"São-Paulo"` vs `"São Paulo"`
+        - Underscore vs espaço: `"São_Paulo"` vs `"São Paulo"`
+    1. Representação de Missing
+        - Representação inconsistente de missing: `"N/A"`, `"NA"`, `"null"`, `"NULL"`, `"."`, `"-"`, `""`, `0`
+        - Missing implícito: Espaço `" "` em vez de valor vazio `""`
+        - Missing em intervalo: `1,2,3,,,,,8,9,10` (vários missing consecutivos)
+    2. Colunas/Registros Vazios
+        - Coluna inteira vazia: Coluna completamente sem dados mas com valores esperados
+        - Cabeçalho apenas: Arquivo tem apenas cabeçalho, sem dados
+        - Sem dados para importar: Nenhuma linha foi processada (arquivo vazio ou filtro excluiu tudo)
+5. Problemas de Transformação e Mapeamento de Negócio
+    1. Mapeamento de Codificação
+        - Codificação de enumeração: Espera `0/1` mas arquivo tem `sim/não`
+        - Mapeamento de status: `1` = "ativo" em origem mas `1` = "inativo" em destino
+        - Mapeamento de categoria: `"A"` = "zebra" em origem mas `"A"` = "elefante" em destino
+        - Código de país diferente: `BR` no arquivo mas sistema espera `BRA` ou `076`
+        - Código de estado diferente: `SP` no arquivo mas sistema espera `35` (código IBGE)
+    2. Transformação de Unidade (Negócio)
+        - Unidade não convertida: `kg` precisa virar `g` (multiplicar por 1000)
+        - Temperatura não convertida: `°C` precisa virar `°F` ou vice-versa
+        - Moeda não convertida: `USD` precisa virar `BRL` com taxa de câmbio
+        - Distância não convertida: `milhas` precisa virar `quilômetros`
+        - Unidade de medida diferente: `polegadas` vs `milímetros`
+    3. Cálculos Derivados (Negócio)
+        - Imposto não calculado: `imposto = 0` quando deveria ser `base × alíquota`
+        - Média não atualizada: `media` não recalculada após importação de novos valores
+        - Soma não conferida: `count` ou `sum` não conferem com dados originais
+        - Porcentagem não normalizada: `porcentagem = 150` quando deveria ser `1.5` ou `150%`
+        - Juros/multa não calculados: `juros = 0` quando deveria ser calculado
+        - Desconto não aplicado: `desconto` não deduzido do `total`
+        - Parcelamento não respeitado: `n_parcelas = 12` mas `valor_parcela ≠ total/12`
+        - Valor negativo em coluna positiva: `saldo = -100` quando deveria ser `0`
+    4. Agregação e Resumo
+        - Agregação mal aplicada: `SUM()` em vez de `AVG()` ou vice-versa
+        - Agrupamento errado: Dados agrupados por `cidade` quando deveria ser por `estado`
+        - Granularidade inconsistente: Dados diários importados em tabela mensal
+        - Resumo não atualizado: Estatísticas resumidas não recalculadas após importação
+6. Problemas Específicos por Tipo de Dados
+    1. Dados Financeiros
+        - Precisão decimal (floating point): `1.005` arredondado para `1.00` ou `1.01` (problema de float)
+        - Moeda mista: `R$ 100`, `US$ 50`, `€ 30` na mesma coluna sem separação
+        - Sinal negativo inconsistente: `-100` vs `100-` vs `(100)`
+        - Taxa de câmbio desatualizada: Conversão de moeda com taxa errada
+    2. Dados Geográficos
+        - Coordenadas em formato errado: `latitude,longitude` vs `longitude,latitude`
+        - Sistema de coordenadas diferente: WGS84 vs UTM vs Mercator
+        - Endereço incompleto: Sem CEP, sem número, sem complemento
+        - Latitude/longitude fora de faixa: `lat = 95` (deve ser -90 a 90)
+        - Coordenadas no oceano: Ponto no oceano quando deveria ser em terra
+    3. Dados de Texto Longo
+        - Texto truncado no limite: Campo VARCHAR(255) corta texto com 256+ caracteres
+        - HTML não sanitizado: `<script>alert('xss')</script>` executado
+        - URLs não validadas: URLs malformadas ou perigosas
+        - Texto muito longo: 10.000 caracteres em campo para 500 caracteres
+        - Texto em idioma errado: Texto em chinês quando esperado português
+        - Emoji não suportado: Emoji em banco sem UTF8MB4
+        - BLOB convertido para texto: Imagem salva como texto base64 malformado
+    4. Dados de Imagem/Mídia
+        - URL de imagem não direta: Link para página HTML em vez de link direto para `.jpg`
+        - URL não pública: Imagem em servidor interno não acessível publicamente
+        - Formato não suportado: `.heic`, `.webp`, `.tiff` quando sistema só aceita `.jpg`, `.png`
+        - Imagem muito grande: Arquivo de 50MB quando limite é 5MB
+        - URL expirada: Link temporário que expirou
+        - URL com autenticação: URL que requer login para acessar
+        - Resolução inválida: Imagem 100×100 quando mínimo é 500×500
+        - Aspect ratio incorreto: Imagem não quadrada quando deveria ser
+    5. Dados de Email e Contato
+        - Email não validado: `teste@`, `@teste.com`, `teste@teste`
+        - Email duplicado: Mesmo email em múltiplos registros
+        - Email em lista de exclusão: Contato opted-out e é ignorado
+        - Email rejeitado no passado: Email bouncou anteriormente
+        - Email cancelou subscription: Contato cancelou e é ignorado
+        - Phone format inconsistente: `(11) 98765-4321` vs `11987654321` vs `+55 11 98765-4321`
+    6. Dados de URL e Web
+        - URL malformada: `htp://erro.com`, `htt p://teste.com`, `://teste.com`
+        - URL sem protocolo: `teste.com` em vez de `https://teste.com`
+        - URL com fragmento: `teste.com#section` when fragment not expected
+        - URL com query malformada: `teste.com?arg=val&` (query incompleta)
+        - URL muito longa: URL com 5.000 caracteres quando limite é 2.000
+    7. Dados Hierárquicos/Árvore
+        - Ordem de importação errada: Filhos importados antes dos pais
+5. Problemas de Duplicação Técnica
+        - Linhas duplicadas completas: Mesma linha copiada duas vezes
+        - IDs duplicados: Mesmo identificador em múltiplas linhas (viola chave primária)
+        - Duplicação dentro do arquivo: Mesmo contato duplicado no próprio arquivo de importação
+
