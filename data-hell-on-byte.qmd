@@ -42,16 +42,14 @@ library(tidyverse)
 
 # Roadmap desta apresentação
 
-##
+## Roadmap desta apresentação
 
-- 1^o^ dia
+- 1^o^ dia: Esta apresentação
   - Codificação do dado textual (*encoding*)
   - Armazenamento do dado em memória/disco
-  - Esta apresentação
-- 2^o^ dia
+- 2^o^ dia: [Aqui](data-hell-on-format.html)
   - Estrutura do arquivo
   - Corrupção de dados 
-  - [Aqui](data-hell-on-format.html)
 
 
 

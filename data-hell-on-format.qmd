@@ -38,14 +38,12 @@ format:
 
 ##
 
-- 1^o^ dia
+- 1^o^ dia: [Aqui](data-hell-on-byte.html)
   - Codificação do dado textual (*encoding*)
   - Armazenamento do dado em memória/disco
-  - [Aqui](data-hell-on-byte.html)
-- 2^o^ dia
+- 2^o^ dia: Esta apresentação
   - Estrutura do arquivo
   - Corrupção de dados 
-  - Esta apresentação
 
 
 
