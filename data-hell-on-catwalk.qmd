@@ -100,3 +100,60 @@ Problemas:
 
 
 
+# Formato e Estrutura das linhas
+
+## Formato e Estrutura das linhas
+
+1. Codificação de Caracteres
+2. Aspas
+3. Escapes
+4. Quebras de Linha
+5. Formato do Arquivo
+
+
+
+# Problemas de Caracteres Especiais e Parsing
+
+## Problemas de Caracteres Especiais e Parsing
+
+1. Caracteres que Quebram o Parsing
+2. Caracteres de Controle e Não-Printable
+3. Caracteres Unicode e Internacionalização
+
+
+
+# Problemas de Conversão de Tipo
+
+## Problemas de Conversão de Tipo
+
+Problemas com:
+
+1. Falhas de Conversão Básica
+1. Falhas de Conversão por Formato
+1. Perda de Precisão na Conversão
+1. Formatação de Datas
+1. Formatação de Timestamp
+
+
+
+# Problemas de Missings/Valores Válidos
+
+## Problemas de Missings/Valores Válidos
+
+1. Representação de Missing
+2. Colunas/Registros Vazios
+
+
+
+# Formatos de Arquivos
+
+## Formatos de Arquivos
+
+1. FWF
+1. DSV
+1. YAML
+2. JSON
+3. XML
+
+
+
