@@ -56,3 +56,47 @@ library(tidyverse)
     importação de dados
 
 
+# O Desfile do Inferno
+
+## Uma breve coletânea de como pode dar merda
+
+\ \ 
+
+Este é uma esboço de uma coleção de vários problemas que acontecem na hora da
+importação de dados
+
+\ \ 
+
+Ele não exaure o tema
+
+\ \ 
+
+Deixei de fora erros detectáveis na *crítica* dos dados
+
+::: notes
+- Esta é uma pequena coletana de problemas com os quais você pode se deparar ao
+  tentar importar um arquivo e receber uma mensagem de erro
+- Não tenho a mais mínima intenção de fazer uma cobertura completa do assunto,
+  já que a quantidade de formas de acertar é finita (e geralmente bem pequena),
+  mas a quantidade de formas que pode dar merda é infinita (e talvez não 
+  enumerável)
+- Não fazem parte desta coletânea erros de crítica de dados, como inconsistência
+  nos dados, inconsistência relacional, formatação, domínio, integridade etc.
+:::
+
+
+
+# Organizando a bagunça
+
+## Organizando a bagunça
+
+Problemas:
+
+1. Formato e Estrutura das linhas
+2. Caracteres Especiais e Parsing
+3. Conversão de Tipo
+4. Missings/Valores Válidos
+5. Formatos de arquivos
+
+
+
