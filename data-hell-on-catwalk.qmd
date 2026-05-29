@@ -313,3 +313,812 @@ Problemas com:
 
 
 
+# FWF
+
+## FWF
+
+<!-- TODO : AQUI!!!!! -->
+
+# DSV
+
+## DSV
+
+1. Delimitadores e Separadores
+2. Aspas e Escapes
+3. Estrutura das Colunas
+
+
+## Delimitadores e Separadores
+
+- Separador principal incorreto: CSV brasileiro usa `;` mas sistema espera `,`
+- Separadores inconsistentes: Algumas linhas com `,`, outras com `;` ou tabulação
+- Separador dentro de campos delimitados: `,` dentro de `"São, Paulo"` interpretado como duas colunas
+- Espaços em volta do separador: `valor1,valor2` vs `valor1, valor2` vs `valor1 , valor2`
+
+
+
+## Aspas e Escapes
+
+- Escape das aspas dentro de campos: `"campo com "aspas""` deveria ser `"campo com ""aspas"""` ou `"campo com \"aspas\""`
+
+
+##  Estrutura de Colunas
+
+- Número de colunas inconsistente: Algumas linhas com 5 colunas, outras com 6, 7
+- Colunas extras não mapeadas: Colunas no arquivo que não existem no schema de destino
+- Colunas faltantes no arquivo: Schema espera 10 colunas mas arquivo tem 8
+- Ordem de colunas diferente: Colunas na ordem errada em relação ao mapeamento
+- Colunas com nome vazio: Cabeçalho com coluna sem nome (`;;coluna3;;`)
+- Cabeçalho duplicado: Cabeçalho aparece duas vezes no arquivo
+
+
+## Quebras de Linha
+
+- Quebras de linha em campos: `\n` dentro de campo entre aspas interpretado como nova linha
+- Linha de cabeçalho ausente: Arquivo sem cabeçalho ou cabeçalho em linha errada
+- Linhas vazias no meio: Linhas em branco que quebram estrutura de colunas
+
+
+
+
+# YAML
+
+## YAML
+
+Problemas de
+
+1. Limites do Arquivo
+2. Indentação
+3. Dois-Pontos
+4. Coerção implícita
+5. Âncoras e aliases
+6. Blocos multilinhas
+7. Chaves duplicadas
+8. Listas e sequências
+9. Aspas e Escapes
+
+
+
+## Limites do Arquivo
+
+- Ausência do `---` inicial quando diretivas YAML estão presentes
+- Conteúdo após o `...` final
+
+::: notes
+- Ausência do `---` quando diretivas YAML presentes: 
+  o `---` inicial é *opcional* quando o arquivo começa com dados,
+  mas, quando começa com as diretivas %YAML ou %TAG, o `---` antes dos dados
+  é *obrigatório*
+- Conteúdo após o `...` final: 
+  o `...` final também é opcional, 
+  mas, quando presente, o parser para de ler o arquivo imediatamente;
+  assim, nenhum dados após o `...` será importado, mesmo se presente no arquivo,
+  e nenhuma mensagem de erro será apresentada
+:::
+
+:::: {.columns}
+::: {.column}
+```yaml
+%YAML 1.2
+---
+lista:        # Correto
+  - alhos
+  - bugalhos
+```
+:::
+::: {.column}
+```yaml
+%YAML 1.2
+lista:        # Errado
+  - alhos
+  - bugalhos
+```
+:::
+::::
+
+\ 
+
+:::: {.columns}
+::: {.column}
+```yaml
+# Correto
+lista:
+  - alhos
+  - bugalhos
+...
+```
+:::
+::: {.column}
+```yaml
+# Errado
+lista:
+  - alhos
+  - bugalhos
+...
+nunca: será lido
+nem: este também
+este:
+  - menos
+  - ainda
+```
+:::
+::::
+
+
+## Indentação
+
+- Usar `\t` em vez de espaços
+- Indentação de lista errada
+
+::: notes
+- Tabs em vez de espaços:
+  YAML proíbe tabs para indentação, apenas espaços são permitidos
+- Indentação de lista errada:
+  `- alhos` e `- bugalhos` estão fora do alinhamento
+:::
+
+```yaml
+# Correto
+lista:
+    - alhos
+  - bugalhos
+
+# Errado
+lista:
+    - alhos
+  - bugalhos            # indentação errada
+```
+
+
+
+## Indentação
+
+- Indentação inconsistente
+- Super-indentação
+- Sub-indentação
+
+::: notes
+- Indentação inconsistente:
+  Misturar 2 espaços e 3 espaços no mesmo nível de hierarquia
+- Super-indentação:
+  `port: 8080` indentado a mais dentro de `server:`
+- Sub-indentação:
+  Lista desindentada acidentalmente, mudando estrutura sem erro de parsing
+:::
+
+```yaml
+# Correto
+server:
+  host: localhost
+  port: 8080
+
+# Errado
+server:
+  host: localhost
+   port: 8080         # indentação inconsistente
+# Errado 
+server:
+  host: localhost
+    port: 8080        # super-indentação
+# Errado 
+server:
+  host: localhost
+ port: 8080           # sub-indentação
+```
+
+
+
+## Problemas com `:` (Dois-Pontos)
+
+- Dois-pontos sem espaço após a chave
+- Dois-pontos em string não-quotada
+- Chave sem dois-pontos após
+- URLs não-quotadas
+
+::: notes
+- Dois-pontos sem espaço após a chave:
+  `host:localhost` em vez de `host: localhost` ou `"host":"localhost"`;
+  o dois-pontos só é opcional quando chave e valor estão ambos entre aspas
+- Dois-pontos em string não-quotada:
+  `message: Error: something went wrong` (parser trata como key-value)
+- Chave sem dois-pontos após:
+  `server\n  host: localhost` (falta `:` após `server`)
+- URLs não-quotadas:
+  `url: http://localhost:8080` pode ser interpretado errado
+:::
+
+```yaml
+# Correto
+server:
+  host: localhost                       # está certo
+  "host":"localhost"                    # também está certo
+  "host": "localhost"                   # também está certo
+  url: "http://localhost:8080"
+message: "Error: something went wrong"
+
+# Errado
+server                                  # falta `:` após `server`
+  host:localhost                        # falta um espaço após o `:`
+  url: http://localhost:8080            # url não-quotadas
+message: Error: something went wrong    # string não quotada; vira objeto dentro de objeto
+message: {Error: something went wrong}    # string não quotada; vira objeto dentro de objeto
+```
+
+
+
+## Coerção Implícita de Boolean do YAML 1.1
+
+- Strings não quotadas sendo interpretados como boolean com o YAML 1.1
+  - `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE` e `True`/`False` $\rightarrow$ `true`/`false` 
+  - YAML 1.2 não faz isso
+- Código de país `NO` sendo interpretado como `false`
+
+::: notes
+- As string `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE`, `True`/`False` viram tudo `true`/`false` e não strings mesmo
+- O código de país `NO` da Noruega vira `false`
+:::
+
+```yaml
+# Não são seguros com YAML 1.1
+settings:
+  debug: yes      # vira true (boolean) ao invés da string "yes"
+  country: NO     # vira false (boolean) ao invés da string "NO"
+
+# Seguro até com YAML 1.1 -- valores ambíguos exigem quote
+settings:
+  debug: "yes"
+  country: "NO"
+```
+
+
+
+## Coerção Implícita
+
+- Números octais não-quotados no YAML 1.1
+- Número de versão interpretado como float
+
+::: notes
+- Números octais não-quotados: 
+  no Yaml 1.1, `octal: 0777` vira `511` e não string "0777";
+  no YAML 1.2, `octal: 0777` vira string e `0o777` vira octal
+- `1.0` interpretado como float: `version: 1.0` vira float, não string
+:::
+
+```yaml
+# Errado
+settings:
+  version: 1.0    # vira 1.0 (float) ao invés da string "1.0"
+  octal: 0777     # 777 octal é convertido para 511 decimal ao invés da string "0777" no YAML 1.1
+
+# Correto
+settings:
+  version: "1.0"
+  octal: 0o777           # escape válido no YAML 1.2, mas inválido no YAML 1.1
+  octal_string: "0777"
+```
+
+
+
+## Âncoras e Aliases
+
+- Âncora não definida
+- Âncora mal posicionada
+- Conflito com âncoras aninhadas
+- Merge key `<<:` mal usado
+- Âncora em lista vs mapping
+
+::: notes
+- Âncora não definida: `<<: *defaults` mas `defaults` nunca foi ancorado com `&defaults`
+- Âncora mal posicionada: `&anchor` em lugar errado na hierarquia
+- Conflito com âncoras aninhadas: Anchor aninhado sobrescreve anchor externo
+- Merge key `<<:` mal usado: `<<: *anchor` mas âncora não é mapping
+- Âncora em lista vs mapping: Usar `*anchor` de lista onde mapping é esperado
+:::
+
+```yaml
+# Errado
+development:
+  <<: *defaults  # âncora `defaults` não definido antes
+
+# Correto
+defaults: &defaults   # define a âncora primeiro ...
+  adapter: postgres
+  pool: 5
+
+development:
+  <<: *defaults       # ... e usa depois
+  database: myapp
+```
+
+
+
+## Blocos Multilinha com `|` e `>`
+
+- Indentação do bloco `|` ou `>` errada
+- `\n` em blocos fold (`>`) não esperado
+- `|` preservando `\n` quando não queria
+- Indentação do bloco inconsistente
+
+::: notes
+- Indentação do bloco `|` ou `>` errada: Conteúdo do bloco não indentado em relação à chave
+- `\n` em blocos fold (`>`) não esperado: `>` junta linhas com espaço, não com `\n`
+- `|` preservando `\n` quando não queria: Usar `|` quando `>` era mais apropriado
+- Indentação do bloco inconsistente: Linhas do bloco com indentação diferente
+:::
+
+```yaml
+# Errado -- conteúdo não indentado
+description: |
+Esta é a descrição
+  Esta linha tem indentação errada
+
+# Correto
+description: |
+  Esta é a descrição
+  Esta linha está correta
+```
+
+
+
+## Chaves Duplicadas Silenciosamente Aceitas
+
+- Chave duplicada sobrescreve
+- Parser não alerta duplicação
+
+::: notes
+- Chave duplicada sobrescreve: `timeout: 30` e depois `timeout: 60` → último vence silenciosamente
+- Parser não alerta duplicação: Muitos parsers aceitam duplicação sem erro
+:::
+
+```yaml
+# Inválido mas silenciosamente aceito
+config:
+  timeout: 30
+  # (...) um monte de outras coisas no meio
+  timeout: 60  # sobrescreve o primeiro
+```
+
+
+
+## Listas e Sequências
+
+- Lista em *flow style* com vírgula errada
+- Misturar *block style* e *flow style*
+- Hífen faltante em lista *block style*
+
+::: notes
+- Lista em *flow style* com vírgula errada:
+  `cores: [vremeio, vêêêde, azu,]` última vírgula tá errada
+- Misturar *block style* e *flow style*:
+  Misturar block style e flow style: `- banana` e `[jaca, açaí]` conflitam
+- Hífen faltante em lista *block style*:
+  `maçã` é interpretado como chave de um par chave-valor
+:::
+
+```yaml
+# Errado
+frutas:
+  maçã                          # errado: falta `-` no início
+  - banana                      # certo
+  [jaca, açaí]                  # usando junto
+cores: [vremeio, vêêêde, azu,]  # errado: tem uma vírgula sobrando
+
+# Correto
+frutas:
+  - maçã
+  - banana
+  - jaca
+  - açaí
+cores: [vremeio, vêêêde, azu]
+```
+
+
+
+## Aspas e Escapes
+
+- Aspas simples não interpretam escape
+- Aspas não fechadas
+- Escapes inválidos
+- String multilinha sem aspas quando precisa
+
+::: notes
+- Aspas simples não interpretam escape:
+  `\n` literal ("\\n") ao invés de uma quebra de linha
+- Aspas não fechadas:
+  `"Olá, mundo!` sem aspa de fechamento
+- Sequência de escape inválida:
+  `"\xGG"` (escape hex inválido) ou `"\q"` (escape inválido)
+- String multilinha sem aspas quando precisa:
+  `- Linha 1\nLinha 2` precisa levar aspas
+:::
+
+```yaml
+# Errado
+mensagens:
+  - 'Num vô\n fazê'     # "\\n" ao invés de "\n"
+  - "Olá, mundo!        # faltou fechar
+  - "\xGG"              # número hexadecimal inválido
+  - Linha 1\nLinha 2    # string multi-linha sem aspas
+
+# Correto
+mensagens:
+  - "Num vô\n fazê"
+  - "Olá, mundo!"
+  - "\xff"
+  - "Linha 1\nLinha 2"  # está certo deste jeito ...
+  - |                   # ... e deste jeito também
+    Linha 1
+    Linha 2
+```
+
+
+
+# JSON
+
+## JSON
+
+Problema com:
+
+1. Vírgulas
+2. Aspas
+3. Tipos de dados e metadados não suportados
+4. Caracteres de controle e *encoding*
+5. Estrutura de objeto e lista
+6. Números inválidos
+
+
+
+## Vírgulas
+
+- Vírgula no último item de objeto
+- Vírgula no último elemento de array
+
+::: notes
+- Vírgula no último item: `"idade": 30,}` 
+- não pode no JSON, mas pode no JS
+- Vírgula no último elemento de array: `2, 1,]`
+:::
+
+```json
+// Errado
+{
+  "nome": "Mariana", 
+  "conta": [5, 4, 3, 2, 1,],  // vírgula maledetta
+  "idade": 30,                // vírgula maledetta
+}
+
+// Correto
+{
+  "nome": "Mariana", 
+  "conta": [5, 4, 3, 2, 1], 
+  "idade": 30
+}
+```
+
+
+
+## Aspas
+
+- Aspas simples ao invés de aspas duplas
+- Chaves e valores string sem aspas
+- Aspas curvas ("smart quotes", que, de *smart*, não têm pinóia nenhuma)
+
+::: notes
+- Aspas simples:
+  `'name': 'John'` → inválido, JSON exige aspas duplas
+- Chaves sem aspas:
+  `{name: "John"}` → inválido, chaves devem usar aspas
+- Valores string sem aspas:
+  `{"name": "John"}` → inválido, valores string devem usar aspas
+- Aspas curvas ("smart quotes"):
+  Possívelmente copiados de Word ou PDF,
+  que introduziu as aspas curvas `“` (U+201C) e `”` (U+201C)
+  no lugar das aspas retas `"`
+:::
+
+```json
+// Errado
+[
+  {'nome': 'Mariana'},     // Aspas simples
+  {nome: "Mariana"},       // Chaves sem aspas
+  {"nome": Mariana},       // Valores string sem aspas
+  {“nome”: “Mariana”}      // Aspas curvas "\u201C" e "\u201C" do Word ou do PDF
+]
+
+// Correto
+[
+  {"nome": "Mariana"}
+]
+```
+
+
+
+## Tipos de Dados e Metadados Não-Suportados
+
+- Comentários
+- Datas sem ser string
+- Missing: `undefined`, `NA`, `.`, `NaN` ou `Infinity` inválidos
+
+::: notes
+- Comentários: 
+  JS suporta `// comentário` e `/* comentário */`, 
+  mas JSON não dá suporte para comentários, 
+  então são construções inválidas no JSON
+- Datas sem ser string: 
+  JSON não dá suporte para data, 
+  então `data_nascimento: 2000-01-01` é inválido
+- `undefined`, `NA`, `.`, `NaN` ou `Infinity` inválidos:
+  JSON só dá suporte para `null`, 
+  então `"data_morte1": undefined,`, `"data_morte2": NA,`, `"data_morte3": .,`,
+  `"data_morte4": ,`, `"idade": Infinite` e `"divisao_por_zero": NaN` não são
+  valores válidos;
+  precisa usar `null`
+:::
+
+```json
+// Errado
+{
+  "nome": "Mariana",               // mesmo este comentário aqui é inválido
+  "data_nascimento": 2000-01-01,   // valor inválido
+  "data_morte1": undefined,        // idem
+  "data_morte2": NA,               // idem
+  "data_morte3": .,                // idem
+  "data_morte4": ,                 // idem
+  "idade": Infinity,               // idem
+  "divisao_por_zero": NaN          // idem
+}
+
+// Correto
+{
+  "nome": "Mariana",
+  "data_nascimento": "2000-01-01",
+  "data_morte": null,
+  "idade": null,
+  "divisao_por_zero": null
+}
+```
+
+
+
+## Caracteres de Controle e *Encoding*
+
+- Caracteres de controle não escapados
+- Caracteres Unicode não escapados
+- *BOM* no início do arquivo
+- UTF-8 sem *BOM* quando esperado com BOM
+
+::: notes
+- Caracteres de controle não escapados dão erro
+- Caracteres Unicode não escapados: Caracteres fora do ASCII precisam ser escapado com `\uXXXX`
+- BOM no início do arquivo: `\uFEFF` no início do JSON e dá erro por não ser nem `{` e nem `[`
+- UTF-8 sem BOM quando esperado com BOM: Inconsistência de *encoding* e o próprio sistema operacional não consegue ler
+:::
+
+```json
+// Errado
+{
+  "nome": "Zé"
+}
+
+// Correto
+{
+  "nome": "Z\u00E9"
+}
+```
+
+
+
+## Estrutura de Objeto e Lista
+
+- Chaves e colchetes não casando
+- Lista dentro de lista sem porquê
+- Objeto ou lista vazio sem porquê
+- Lista vazia sem porquê
+- Lista com único elemento sem porquê
+
+::: notes
+- Chaves e colchetes não casando: 
+  dá erro de parse um `{`/`[` aberto mas fechando com `]`/`}` ou não fechando ou um `}`/`]` fechando um `{`/`[` que não existe
+- Warnings:
+  não são erros em si, mas têm cara de erro potencial
+- Array dentro de array sem porquê: 
+  `[[[1, 2]]]` quando `[1, 2]` seria mais plausível; é valido mas é raramente intencional
+- Objeto vazio sem porquê:
+  `{}` quando algum par chave-valor seria esperado; também é válido mas raramente intencional
+- Lista vazia sem porquê:
+  `[]` quando algum elemento seria esperado; também é válido mas raramente intencional
+- Lista com único elemento sem porquê: 
+  `[1]` quando mais de um elemento seria esperado; também é válido mas raramente intencional
+:::
+
+```json
+// Errado
+]                                     // ] fechando um [ que não existe; dá erro
+[
+  {"dado": [[[1, 2]]]},               // é válido, mas pode ser erro
+  {"dado": {}},                       // idem
+  {"nome": "Mariana"],                // ] fechando {; dá erro
+  {"nome": ["Mariana", "Giovanni"}}   // } fechando [; dá erro
+                                      // faltou um ] para fechar o [ que ficou no vácuo; dá erro
+
+// Correto
+[
+  {"nome": "Mariana"},
+  {"nome": ["Mariana", "Giovanni"]}
+]
+```
+
+
+
+## Números Inválidos
+
+- Múltiplos zeros no início de um número
+- Sinal `+` explícito
+- Ponto sem dígito
+- `e` sem expoente
+- Dois separadores decimais
+
+::: notes
+- Múltiplos zeros no início de um número: `00123` é inválido; `0123` é valido, mas é interpretado como octal e é convertido a 83
+- Sinal `+` explícito: `+123` é inválido; tem que tirar o `+`
+- Ponto sem dígito: `1.` e `.5` são inválidos; devem ser `1.0` e `0.5`
+- `e` sem expoente: `1e` e `1e+` são inválidos; precisa de um expoente
+- Dois separadores decimais: `1.2.3` é inválido; precisa de aspas
+:::
+
+```json
+// Errado
+{
+  "quantos": 00123,
+  "versao": 1.2.3,
+  "quanto": .5,
+  "brilho": 1e+
+}
+
+// Correto
+{
+  "quantos": "00123",
+  "versao": "1.2.3",
+  "quanto": 0.5, 
+  "brilho": 1e0
+}
+```
+
+
+
+# XML
+
+## XML
+
+Problemas com:
+
+1. Boa formação das tags
+2. Escape de caracteres especiais
+3. Atributos de tags
+
+
+## Boa Formação das Tags
+
+- Múltiplos elementos root
+- Tag não casada
+- Tag auto-fechada mal formatada
+- Tag de fechamento mal formada
+
+::: notes
+- Múltiplos elementos root: `<a></a><b></b>`, pois é permitido apenas um root
+- Tag não casada: `<tag>` sem `</tag>` correspondente depois ou `</tag>` sem `<tag>` correspondente antes
+- Tag auto-fechada mal formatada: `<tag/>` sem espaço entre `tag` e `/` ao invés de `<tag />`
+- Tag de fechamento mal formada: `</ tag>`, `< /tag>` ou `< / tag>` com espaçamento doido ao invés de `</tag>`
+:::
+
+```xml
+<!-- múltiplos elementos root (XML permite apenas um) -->
+<a>conteúdo</a>
+<b>outro conteúdo</b>
+
+<!-- Tags não casadas -->
+<tag_aberta_sem_fechamento>
+</tag_fechada_sem_abertura>
+
+<!-- Tags auto-fechada mal-formadas -->
+<tag_sem_espaço_antes/>
+<tag_sem_espaço_antes_com_espaço_depois/ >
+<tag_com_espaço_antes_e_com_espaço_depois / >
+
+<!-- Tags de fechamento mal-formadas -->
+</ tag_com_espaco_antes_da_barra>
+< /tag_com_espaco_depois_da_barra> 
+< / tag_com_espacos_dos_dois_lados>
+```
+
+
+
+## Boa Formação das Tags
+
+- Aninhamento inválido (tags cruzadas)
+- Nome de tag inválido
+- Tag de comentário mal-formada
+
+::: notes
+- Aninhamento inválido (tags cruzadas): `<a><b></a></b>` com as tags cruzadas
+- Nome de tag inválido: não pode começar com número, não pode ter caractere inválido, inclusive espaço
+- Tag de comentário mal-formada: `<!---`,  `< !---`,  `< ! ---`,  `<! ---`,  `<!--`,  `-->`,  `--- >` ao invés de `<!---` e `--->`
+:::
+
+```xml
+<!-- Tags cruzadas -->
+<a> <b>texto dentro de a e de b
+</a>        <!-- fecha 'a' mas 'b' ainda está aberto -->
+</b>        <!-- 'b' tenta fechar depois do 'a' já fechado -->
+
+<!-- Tags corretas -->
+<a> <b>texto dentro de a e b </b> </a>
+
+<!-- Nomes de tag inválidos -->
+<1tag>conteúdo</1tag>                          <!-- começa com número -->
+<tag!>conteúdo</tag!>                          <!-- caractere especial '!' -->
+<tag com espaço>conteúdo</tag com espaço>      <!-- espaços -->
+
+<!--- Comentário mal-formado --->
+<!- não é um comentário - >
+```
+
+
+
+## Escape de Caracteres Especiais
+
+- `&` não escapado como `&amp;`
+- `<` não escapado como `&lt;`
+- `>` não escapado como `&gt;` (às vezes)
+- Aspas simples e duplas não escapadas em atributo como `&apos;` e `&quot;`
+
+::: notes
+- `&` não escapado como `&amp;`: `<nome>Ju & Di</nome>` ao invés de `<nome>Ju &amp; Di</nome>`
+- `<` não escapado como `&lt;`: `<valor> < 5 </valor>` ao invés de `<valor> &lt; 5 </valor>`
+- `>` não escapado como `&gt;` (às vezes): `5 > 3` pode precisar de `&gt;`
+- Aspas simples e duplas não escapadas em atributo como `&apos;` e `&quot;`: 
+  `atrib="eu disse "oi""` ao invés de `atrib="eu disse &quot;oi&quot;"`
+  `atrib='eu disse 'oi''` ao invés de `atrib='eu disse &apos;oi&apos;'`
+:::
+
+```xml
+<!-- Errado -->
+<nome>Ju & Di</nome>                <!-- & não escapado -->
+<valor> < 5 </valor>                <!-- < não escapado -->
+<dito atrib="eu disse "oi"" />      <!-- " não escapado -->
+<tbm atrib='eu disse 'oi'' />       <!-- " não escapado -->
+
+<!-- Correto -->
+<nome>Ju &amp; Di</nome>
+<valor> &lt; 5 </valor>
+<dito atrib="eu disse &quot;oi&quot;" />
+<dito atrib='eu disse "oi"' />
+<tbm atrib='eu disse &apos;oi&apos;' />
+<tbm atrib="eu disse 'oi'" />
+<ok> aqui "dentro" não 'precisa' escapar aspas <ok />
+```
+
+
+
+## Atributos das Tags
+
+- Atributo sem valor
+- Atributo sem quotes
+- Aspas inconsistentes
+- Atributo duplicado
+
+::: notes
+- Atributo sem valor: não pode ser `<tag atrib>`; deve ser `<tag atrib="value">`
+- Atributo sem quotes: não pode ser `<tag atrib=value>`; deve ser `atrib="value"`
+- Aspas inconsistentes: não pode `atrib="value'` com aspas misturadas
+- Atributo duplicado: não pode duplicar o mesmo atributo `<tag atrib="a" atrib="b">`
+:::
+
+```xml
+<lista>
+  <item atrib>inválido</item>                <!-- atributo sem valor   -->
+  <item atrib=valor>inválido</item>          <!-- atributo sem aspas   -->
+  <item atrib="valor'>inválido</item>        <!-- aspas inconsistentes -->
+  <item atrib="a" atrib="b">inválido</item>  <!-- atributo duplicado   -->
+</lista>
+```
