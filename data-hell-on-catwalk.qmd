@@ -114,20 +114,43 @@ Problemas:
 
 ## Codificação de Caracteres
 
-- UTF-8 não respeitada: Arquivo em Latin-1, Windows-1252, ISO-8859-1 causa caracteres estranhos (`"SÃ£o Paulo"` ao invés de `"São Paulo"`)
-- UTF-16 ou UTF-32 lido como UTF-8: Arquivo entupido de `"\0"`
-- Codificação mista: Diferentes partes do arquivo em codificações distintas
-- BOM (Byte Order Mark): BOM no início interpretado como caractere válido
-- UTF-8 sem BOM vs com BOM: Alguns sistemas exigem BOM explícito
-  - se não for UTF-8, nenhum registro é importado apesar de o arquivo ter dados
+- UTF-8 não respeitada: `"SÃ£o Paulo"` ao invés de `"São Paulo"`
+- UTF-16 ou UTF-32 lido como UTF-8: arquivo entupido de `"\0"`
+- Codificação mista
+- *BOM* (Byte Order Mark)
+- UTF-8 sem *BOM* vs com *BOM*
 
+::: notes
+- UTF-8 não respeitada:
+  Arquivo em Latin-1, Windows-1252, ISO-8859-1 causa caracteres estranhos
+  (`"SÃ£o Paulo"` ao invés de `"São Paulo"`)
+- UTF-16 ou UTF-32 lido como UTF-8:
+  Arquivo entupido de `"\0"`
+- Codificação mista:
+  Diferentes partes do arquivo em codificações distintas
+- *BOM* (Byte Order Mark): 
+  *BOM* no início interpretado como caracter válido
+- UTF-8 sem *BOM* vs com *BOM*:
+  Alguns sistemas exigem BOM explícito
+- nesse caso, se não for UTF-8, nenhum registro é importado apesar de o arquivo
+  ter dados
+:::
 
 
 
 ## Aspas
 
-- Aspas desbalanceadas: Aspas de abertura sem fechamento
-- Aspas simples e duplas misturadas: Aspas `"` abrindo com `'` fechando e *vice versa*
+- Aspas desbalanceadas: abre mas não fecha
+- Aspas simples e duplas misturadas: `'` e `"`
+- Aspas curvas ("smart quotes"): 
+  - `“` (U+201C) e `”` (U+201C) ao invés de `"`
+  - `‘` (U+2018) e `’` (U+2019) ao invés de `'`
+
+::: notes
+- Aspas desbalanceadas: 
+  Aspas de abertura sem fechamento
+- Aspas simples e duplas misturadas: 
+  Aspas `"` abrindo com `'` fechando e *vice versa*
 - Aspas curvas ("smart quotes"):
   Possívelmente copiados de Word ou PDF,
   que introduziu as aspas duplas curvas `“` (U+201C) e `”` (U+201C)
@@ -135,34 +158,56 @@ Problemas:
   ou 
   que introduziu as aspas simples curvas `‘` (U+2018) e `’` (U+2019)
   no lugar das aspas simples retas `'` (ASCII)
+:::
 
 
 
 ## Escapes
 
-- Escapes inválidos: *e.g.*, um falso escape `\q` não existe
-- Barra invertida não escapada: `Caminho\Arquivo` precisa de escape `Caminho\\Arquivo`
+- Escapes inválidos
+- Barra invertida não escapada: `caminho\arquivo` ao invés de `caminho\\arquivo`
+
+::: notes
+- Escapes inválidos: 
+  *e.g.*, um falso escape que não exista, como e.g. `\q`
+- Barra invertida não escapada: 
+  no windows, `caminho\arquivo` precisaria de escape `caminho\\arquivo`
+:::
 
 
 
 ## Quebras de Linha
 
-- Mistura de convenções: Windows (`\r\n`), Unix (`\n`), Mac antigo (`\r`) no mesmo arquivo
-
+- Padrão diferente do padrão do sistema operacional
+  - Windows (`\r\n`), Unix (`\n`), Mac antigo (`\r`)
+- Mistura de padrões: 
+  - `"\r\n"`, `"\n"` e `\r` ao mesmo tempo no mesmo arquivo
 
 
 ## Formato do Arquivo
 
-- Corrupção do arquivo: Arquivo truncado, incompleto, corrompido
-- Formato não suportado: Tentar importar `.ods`, `.parquet`, `.feather`
-- Compressão não detectada: `.csv.gz` ou `.zip` tentando ser lido como texto puro
+- Corrupção do arquivo
+- Formato não suportado
+- Compressão não detectada
 - Arquivo criptografado sem senha fornecida
-- Caminho não existe: Caminho de arquivo fonte não existe
-- Arquivo bloqueado: Arquivo aberto no Excel trava importação no R
+- Arquivo bloqueado
+- No Windows:
+  - Extensão incorreta
+  - Arquivo binário salvo como texto
 
-- Extensão incorreta: `.xls` com extensão `.xlsx` (binário vs XML)
+::: notes
+- Corrupção do arquivo: Arquivo truncado, incompleto, corrompido
+- Formato não suportado: Tentar importar arquivos ODS (que são arquivos ZIP
+  contendo uma estrutura específica de diretórios populados de XMLs) e arquivos
+  Parquet e Feather (binários puros)
+- Compressão não detectada: tentar ler arquivos `.csv.gz` ou `.zip` como texto
+- Arquivo criptografado sem senha fornecida: *game over*
+- Arquivo bloqueado: um aplicativo com o arquivo ainda aberto trava importação
+no R; e.g., Excel com um XLSX aberto e o você tentando R tentando importar
+- O Linux deduz o tipo do arquivo pelo seu conteúdo, mas o windows interpreta o tipo de arquivo a partir da extensão no nome do arquivo
+- Extensão incorreta: não vai conseguir importar se o arquivo for XLSX mas estiver com extensão `.xls` (binário vs XML)
 - Arquivo binário salvo como texto: Excel salvo como `.csv` mas com formatação binária
-
+:::
 
 
 # Problemas de Caracteres Especiais e Parsing
@@ -177,6 +222,15 @@ Problemas:
 
 ## Caracteres que Quebram o Parsing
 
+- Apóstrofo não escapado em SQL
+- Aspas duplas não escapadas
+- Barra invertida não escapada: `C:\Users\Teste` precisa ser `C:\\Users\\Teste`
+- Caractere de percentual: `%` em SQL sem escape (interpolado como placeholder)
+- Caractere de ponto-e-vírgula: `;` em SQL sem escape (injeta nova query)
+- Caractere de aspa simples: `'` em SQL sem escape (quebra string)
+- Tabulação em campo não-delimitado: `\t` interpretado como separador
+
+::: notes
 - Apóstrofo não escapado: `O'Connor` em string SQL causa erro de parsing
 - Aspas duplas não escapadas: `"campo com "aspas""` quebra campo CSV
 - Barra invertida não escapada: `C:\Users\Teste` precisa ser `C:\\Users\\Teste`
@@ -184,6 +238,7 @@ Problemas:
 - Caractere de ponto-e-vírgula: `;` em SQL sem escape (injeta nova query)
 - Caractere de aspa simples: `'` em SQL sem escape (quebra string)
 - Tabulação em campo não-delimitado: `\t` interpretado como separador
+:::
 
 <!-- TODO AQUI!!!!  -->
 
@@ -328,36 +383,71 @@ Problemas com:
 3. Estrutura das Colunas
 
 
-## Delimitadores e Separadores
+## Delimitadores, Separadores, Aspas e Escapes
 
-- Separador principal incorreto: CSV brasileiro usa `;` mas sistema espera `,`
-- Separadores inconsistentes: Algumas linhas com `,`, outras com `;` ou tabulação
-- Separador dentro de campos delimitados: `,` dentro de `"São, Paulo"` interpretado como duas colunas
-- Espaços em volta do separador: `valor1,valor2` vs `valor1, valor2` vs `valor1 , valor2`
+- Separador principal incorreto
+- Separadores inconsistentes
+- Separador dentro de campos delimitados
+- Espaços em volta do separador
+- Aspas não escapadas dentro de campos
 
+::: notes
+- Separador principal incorreto: 
+  CSV brasileiro usa `;` mas sistema espera `,`
+- Separadores inconsistentes: 
+  Algumas linhas com `,`, outras com `;` ou tabulação
+- Separador dentro de campos delimitados:
+  `,` dentro de `"São, Paulo"` interpretado como duas colunas
+- Espaços em volta do separador:
+  `valor1,valor2` vs `valor1, valor2` vs `valor1 , valor2`
+- Aspas não escapadas dentro de campos:
+  `"campo com "aspas""`, que quebram a importação; 
+  deveria ser `"campo com ""aspas"""` ou `"campo com \"aspas\""` 
+  dependendo de onde e como estiver importando
+:::
 
-
-## Aspas e Escapes
-
-- Escape das aspas dentro de campos: `"campo com "aspas""` deveria ser `"campo com ""aspas"""` ou `"campo com \"aspas\""`
 
 
 ##  Estrutura de Colunas
 
-- Número de colunas inconsistente: Algumas linhas com 5 colunas, outras com 6, 7
-- Colunas extras não mapeadas: Colunas no arquivo que não existem no schema de destino
-- Colunas faltantes no arquivo: Schema espera 10 colunas mas arquivo tem 8
-- Ordem de colunas diferente: Colunas na ordem errada em relação ao mapeamento
-- Colunas com nome vazio: Cabeçalho com coluna sem nome (`;;coluna3;;`)
-- Cabeçalho duplicado: Cabeçalho aparece duas vezes no arquivo
+- Número de colunas inconsistente
+- Colunas extras não mapeadas
+- Colunas faltantes no arquivo
+- Ordem de colunas diferente
+- Colunas com nome vazio
+- Cabeçalho duplicado
+
+::: notes
+- Número de colunas inconsistente:
+  Algumas linhas com 5 colunas, outras com 6, 7
+- Colunas extras não mapeadas:
+  Colunas no arquivo que não existem no schema de destino
+- Colunas faltantes no arquivo:
+  Schema espera 10 colunas mas arquivo tem 8
+- Ordem de colunas diferente:
+  Colunas na ordem errada em relação ao mapeamento
+- Colunas com nome vazio:
+  Cabeçalho com coluna sem nome (`;;coluna3;;`)
+- Cabeçalho duplicado:
+  Cabeçalho aparece duas vezes no topo do arquivo
+:::
+
 
 
 ## Quebras de Linha
 
-- Quebras de linha em campos: `\n` dentro de campo entre aspas interpretado como nova linha
-- Linha de cabeçalho ausente: Arquivo sem cabeçalho ou cabeçalho em linha errada
-- Linhas vazias no meio: Linhas em branco que quebram estrutura de colunas
+- Quebras de linha em campos
+- Linha de cabeçalho ausente
+- Linhas vazias no meio do arquivo
 
+::: notes
+- Quebras de linha em campos:
+  `\n` dentro de campo entre aspas interpretado como nova linha
+- Linha de cabeçalho ausente:
+  Arquivo sem cabeçalho ou cabeçalho em linha errada
+- Linhas vazias no meio do arquivo:
+  Linhas em branco que quebram estrutura de colunas
+:::
 
 
 
@@ -548,10 +638,11 @@ message: {Error: something went wrong}    # string não quotada; vira objeto den
 
 ## Coerção Implícita de Boolean do YAML 1.1
 
-- Strings não quotadas sendo interpretados como boolean com o YAML 1.1
-  - `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE` e `True`/`False` $\rightarrow$ `true`/`false` 
+- Strings não quotadas sendo interpretados como boolean
+  - YAML 1.1: `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE` e `True`/`False`
+    $\rightarrow$ `true`/`false` 
   - YAML 1.2 não faz isso
-- Código de país `NO` sendo interpretado como `false`
+- Código de país `NO` (Noruega) sendo interpretado como `false`
 
 ::: notes
 - As string `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE`, `True`/`False` viram tudo `true`/`false` e não strings mesmo
@@ -608,11 +699,16 @@ settings:
 - Âncora em lista vs mapping
 
 ::: notes
-- Âncora não definida: `<<: *defaults` mas `defaults` nunca foi ancorado com `&defaults`
-- Âncora mal posicionada: `&anchor` em lugar errado na hierarquia
-- Conflito com âncoras aninhadas: Anchor aninhado sobrescreve anchor externo
-- Merge key `<<:` mal usado: `<<: *anchor` mas âncora não é mapping
-- Âncora em lista vs mapping: Usar `*anchor` de lista onde mapping é esperado
+- Âncora não definida:
+  `<<: *defaults` mas `defaults` nunca foi ancorado com `&defaults`
+- Âncora mal posicionada:
+  `&ancora` em lugar errado na hierarquia
+- Conflito com âncoras aninhadas:
+  Anchor aninhado sobrescreve anchor externo
+- Merge key `<<:` mal usado:
+  `<<: *ancora` mas âncora não é mapping
+- Âncora em lista vs mapping:
+  Usar `*ancora` de lista onde mapping é esperado
 :::
 
 ```yaml
