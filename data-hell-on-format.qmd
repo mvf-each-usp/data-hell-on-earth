@@ -36,7 +36,7 @@ format:
 
 # Roadmap desta apresentação
 
-##
+## Roadmap desta apresentação
 
 - 1^o^ dia: [Aqui](data-hell-on-byte.html)
   - Codificação do dado textual (*encoding*)
@@ -50,67 +50,557 @@ format:
 
 
 
-================================================================
-
-
-
 # Formatos de Arquivos
 (*ou* "Num era pra texto ser o tipo de arquivo de dados mais simples?!?")
 
 ## Formatos de Arquivos de Dados Textuais 
 
-- Formatos tabulares
-- Formatos hierárquicos
-- Formatos não estruturados
+- Formatos binários
+  - Imagens, PDF, DOCX, RTF
+- Formatos baseados em texto
+  - Formatos não estruturados
+    - TXT, LaTeX, Markdown, HTLM
+  - Formatos tabulares
+    - FWF, DSV, TSV, CSV
+  - Formatos hierárquicos
+    - JSON, YAML, XML
+
+
+## Formatos de Baseados em Texto
+
+Vantagens
+
+- Fáceis de inspecionar e depurar com qualquer editor de texto
+- Portáveis entre sistemas e linguagens
+- Versionáveis com Git
 
 
 
-### Dados tabulares
+### Formatos de Baseados em Texto
 
+::::: {.panel-tabset}
+### TXT
+
+::: {style="font-size: .5em;"}
+EXTRATO DE MOVIMENTAÇÃO CADASTRAL
+
+\ 
+
+Durante a revisão anual dos registros financeiros municipais, foi analisada a situação de diversos cidadãos constantes na base histórica. Entre eles encontra-se Pedro Paulo Eduardo Luís Carlos, inscrito sob o CPF 123.456.789-01, nascido em 01/01/20001 e identificado como residente em Natal. Consta em seu registro um saldo negativo de R$ 10,00, situação que motivou encaminhamento para conferência complementar.
+
+\ 
+
+Também foi examinada a documentação referente a Mari Ana Contacinco, CPF 111.222.333-44, nascida em 30/06/1998 e vinculada ao município de Araraquara. Segundo os dados arquivados, seu saldo registrado era de R$ 543,21 na data da consolidação do relatório.
+
+\ 
+
+Em outro processo, verificou-se a existência de cadastro em nome de Maria Elisabeta Antônia Celestamina, portadora do CPF 999.999.999-99, nascida em 31/12/1999 e domiciliada em Itaquaquecetuba. O sistema apontava para essa contribuinte um saldo de R$ 4.333.222,11, valor significativamente superior à média observada nos demais registros avaliados durante o mesmo procedimento.
+
+\ 
+
+Os dados acima foram citados nos autos apenas para fins de auditoria e rastreabilidade documental, preservando-se integralmente as informações constantes nos registros originais consultados pela equipe técnica.
+
+\ 
+
+São Paulo, 29 de maio de 2026.
+
+\ 
+
+João Augusto Pereira de Almeida  
+Coordenador de Cadastro e Controle Financeiro  
+Secretaria de Administração e Gestão Cadastral
+:::
+
+### FWF
+```fwf
+12345678901PEDRO PAULO EDUARDO LUIS CARLOS                    01012000NATAL              -00000000001000
+11122233344MARI ANA CONTACINCO                                30061998ARARAQUARA         +00000000054321
+99999999999MARIA ELISABETA ANTONIA CELESTAMINA                31121999ITAQUAQUECETUBA    +00000433322211
+```
+### CSV
+<!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
+```lua
+cpf,nome,nasc,cidade,saldo
+12345678901,"Pedro Paulo Eduardo Luís Carlos",2000-01-01,"Natal",-10.00
+11122233344,"Mari Ana Contacinco",1998-06-30,"Araraquara",543.21
+99999999999,"Maria Elisabeta Antônia Celestamina",1999-12-31,"Itaquaquecetuba",+4333222.11
+```
+### YAML
+```yaml
+- cpf: 12345678901
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 11122233344
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+- cpf: 99999999999
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+```
+### YAML
+```yaml
+cpf: 
+  - 12345678901
+  - 11122233344
+  - 99999999999
+nome: 
+  - Pedro Paulo Eduardo Luís Carlos
+  - Mari Ana Contacinco
+  - Maria Elisabeta Antônia Celestamina
+nasc: 
+  - 2000-01-01
+  - 1998-06-30
+  - 1999-12-31
+cidade: 
+  - Natal
+  - Araraquara
+  - Itaquaquecetuba
+saldo:
+  - -10.00
+  - 543.21
+  - 4333222.11
+```
+### JSON
+```json
+[
+  {
+    "cpf": 12345678901,
+    "nome": "Pedro Paulo Eduardo Luís Carlos",
+    "nasc": "01/01/2000",
+    "cidade": "Natal",
+    "saldo": -10.00
+  },
+  {
+    "cpf": 11122233344,
+    "nome": "Mari Ana Contacinco",
+    "nasc": "30/06/1998",
+    "cidade": "Araraquara",
+    "saldo": 543.21
+  },
+  {
+    "cpf": 99999999999,
+    "nome": "Maria Elisabeta Antônia Celestamina",
+    "nasc": "31/12/1999",
+    "cidade": "Itaquaquecetuba",
+    "saldo": 4333222.11
+  }
+]
+```
+### JSON
+```json
+{
+  "cpf": [12345678901, 11122233344, 99999999999],
+  "nome": ["Pedro Paulo Eduardo Luís Carlos", "Mari Ana Contacinco", "Maria Elisabeta Antônia Celestamina"],
+  "nasc": ["01/01/2000", "30/06/1998", "31/12/1999"],
+  "cidade": ["Natal", "Araraquara", "Itaquaquecetuba"],
+  "saldo": [-10.00, 543.21, 4333222.11]
+}
+```
+
+Obs.: Lembra um data frame, não?
+
+### XML
+```xml
+<cadastro>
+  <pessoa>
+    <cpf>12345678901</cpf>
+    <nome>Pedro Paulo Eduardo Luís Carlos</nome>
+    <nasc>01/01/2000</nasc>
+    <cidade>Natal</cidade>
+    <saldo>-10.00</saldo>
+  </pessoa>
+  <pessoa>
+    <cpf>11122233344</cpf>
+    <nome>Mari Ana Contacinco</nome>
+    <nasc>30/06/1998</nasc>
+    <cidade>Araraquara</cidade>
+    <saldo>543.21</saldo>
+  </pessoa>
+  <pessoa>
+    <cpf>99999999999</cpf>
+    <nome>Maria Elisabeta Antônia Celestamina</nome>
+    <nasc>31/12/1999</nasc>
+    <cidade>Itaquaquecetuba</cidade>
+    <saldo>4333222.11</saldo>
+  </pessoa>
+</cadastro>
+```
+### XML
+```xml
+<cadastro>
+  <pessoa id="12345678901">
+    <nome>Pedro Paulo Eduardo Luís Carlos</nome>
+    <nasc>01/01/2000</nasc>
+    <cidade>Natal</cidade>
+    <saldo>-10.00</saldo>
+  </pessoa>
+  <pessoa id="11122233344">
+    <nome>Mari Ana Contacinco</nome>
+    <nasc>30/06/1998</nasc>
+    <cidade>Araraquara</cidade>
+    <saldo>543.21</saldo>
+  </pessoa>
+  <pessoa id="99999999999">
+    <nome>Maria Elisabeta Antônia Celestamina</nome>
+    <nasc>31/12/1999</nasc>
+    <cidade>Itaquaquecetuba</cidade>
+    <saldo>4333222.11</saldo>
+  </pessoa>
+</cadastro>
+```
+:::::
+
+# Formatos Não Estruturados
+
+## Formatos Não Estruturados
+
+- Informações armazenadas sem esquema que seja descritível algoritmicamente ou
+  que pelo menos seja previsível
+- Documentos de texto, e-mails, matérias em jornal, páginas web, mensagens,
+  postagens em rede social
+- Extração e interpretação automatizadas para identificar estrutura, significado
+  e padrões textuais
+- Formatos de arquivo: TXT, LaTeX, markdown, HTML
+- Não será nosso foco
+
+::: notes
+- Informações armazenadas sem esquema algoritmicamente descrito ou pelo menos
+  previsível
+- Exemplo: documentos de texto, e-mails, matérias em jornais, revistas ou
+  publicações especializadas, páginas web, mensagens, postagens em rede social
+- Análise só é possível usando técnicas de extração automatizada (como raspagem
+  e webscraping) e de interpretação (processamento de linguagem natural, LLM)
+  para identificar estrutura, significado e padrões textuais implícitos no
+  conteúdo
+- Exemplos de formatos de arquivo:
+  texto puro, LaTeX, markdown, HTML
+- Não será nosso foco
+:::
+
+
+
+# Formatos Tabulares
+
+## Formatos Tabulares
+
+- Organizado em linhas e colunas
+- Cada linha é uma observação
+- Cada coluna é uma variável
+- Todas as linhas têm o mesmo número de coluna
+- As variáveis estão sempre na mesma ordem
+
+::: note
 - Organizado em linhas e colunas
 - Cada linha é uma observação/unidade/instância/ocorrência/indivíduo/respondente/etc.
 - Cada coluna é uma característica/variável/atributo/campo da observação
 - Todas as linhas têm o mesmo número de coluna
 - As variáveis estão sempre na mesma ordem
+:::
 
 
-### Exemplos de formato de dados tabulares {.smaller}
+## Formatos Tabulares
+
+Principais formatos
 
 - FWF (fixed width fields)
-  - cada coluna tem um tamanho fixo
-  - preenchimento com caracter espaço em branco (ascii 32 ou 20 em hexadecimal) ou outro
-  - alinhamento visual das colunas ao longo das linhas
-- Delimitados por caracter
-  - um caracter específico separa os campos dentro de uma linha
-  - sem alinhamento visual entre os campos/colunas
-  - campos com largura variável
-  - possível uso de aspas simples `'` ou duplas `"` para delimitar as strings
+- DSV (delimiter separated values)
+    - TSV (tab separated values)
+    - CSV (comma separated values)
+    - "CSV 2"
+
+
+
+### Formatos Tabulares
+
+#### FWF (fixed width fields)
+
+- colunas com tamanho fixo
+- preenchimento (filler) com caracter imprimível arbitrário
+- *enconding* usual: ASCII, sem caracteres acentuados, só maiúsculas
+- geralmente acompanhado de um *dicionário de variáveis*
+- não suporta comentários
+
+::: notes
+- colunas com tamanho fixo
+- + desperdiça muito espaço, mas ...
+- + ... tem o acesso aleatório mais rápido possível (indexação direta)
+- alinhamento visual das colunas ao longo das linhas
+- preenchimento (filler) com caracter imprimível arbitrário
+- + frequentemente, espaço para strings e `0` para números
+- *enconding* usual: ASCII (sem caracteres acentuados)
+- + frequentemente: só maiúsculas
+- geralmente acompanhado de um *dicionário de variáveis*
+- + arquivo com os metadados das colunas
+- ++ nomes, tamanhos, formato, restrições etc.
+- ++ dados textuais 
+- ++ ou mesmo código descrevendo as colunas
+- + geralmente não tem linha com cabeçalho
+- não suporta comentários
+:::
+
+
+### Formatos Tabulares
+
+#### FWF (fixed width fields)
+
+Dicionário de variáveis
+
+```csv
+variavel,tipo,largura,precisao
+cpf,n,11,0
+nome,c,50,0
+dianasc,n,2,0
+mesnasc,n,2,0
+anonasc,n,4,0
+cidade,c,20
+saldo,f,12,2
+```
+Arquivo de Dados
+
+
+```fwf
+12345678901PEDRO PAULO EDUARDO LUIS CARLOS                    01012000NATAL               -0000000001000
+11122233344MARI ANA CONTACINCO                                30061998ARARAQUARA          +0000000054321
+99999999999MARIA ELISABETA ANTONIA CELESTAMINA                31121999ITAQUAQUECETUBA     +0000433322211
+```
+
+```
+    [        1][        1         2          3         4         ][][][  ][       1          ][            ]
+    [234567890][2345678901234567890123455678901234567890123456789][][][23][234567890123456789][234567890123]
+    referência para verificar visualmente o alinhamento das colunas - não faz parte do arquivo de dados
+```
+
+
+### Formato Tabulares
+
+#### DSV (delimiter separated values)
+
+- colunas com largura variável
+- separador de colunas: um caracter arbitrário (exceto de controle)
+- aspas simples `'` ou duplas `"` para delimitar as strings
+- casos particulares
   - TSV (tab separated values)
-    - separador de campos: caracter de tabulação (tab; ascii 9)
-    - geralmente, sem uso de aspas simples `'` ou duplas `"` 
   - CSV (comma separated values)
-    - caracter vírgula `,` separa os campos/colunas
-    - geralmente 
-  - "CSV 2" 
-    - caracter ponto-e-vírgula
+  - "CSV 2" ("comma separated values" 2)
+
+::: notes
+- as colunas têm tamanho variável nas linhas
+- um caracter arbitrário (exceto de controle) pode ser escolhido como separador de campos dentro de uma linha
+- sem alinhamento visual entre os campos/colunas
+- campos com largura variável
+- possível uso de aspas simples `'` ou duplas `"` para delimitar as strings
+- casos particulares
+- + TSV (tab separated values)
+- + CSV (comma separated values)
+- + "CSV 2" ("comma separated values" 2)
+- não aceita comentários
+:::
+
+<!-- usei essa tag da linguagem ruby só pelo highlight sintático útil para representar o DSV -->
+```ruby
+cpf|nome|nasc|cidade|saldo
+12345678901|Pedro Paulo Eduardo Luís Carlos|2000-01-01|Natal|-10.00
+11122233344|Mari Ana Contacinco|1998-06-30|Araraquara|543.21
+99999999999|Maria Elisabeta Antônia Celestamina|1999-12-31|Itaquaquecetuba|+4333222.11
+```
 
 
-### Dados hierárquicos
+
+### Formato Tabulares
+
+#### TSV (tab separated values)
+
+- separador de colunas: caracter de tabulação (`"\t"`)
+- geralmente, sem uso de aspas simples `'` ou duplas `"` 
+
+```ruby
+cpf	nome	nasc	cidade	saldo
+12345678901	Pedro Paulo Eduardo Luís Carlos	2000-01-01	Natal	-10.00
+11122233344	Mari Ana Contacinco	1998-06-30	Araraquara	543.21
+99999999999	Maria Elisabeta Antônia Celestamina	1999-12-31	Itaquaquecetuba	+4333222.11
+```
+
+Mas na verdade é
+
+<!-- python: gambiarra para destacar os \t -->
+
+```python
+"cpf\tnome\tnasc\tcidade\tsaldo\n"
+"12345678901\tPedro Paulo Eduardo Luís Carlos\t2000-01-01\tNatal\t-10.00\n"
+"11122233344\tMari Ana Contacinco\t1998-06-30\tAraraquara\t543.21\n"
+"99999999999\tMaria Elisabeta Antônia Celestamina\t1999-12-31\tItaquaquecetuba\t+4333222.11\n"
+```
 
 
 
+### Formato Tabulares
 
-### Dados não estruturados
+#### CSV (comma separated values)
+
+- separador de colunas: caracter vírgula `,`
+- caracter ponto `.` como separador decimal
+
+<!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
+```lua
+cpf,nome,nasc,cidade,saldo
+12345678901,"Pedro Paulo Eduardo Luís Carlos",2000-01-01,"Natal",-10.00
+11122233344,"Mari Ana Contacinco",1998-06-30,"Araraquara",543.21
+99999999999,"Maria Elisabeta Antônia Celestamina",1999-12-31,"Itaquaquecetuba",+4333222.11
+```
+
+
+### Formato Tabulares
+
+#### "CSV 2" ("comma separated values" 2)
+
+- separador de colunas: caracter ponto-e-vírgula `;`
+  - "*comma* separated values", só que separado por *semi-colon*
+- caracter vírgula `,` como separador decimal
+
+<!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
+```lua
+cpf;nome;nasc;cidade;saldo
+12345678901;"Pedro Paulo Eduardo Luís Carlos";2000-01-01;"Natal";-10,00
+11122233344;"Mari Ana Contacinco";1998-06-30;"Araraquara";543,21
+99999999999;"Maria Elisabeta Antônia Celestamina";1999-12-31;"Itaquaquecetuba";+4333222,11
+```
+
+
+# Formatos Hierárquicos
+
+## Formatos Hierárquicos
+
+- Representação dos dados em forma aninhada de árvore de listas de valores e de
+  coleções de pares chave-valor
+- Conjunto de tipos primitivos de dados 
+- Estruturas de dados: 
+  - coleções de pares chave-valor
+  - listas de valores
+- Serialização de tipos complexos de dados
+- Dados e metadados no mesmo lugar
 
 
 
+## Formatos Hierárquicos
+
+Formatos mais em voga
+
+- YAML
+- JSON
+- XML
 
 
-Tipos:
 
-- CSV (comma separated values)
-    - 
-- CSV aca para nosotros
+# YAML
+
+## YAML
+
+<!-- TODO AQUI!!!! -->
 
 
 
+## YAML {.smaller}
+
+```yaml
+- cpf: 12345678901
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 11122233344
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+- cpf: 99999999999
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+```
+
+
+
+# JSON
+
+## JSON
+
+<!-- TODO AQUI!!!! -->
+
+
+
+## JSON {.smaller}
+
+```json
+[
+  {
+    "cpf": 12345678901,
+    "nome": "Pedro Paulo Eduardo Luís Carlos",
+    "nasc": "01/01/2000",
+    "cidade": "Natal",
+    "saldo": -10.00
+  },
+  {
+    "cpf": 11122233344,
+    "nome": "Mari Ana Contacinco",
+    "nasc": "30/06/1998",
+    "cidade": "Araraquara",
+    "saldo": 543.21
+  },
+  {
+    "cpf": 99999999999,
+    "nome": "Maria Elisabeta Antônia Celestamina",
+    "nasc": "31/12/1999",
+    "cidade": "Itaquaquecetuba",
+    "saldo": 4333222.11
+  }
+]
+```
+
+
+
+# XML
+
+## XML
+
+<!-- TODO AQUI!!!! -->
+
+
+
+## XML {.smaller}
+
+```xml
+<cadastro>
+  <pessoa>
+    <cpf>12345678901</cpf>
+    <nome>Pedro Paulo Eduardo Luís Carlos</nome>
+    <nasc>01/01/2000</nasc>
+    <cidade>Natal</cidade>
+    <saldo>-10.00</saldo>
+  </pessoa>
+  <pessoa>
+    <cpf>11122233344</cpf>
+    <nome>Mari Ana Contacinco</nome>
+    <nasc>30/06/1998</nasc>
+    <cidade>Araraquara</cidade>
+    <saldo>543.21</saldo>
+  </pessoa>
+  <pessoa>
+    <cpf>99999999999</cpf>
+    <nome>Maria Elisabeta Antônia Celestamina</nome>
+    <nasc>31/12/1999</nasc>
+    <cidade>Itaquaquecetuba</cidade>
+    <saldo>4333222.11</saldo>
+  </pessoa>
+</cadastro>
+```
+
+
+
+---
