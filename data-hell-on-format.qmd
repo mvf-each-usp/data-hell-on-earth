@@ -453,6 +453,25 @@ cpf|nome|nasc|cidade|saldo
 
 ### Formato Tabulares
 
+#### DSV (delimiter separated values)
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf|nome|nasc|cidade|saldo",
+  "12345678901|Pedro Paulo Eduardo Luís Carlos|2000-01-01|Natal|-10.00",
+  "11122233344|Mari Ana Contacinco|1998-06-30|Araraquara|543.21",
+  "99999999999|Maria Elisabeta Antônia Celestamina|1999-12-31|Itaquaquecetuba|+4333222.11",
+  sep = "\n"
+) |> I() |>
+  read_delim(delim = "|")
+```
+
+
+
+### Formato Tabulares
+
 #### TSV (tab separated values)
 
 - separador de colunas: caracter de tabulação (`"\t"`)
@@ -480,6 +499,25 @@ Mas na verdade é
 
 ### Formato Tabulares
 
+#### TSV (tab separated values)
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf\tnome\tnasc\tcidade\tsaldo",
+  "12345678901\tPedro Paulo Eduardo Luís Carlos\t2000-01-01\tNatal\t-10.00",
+  "11122233344\tMari Ana Contacinco\t1998-06-30\tAraraquara\t543.21",
+  "99999999999\tMaria Elisabeta Antônia Celestamina\t1999-12-31\tItaquaquecetuba\t+4333222.11",
+  sep = "\n"
+) |> I() |>
+  read_tsv()
+```
+
+
+
+### Formato Tabulares
+
 #### CSV (comma separated values)
 
 - separador de colunas: caracter vírgula `,`
@@ -492,6 +530,26 @@ cpf,nome,nasc,cidade,saldo
 11122233344,"Mari Ana Contacinco",1998-06-30,"Araraquara",543.21
 99999999999,"Maria Elisabeta Antônia Celestamina",1999-12-31,"Itaquaquecetuba",+4333222.11
 ```
+
+
+
+### Formato Tabulares
+
+#### CSV (comma separated values)
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf,nome,nasc,cidade,saldo",
+  "12345678901,Pedro Paulo Eduardo Luís Carlos,2000-01-01,Natal,-10.00",
+  "11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21",
+  "99999999999,Maria Elisabeta Antônia Celestamina,1999-12-31,Itaquaquecetuba,+4333222.11",
+  sep = "\n"
+) |> I() |>
+  read_csv()
+```
+
 
 
 ### Formato Tabulares
@@ -509,6 +567,26 @@ cpf;nome;nasc;cidade;saldo
 11122233344;"Mari Ana Contacinco";1998-06-30;"Araraquara";543,21
 99999999999;"Maria Elisabeta Antônia Celestamina";1999-12-31;"Itaquaquecetuba";+4333222,11
 ```
+
+
+
+### Formato Tabulares
+
+#### "CSV 2" ("comma separated values" 2)
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "12345678901;Pedro Paulo Eduardo Luís Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antônia Celestamina;1999-12-31;Itaquaquecetuba;+4333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
 
 
 # Formatos Hierárquicos
