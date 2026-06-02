@@ -475,7 +475,7 @@ str_c(
 #### TSV (tab separated values)
 
 - separador de colunas: caracter de tabulação (`"\t"`)
-- geralmente, sem uso de aspas simples `'` ou duplas `"` 
+- geralmente, aspas (`'` ou `"`) não são usadas
 
 ```ruby
 cpf	nome	nasc	cidade	saldo
