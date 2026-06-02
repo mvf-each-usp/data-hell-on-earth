@@ -281,9 +281,9 @@ Obs.: Lembra um data frame, não?
 - Exemplo: documentos de texto, e-mails, matérias em jornais, revistas ou
   publicações especializadas, páginas web, mensagens, postagens em rede social
 - Análise só é possível usando técnicas de extração automatizada (como raspagem
-  e webscraping) e de interpretação (processamento de linguagem natural, LLM)
-  para identificar estrutura, significado e padrões textuais implícitos no
-  conteúdo
+  e webscraping) e de interpretação automatizada (processamento de linguagem
+  natural, LLM) para identificar estrutura, significado e padrões textuais
+  implícitos no conteúdo
 - Exemplos de formatos de arquivo:
   texto puro, LaTeX, markdown, HTML
 - Não será nosso foco
@@ -328,7 +328,7 @@ Principais formatos
 
 - colunas com tamanho fixo
 - preenchimento (filler) com caracter imprimível arbitrário
-- *enconding* usual: ASCII, sem caracteres acentuados, só maiúsculas
+- *enconding* usual: ASCII, sem caracteres acentuados e só maiúsculas
 - geralmente acompanhado de um *dicionário de variáveis*
 - não suporta comentários
 
@@ -349,6 +349,7 @@ Principais formatos
 - + geralmente não tem linha com cabeçalho
 - não suporta comentários
 :::
+
 
 
 ### Formatos Tabulares

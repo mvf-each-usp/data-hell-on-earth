@@ -206,7 +206,7 @@ Problemas:
 no R; e.g., Excel com um XLSX aberto e o você tentando R tentando importar
 - O Linux deduz o tipo do arquivo pelo seu conteúdo, mas o windows interpreta o tipo de arquivo a partir da extensão no nome do arquivo
 - Extensão incorreta: não vai conseguir importar se o arquivo for XLSX mas estiver com extensão `.xls` (binário vs XML)
-- Arquivo binário salvo como texto: Excel salvo como `.csv` mas com formatação binária
+- Arquivo binário salvo como texto: Excel salvando XLS com a extensão `.csv` mas com formatação binária
 :::
 
 
@@ -224,11 +224,11 @@ no R; e.g., Excel com um XLSX aberto e o você tentando R tentando importar
 
 - Apóstrofo não escapado em SQL
 - Aspas duplas não escapadas
-- Barra invertida não escapada: `C:\Users\Teste` precisa ser `C:\\Users\\Teste`
-- Caractere de percentual: `%` em SQL sem escape (interpolado como placeholder)
-- Caractere de ponto-e-vírgula: `;` em SQL sem escape (injeta nova query)
-- Caractere de aspa simples: `'` em SQL sem escape (quebra string)
-- Tabulação em campo não-delimitado: `\t` interpretado como separador
+- Barra invertida não escapada
+- Caracter de percentual
+- Caracter de ponto-e-vírgula
+- Caracter de aspa simples
+- Tabulação em campo não-delimitado
 
 ::: notes
 - Apóstrofo não escapado: `O'Connor` em string SQL causa erro de parsing
