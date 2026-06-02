@@ -400,7 +400,12 @@ Problemas potenciais
 
 # DSV
 
+Delimiter-Separated Values
+
+
 ## DSV
+
+Origens frequente dos problemas:
 
 1. Delimitadores e Separadores
 2. Aspas e Escapes
