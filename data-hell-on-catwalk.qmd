@@ -513,6 +513,78 @@ Origens frequente dos problemas:
 :::
 
 
+### Separador principal incorreto
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf,nome,nasc,cidade,saldo",
+  "12345678901,Pedro Paulo Eduardo Luis Carlos,2000-01-01,Natal,-10.00",
+  "11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21",
+  "99999999999,Maria Elisabeta Antonia Celestamina,1999-12-31,Itaquaquecetuba,43333222.11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()  # ← opa!!! espera ";" como separador, mas 👆 usou ","
+```
+
+::: notes
+Resultado: 1 única variável com toda a linha como texto
+:::
+
+
+
+### Separadores inconsistentes
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21",
+  #          👆 opa!!! era para o separador ser ";", mas apareceu um "," selvagem
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+
+::: notes
+Resultado: 
+
+- leu a linha 2 inteira dentro de `cpf`
+- com isso, inferiu errado o tipo de `cpf`
+- todas as outras colunas ficaram como missing
+:::
+
+
+
+### Separador dentro de campo
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "12345678901;Pedro Paulo; Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  #                      👆 opa!!! não era para estar aí sem aspas no valor da coluna
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+::: notes
+Resultado: 
+- leu a continuação do `nome` na variável `nasc`
+- com isso, `nasc` e `saldo` ficaram com o tipo errado
+- `saldo` na 1^a^ linha ficou errado
+:::
+
+
 
 ##  Estrutura de Colunas
 
@@ -538,6 +610,94 @@ Origens frequente dos problemas:
   Cabeçalho aparece duas vezes no topo do arquivo
 :::
 
+### Número de colunas inconsistente
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara",
+  #                                                    👆 opa!!! cadê saldo?!?
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+
+
+### Colunas extras não mapeadas
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21; casada",
+  #                                                             👆 ué! quê isso?!?
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+
+
+### Ordem de colunas diferente
+
+```{r}
+#| echo: true
+
+str_c(
+  "nome;cpf;nasc;cidade;saldo",
+  # 👆 e 👆 trocadas
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+
+
+### Colunas com nome vazio
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;;cidade;saldo",
+  #        👆 ué! cadê?!?
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+
+
+### Cabeçalho duplicado
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "cpf;nome;nasc;cidade;saldo",   #   nope!
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
 
 
 ## Quebras de Linha
@@ -554,6 +714,42 @@ Origens frequente dos problemas:
 - Linhas vazias no meio do arquivo:
   Linhas em branco que quebram estrutura de colunas
 :::
+
+
+
+### Quebras de linha em campos
+
+```{r}
+#| echo: true
+
+str_c(
+  "cpf;nome;nasc;cidade;saldo",
+  "12345678901;Pedro Paulo",   # xi! não era ter quebrado a linha aqui
+  "Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
+
+
+
+### Linha de cabeçalho ausente
+
+
+```{r}
+#| echo: true
+
+str_c(
+  #   ué! cadê?!?
+  "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
+  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
+  "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
+  sep = "\n"
+) |> I() |>
+  read_csv2()
+```
 
 
 
