@@ -33,6 +33,12 @@ format:
 
 ---
 
+```{r}
+#| label: setup
+
+library(tidyverse)
+```
+
 
 # Roadmap desta apresentação
 
