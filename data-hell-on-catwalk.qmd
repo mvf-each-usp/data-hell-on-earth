@@ -371,9 +371,32 @@ Problemas com:
 
 # FWF
 
+Fixed Width Fields
+
 ## FWF
 
-<!-- TODO : AQUI!!!!! -->
+Problemas potenciais
+
+- Dicionário de dados desatualizado
+- Deslocamento em relação ao dicionário de dados
+- Linhas com comprimentos diferentes
+
+::: notes
+- Dicionário de dados desatualizado
+- + Layout real dos dados diferente do layout que consta na documentação
+- + colunas com
+- ++ posições iniciais e finais diferentes
+- ++ tipo diferentes 
+- ++ opções de formatação diferentes
+- Deslocamento em relação ao dicionário de dados
+- Linhas com comprimentos diferentes
+- + pode ter ocorrido truncamento ou preenchimento (padding) errados
+:::
+
+
+
+## FWF
+
 
 # DSV
 
