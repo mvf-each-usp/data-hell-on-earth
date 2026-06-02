@@ -331,6 +331,10 @@ Principais formatos
 - *enconding* usual: ASCII, sem caracteres acentuados e só maiúsculas
 - geralmente acompanhado de um *dicionário de variáveis*
 - não suporta comentários
+- contexto mais prováveis: mainframe
+  - remessas bancárias, escrituração fiscal digital
+  - microdados de algumas pesquisas do IBGE (PNAD, Censo)
+  - registros de seguradoras, previdência, Receita Federal
 
 ::: notes
 - colunas com tamanho fixo
@@ -348,6 +352,7 @@ Principais formatos
 - ++ ou mesmo código descrevendo as colunas
 - + geralmente não tem linha com cabeçalho
 - não suporta comentários
+- ainda é usado principalmente em ambiente de mainframes
 :::
 
 
