@@ -589,6 +589,69 @@ str_c(
 
 
 
+### Bônus! 
+
+Ferramentas do Linux para pré-processar no disco os arquivos antes de importar
+para a memória no R, principalmente se forem arquivos grandes
+
+- FWF
+  - nativos: `cut`, `awk`/`gawk`, `sed`
+  - acréscimos: `guesswidth`
+- TSV
+  - nativos: `cut`, `awk`, `sort`, `uniq`, `join`, `paste`, `comm`, `grep`
+  - acréscimos: `xsv`/`qsv`, `tsvkit`
+- CSV
+  - nativos: `awk`/`gawk`, `sed`, `grep`
+  - acréscimos: `csvtk`, `csvkit`, `xsv`/`qsv`
+
+
+
+### Bônus! 
+
+TSV
+
+```bash
+# col 1: 1-10, col 2: chars 11-20, col 3: chars 21-30
+cut -c1-10,11-20,21-30 arquivo.fwf
+
+# Com sed para remover espaços extras
+cut -c1-10,11-20 arquivo.fwf | sed 's/  */ /g'
+```
+
+
+
+### Bônus! 
+
+TSV
+
+```bash
+# extrair colunas 1 e 3
+cut -f1,3 arquivo.tsv
+
+# ordenar pela 2^a^ coluna
+sort -t$'\t' -k2 arquivo.tsv
+
+# o awk é um universo de possibilidades a se explorar
+awk -F'\t' '{print $2}' arquivo.tsv
+```
+
+
+
+### Bônus! 
+
+CSV
+
+```bash
+# só funciona bem se não tiver campo com vírgulas ou aspas
+cut -d',' -f1,3 arquivo.csv
+awk -F',' '{print $2}' arquivo.csv
+
+# do contrário, tem que caprichar na regex
+awk '/^"[^"]*",   {print $2}' arquivo.csv
+```
+
+
+
 # Formatos Hierárquicos
 
 ## Formatos Hierárquicos
