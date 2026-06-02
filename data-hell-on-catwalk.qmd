@@ -39,6 +39,7 @@ format:
 #| include: false
 
 library(tidyverse)
+options(width = 200)
 ```
 
 # Roadmap desta apresentação
