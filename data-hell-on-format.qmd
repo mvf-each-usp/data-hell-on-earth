@@ -389,6 +389,33 @@ Arquivo de Dados
 ```
 
 
+
+### Formatos Tabulares
+
+#### FWF (fixed width fields)
+
+```{r}
+#| echo: true
+
+str_c(
+  "12345678901PEDRO PAULO EDUARDO LUIS CARLOS                   01012000NATAL               -0000000001000",
+  "11122233344MARI ANA CONTACINCO                               30061998ARARAQUARA          +0000000054321",
+  "99999999999MARIA ELISABETA ANTONIA CELESTAMINA               31121999ITAQUAQUECETUBA     +0000433322211",
+  sep = "\n"
+) |> 
+  I() |>    # ← frescura do pacote {readr}
+  read_fwf(
+    col_positions = 
+      fwf_widths(
+        widths = c(11, 50, 2, 2, 4, 20, 12),
+        col_names = c("cpf", "nome", "dianasc", "mesnasc", "anonasc", "cidade", "saldo")
+        ),        
+    col_types = "ncnnncn"
+  )
+```
+
+
+
 ### Formato Tabulares
 
 #### DSV (delimiter separated values)
