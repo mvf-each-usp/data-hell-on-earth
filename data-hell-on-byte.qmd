@@ -1015,8 +1015,9 @@ c("👩" , "👩🏼‍🦱") |>
     \(x) 
     str_c(
       "\"", x, "\"==",
-      x |> charToRaw() |> as.integer() |> as.hexmode() |> str_replace("(.*)", "\\\\x\\1") |> 
-        str_c(collapse = "") |> str_replace("(.*)", "\"\\1\"")
+      x |> charToRaw() |> as.integer() |> as.hexmode() |> str_to_upper() |>
+        str_replace("(.*)", "\\\\x\\1") |>  str_c(collapse = "") |>
+        str_replace("(.*)", "\"\\1\"")
     )
   ) |> 
   unlist() |>
