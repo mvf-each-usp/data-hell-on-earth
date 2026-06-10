@@ -397,12 +397,11 @@ Arquivo de Dados
 ```{r}
 #| echo: true
 
-str_c(
-  "12345678901PEDRO PAULO EDUARDO LUIS CARLOS                   01012000NATAL               -0000000001000",
-  "11122233344MARI ANA CONTACINCO                               30061998ARARAQUARA          +0000000054321",
-  "99999999999MARIA ELISABETA ANTONIA CELESTAMINA               31121999ITAQUAQUECETUBA     +0000433322211",
-  sep = "\n"
-) |> 
+"
+12345678901PEDRO PAULO EDUARDO LUIS CARLOS                   01012000NATAL               -0000000001000
+11122233344MARI ANA CONTACINCO                               30061998ARARAQUARA          +0000000054321
+99999999999MARIA ELISABETA ANTONIA CELESTAMINA               31121999ITAQUAQUECETUBA     +0000433322211
+" |> 
   I() |>    # ← frescura do pacote {readr}
   read_fwf(
     col_positions = 
@@ -457,13 +456,11 @@ cpf|nome|nasc|cidade|saldo
 ```{r}
 #| echo: true
 
-str_c(
-  "cpf|nome|nasc|cidade|saldo",
-  "12345678901|Pedro Paulo Eduardo Luís Carlos|2000-01-01|Natal|-10.00",
-  "11122233344|Mari Ana Contacinco|1998-06-30|Araraquara|543.21",
-  "99999999999|Maria Elisabeta Antônia Celestamina|1999-12-31|Itaquaquecetuba|+4333222.11",
-  sep = "\n"
-) |> I() |>
+"cpf|nome|nasc|cidade|saldo
+12345678901|Pedro Paulo Eduardo Luís Carlos|2000-01-01|Natal|-10.00
+11122233344|Mari Ana Contacinco|1998-06-30|Araraquara|543.21
+99999999999|Maria Elisabeta Antônia Celestamina|1999-12-31|Itaquaquecetuba|+4333222.11" |> 
+  I() |>
   read_delim(delim = "|")
 ```
 
@@ -503,13 +500,11 @@ Mas na verdade é
 ```{r}
 #| echo: true
 
-str_c(
-  "cpf\tnome\tnasc\tcidade\tsaldo",
-  "12345678901\tPedro Paulo Eduardo Luís Carlos\t2000-01-01\tNatal\t-10.00",
-  "11122233344\tMari Ana Contacinco\t1998-06-30\tAraraquara\t543.21",
-  "99999999999\tMaria Elisabeta Antônia Celestamina\t1999-12-31\tItaquaquecetuba\t+4333222.11",
-  sep = "\n"
-) |> I() |>
+"cpf\tnome\tnasc\tcidade\tsaldo
+12345678901\tPedro Paulo Eduardo Luís Carlos\t2000-01-01\tNatal\t-10.00
+11122233344\tMari Ana Contacinco\t1998-06-30\tAraraquara\t543.21
+99999999999\tMaria Elisabeta Antônia Celestamina\t1999-12-31\tItaquaquecetuba\t+4333222.11" |>
+  I() |>
   read_tsv()
 ```
 
@@ -539,13 +534,11 @@ cpf,nome,nasc,cidade,saldo
 ```{r}
 #| echo: true
 
-str_c(
-  "cpf,nome,nasc,cidade,saldo",
-  "12345678901,Pedro Paulo Eduardo Luís Carlos,2000-01-01,Natal,-10.00",
-  "11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21",
-  "99999999999,Maria Elisabeta Antônia Celestamina,1999-12-31,Itaquaquecetuba,+4333222.11",
-  sep = "\n"
-) |> I() |>
+"cpf,nome,nasc,cidade,saldo
+12345678901,Pedro Paulo Eduardo Luís Carlos,2000-01-01,Natal,-10.00
+11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21
+99999999999,Maria Elisabeta Antônia Celestamina,1999-12-31,Itaquaquecetuba,+4333222.11" |> 
+  I() |>
   read_csv()
 ```
 
@@ -576,13 +569,11 @@ cpf;nome;nasc;cidade;saldo
 ```{r}
 #| echo: true
 
-str_c(
-  "cpf;nome;nasc;cidade;saldo",
-  "12345678901;Pedro Paulo Eduardo Luís Carlos;2000-01-01;Natal;-10,00",
-  "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
-  "99999999999;Maria Elisabeta Antônia Celestamina;1999-12-31;Itaquaquecetuba;+4333222,11",
-  sep = "\n"
-) |> I() |>
+"cpf;nome;nasc;cidade;saldo
+12345678901;Pedro Paulo Eduardo Luís Carlos;2000-01-01;Natal;-10,00
+11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21
+99999999999;Maria Elisabeta Antônia Celestamina;1999-12-31;Itaquaquecetuba;+4333222,11" |> 
+  I() |>
   read_csv2()
 ```
 
@@ -609,6 +600,7 @@ para a memória no R, principalmente se forem arquivos grandes
 #### FWF
 
 ```bash
+#! /bin/bash
 # col 1: 1-10, col 2: chars 11-20, col 3: chars 21-30
 cut -c1-10,11-20,21-30 arquivo.fwf
 
@@ -622,6 +614,7 @@ cut -c1-10,11-20 arquivo.fwf | sed 's/  */ /g'
 #### TSV
 
 ```bash
+#! /bin/bash
 # extrair colunas 1 e 3
 cut -f1,3 arquivo.tsv
 
@@ -638,6 +631,7 @@ awk -F'\t' '{print $2}' arquivo.tsv
 #### CSV
 
 ```bash
+#! /bin/bash
 # só funciona bem se não tiver campo com vírgulas ou aspas
 cut -d',' -f1,3 arquivo.csv
 awk -F',' '{print $2}' arquivo.csv
