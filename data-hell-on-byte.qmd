@@ -1054,6 +1054,22 @@ sequência de erros de leitura
 
 
 
+### Voltando ao Unicode e ao UTF-8
+#### Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
+
+Como fica apagando o `xF0` inicial de 👩🏼‍🦱
+
+```{r}
+#| echo: true
+#| error: true
+
+"Olá! 👩🏼‍🦱"
+"Olá! \xF0\x9F\x91\xA9\xF0\x9F\x8F\xBC\xE2\x80\x8D\xF0\x9F\xA6\xB1"
+"Olá! \x9F\x91\xA9\xF0\x9F\x8F\xBC\xE2\x80\x8D\xF0\x9F\xA6\xB1"
+```
+
+
+
 # Arquivos de Texto
 
 . . .
