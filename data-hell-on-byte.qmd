@@ -1278,7 +1278,6 @@ com eles), se:
 
 
 
-# POSIX
 ### Como usar o BOM para deduzir alguma coisa sobre o arquivo? {.smaller}
 
 - É possível deduzir em alguns casos específicos
@@ -1301,7 +1300,6 @@ com eles), se:
 |   outro   |   outro   |           |           |  16  |    LE     | 1^o^ ASCII     |
 :::
 
-## POSIX
 - Unicode ou *codepage* aleatório do Windows? Vai saber!
 - Problema: muitos sistemas já tentam deduzir direto
 
@@ -1319,12 +1317,19 @@ com eles), se:
 
 
 
+# Padronizações do POSIX
 
-Tentando botar ordem nos galinheiros
+. . .
+
+(*ou* "Tentando botar *alguma* ordem nos galinheiros")
+
+
+
+## Padronizações do POSIX
 
 <!--- HERE TODO --->
 
-## Padronizações do POSIX
+## Algumas Padronizações do POSIX
 
 
 
