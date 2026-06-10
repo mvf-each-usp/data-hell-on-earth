@@ -32,6 +32,8 @@ format:
       # zoom
     # smaller: true   # a tentação é grande
     chalkboard: true
+execute: 
+  echo: true
 ---
 
 ```{r}
@@ -454,8 +456,6 @@ Arquivo de Dados
 ## FWF
 
 ```{r}
-#| echo: true
-
 str_c(
   "12345678901PEDRO PAULO EDUARDO LUIS CARLOS                       01012000NATAL               -0000000001000",
   "11122233344MARI ANA CONTACINCO                                   30061998ARARAQUARA          +0000000054321",
@@ -518,8 +518,6 @@ Origens frequente dos problemas:
 ### Separador principal incorreto
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf,nome,nasc,cidade,saldo",
   "12345678901,Pedro Paulo Eduardo Luis Carlos,2000-01-01,Natal,-10.00",
@@ -539,8 +537,6 @@ Resultado: 1 única variável com toda a linha como texto
 ### Separadores inconsistentes
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;nasc;cidade;saldo",
   "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
@@ -566,8 +562,6 @@ Resultado:
 ### Separador dentro de campo
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;nasc;cidade;saldo",
   "12345678901;Pedro Paulo; Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
@@ -615,8 +609,6 @@ Resultado:
 ### Número de colunas inconsistente
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;nasc;cidade;saldo",
   "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
@@ -633,8 +625,6 @@ str_c(
 ### Colunas extras não mapeadas
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;nasc;cidade;saldo",
   "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
@@ -651,8 +641,6 @@ str_c(
 ### Ordem de colunas diferente
 
 ```{r}
-#| echo: true
-
 str_c(
   "nome;cpf;nasc;cidade;saldo",
   # 👆 e 👆 trocadas
@@ -669,8 +657,6 @@ str_c(
 ### Colunas com nome vazio
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;;cidade;saldo",
   #        👆 ué! cadê?!?
@@ -687,8 +673,6 @@ str_c(
 ### Cabeçalho duplicado
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;nasc;cidade;saldo",
   "cpf;nome;nasc;cidade;saldo",   #   nope!
@@ -722,8 +706,6 @@ str_c(
 ### Quebras de linha em campos
 
 ```{r}
-#| echo: true
-
 str_c(
   "cpf;nome;nasc;cidade;saldo",
   "12345678901;Pedro Paulo",   # xi! não era ter quebrado a linha aqui
@@ -741,10 +723,8 @@ str_c(
 
 
 ```{r}
-#| echo: true
-
 str_c(
-  #   ué! cadê?!?
+  #   ué! cadê os nomes das variáveis?!?
   "12345678901;Pedro Paulo Eduardo Luis Carlos;2000-01-01;Natal;-10,00",
   "11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21",
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",

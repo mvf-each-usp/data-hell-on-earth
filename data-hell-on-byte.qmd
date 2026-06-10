@@ -720,7 +720,6 @@ Entra o UTF na jogada
   - comprimento variável de blocos de dois bytes
   - Windows
   - *endianness* e *byte ordem marker*
-    - veremos em breve
 - UTF-32
   - comprimento fixo de 4 bytes
   - *endianness* e *byte ordem marker*
@@ -1183,38 +1182,6 @@ Quando esse problema ocorre?
 :::
 
 
-# PAREI AQUI !!!!!!!
-
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-
-
-
-
-
-
-
-
-# Armazenamento do dado em memória/disco
-
-## Armazenamento do dado em memória/disco
-
-Com o ASCII, uniformizou-se o padrão de byte de 8 bits e a transmissão de dados até hoje é orientada a bytes desse tamanho
-
-Contudo a questão do *armazenamento em disco* desse dado tem reentrância
-
-Com o ASCII, os computadores passaram a armazenar *words* (menor unidade de armazenamento em memória, disco etc.) de 8 bits, com 1 *word* = 1 *byte*
-
-Porém, hoje em dia, os computadores têm words de 16, de 32 e até 64 bits; ou seja, *words* de 2, 4 e até 8 *bytes*.
-
-Quando as *words* começaram a ser compostas de 2 bytes 
-
-Isso levou a algumas
-
 
 ## Voltando ao UTF...
 
@@ -1277,12 +1244,6 @@ AQUI AQUI AQUI AQUI AQUI AQUI
 
 :::
 
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
-<!--- HERE TODO --->
 
 
 # POSIX
