@@ -329,7 +329,7 @@ Principais formatos
 #### FWF (fixed width fields)
 
 - colunas com tamanho fixo
-- preenchimento (filler) com caracter imprimível arbitrário
+- preenchimento (filler) com caractér imprimível arbitrário
 - *enconding* usual: ASCII, sem caracteres acentuados e só maiúsculas
 - geralmente acompanhado de um *dicionário de variáveis*
 - não suporta comentários
@@ -423,7 +423,7 @@ str_c(
 #### DSV (delimiter separated values)
 
 - colunas com largura variável
-- separador de colunas: um caracter arbitrário (exceto de controle)
+- separador de colunas: um caractér arbitrário (exceto de controle)
 - aspas simples `'` ou duplas `"` para delimitar as strings
 - casos particulares
   - TSV (tab separated values)
@@ -432,7 +432,8 @@ str_c(
 
 ::: notes
 - as colunas têm tamanho variável nas linhas
-- um caracter arbitrário (exceto de controle) pode ser escolhido como separador de campos dentro de uma linha
+- um caractér arbitrário (exceto de controle) pode ser escolhido como separador
+  de campos dentro de uma linha
 - sem alinhamento visual entre os campos/colunas
 - campos com largura variável
 - possível uso de aspas simples `'` ou duplas `"` para delimitar as strings
@@ -476,7 +477,7 @@ str_c(
 
 #### TSV (tab separated values)
 
-- separador de colunas: caracter de tabulação (`"\t"`)
+- separador de colunas: caractér de tabulação (`"\t"`)
 - geralmente, aspas (`'` ou `"`) não são usadas
 
 ```ruby
@@ -522,8 +523,8 @@ str_c(
 
 #### CSV (comma separated values)
 
-- separador de colunas: caracter vírgula `,`
-- caracter ponto `.` como separador decimal
+- separador de colunas: caractér vírgula `,`
+- caractér ponto `.` como separador decimal
 
 <!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
 ```lua
@@ -558,9 +559,9 @@ str_c(
 
 #### "CSV 2" ("comma separated values" 2)
 
-- separador de colunas: caracter ponto-e-vírgula `;`
+- separador de colunas: caractér ponto-e-vírgula `;`
   - "*comma* separated values", só que separado por *semi-colon*
-- caracter vírgula `,` como separador decimal
+- caractér vírgula `,` como separador decimal
 
 <!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
 ```lua
