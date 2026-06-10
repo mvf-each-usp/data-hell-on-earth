@@ -819,6 +819,189 @@ este:
 ::::
 
 
+
+### Limites do Arquivo
+
+Presença de diretivas YAML sem o `---` inicial
+
+::::{.columns}
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| eval: false
+"
+%YAML 1.2
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| echo: false
+#| error: true
+#| warning: true
+
+"
+%YAML 1.2
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+::::
+
+
+
+### Limites do Arquivo
+#### Versão 1: erro perceptível
+
+::::{.columns}
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| eval: false
+"
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+...
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| echo: false
+#| error: true
+#| warning: true
+
+"
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+...
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+::::
+
+
+
+### Limites do Arquivo
+#### Versão 2: erro silencioso
+
+::::{.columns}
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| eval: false
+"
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+...
+---
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| echo: false
+#| error: true
+#| warning: true
+
+"
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+...
+---
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+::::
+
+O terceiro item não aparece.
+
+
+
 ## Indentação
 
 - Usar `\t` em vez de espaços
@@ -842,6 +1025,120 @@ lista:
     - alhos
   - bugalhos            # indentação errada
 ```
+
+
+
+### Indentação
+#### Usar `\t` em vez de espaços
+
+::::{.columns}
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| eval: false
+"
+- cpf: 123.456.789-01
+\tnome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| echo: false
+#| error: true
+#| warning: true
+
+"
+- cpf: 123.456.789-01
+\tnome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+- cpf: 111.222.333-44
+  nome: Mari Ana Contacinco
+  nasc: 1998-06-30
+  cidade: Araraquara
+  saldo: 543.21
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+::::
+
+
+
+### Indentação
+#### Indentação de lista errada
+
+::::{.columns}
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| eval: false
+"
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+  - cpf: 111.222.333-44
+    nome: Mari Ana Contacinco
+    nasc: 1998-06-30
+    cidade: Araraquara
+    saldo: 543.21
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+:::{.column style="font-size: 0.8em;"}
+```{r}
+#| echo: false
+#| error: true
+#| warning: true
+
+"
+- cpf: 123.456.789-01
+  nome: Pedro Paulo Eduardo Luís Carlos
+  nasc: 2000-01-01
+  cidade: Natal
+  saldo: -10.00
+  - cpf: 111.222.333-44
+    nome: Mari Ana Contacinco
+    nasc: 1998-06-30
+    cidade: Araraquara
+    saldo: 543.21
+- cpf: 999.999.999-99
+  nome: Maria Elisabeta Antônia Celestamina
+  nasc: 1999-12-31
+  cidade: Itaquaquecetuba
+  saldo: 4333222.11
+" |>
+  yaml::read_yaml(text = _)
+```
+:::
+::::
 
 
 
