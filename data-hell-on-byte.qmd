@@ -512,7 +512,7 @@ Saiu do ASCII, fudeu!
 
 . . . 
 
-*Ou* "A gente fazemos o que a gente podemos"
+(*ou* "A gente fazemos o que a gente podemos")
 
 
 
