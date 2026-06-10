@@ -1279,8 +1279,46 @@ com eles), se:
 
 
 # POSIX
+### Como usar o BOM para deduzir alguma coisa sobre o arquivo? {.smaller}
+
+- É possível deduzir em alguns casos específicos
+
+::: {style="font-size: 0.8em;"}
+| 1^o^ Byte | 2^o^ Byte | 3^o^ Byte | 4^o^ Byte | Bits | Endianess | Cenário        |
+|:---------:|:---------:|:---------:|:---------:|:----:|:---------:|----------------|
+|    x00    |    x00    |    xFE    |    xFF    |  32  |    BE     | BOM            |
+|    x00    |    x00    |    x00    |   outro   |  32  |    BE     | 1^o^ ASCII     |
+|    x00    |    x00    |   outro   |   outro   |  32  |    BE     | 1^o^ não ASCII |
+|    xFF    |    xFE    |    x00    |    x00    |  32  |    LE     | BOM            |
+|    xFF    |    xFE    |   outro   |           |  16  |    LE     | BOM            |
+|    xFE    |    xFF    |           |           |  16  |    BE     | BOM            |
+|   outro   |    x00    |    x00    |    x00    |  32  |    LE     | 1^o^ ASCII     |
+|   outro   |   outro   |    x00    |    x00    |  32  |    LE     | 1^o^ não ASCII |
+|   outro   |   outro   |    x00    |    x00    |  32  |    LE     | 1^o^ não ASCII |
+|    x00    |   outro   |    x00    |           |  16  |    BE     | 1^o^ ASCII     |
+|   outro   |    x00    |   outro   |           |  16  |    LE     | 1^o^ ASCII     |
+|   outro   |    x00    |           |           |  16  |    LE     | 1^o^ ASCII     |
+|   outro   |   outro   |           |           |  16  |    LE     | 1^o^ ASCII     |
+:::
 
 ## POSIX
+- Unicode ou *codepage* aleatório do Windows? Vai saber!
+- Problema: muitos sistemas já tentam deduzir direto
+
+::: notes
+- Mesmo assim, não dá para deduzir que se os dados estão em Unicode ou em algum
+  *codepage* do Windows
+    - A não ser que haja informação adicional mais inspeção visual
+- Quando os 3 primeiros bytes são `xEF,xBB,xBF`, então 
+  - ou é o BOM do UTF-8 
+  - ou é algum *codepage* obscuro do Windows
+- Nos outros cenários, não dá para deduzir logo de cara.
+- Contudo, tem um problema
+  - muitos sistemas já tentam deduzir com o BOM e não permitem inspeção direta
+:::
+
+
+
 
 Tentando botar ordem nos galinheiros
 
