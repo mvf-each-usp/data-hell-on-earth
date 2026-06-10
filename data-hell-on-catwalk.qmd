@@ -739,7 +739,7 @@ str_c(
 
 ## YAML
 
-Problemas de
+Problemas mais típicos
 
 1. Limites do Arquivo
 2. Indentação
@@ -755,7 +755,7 @@ Problemas de
 
 ## Limites do Arquivo
 
-- Ausência do `---` inicial quando diretivas YAML estão presentes
+- Presença de diretivas YAML + Ausência do `---` inicial
 - Conteúdo após o `...` final
 
 ::: notes
@@ -834,7 +834,7 @@ este:
 ```yaml
 # Correto
 lista:
-    - alhos
+  - alhos
   - bugalhos
 
 # Errado
@@ -853,7 +853,7 @@ lista:
 
 ::: notes
 - Indentação inconsistente:
-  Misturar 2 espaços e 3 espaços no mesmo nível de hierarquia
+  Misturar por exemplo 2 espaços e 3 espaços no mesmo nível de hierarquia
 - Super-indentação:
   `port: 8080` indentado a mais dentro de `server:`
 - Sub-indentação:

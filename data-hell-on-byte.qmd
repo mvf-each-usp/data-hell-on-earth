@@ -780,14 +780,17 @@ Ken Thompson e Rob Pike em 1992
 - a ideia central do *encoding* UTF-8 é representar cada *codepoint* do Unicode
   com um caractér de comprimento variável entre 1 e 4 bytes, usando a seguinte
   regra:
-- se o comprimento do caracter for 1 byte, o bit inicial desse byte será `0`
-- se o comprimento do caracter for 2 bytes, os bits iniciais do primeiro byte
+- se o codepoint usa 7 bits, então usa um byte com bit inicial igual `0`
+  - é o ASCII véio de guerra
+- acima de 7 bits, o codepoint vai usar 2 bytes ou mais
+- se o codepoint for representado com 2 bytes, os bits iniciais do primeiro byte
   serão `110` e os do segundo serão `10`
 - se o codepoint for representado com 3 bytes, os bits iniciais do byte inicial
   serão `1110` e os do dois restantes serão `10`
 - se o codepoint for representado com 4 bytes, os bits iniciais do byte inicial
   serão `11110` e os dos três restantes serão `10`
-- todos os outros bits serão usados para armazenar qual é o valor do *codepoint*
+- todos os outros ***bits*** serão usados para armazenar qual é o valor do
+  *codepoint*
 :::
 
 
@@ -800,7 +803,8 @@ Retrocompatibilidade com o ASCII
 A primeira regra garante que um caractér ASCII será representado pelo mesmo 
 caractér de 1 byte do *encoding* UTF-8
 
-O menor *codepoint* no ASCII é 0 = (00000000)~2~
+O menor *codepoint* no ASCII é 0 = (00000000)~2~, que nunca é usado em arquivo
+texto
 
 O maior é 127 = 2^7^ - 1 = (01111111)~2~
 :::
@@ -811,13 +815,13 @@ O maior é 127 = 2^7^ - 1 = (01111111)~2~
 
 Posição do byte
 
-| Bits iniciais | Qual byte?      |
-|---------------|-----------------|
-| `0`           | 1 byte          |
-| `110`         | 1^o^ de 2 bytes |
-| `1110`        | 1^o^ de 3 bytes |
-| `11110`       | 1^o^ de 4 bytes |
-| `10`          | continuação     |
+| Bits iniciais | Qual byte?                             |
+|---------------|----------------------------------------|
+| `0`           | 1 byte                                 |
+| `110`         | 1^o^ de 2 bytes                        |
+| `1110`        | 1^o^ de 3 bytes                        |
+| `11110`       | 1^o^ de 4 bytes                        |
+| `10`          | continuação do(s) byte(s) anterior(es) |
 
 ::: notes
 - Com essas regras, os primeiros bits do primeiro byte indicam o comprimento do 
@@ -1226,7 +1230,7 @@ desperdício de espaço e de transmissão
 
 ## *Endianness*
 
-Little-end-ian-ness e bittle-end-ian-ness --> As aventuras de Gulliver
+Little-end-ian-ness e big-end-ian-ness --> As aventuras de Gulliver
 
 <!--- HERE TODO --->
 <!--- HERE TODO --->
@@ -1244,10 +1248,15 @@ O BOM (*Byte-Order Marker*) é uma meeeeeeeeeeeerda.
 
 É um metadado logo no início dos seus dados e isso dá a maior treta
 
-Quando presente, ele ocupa os dois ou quatro primeiros bytes do arquivo e é (ou era para ser) invisibilizado pelo sistema
+Quando presente, ele ocupa os dois, três ou quatro primeiros bytes do arquivo
+e é (ou era para ser) invisibilizado pelo sistema
 
-AQUI AQUI AQUI AQUI AQUI AQUI
+O problema é que o sistema interpreta errado e invisibiliza o BOM (i.e., some
+com eles), se:
 
+- o arquivo tiver sido gerado com o BOM errado
+- o BOM foi corrompido na cópia ou transmissão do arquivo
+- os primeiro bytes do arquivo foram corrompido e viraram os bytes do BOM
 :::
 
 

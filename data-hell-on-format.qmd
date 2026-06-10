@@ -392,7 +392,6 @@ Arquivo de Dados
 
 
 ### Formatos Tabulares
-
 #### FWF (fixed width fields)
 
 ```{r}
@@ -410,7 +409,7 @@ str_c(
       fwf_widths(
         widths = c(11, 50, 2, 2, 4, 20, 12),
         col_names = c("cpf", "nome", "dianasc", "mesnasc", "anonasc", "cidade", "saldo")
-        ),        
+      ),        
     col_types = "ncnnncn"
   )
 ```
@@ -418,7 +417,6 @@ str_c(
 
 
 ### Formato Tabulares
-
 #### DSV (delimiter separated values)
 
 - colunas com largura variável
@@ -454,7 +452,6 @@ cpf|nome|nasc|cidade|saldo
 
 
 ### Formato Tabulares
-
 #### DSV (delimiter separated values)
 
 ```{r}
@@ -609,8 +606,7 @@ para a memória no R, principalmente se forem arquivos grandes
 
 
 ### Bônus! 
-
-TSV
+#### FWF
 
 ```bash
 # col 1: 1-10, col 2: chars 11-20, col 3: chars 21-30
@@ -623,8 +619,7 @@ cut -c1-10,11-20 arquivo.fwf | sed 's/  */ /g'
 
 
 ### Bônus! 
-
-TSV
+#### TSV
 
 ```bash
 # extrair colunas 1 e 3
@@ -640,8 +635,7 @@ awk -F'\t' '{print $2}' arquivo.tsv
 
 
 ### Bônus! 
-
-CSV
+#### CSV
 
 ```bash
 # só funciona bem se não tiver campo com vírgulas ou aspas
@@ -658,20 +652,20 @@ awk '/^"[^"]*",   {print $2}' arquivo.csv
 
 ## Formatos Hierárquicos
 
-- Representação dos dados em forma aninhada de árvore de listas de valores e de
-  coleções de pares chave-valor
-- Conjunto de tipos primitivos de dados 
-- Estruturas de dados: 
-  - coleções de pares chave-valor
+- Representação dos dados com extrutura complexa em forma textual
+  - Representação em forma de *árvore* 
+  - Serialização
+- Tipos de dados
+  - escalares
+  - conjuntos de pares chave-valor
   - listas de valores
-- Serialização de tipos complexos de dados
-- Dados e metadados no mesmo lugar
+- Permite armazenar dados e metadados no mesmo lugar
 
 
 
 ## Formatos Hierárquicos
 
-Formatos mais em voga
+Formatos mais em uso hoje em dia:
 
 - YAML
 - JSON
