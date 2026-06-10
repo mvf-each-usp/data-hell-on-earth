@@ -699,6 +699,349 @@ awk '/^"[^"]*",   {print $2}' arquivo.csv
 
 
 
+### Árvore
+
+Uma árvore é um *grafo acíclico*
+
+::::{.columns}
+:::{.column}
+```{dot}
+//| fig-width: 4
+//| fig-cap: Árvore (enraizada)
+digraph {
+  rankdir=TB
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, fontcolor=white]
+  edge[color=white]
+  raiz [label="raíz"]
+  filho1 [label="folha"]
+  filho2 [label="ramo"]
+  filho3 [label="ramo"]
+  neto0 [style=invisible]
+  neto1 [label="folha"]
+  neto2 [label="folha"]
+  neto3 [label="folha"]
+  {rank=same; raiz}
+  {rank=same; filho1, filho2}
+  {rank=same; neto1, neto2}
+  raiz -> filho1
+  raiz -> filho2
+  raiz -> filho3
+  filho1 -> neto0 [style=invisible, arrowhead=none]
+  filho2 -> neto1
+  filho2 -> neto2
+  filho3 -> neto3
+}
+```
+:::
+:::{.column}
+```{dot}
+//| fig-width: 4
+//| fig-cap: Árvore livre
+graph {
+  rankdir=LR
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, fontcolor=white]
+  edge[color=white]
+  1 -- 2
+  2 -- 3
+  3 -- 4
+  3 -- {5, 6}
+  4 -- 7
+}
+```
+:::
+::::
+
+::: notes
+- Uma árvore é um *grafo acíclico*
+- se escolhemos um nó para ser a *raíz* dessa árvore
+- ela é *enraizada* se tiver um nó escolhido como raiz
+  - nesse caso, consideramos esse grafo acíclico como sendo *direcional*
+  - aqui, *árvore* significará *árvore enraizada*
+  - o nó raiz não recebe setas
+  - os outros nós recebem uma única seta
+  - um nó pode ou não gerar setas
+    - se gerar, será chamado *nó interno* ou *ramos*
+    - se não gerar, será chamado *nó terminal* ou *folha*
+- também existem as *árvores livres*, que não têm um nó raiz
+  -  nesse caso, é um grafo acíclico *não direcional*
+:::
+
+. . .
+
+\ \ 
+
+Aqui, *árvore* significará *árvore enraizada*
+
+
+
+
+### Grafo
+
+::::{.columns}
+:::{.column width=33%}
+```{dot}
+//| fig-width: 4
+//| fig-height: 3
+//| fig-cap: Grafo
+graph {
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, label="", fontcolor=white]
+  edge[color=white, label="            ", fontcolor=white]
+  a [label="nó"]
+  a -- b -- c
+  a -- c [label=" elo"]
+  c -- c
+  {rank=same; a}
+  {rank=same; b, c}
+}
+```
+```{dot}
+//| fig-width: 4
+//| fig-height: 3
+//| fig-cap: Multigrafo
+graph {
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, label=""] // , fontcolor=white
+  edge[color=white , label="   "] //
+  a -- b -- c -- a [weight=10]
+  a -- b [weight=0]
+  a -- b [weight=0]
+  c -- c
+  {rank=same; a}
+  {rank=same; b, c}
+}
+```
+:::
+:::{.column width=33%}
+```{dot}
+//| fig-width: 4
+//| fig-height: 3
+//| fig-cap: Grafo não direcional
+graph {
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, label=""]
+  edge[color=white, label="           "]
+  a -- b -- c
+  c -- a [style=invisible]
+  {rank=same; a}
+  {rank=same; b, c}
+}
+```
+```{dot}
+//| fig-width: 4
+//| fig-height: 3
+//| fig-cap: Grafo direcional
+digraph {
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, label=""]
+  edge[color=white, label="           "]
+  a -> b -> c
+  c -> a [style=invisible, arrowhead=none]
+  {rank=same; a}
+  {rank=same; b, c}
+}
+```
+:::
+:::{.column width=33%}
+```{dot}
+//| fig-width: 4
+//| fig-height: 3
+//| fig-cap:  Grafo direcional com ciclos
+digraph {
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, label=""]
+  edge[color=white, label="           "]
+  a -> b -> c -> a
+  {rank=same; a}
+  {rank=same; b, c}
+}
+```
+```{dot}
+//| fig-width: 4
+//| fig-height: 3
+//| fig-cap:  Grafo direcional acíclico (DAG)
+digraph {
+  bgcolor=transparent
+  fontsize=15
+  penwidth=1.5
+  node[shape=circle, color=white, label=""]
+  edge[color=white, label="           "]
+  a -> b -> c
+  c -> a [style=invisible, arrowhead=none]
+  {rank=same; a}
+  {rank=same; b, c}
+}
+```
+:::
+::::
+
+
+
+### Serialização
+
+Árvores são compostas de nós e arestas 
+
+```{dot}
+digraph {
+  rankdir=LR
+  nodesep=0.5
+  ranksep=0.5
+  bgcolor=transparent
+  node [
+    shape=box,
+    style=rounded,
+    color=white,
+    fontcolor=white,
+    fontsize=20,
+    penwidth=1.5
+  ]
+  edge [
+    color=white,
+    fontcolor=white,
+    fontsize=15,
+    penwidth=1.5
+  ]
+  // nós
+  Nativo [label="Nativo\n(Estrutura de dados)"]
+  Represent [label="Representação\n(Grafo)"]
+  Serial [label="Serialização\n(Árvore)"]
+  Present [label="Apresentação\n(Texto)"]
+  // setas
+  Nativo:n -> Represent:n [label="Representando"]
+  Nativo:s -> Represent:s [label="Construindo", dir=back]
+  Represent:n -> Serial:n [label="Serializando"]
+  Represent:s -> Serial:s [label="Compondo", dir=back]
+  Serial:n -> Present:n [label="Apresentando"]
+  Serial:s -> Present:s [label="Interpretando\n(parse)", dir=back]
+  // nós virtuais
+  Inicio1 [style=invisible]
+  Inicio2 [style=invisible]
+  Final1 [style=invisible]
+  Final2 [style=invisible]
+  Inicio1 -> Final1 [label="Gravando\n(Dump)"]
+  Final2 -> Inicio2 [label="Carregando\n(Load)", labelloc=c]
+  // separando
+  subgraph {
+    label="Aplicação"
+    color=white
+    fontcolor=white
+    fontsize=12
+    penwidth=0.5
+    Inicio1
+    Nativo
+    Inicio2
+  }
+  subgraph {
+    label="Serialização"
+    color=white
+    fontcolor=white
+    fontsize=12
+    penwidth=0.5
+    Represent
+    Serial
+    Present
+    Final1
+    Final2
+  }
+  // posicionamento
+  Nativo -> Represent -> Serial -> Present [weight=100, style=invisible, arrowhead=none]
+  {rank=same; Inicio1, Nativo, Inicio2}
+  Inicio1 -> Nativo -> Inicio2 [weight=100, style=invisible, arrowhead=none]
+  {rank=same; Represent}
+  {rank=same; Serial}
+  {rank=same; Final1, Present, Final2}
+  Final1 -> Present -> Final2 [weight=100, style=invisible, arrowhead=none]
+}
+```
+
+Adaptado de <https://yaml.org/spec/1.2.2/#32-information-models>
+
+
+
+### Tipos de Dados
+
+::::{.columns}
+:::{.column}
+- Escalares
+```r
+"olá! 😃"
+2L
+TRUE
+5.5
+3 + 5i
+ymd("2026-01-01")
+ymd_hmd("2026-01-01 12:34:56")
+NA
+NA_character_
+NA_integer_
+Inf
+NaN
+```
+:::
+:::{.column}
+- Conjuntos de pares chave-valor
+```r
+list(primeira = "1a", segunda = 23, resposta = 3:5)
+```
+- Listas de valores
+```r
+3:5
+list(3 + 2i,3:5,"mané", NA, list(opa = "ué", quanto = 2))
+```
+:::
+::::
+
+::: notes
+- escalares 
+  - podem ser
+    - números inteiros, frações, reais, complexos etc.
+    - string de caracteres Unicode
+    - datas, hora ou timestamp
+    - valores lógicos TRUE/FALSE
+    - missing, infinito, etc.
+    - dados binários na forma de blob binários
+      - que podem conter imagem bitmap ou raster, áudio, vídeo
+    - etc.
+  - no R, seriam os vetores de tamanho unitário
+  - no python, seria o dado básico padrão
+- conjunto de pares chave-valor: 
+  - *chave* é o nome do dado, que nem o nome de uma variável
+  - *valor* é um dado, que nem o conteúdo da variável
+  - esse dado, por sua vez, pode ser 
+    - um escalar
+    - um *outro* conjunto de pares chave-valor *aninhado*
+    - uma lista de dados
+  - um par *chave-valor* é uma chave acompanhada de um valor
+  - não existe ordenação entre os pares
+  - no R, seriam as listas nomeadas
+    - cujos itens são acessados por *nome*
+  - no python, seriam os dicionários
+- lista de dados:
+  - um grupo ordenado de valores, que são dados, que podem ser
+    - escalares
+    - conjuntos de pares chave-valor
+    - *outras* listas de valores *aninhadas*
+  - no R, seriam as listas não nomeadas
+    - cujos itens são acessados por *posição*
+    - se for uma lista de valores escalares, então seria o vetor
+:::
+
 
 
 ## Formatos Hierárquicos
@@ -721,6 +1064,19 @@ Formatos mais em uso hoje em dia:
 # YAML
 
 ## YAML
+
+- YAML = "YAML Ain't Markup Language" 
+- Linguagem de serialização de dados
+- Baseada em Unicode
+- Legibilidade humana
+
+::: notes
+- YAML é um backronym (um acrônimo recursivo) que significa
+  "YAML Ain't Markup Language" 
+- Linguagem de serialização de estruturas de dados nativas baseada em Unicode
+  com o objetivo adicional de ser amigável à leitura humana
+:::
+
 
 <!-- TODO AQUI!!!! -->
 
@@ -745,6 +1101,67 @@ Formatos mais em uso hoje em dia:
   cidade: Itaquaquecetuba
   saldo: 4333222.11
 ```
+
+\ \ 
+
+::: {callout-note text="Cuidado!"}
+Parece markdown, mas ***não é*** markdown
+:::
+
+
+
+### YAML
+#### Recursos
+
+- Tipos
+  - Escalares (*scalars*)
+    - Tipagem explícita
+  - Conjuntos de pares chave-valor (*mappings*)
+    - Âncoras, aliases e 
+  - Listas de valores (*sequences*)
+- Quebras de linha (*wrapping*)
+- Comentários
+- Estilos bloco (*block*) e fluxo (*flow*)
+- Diretivas YAML
+
+
+### YAML
+#### Escalares
+
+- tipos
+- tipagem implícita
+- tipagem explícita
+
+<!-- TODO AQUI !!!!!!!!!!!! -->
+
+
+### YAML
+#### Conjuntos de pares chave-valor
+
+- estilo bloco
+- estilo fluxo
+- âncoras, aliases e 
+
+
+::::{.columns}
+:::{.column}
+Escalares:
+
+- 
+:::
+:::{.column}
+Conjuntos de pares chave-valor:
+
+- Block mode
+- Flow
+:::
+:::{.column}
+Listas de valores:
+:::
+::::
+
+
+
 
 
 
