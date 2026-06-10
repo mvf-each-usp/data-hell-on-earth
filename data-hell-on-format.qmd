@@ -655,6 +655,50 @@ awk '/^"[^"]*",   {print $2}' arquivo.csv
   - listas de valores
 - Permite armazenar dados e metadados no mesmo lugar
 
+::: notes
+- Permitem escrever na forma de texto os dados com estrutura complexa que estão
+  na memória do computador dentro de algum programa, como o R ou o python --- 
+  os quais são primeiramente ambientes computacionais
+- as linguagens com as quais se pode escrever scripts para esses ambientes
+  também recebem esses nomes
+- isso é chamado de *serialização*
+- os dados podem ser 
+  - escalares
+  - conjuntos de pares chave-valor
+  - listas de dados
+- escalares podem ser
+  - string de caracteres Unicode
+  - números inteiros, frações, reais, complexos etc.
+  - datas, hora ou timestamp
+  - dados binários, como imagem bitmap ou raster, áudio, vídeo
+  - etc.
+- conjunto de pares chave-valor: 
+  - *chave* é o nome do dado, que nem o nome de uma variável
+  - *valor* é um dado, que nem o conteúdo da variável
+  - esse dado, por sua vez, pode ser 
+    - um escalar
+    - um *outro* conjunto de pares chave-valor *aninhado*
+    - uma lista de dados
+  - um par *chave-valor* é uma chave acompanhada de um valor
+  - não existe ordenação entre os pares
+- lista de dados:
+  - um grupo ordenado de valores, que são dados, que podem ser
+    - escalares
+    - conjuntos de pares chave-valor
+    - *outras* listas de valores *aninhadas*
+- com isso, podem ser armazenados no mesmo arquivo os dados e os metadados
+  (os dados sobre os dados), como por exemplo
+  - tipo do dado
+  - formatação
+  - origem do dado
+  - responsável pela mensuração e/ou verificação
+  - conjunto de valores válidos
+  - regras de validação
+  - etc.
+:::
+
+
+
 
 
 ## Formatos Hierárquicos
@@ -665,6 +709,13 @@ Formatos mais em uso hoje em dia:
 - JSON
 - XML
 
+::: notes
+- YAML pode ser lido como em inglês *yamel* rimando com *camel* 
+  ou, aportuguesando, iémou, iémol, iêmou, iêmol whatever
+- JSON pode ser lido em inglês como o nome próprio Jason 
+  ou, aportuguesando, como djêizioum
+- XML é xis-eme-éle mesmo
+:::
 
 
 # YAML
