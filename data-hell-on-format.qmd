@@ -45,8 +45,10 @@ library(tidyverse)
 ## Roadmap desta apresentação
 
 - 1^o^ dia: [Aqui](data-hell-on-byte.html)
-  - Codificação do dado textual (*encoding*)
-  - Armazenamento do dado em memória/disco
+  - Codificação do dado textual
+  - Representando os caracteres na memória
+  - Arquivos de Texto
+  - Padronizações da POSIX
 - 2^o^ dia: Esta apresentação
   - Estrutura do arquivo
   - Corrupção de dados 

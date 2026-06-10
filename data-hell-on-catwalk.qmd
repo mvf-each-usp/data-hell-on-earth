@@ -47,8 +47,10 @@ options(width = 200)
 ## Roadmap desta apresentação
 
 - 1^o^ dia: [Aqui](data-hell-on-byte.html)
-  - Codificação do dado textual (*encoding*)
-  - Armazenamento do dado em memória/disco
+  - Codificação do dado textual
+  - Representando os caracteres na memória
+  - Arquivos de Texto
+  - Padronizações da POSIX
 - 2^o^ dia: [Aqui](data-hell-on-format.html)
   - Estrutura do arquivo
   - Corrupção de dados 
