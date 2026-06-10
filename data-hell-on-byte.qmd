@@ -734,9 +734,9 @@ Entra o UTF na jogada
 - **UTF-16** é uma codificação com comprimento variável de blocos de DOIS
   bytes que é utilizado somente nos Windows-verso; introduz as complicações do
   *endianness* e do *byte ordem marker*
-- **UTF-32**: codificação com comprimento fixo de 4 bytes; praticamente não é usado
-  pela ineficiência de uso do espaço em disco; introduz as duas complicações
-  acima
+- **UTF-32**: codificação com comprimento fixo de 4 bytes; praticamente não é
+  usado pela ineficiência de uso do espaço em disco; introduz as duas
+  complicações acima
 :::
 
 
@@ -749,12 +749,13 @@ Ken Thompson e Rob Pike em 1992
 
 ::: notes
 - Um dia em 1992, Ken Thompson e Rob Pike foram tomar uma breja.
-
-- É isso aí: foram  simplesmente \ *O* \ Ken Thompson (inventor da linguagem C,
-do sistema operacional Unix, dos aplicativo grep, ed, sed etc.) e \ *O* \ Rob
-Pike (inventor da linguagem Go, do primeiro sistema de janela gráficas).
-- Daí, ele pararam pra rabiscaram em uma toalha de papel da mesa do buteco como
-fazer uma codificação para o Unicode com comprimento variável.
+- É isso aí mesmo: 
+  - foram simplesmente \ *O* \ Ken Thompson, inventor da linguagem C, do sistema
+    operacional Unix, dos aplicativo grep, ed, sed etc.
+  - e \ *O* \ Rob Pike, inventor da linguagem Go, do primeiro sistema de janela
+    gráficas
+- Daí, ele pararam pra rabiscar em uma toalha de papel da mesa do buteco como
+  fazer uma codificação para o Unicode com comprimento variável.
 - E pronto. Estava inventado o UTF-8  😆😆😆
 :::
 
@@ -1111,7 +1112,8 @@ atrapalha.
 - "There is no spoon" (Matrix)
 - de verdade, não existem linhas em um arquivo de texto
 - as linhas são uma ficção benévola
-- o que se chama de "linha" são, na verdade, blocos de caracteres separados por caracteres de controle que marcam a mudança de linha
+- o que se chama de "linha" são, na verdade, blocos de caracteres separados por
+  caracteres de controle que marcam a mudança de linha
 :::
 
 
@@ -1127,7 +1129,8 @@ Problema: cada S.O. usa uma escolha diferente de caracteres de controle
 . . .
 ::: notes 
 - surge assim aqui um problema
-- cada sistema operacional usa uma escolha diferente de caracteres de controle como delimitador de linha
+- cada sistema operacional usa uma escolha diferente de caracteres de controle
+  como delimitador de linha
 - o Unix e depois o GNU/Linux, o BSD e derivados usaram o *line feed*
 - o MacOS moderno (pós 2001, que é um derivado do BSD) também usa o *line feed*
 - o MacOS antigos (pré 2001, derivado do Lisa OS) usavam *carriage return*
@@ -1146,7 +1149,9 @@ Problema: cada S.O. usa uma escolha diferente de caracteres de controle
 ## Linhas nos arquivos
 
 :::{.callout-important text="Problema Potencial" style="font-size: 1.5em;"}
-Quando você trabalha com dados gerados em outra plataforma, *pode* acontecer de o arquivo usar um padrão diferente de quebra de linha e a importação falhar parcial ou completamente.
+Quando você trabalha com dados gerados em outra plataforma, *pode* acontecer de
+o arquivo usar um padrão diferente de quebra de linha e a importação falhar
+parcial ou completamente.
 :::
 
 . . .
@@ -1187,7 +1192,7 @@ Quando esse problema ocorre?
 
 ### UTF-16 e o Windows
 
-### UTF-16 do Windows versus UTF-8 da internet inteira, do Linux e do MacOS
+#### UTF-16 do Windows versus UTF-8 da internet inteira, do Linux e do MacOS
 
 menos espaço (utf8) vs mais rápido de acessar (utf16)
 
@@ -1200,7 +1205,6 @@ lembrar do endianness
 <!--- HERE TODO --->
 <!--- HERE TODO --->
 <!--- HERE TODO --->
-
 
 
 
@@ -1219,6 +1223,7 @@ desperdício de espaço e de transmissão
 <!--- HERE TODO --->
 
 
+
 ## *Endianness*
 
 Little-end-ian-ness e bittle-end-ian-ness --> As aventuras de Gulliver
@@ -1231,10 +1236,11 @@ Little-end-ian-ness e bittle-end-ian-ness --> As aventuras de Gulliver
 <!--- HERE TODO --->
 
 
+
 ## O *BOM* que só dá ruim
 
 :::{.callout-important text="Problema Potencial"}
-O BOM (Byte-Order Marker) é uma meeeeeeeeeeeerda.
+O BOM (*Byte-Order Marker*) é uma meeeeeeeeeeeerda.
 
 É um metadado logo no início dos seus dados e isso dá a maior treta
 

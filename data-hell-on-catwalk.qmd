@@ -929,7 +929,8 @@ message: {Error: something went wrong}    # string não quotada; vira objeto den
 - Código de país `NO` (Noruega) sendo interpretado como `false`
 
 ::: notes
-- As string `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE`, `True`/`False` viram tudo `true`/`false` e não strings mesmo
+- As string `yes`/`no`, `on`/`off`, `y`/`n`, `TRUE`/`FALSE`, `True`/`False`
+  viram tudo `true`/`false` e não strings mesmo
 - O código de país `NO` da Noruega vira `false`
 :::
 
@@ -1020,10 +1021,14 @@ development:
 - Indentação do bloco inconsistente
 
 ::: notes
-- Indentação do bloco `|` ou `>` errada: Conteúdo do bloco não indentado em relação à chave
-- `\n` em blocos fold (`>`) não esperado: `>` junta linhas com espaço, não com `\n`
-- `|` preservando `\n` quando não queria: Usar `|` quando `>` era mais apropriado
-- Indentação do bloco inconsistente: Linhas do bloco com indentação diferente
+- Indentação do bloco `|` ou `>` errada:
+  Conteúdo do bloco não indentado em relação à chave
+- `\n` em blocos fold (`>`) não esperado:
+  `>` junta linhas com espaço, não com `\n`
+- `|` preservando `\n` quando não queria:
+  Usar `|` quando `>` era mais apropriado
+- Indentação do bloco inconsistente: 
+  Linhas do bloco com indentação diferente
 :::
 
 ```yaml
@@ -1046,8 +1051,10 @@ description: |
 - Parser não alerta duplicação
 
 ::: notes
-- Chave duplicada sobrescreve: `timeout: 30` e depois `timeout: 60` → último vence silenciosamente
-- Parser não alerta duplicação: Muitos parsers aceitam duplicação sem erro
+- Chave duplicada sobrescreve:
+  `timeout: 30` e depois `timeout: 60` → último vence silenciosamente
+- Parser não alerta duplicação:
+  Muitos parsers aceitam duplicação sem apresentar mensagem de erro alertando
 :::
 
 ```yaml
@@ -1269,9 +1276,12 @@ Problema com:
 
 ::: notes
 - Caracteres de controle não escapados dão erro
-- Caracteres Unicode não escapados: Caracteres fora do ASCII precisam ser escapado com `\uXXXX`
-- BOM no início do arquivo: `\uFEFF` no início do JSON e dá erro por não ser nem `{` e nem `[`
-- UTF-8 sem BOM quando esperado com BOM: Inconsistência de *encoding* e o próprio sistema operacional não consegue ler
+- Caracteres Unicode não escapados:
+  Caracteres fora do ASCII precisam ser escapado com `\uXXXX`
+- BOM no início do arquivo:
+  `\uFEFF` no início do JSON e dá erro por não ser nem `{` e nem `[`
+- UTF-8 sem BOM quando esperado com BOM:
+  Inconsistência de *encoding* e o próprio sistema operacional não consegue ler
 :::
 
 ```json
@@ -1298,17 +1308,22 @@ Problema com:
 
 ::: notes
 - Chaves e colchetes não casando: 
-  dá erro de parse um `{`/`[` aberto mas fechando com `]`/`}` ou não fechando ou um `}`/`]` fechando um `{`/`[` que não existe
+  dá erro de parse um `{`/`[` aberto mas fechando com `]`/`}` ou não fechando ou
+  um `}`/`]` fechando um `{`/`[` que não existe
 - Warnings:
   não são erros em si, mas têm cara de erro potencial
 - Array dentro de array sem porquê: 
-  `[[[1, 2]]]` quando `[1, 2]` seria mais plausível; é valido mas é raramente intencional
+  `[[[1, 2]]]` quando `[1, 2]` seria mais plausível;
+  é valido mas é raramente intencional
 - Objeto vazio sem porquê:
-  `{}` quando algum par chave-valor seria esperado; também é válido mas raramente intencional
+  `{}` quando algum par chave-valor seria esperado;
+  também é válido mas raramente intencional
 - Lista vazia sem porquê:
-  `[]` quando algum elemento seria esperado; também é válido mas raramente intencional
+  `[]` quando algum elemento seria esperado;
+  também é válido mas raramente intencional
 - Lista com único elemento sem porquê: 
-  `[1]` quando mais de um elemento seria esperado; também é válido mas raramente intencional
+  `[1]` quando mais de um elemento seria esperado;
+  também é válido mas raramente intencional
 :::
 
 ```json
@@ -1339,11 +1354,17 @@ Problema com:
 - Dois separadores decimais
 
 ::: notes
-- Múltiplos zeros no início de um número: `00123` é inválido; `0123` é valido, mas é interpretado como octal e é convertido a 83
-- Sinal `+` explícito: `+123` é inválido; tem que tirar o `+`
-- Ponto sem dígito: `1.` e `.5` são inválidos; devem ser `1.0` e `0.5`
-- `e` sem expoente: `1e` e `1e+` são inválidos; precisa de um expoente
-- Dois separadores decimais: `1.2.3` é inválido; precisa de aspas
+- Múltiplos zeros no início de um número:
+    `00123` é inválido;
+    `0123` é valido, mas é interpretado como octal e é convertido a 83
+- Sinal `+` explícito:
+  `+123` é inválido; tem que tirar o `+`
+- Ponto sem dígito:
+  `1.` e `.5` são inválidos; devem ser `1.0` e `0.5`
+- `e` sem expoente:
+  `1e` e `1e+` são inválidos; precisa de um expoente
+- Dois separadores decimais:
+  `1.2.3` é inválido; precisa de aspas
 :::
 
 ```json
@@ -1385,10 +1406,15 @@ Problemas com:
 - Tag de fechamento mal formada
 
 ::: notes
-- Múltiplos elementos root: `<a></a><b></b>`, pois é permitido apenas um root
-- Tag não casada: `<tag>` sem `</tag>` correspondente depois ou `</tag>` sem `<tag>` correspondente antes
-- Tag auto-fechada mal formatada: `<tag/>` sem espaço entre `tag` e `/` ao invés de `<tag />`
-- Tag de fechamento mal formada: `</ tag>`, `< /tag>` ou `< / tag>` com espaçamento doido ao invés de `</tag>`
+- Múltiplos elementos root:
+  `<a></a><b></b>`, pois é permitido apenas um root
+- Tag não casada:
+  `<tag>` sem `</tag>` correspondente depois ou `</tag>` sem `<tag>`
+  correspondente antes
+- Tag auto-fechada mal formatada:
+  `<tag/>` sem espaço entre `tag` e `/` ao invés de `<tag />`
+- Tag de fechamento mal formada:
+  `</ tag>`, `< /tag>` ou `< / tag>` com espaçamento doido ao invés de `</tag>`
 :::
 
 ```xml
@@ -1420,9 +1446,13 @@ Problemas com:
 - Tag de comentário mal-formada
 
 ::: notes
-- Aninhamento inválido (tags cruzadas): `<a><b></a></b>` com as tags cruzadas
-- Nome de tag inválido: não pode começar com número, não pode ter caractere inválido, inclusive espaço
-- Tag de comentário mal-formada: `<!---`,  `< !---`,  `< ! ---`,  `<! ---`,  `<!--`,  `-->`,  `--- >` ao invés de `<!---` e `--->`
+- Aninhamento inválido (tags cruzadas):
+  `<a><b></a></b>` com as tags cruzadas
+- Nome de tag inválido:
+  não pode começar com número, não pode ter caractere inválido, inclusive espaço
+- Tag de comentário mal-formada:
+  `<!---`,  `< !---`,  `< ! ---`,  `<! ---`,  `<!--`,  `-->`,  `--- >` ao invés
+  de `<!---` e `--->`
 :::
 
 ```xml
@@ -1453,10 +1483,13 @@ Problemas com:
 - Aspas simples e duplas não escapadas em atributo como `&apos;` e `&quot;`
 
 ::: notes
-- `&` não escapado como `&amp;`: `<nome>Ju & Di</nome>` ao invés de `<nome>Ju &amp; Di</nome>`
-- `<` não escapado como `&lt;`: `<valor> < 5 </valor>` ao invés de `<valor> &lt; 5 </valor>`
-- `>` não escapado como `&gt;` (às vezes): `5 > 3` pode precisar de `&gt;`
-- Aspas simples e duplas não escapadas em atributo como `&apos;` e `&quot;`: 
+- `&` não escapado como `&amp;`:
+  `<nome>Ju & Di</nome>` ao invés de `<nome>Ju &amp; Di</nome>`
+- `<` não escapado como `&lt;`:
+  `<valor> < 5 </valor>` ao invés de `<valor> &lt; 5 </valor>`
+- `>` não escapado como `&gt;` (às vezes):
+  `5 > 3` pode precisar de `&gt;`
+- Aspas simples e duplas não escapadas em atributo como `&apos;` e `&quot;`:
   `atrib="eu disse "oi""` ao invés de `atrib="eu disse &quot;oi&quot;"`
   `atrib='eu disse 'oi''` ao invés de `atrib='eu disse &apos;oi&apos;'`
 :::
@@ -1488,10 +1521,16 @@ Problemas com:
 - Atributo duplicado
 
 ::: notes
-- Atributo sem valor: não pode ser `<tag atrib>`; deve ser `<tag atrib="value">`
-- Atributo sem quotes: não pode ser `<tag atrib=value>`; deve ser `atrib="value"`
-- Aspas inconsistentes: não pode `atrib="value'` com aspas misturadas
-- Atributo duplicado: não pode duplicar o mesmo atributo `<tag atrib="a" atrib="b">`
+- Atributo sem valor:
+  não pode ser `<tag atrib>`;
+  deve ser `<tag atrib="value">`
+- Atributo sem quotes:
+  não pode ser `<tag atrib=value>`;
+  deve ser `atrib="value"`
+- Aspas inconsistentes:
+  não pode `atrib="value'` com aspas misturadas
+- Atributo duplicado:
+  não pode duplicar o mesmo atributo `<tag atrib="a" atrib="b">`
 :::
 
 ```xml

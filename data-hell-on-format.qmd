@@ -280,14 +280,13 @@ Obs.: Lembra um data frame, não?
 ::: notes
 - Informações armazenadas sem esquema algoritmicamente descrito ou pelo menos
   previsível
-- Exemplo: documentos de texto, e-mails, matérias em jornais, revistas ou
-  publicações especializadas, páginas web, mensagens, postagens em rede social
+    - documentos de texto, e-mails, matérias em jornais, revistas ou publicações
+      especializadas, páginas web, mensagens, postagens em rede social
 - Análise só é possível usando técnicas de extração automatizada (como raspagem
   e webscraping) e de interpretação automatizada (processamento de linguagem
   natural, LLM) para identificar estrutura, significado e padrões textuais
   implícitos no conteúdo
-- Exemplos de formatos de arquivo:
-  texto puro, LaTeX, markdown, HTML
+    - texto puro, LaTeX, markdown, HTML
 - Não será nosso foco
 :::
 
@@ -340,19 +339,19 @@ Principais formatos
 
 ::: notes
 - colunas com tamanho fixo
-- + desperdiça muito espaço, mas ...
-- + ... tem o acesso aleatório mais rápido possível (indexação direta)
+  - desperdiça muito espaço, mas ...
+  - ... tem o acesso aleatório mais rápido possível (indexação direta)
 - alinhamento visual das colunas ao longo das linhas
-- preenchimento (filler) com caracter imprimível arbitrário
-- + frequentemente, espaço para strings e `0` para números
+- preenchimento (filler) com caractér imprimível arbitrário
+  - frequentemente, espaço para strings e `0` para números
 - *enconding* usual: ASCII (sem caracteres acentuados)
-- + frequentemente: só maiúsculas
+  - frequentemente: só maiúsculas
 - geralmente acompanhado de um *dicionário de variáveis*
-- + arquivo com os metadados das colunas
-- ++ nomes, tamanhos, formato, restrições etc.
-- ++ dados textuais 
-- ++ ou mesmo código descrevendo as colunas
-- + geralmente não tem linha com cabeçalho
+  - arquivo com os metadados das colunas
+    - nomes, tamanhos, formato, restrições etc.
+    - dados textuais 
+    - ou mesmo código descrevendo as colunas
+  - geralmente não tem linha com cabeçalho
 - não suporta comentários
 - ainda é usado principalmente em ambiente de mainframes
 :::
@@ -438,9 +437,9 @@ str_c(
 - campos com largura variável
 - possível uso de aspas simples `'` ou duplas `"` para delimitar as strings
 - casos particulares
-- + TSV (tab separated values)
-- + CSV (comma separated values)
-- + "CSV 2" ("comma separated values" 2)
+  - TSV (tab separated values)
+  - CSV (comma separated values)
+  - "CSV 2" ("comma separated values" 2)
 - não aceita comentários
 :::
 
