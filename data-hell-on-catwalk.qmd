@@ -1188,7 +1188,7 @@ server:
 
 ::: notes
 - Dois-pontos sem espaço após a chave:
-  `host:localhost` em vez de `host: localhost` ou `"host":"localhost"`;
+  `host:localhost` em vez de `host: localhost` ou `"host": "localhost"`;
   o dois-pontos só é opcional quando chave e valor estão ambos entre aspas
 - Dois-pontos em string não-quotada:
   `message: Error: something went wrong` (parser trata como key-value)
@@ -1201,9 +1201,8 @@ server:
 ```yaml
 # Correto
 server:
-  host: localhost                       # está certo
-  "host":"localhost"                    # também está certo
-  "host": "localhost"                   # também está certo
+  host0: localhost                       # está certo
+  "host1": "localhost"                   # também está certo
   url: "http://localhost:8080"
 message: "Error: something went wrong"
 
@@ -1422,7 +1421,8 @@ mensagens:
   - 'Num vô\n fazê'     # "\\n" ao invés de "\n"
   - "Olá, mundo!        # faltou fechar
   - "\xGG"              # número hexadecimal inválido
-  - Linha 1\nLinha 2    # string multi-linha sem aspas
+  - Linha 1
+    Linha 2             # string multi-linha sem aspas
 
 # Correto
 mensagens:
