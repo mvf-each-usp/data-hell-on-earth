@@ -30,12 +30,13 @@ format:
       # zoom
     # smaller: true   # a tentação é grande
     chalkboard: true
-
+execute: 
+  echo: true
 ---
 
 ```{r}
 #| label: setup
-
+#| include: false
 library(tidyverse)
 ```
 
@@ -395,8 +396,6 @@ Arquivo de Dados
 #### FWF (fixed width fields)
 
 ```{r}
-#| echo: true
-
 "
 12345678901PEDRO PAULO EDUARDO LUIS CARLOS                   01012000NATAL               -0000000001000
 11122233344MARI ANA CONTACINCO                               30061998ARARAQUARA          +0000000054321
@@ -496,8 +495,6 @@ Mas na verdade é
 #### TSV (tab separated values)
 
 ```{r}
-#| echo: true
-
 "cpf\tnome\tnasc\tcidade\tsaldo
 12345678901\tPedro Paulo Eduardo Luís Carlos\t2000-01-01\tNatal\t-10.00
 11122233344\tMari Ana Contacinco\t1998-06-30\tAraraquara\t543.21
@@ -530,8 +527,6 @@ cpf,nome,nasc,cidade,saldo
 #### CSV (comma separated values)
 
 ```{r}
-#| echo: true
-
 "cpf,nome,nasc,cidade,saldo
 12345678901,Pedro Paulo Eduardo Luís Carlos,2000-01-01,Natal,-10.00
 11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21
@@ -565,8 +560,6 @@ cpf;nome;nasc;cidade;saldo
 #### "CSV 2" ("comma separated values" 2)
 
 ```{r}
-#| echo: true
-
 "cpf;nome;nasc;cidade;saldo
 12345678901;Pedro Paulo Eduardo Luís Carlos;2000-01-01;Natal;-10,00
 11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21
@@ -704,6 +697,7 @@ Uma árvore é um *grafo acíclico*
 ::::{.columns}
 :::{.column}
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-cap: Árvore (enraizada)
 digraph {
@@ -736,6 +730,7 @@ digraph {
 :::
 :::{.column}
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-cap: Árvore livre
 graph {
@@ -784,6 +779,7 @@ Aqui, *árvore* significará *árvore enraizada*
 ::::{.columns}
 :::{.column width=33%}
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-height: 3
 //| fig-cap: Grafo
@@ -802,6 +798,7 @@ graph {
 }
 ```
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-height: 3
 //| fig-cap: Multigrafo
@@ -822,6 +819,7 @@ graph {
 :::
 :::{.column width=33%}
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-height: 3
 //| fig-cap: Grafo não direcional
@@ -838,6 +836,7 @@ graph {
 }
 ```
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-height: 3
 //| fig-cap: Grafo direcional
@@ -856,6 +855,7 @@ digraph {
 :::
 :::{.column width=33%}
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-height: 3
 //| fig-cap:  Grafo direcional com ciclos
@@ -871,6 +871,7 @@ digraph {
 }
 ```
 ```{dot}
+//| echo: false
 //| fig-width: 4
 //| fig-height: 3
 //| fig-cap:  Grafo direcional acíclico (DAG)
@@ -896,6 +897,7 @@ digraph {
 Árvores são compostas de nós e arestas 
 
 ```{dot}
+//| echo: false
 digraph {
   rankdir=LR
   nodesep=0.5
