@@ -1219,6 +1219,7 @@ nao_numero: .nan
 ```
 :::
 :::{.column width=33%}
+Tipagem implícita
 ```{r}
 "
 nulos:
@@ -1236,7 +1237,7 @@ nulos:
 ### YAML {.smaller}
 #### Escalares
 
-Tipagem explícita com tags pré-definidas `!!`
+Tipagem explícita com tags globais `!!` pré-definidas
 
 ::: notes
 - dá para obrigar a leitura de um valor com um tipo específico usando tags
@@ -1293,6 +1294,15 @@ binário: !!binary
 #### Escalares
 
 Manuseio com handlers para tags locais `!` e tags globais `!!`
+
+::: notes
+- é possível usar ganchos para processar de forma específica certos tipos de
+  dados especiais
+  - no exemplo, a função `lubridate::ymd()` é quem vai manusear (handle) todo
+    dado que tiver a tag `!minha_data`
+- metadado potencialmente útil de se registrar nos dados, desde que o seu
+  programa esteja preparado para dar o tratamento adequado
+:::
 
 ::::{.columns}
 :::{.column}
