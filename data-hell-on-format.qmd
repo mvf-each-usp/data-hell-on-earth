@@ -136,17 +136,17 @@ cpf,nome,nasc,cidade,saldo
 ```
 ### YAML
 ```yaml
-- cpf: 12345678901
+- cpf: !!float 12345678901
   nome: Pedro Paulo Eduardo Luís Carlos
   nasc: 2000-01-01
   cidade: Natal
   saldo: -10.00
-- cpf: 11122233344
+- cpf: !!float 11122233344
   nome: Mari Ana Contacinco
   nasc: 1998-06-30
   cidade: Araraquara
   saldo: 543.21
-- cpf: 99999999999
+- cpf: !!float 99999999999
   nome: Maria Elisabeta Antônia Celestamina
   nasc: 1999-12-31
   cidade: Itaquaquecetuba
@@ -155,9 +155,9 @@ cpf,nome,nasc,cidade,saldo
 ### YAML
 ```yaml
 cpf: 
-  - 12345678901
-  - 11122233344
-  - 99999999999
+  - !!float 12345678901
+  - !!float 11122233344
+  - !!float 99999999999
 nome: 
   - Pedro Paulo Eduardo Luís Carlos
   - Mari Ana Contacinco
