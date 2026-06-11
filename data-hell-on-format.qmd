@@ -1345,14 +1345,19 @@ data3: !!timestamp 2002-02-20
 Indentação
 
 ::: notes
-- para realizar o aninhamento de estruturas, tanto objetos quanto listas
 - obrigatórias no estilo bloco
+  - para realizar o aninhamento de estruturas, tanto objetos quanto listas
+  - a indentação do primeiro item é que dá a referência para todos os outros do
+    mesmo nível
 - ignorada no estilo fluxo
+  - mas serve de apoio à leitura humana
 - não aceita caractere de tabulação `\t`
-- precisa manter a consistência dentro de cada bloco
-- mas não entre os blocos
-:::
+- precisa manter a consistência *dentro* de cada bloco, mas não *entre* blocos
+  - no bloco, `pepe`, `el` e `joão` têm indentações diferentes entre si,
+    mas dentro de cada um as indentações são as mesmas, 
+    então tudo bem
 
+:::
 
 ::::{.columns}
 :::{.column width=33%}
@@ -1360,11 +1365,11 @@ Bloco
 ```{r}
 "
 pepe: 
-    legal: el cabongo
-    hanna: barbera
+      legal: el cabongo
+      hanna: barbera
 el:
-- cabongo
-- toro
+    - cabongo
+    - toro
 joão:
   grandão: joão grandão
   hanna: também
@@ -1378,13 +1383,13 @@ Fluxo
 "
 {pepe: {
     legal: el cabongo,
-hanna: também}
+hanna: barbera}
 
 ,
 el: [cabongo,toro],
                joão:
        {grandão: foi,
-  hanna: barbera}}
+  hanna: também}}
 " |> 
   yaml::yaml.load()
 ```
@@ -1393,12 +1398,15 @@ el: [cabongo,toro],
 Ambas
 ```{r}
 "
-lista 1: [[1,2],[3,4]]
-lista 2:
-  - - 1
-    - 2
-  - - 3
-    - 4
+objeto 1: {
+      objeto A: oi,
+    objeto B: tchau,
+  objeto C: ué,
+}
+objeto 2:
+  objeto A: oi
+  objeto B: tchau
+  objeto C: ué
 " |> 
   yaml::yaml.load()
 ```
