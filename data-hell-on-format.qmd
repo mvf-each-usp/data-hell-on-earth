@@ -1703,6 +1703,21 @@ teste 6: |+
 
 
 
+### YAML {.smaller}
+#### Bônus
+
+Aplicativo `yq`
+
+- Ferramenta que permite pré-processar YAML no sistema operacional antes de
+  carregar em memória
+  - `yq` = YAML query
+    - análoga ao `jq` (JSON query)
+- Linguagem de programação própria
+  - Programação funcional orientada a filtros
+  - Alguma curva de aprendizado
+
+
+
 # JSON
 
 ## JSON
