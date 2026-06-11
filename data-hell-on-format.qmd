@@ -1131,7 +1131,20 @@ Parece markdown, mas ***não é*** markdown
 #### Estilo Bloco e Estilo Fluxo 
 
 É possível escrever os mesmos dados de duas formas distintas e é possível
-combiná-las
+combinar livremente essas duas formas
+
+::: notes
+- o estilo bloco depende da indentação para organizar a hierarquia da estrutura
+  dos dados
+- o estilo fluxo independe da formatação
+  - a formatação é mais para ajudar a ler, como acontece com o JSON
+  - esse estilo junto com um uso compulsório das aspas (opcionais no YAML, mas
+    obrigatórias no JSON) faz com que um arquivo JSON possa ser lido normalmente
+    pelo parser yaml
+  - a linguagem YAML foi desenvolvida desde o início com o objetivo de conter a
+    linguagem JSON
+
+:::
 
 ::::{.columns}
 :::{.column width=33%}
@@ -1145,7 +1158,7 @@ joga:
 " |> I() |> 
   yaml::yaml.load()
 ```
-Lembra markdown
+Lembra markdown e python
 :::
 :::{.column width=33%}
 Estilo Fluxo (*flow style*)
