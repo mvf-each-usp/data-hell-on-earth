@@ -1114,19 +1114,20 @@ Parece markdown, mas ***não é*** markdown
 ### YAML {.smaller}
 #### Recursos
 
-- Estilos bloco (*block*) e fluxo (*flow*)
+- Estilos bloco e fluxo
 - Tipos
-  - Escalares (*scalars*)
-    - Tipagem explícita
+  - Escalares
+    - Tipagem implícita ou explícita
   - Estruturas
     - Indentação
-    - Conjuntos de pares chave-valor: *mappings*/dicionário/objeto
-      - Âncoras, aliases e mesclagem de aliases
-    - Listas de valores: *sequences*/lista/*array*
+    - Dois tipos
+      - Dicionários: conjuntos de pares chave-valor
+      - Sequências: conjuntos de valores
+- Âncoras, aliases e mesclagem de aliases
 - Aspas
-- Quebras de linha (*wrapping*)
+- Quebras de linha
 - Comentários
-- Diretivas YAML
+
 
 
 ### YAML {.smaller}
