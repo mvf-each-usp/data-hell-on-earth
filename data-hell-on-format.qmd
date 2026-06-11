@@ -1104,24 +1104,27 @@ Formatos mais em uso hoje em dia:
 
 \ \ 
 
-::: {callout-note text="Cuidado!"}
+::: {.callout-warning}
 Parece markdown, mas ***não é*** markdown
 :::
 
 
 
-### YAML
+### YAML {.smaller}
 #### Recursos
 
+- Estilos bloco (*block*) e fluxo (*flow*)
 - Tipos
   - Escalares (*scalars*)
     - Tipagem explícita
-  - Conjuntos de pares chave-valor (*mappings*)
-    - Âncoras, aliases e 
-  - Listas de valores (*sequences*)
+  - Estruturas
+    - Indentação
+    - Conjuntos de pares chave-valor: *mappings*/dicionário/objeto
+      - Âncoras, aliases e mesclagem de aliases
+    - Listas de valores: *sequences*/lista/*array*
+- Aspas
 - Quebras de linha (*wrapping*)
 - Comentários
-- Estilos bloco (*block*) e fluxo (*flow*)
 - Diretivas YAML
 
 
