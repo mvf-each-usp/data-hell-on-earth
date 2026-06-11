@@ -105,7 +105,7 @@ pode paracer besta, mas é importante lembrar/descobrir que ...
   - associação específica entre um conjunto de valores numéricos e um conjunto
     de letra
 - Pode haver várias formas de fazer essa associação entre valor numérico e 
-  caractér
+  caractere
 :::
 
 . . .
@@ -126,7 +126,7 @@ Não havia nenhum tipo de padronização do que quer que seja!!!
 - no início da computação, cada fabricante de computador criou o seu próprio
   *encoding* próprio
 - com conjuntos de caracteres diferentes:
-    - caractér em um *encoding* sem correspondência em outro
+    - caractere em um *encoding* sem correspondência em outro
     - *encoding* com letras maiúsculas e minúsculas vs *encoding* só com
       maiúsculas
 - usando *quantidades de bits* diferentes:
@@ -207,7 +207,7 @@ Eram necessários
 ## O *encoding* ASCII
 
 - Também conhecido como *Tabela ASCII*
-- 1 byte = 1 caractér
+- 1 byte = 1 caractere
 - O ASCII define 128 caracteres dividido em dois grupos
     - 33 caracteres de controle, não imprimíveis
     - 95 caracteres imprimíveis
@@ -421,7 +421,7 @@ Eram necessários
 ::::::
 
 ::: notes
-Aqui, `r "\u2423"` representa o caractér "espaço em branco" no byte 32
+Aqui, `r "\u2423"` representa o caractere "espaço em branco" no byte 32
 :::
 
 ```{r}
@@ -659,7 +659,7 @@ Lembre disso na hora do `read.csv(encoding = ???)` no seu script
 
 ## *Codepoints*
 
-- O valor numérico (*codepoint*) de cada caractér é representado em hexadecimal,
+- O valor numérico (*codepoint*) de cada caractere é representado em hexadecimal,
   precedida pelo prefixo `U+` e seguido de 4 a 6 dígitos hexadecimal:
     - `U+004A` = J
     - `U+00E7` = ç
@@ -691,7 +691,7 @@ hora, volta a fuder tudo de novo de volta.
 
 . . . 
 
-(*ou* "Ué, não era aquela história de 1 byte = 1 caractér?!?")
+(*ou* "Ué, não era aquela história de 1 byte = 1 caractere?!?")
 
 ## UTF: botando o Unicode para funcionar
 
@@ -766,19 +766,19 @@ Ken Thompson e Rob Pike em 1992
 
 *Codepoint* Unicode com comprimento variável entre 1 e 4 bytes:
 
-1. se caractér com 1 byte,
+1. se caractere com 1 byte,
     - o bit inicial desse byte será `0`
-1. se caractér com 2 bytes,
+1. se caractere com 2 bytes,
     - o byte inicial começa `110` e o segundo com `10`
-1. se caractér com 3 bytes, 
+1. se caractere com 3 bytes, 
     - o byte inicial começa com `1110` e os demais com `10`
-1. se caractér com 4 bytes, 
+1. se caractere com 4 bytes, 
     - o byte inicial começa com `11110` e os demais com `10`
 1. outros ***bits*** armazenam *codepoint*
 
 ::: notes
 - a ideia central do *encoding* UTF-8 é representar cada *codepoint* do Unicode
-  com um caractér de comprimento variável entre 1 e 4 bytes, usando a seguinte
+  com um caractere de comprimento variável entre 1 e 4 bytes, usando a seguinte
   regra:
 - se o codepoint usa 7 bits, então usa um byte com bit inicial igual `0`
   - é o ASCII véio de guerra
@@ -800,8 +800,8 @@ Ken Thompson e Rob Pike em 1992
 Retrocompatibilidade com o ASCII
 
 :::{.callout-important}
-A primeira regra garante que um caractér ASCII será representado pelo mesmo 
-caractér de 1 byte do *encoding* UTF-8
+A primeira regra garante que um caractere ASCII será representado pelo mesmo 
+caractere de 1 byte do *encoding* UTF-8
 
 O menor *codepoint* no ASCII é 0 = (00000000)~2~, que nunca é usado em arquivo
 texto
@@ -825,7 +825,7 @@ Posição do byte
 
 ::: notes
 - Com essas regras, os primeiros bits do primeiro byte indicam o comprimento do 
-  caractér:
+  caractere:
 - `0` = 1 byte, 
 - `110` = 2 bytes,
 - `1110` = 3 bytes,
@@ -856,7 +856,7 @@ Armazenando o valor do *codepoint*
 - os bits nas posições `x`, `y`, `z` e `w` podem ser 0 ou 1 para armazenar o
   valor do codepoint
 
-- Os valores de codepoint que podem ser armazenados em cada caractér serão:
+- Os valores de codepoint que podem ser armazenados em cada caractere serão:
 - 1 byte: `xxxxxxx`, 2^7^ = 128 valores
 - 2 bytes: `xxxxxyyyyyy`, 2^11^ = 2.048 valores
 - 3 bytes: `xxxxyyyyyyzzzzzz`, 2^16^ = 65.536 valores
@@ -943,7 +943,7 @@ list(
 
 ::: notes
 - cada codepoint do Unicode pode ser representado com 1, 2, 3 ou 4 BYTES,
-mas é exibido como um único caractér
+mas é exibido como um único caractere
 - certo?
 - infelizmente, errado
 - alguns codepoints do Unicode compõem com o codepoint anterior, modificando e
@@ -955,7 +955,7 @@ criando um novo símbolo a ser exibido
 Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
 ::: notes
-- PARECEM seis emojis representados com 1 caractér
+- PARECEM seis emojis representados com 1 caractere
 - MAS as aparências enganam!
 :::
 
@@ -993,7 +993,7 @@ Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 
 - o 1^o^ emoji tem um codepoint
 - o 2^o^ e o 3^o^ têm dois *codepoints*: o codepoint do primeiro emoji como base
   seguido de um emoji de tom de pele
-- o 4^o^ tem três *codepoints*: o de base, seguido de um caractér
+- o 4^o^ tem três *codepoints*: o de base, seguido de um caractere
   *zero width joiner* e um codepoint *emoji component curly hair*
 - os dois últimos têm quatro *codepoints*: o de base, seguido de um de tom de
   pele, seguido do *zero width joiner* e *emoji component curly hair*
@@ -1038,7 +1038,7 @@ c("👩" , "👩🏼‍🦱") |>
 
 Exemplo: os emojis 👩 , 👩🏻 , 👩🏼 , 👩‍🦱 , 👩🏻‍🦱 , 👩🏼‍🦱
 
-A possibilidade de articular *codepoints* para compor um caractér amplia a
+A possibilidade de articular *codepoints* para compor um caractere amplia a
 quantidade real de caracteres que o Unicode consegue gerar
 
 Mas isso tem um preço
@@ -1049,7 +1049,7 @@ acidente para que a sequência inteira fique ilegível na hora da importação.
 :::
 
 No exemplo anterior, se o primeiro byte (`F0`) for excluído acidentalmente,
-os outros 14 não farão sentido, o caractér não será renderizado e eles serão uma
+os outros 14 não farão sentido, o caractere não será renderizado e eles serão uma
 sequência de erros de leitura
 
 
@@ -1159,9 +1159,9 @@ Problema: cada S.O. usa uma escolha diferente de caracteres de controle
 - *origem histórica dessa escolha no windows*:
 - essa era a sequência que você tinha que enviar para uma impressora de
   formulário contínuo para ela começar uma nova linha:
-- um caractér de controle para sinalizar para a impressora trazer o carro de
+- um caractere de controle para sinalizar para a impressora trazer o carro de
   impressão (com a cabeça de impressão) devolta para a margem esquerda e um
-  caractér de controle para sinalizar para a impressora avançar o formulário
+  caractere de controle para sinalizar para a impressora avançar o formulário
   contínuo a distância correspondente a uma linha linha
 :::
 

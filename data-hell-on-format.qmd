@@ -328,7 +328,7 @@ Principais formatos
 #### FWF (fixed width fields)
 
 - colunas com tamanho fixo
-- preenchimento (filler) com caractér imprimível arbitrário
+- preenchimento (filler) com caractere imprimível arbitrário
 - *enconding* usual: ASCII, sem caracteres acentuados e só maiúsculas
 - geralmente acompanhado de um *dicionário de variáveis*
 - não suporta comentários
@@ -342,7 +342,7 @@ Principais formatos
   - desperdiça muito espaço, mas ...
   - ... tem o acesso aleatório mais rápido possível (indexação direta)
 - alinhamento visual das colunas ao longo das linhas
-- preenchimento (filler) com caractér imprimível arbitrário
+- preenchimento (filler) com caractere imprimível arbitrário
   - frequentemente, espaço para strings e `0` para números
 - *enconding* usual: ASCII (sem caracteres acentuados)
   - frequentemente: só maiúsculas
@@ -419,7 +419,7 @@ Arquivo de Dados
 #### DSV (delimiter separated values)
 
 - colunas com largura variável
-- separador de colunas: um caractér arbitrário (exceto de controle)
+- separador de colunas: um caractere arbitrário (exceto de controle)
 - aspas simples `'` ou duplas `"` para delimitar as strings
 - casos particulares
   - TSV (tab separated values)
@@ -428,7 +428,7 @@ Arquivo de Dados
 
 ::: notes
 - as colunas têm tamanho variável nas linhas
-- um caractér arbitrário (exceto de controle) pode ser escolhido como separador
+- um caractere arbitrário (exceto de controle) pode ser escolhido como separador
   de campos dentro de uma linha
 - sem alinhamento visual entre os campos/colunas
 - campos com largura variável
@@ -454,8 +454,6 @@ cpf|nome|nasc|cidade|saldo
 #### DSV (delimiter separated values)
 
 ```{r}
-#| echo: true
-
 "cpf|nome|nasc|cidade|saldo
 12345678901|Pedro Paulo Eduardo Luís Carlos|2000-01-01|Natal|-10.00
 11122233344|Mari Ana Contacinco|1998-06-30|Araraquara|543.21
@@ -470,7 +468,7 @@ cpf|nome|nasc|cidade|saldo
 
 #### TSV (tab separated values)
 
-- separador de colunas: caractér de tabulação (`"\t"`)
+- separador de colunas: caractere de tabulação (`"\t"`)
 - geralmente, aspas (`'` ou `"`) não são usadas
 
 ```ruby
@@ -514,8 +512,8 @@ Mas na verdade é
 
 #### CSV (comma separated values)
 
-- separador de colunas: caractér vírgula `,`
-- caractér ponto `.` como separador decimal
+- separador de colunas: caractere vírgula `,`
+- caractere ponto `.` como separador decimal
 
 <!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
 ```lua
