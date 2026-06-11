@@ -1693,13 +1693,37 @@ teste 6: |+
 ### YAML {.smaller}
 #### Comentários
 
-- com `#`
-- comenta até o final da linha
-- em qualquer lugar
-- com conteúdo antes do `#`, precisa de espaço antes do `#`
+::: notes
+
+- `#` 
+  - o mesmo caractere de comentário do R, bash, python, 
+  - tem vários nomes: cerquilha, jogo da velha, tralha, hashtag, hash, pound 
+- se extende até o final da linha
+- em qualquer lugar EXCETO dentro de quebra de linha com `: |` e `: >`
+- se houver conteúdo *antes* do `#`, precisa de espaço antes do `#`
   - sem espaço antes, deixa de ser comentário
 
-<!-- TODO AQUI: exemplos !!!!!!!!!!!! -->
+:::
+- Com o caractere `#`
+  - que nem no R
+- não funciona 
+    - *dentro* de quebra de linhas
+    - dentro de aspas
+    - sem espaço antes
+    
+```{r}
+"
+# aqui é comentário
+---
+# aqui também
+abc: def  # aqui é comentário
+ghi: jkl# aqui não é, pois faltou espaço
+mno: |   # aqui ainda é comentário
+  pqr  # mas aqui já não funciona mais
+stu: 'vwx # aqui não é'
+" |> 
+  yaml::yaml.load()
+```
 
 
 
