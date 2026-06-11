@@ -54,8 +54,9 @@ options(width = 200)
   - Arquivos de Texto
   - Padronizações da POSIX
 - 2^o^ dia: [Aqui](data-hell-on-format.html)
-  - Estrutura do arquivo
-  - Corrupção de dados 
+  - Formatos do arquivo textuais
+  - Formatos tabulares
+  - Formatos hierárquicos
 - 3^o^ dia: Esta apresentação
   - Um desfile de moda dos demônios dos sete círculos do inferno na passarela da
     importação de dados
