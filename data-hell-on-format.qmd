@@ -1568,30 +1568,59 @@ Estilo fluxo
 ### YAML {.smaller}
 #### Aspas
 
-::::{.columns}
-:::{.column}
+::: notes
 - Duplas
   - escape com `\`, `\x` (8 bits), `\u` (16 bits)  e `\U` (32 bits)
   - `\"` para quotar 
 - Simples
-  - não usam o `\` para escapar
+  - não permite escapar
   - `''` para quotar
-- Opcionais para chaves e/ou valores
-  - se não tiver `:`, `,`, `"`, `'`, `{`, `}`, `[`, `]` e `\n`
+- Aspas só são obrigatórias quando há sequências sintática do YAML
+  - com strings contendo a sequência `:␣` em qualquer lugar
+  - strings *começando* com 
+    - `&`, `*`, `!`, `[`, `]`, `{`, `}`, `@`, `#`, `%`, `|`, `"`,
+      `'`, `` ` `` e `>`
+    - `?␣`, `-␣` e `<<:␣` 
+      - mas pode `:`, `?`, `-` ou `<<:` se *não for* seguidos de `␣`
+    - se estiver no meio da string, não tem problema
+:::
 
-<!-- TODO AQUI: exemplos !!!!!!!!!!!! -->
+::::{.columns}
+:::{.column}
+- Duplas
+  - permite escape com `\`, `\x`, `\u` e `\U`
+  - escape `\"` para quotar 
+- Simples
+  - não permite escape
+  - `''` para quotar
+
+```{r}
+r"(
+duplas: "aceita escapes como \t e \x40 e quota assim: \" "
+simples: 'não aceita escapes como \t e quota assim '' '
+"chave: complicada": essa é uma chave que exige aspas, mas este valor dispensa
+chave simples: "já este valor exige aspas: usa dois-pontos, então precisa"
+)" |> 
+  yaml::yaml.load()
+```
 :::
 :::{.column}
-- Obrigatórias
-  - para chaves e valores com `#`
-  - em fluxo
-    - com objetos: para chaves e para valores com `{`, `}` e `,`, 
-    - com listas: para valores com `[`, `]` e `,`
-  - em bloco
-    - com objetos: para chaves começando com `?` ou com `:` ou `,`
-    - com listas
+- Aspas obrigatórias
+  - strings contendo `:␣`
+  - strings começando com
+    - `&`, `*`, `!`, `[`, `]`, `{`, `}`, `@`, `#`, `%`, `|`, `"`, `'`, `` ` ``
+       e `>`
+    - `:␣`, `?␣`, `-␣` e `<<:␣` 
+```{r}
+#| error: true
+"abc: @def" |>
+  yaml::yaml.load()
+```
+```{r}
+"abc: '@def'" |> 
+  yaml::yaml.load()
+```
 
-<!-- TODO AQUI: exemplos !!!!!!!!!!!! -->
 :::
 ::::
 
