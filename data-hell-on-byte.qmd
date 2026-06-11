@@ -1070,6 +1070,137 @@ Como fica apagando o `xF0` inicial de 👩🏼‍🦱
 
 
 
+## Bônus: `base64`
+
+. . .
+
+(*ou* "Ah, então esse que é aquele troço que termina em `==` nos e-mails!")
+
+
+### O *Encoding* `base64`
+#### Objetivo
+
+Transmitir arquivos binários na forma de texto
+
+- apenas com caracteres imprimíveis
+- `A` a `Z`, `a` a `z`, `0` a `9` (62 caracteres)
+- faltam 2 para completar 64 (= 2^6^)
+  - proposta original: `+` e `/`
+    - não é seguro para colocar em uma URL com o `httr::GET()` por exemplo
+  - `base64URL`: `-` e `_` ao invés de `+` e `/`
+
+
+
+### A Codificação `base64` {.smaller}
+#### Ideia
+
+- 1 byte = 1 grupo de 8 bits
+- 3 grupos de 8 bits = 4 grupos de 6 bits
+- `abcdefgh` \ \  `ijklmnop` \ \  `qrstuvwx` \ \ 
+  == \ \ `abcdef` \ \  `ghijkl` \ \  `mnopqr` \ \  `stuvwx`
+    - `a` a `x` são bits, valendo 0 ou 1
+- Valor do grupo de 6 bits → caractere na @tbl-base64
+- Conversão `base64` → `base64URL`: trocar \ \ `+`→`-` \ \ e \ \ `/`→`_`
+
+:::{#tbl-base64 style="font-size: 0.8em;"}
+| Valor | Carac. | Valor | Carac. | Valor | Carac. | Valor | Carac. | Valor | Carac. | Valor | Carac. | Valor | Carac. | Valor |  Carac.  |
+|:-----:|:------:|:-----:|:------:|:-----:|:------:|:-----:|:------:|:-----:|:------:|:-----:|:------:|:-----:|:------:|:-----:|:--------:|
+|   0   |  `A`   |   8   |  `I`   |   16  |  `Q`   |   24  |  `Y`   |   32  |  `g`   |   40  |  `o`   |   48  |  `w`   |   56  |   `4`    |
+|   1   |  `B`   |   9   |  `J`   |   17  |  `R`   |   25  |  `Z`   |   33  |  `h`   |   41  |  `p`   |   49  |  `x`   |   57  |   `5`    |
+|   2   |  `C`   |   10  |  `K`   |   18  |  `S`   |   26  |  `a`   |   34  |  `i`   |   42  |  `q`   |   50  |  `y`   |   58  |   `6`    |
+|   3   |  `D`   |   11  |  `L`   |   19  |  `T`   |   27  |  `b`   |   35  |  `j`   |   43  |  `r`   |   51  |  `z`   |   59  |   `7`    |
+|   4   |  `E`   |   12  |  `M`   |   20  |  `U`   |   28  |  `c`   |   36  |  `k`   |   44  |  `s`   |   52  |  `0`   |   60  |   `8`    |
+|   5   |  `F`   |   13  |  `N`   |   21  |  `V`   |   29  |  `d`   |   37  |  `l`   |   45  |  `t`   |   53  |  `1`   |   61  |   `9`    |
+|   6   |  `G`   |   14  |  `O`   |   22  |  `W`   |   30  |  `e`   |   38  |  `m`   |   46  |  `u`   |   54  |  `2`   |   62  | `+`|`-`  |
+|   7   |  `H`   |   15  |  `P`   |   23  |  `X`   |   31  |  `f`   |   39  |  `n`   |   47  |  `v`   |   55  |  `3`   |   63  | `/`|`_`  |
+
+*Encoding* `base64` e `base64URL
+:::
+
+::: notes
+- agrupar os dados binários em chunks de 3 bytes
+  - 1^o^ grupo de 8 bits em binário: `abcdefgh`
+  - 2^o^ grupo de 8 bits em binário: `ijklmnop`
+  - 3^o^ grupo de 8 bits em binário: `qrstuvwx`
+- aqui, os bits de `a` até `x` podem ser ou 0 ou 1 
+- cada chunk de 3 bytes tem 24 bits
+- agrupar esss 24 bits de chunks de 6 bits
+- isso dá 4 chunks de 6 bits
+  - 1^o^ grupo de 6 bits em binário: `abcdef`
+  - 2^o^ grupo de 6 bits em binário: `ghijkl`
+  - 3^o^ grupo de 6 bits em binário: `mnopqr`
+  - 4^o^ grupo de 6 bits em binário: `stuvwx`
+- cada grupo de 6 bits será um valor entre 0 e 63 (= 2^6^-1)
+  e corresponde a um caractere na tabela
+- curiosidade: enquanto o valor de um byte pode ser escrito com dois dígitos
+  hexadecimais, o valor de um grupo de 6 bits pode ser escrito com dois dígitos
+  octais
+:::
+
+
+
+### A Codificação `base64` {.smaller}
+#### Conversão
+
+- 3 grupos de 8 bits = 4 grupos de 6 bits
+  - `abcdefgh` \ \ `ijklmnop` \ \ `qrstuvwx` 
+    → `abcdef` \ \ `ghijkl` \ \ `mnopqr` \ \ `stuvwx`
+    → 4 caracteres na tabela
+- Nem sempre o tamanho do arquivo é divisível por 3
+- Três possibilidades quanto aos últimos bytes do arquivo binário
+  - se `tamanho %% 3 == 0`, então não sobraram bytes finais e não precisa fazer
+    mais nada
+  - se `tamanho %% 3 == 1`, então sobrou 1 byte `abcdefgh`
+    - `abcdefgh`  \ \ 
+      → \ \ `abcdef` \ \ `gh0000` \ \ 
+      → \ \ 2 caracteres na @tbl-base64 + `"=="`
+  - se `tamanho %% 3 == 2`, então sobraram 2 bytes `abcdefgh` e `ijklmnop`
+    - `abcdefgh` \ \ `ijklmnop` \ \ 
+      → \ \ `abcdef` \ \ `ghijkl` \ \ `mnop00` \ \ 
+      → \ \ 3 caracteres na @tbl-base64 + `"="`
+- No R, a biblioteca `{b64}` tem as funções `encode()` e `decode()`
+  - `{jsonlite}` e `{base64enc}` também têm suas versões
+
+::: notes
+- Os bytes do arquivo binário são agrupados em grupos de 3 bytes
+  - mas o tamanho do arquivo pode não ser divisível por 3
+- Três possibilidades
+  - `tamanho %% 3 == 0`: não sobraram bytes de fora
+    - não precisa fazer nada
+  - `tamanho %% 3 == 1`: sobrou 1 byte fora do último chunk
+    - isso dá 1 chunk de 6 bits e 2 bits: 
+      - 1^o^ chunk de 6 bits: `abcdef`
+      - 2^o^ chunk de 6 bits: `gh----`
+      - 3^o^ chunk de 6 bits: `------`
+      - 4^o^ chunk de 6 bits: `------`
+  - `tamanho %% 3 == 2`: sobraram 2 bytes fora do último chunk
+    - isso dá 2 chunks de 6 bits e 4 bits
+        - 1^o^ chunk de 6 bits: `abcdef`
+        - 2^o^ chunk de 6 bits: `ghijkl`
+        - 3^o^ chunk de 6 bits: `mnop--`
+        - 4^o^ chunk de 6 bits: `------`
+- Nos 2 último casos, o jeito é preencher esses buracos
+  - no chunk de 6 bits incompleto, completar com 0 os bits faltantes
+  - no(s) chunk(s) de 6 bits sem dados, usar o caractere `=` 
+  - `tamanho %% 3 == 1`: sobrou 1 byte fora do último chunk
+    - isso dá 1 chunk de 6 bits e 2 bits: 
+      - 1^o^ chunk de 6 bits: `abcdef` → procurar caractere
+      - 2^o^ chunk de 6 bits: `gh0000` → procurar caractere
+      - 3^o^ chunk de 6 bits: `------` → usar `=`
+      - 4^o^ chunk de 6 bits: `------` → usar `=`
+  - `tamanho %% 3 == 2`: sobraram 2 bytes fora do último chunk
+    - isso dá 2 chunks de 6 bits e 4 bits
+        - 1^o^ chunk de 6 bits: `abcdef` → procurar caractere
+        - 2^o^ chunk de 6 bits: `ghijkl` → procurar caractere
+        - 3^o^ chunk de 6 bits: `mnop00` → procurar caractere
+        - 4^o^ chunk de 6 bits: `------` → usar `=`
+- E então, você pode enviar o texto ASCII do jeito que for sem problemas
+- No R, essas funções fazem essa conversão
+
+:::
+
+
+
 # Arquivos de Texto
 
 . . .
@@ -1148,6 +1279,7 @@ Problema: cada S.O. usa uma escolha diferente de caracteres de controle
 - Windows: `CR+LF`=`"\r\n"`=`"\x0d\x0a"`
 
 . . .
+
 ::: notes 
 - surge assim aqui um problema
 - cada sistema operacional usa uma escolha diferente de caracteres de controle
