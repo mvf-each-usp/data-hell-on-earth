@@ -546,9 +546,9 @@ cpf,nome,nasc,cidade,saldo
 
 #### "CSV 2" ("comma separated values" 2)
 
-- separador de colunas: caractér ponto-e-vírgula `;`
+- separador de colunas: caractere ponto-e-vírgula `;`
   - "*comma* separated values", só que separado por *semi-colon*
-- caractér vírgula `,` como separador decimal
+- caractere vírgula `,` como separador decimal
 
 <!-- usei essa tag da lingugem lua só pelo highlight sintático útil para representar o CSV -->
 ```lua
