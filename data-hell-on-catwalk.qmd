@@ -464,7 +464,7 @@ str_c(
   #[234567890][2345678901234567890123455678901234567890123456789][][][23][234567890123456789][234567890123]
   sep = "\n"
 ) |> I() |>
-  read_fwf(
+  readr::read_fwf(
     col_positions = 
       fwf_widths(
         widths = c(11, 50, 2, 2, 4, 20, 12),          # com a largura errada na coluna 2
@@ -525,7 +525,7 @@ str_c(
   "99999999999,Maria Elisabeta Antonia Celestamina,1999-12-31,Itaquaquecetuba,43333222.11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()  # ← opa!!! espera ";" como separador, mas 👆 usou ","
+  readr::read_csv2()  # ← opa!!! espera ";" como separador, mas 👆 usou ","
 ```
 
 ::: notes
@@ -545,7 +545,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
@@ -570,7 +570,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 ::: notes
@@ -617,7 +617,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
@@ -633,7 +633,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
@@ -649,7 +649,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
@@ -665,7 +665,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
@@ -681,7 +681,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
@@ -714,7 +714,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  read::read_csv2()
 ```
 
 
@@ -730,7 +730,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
