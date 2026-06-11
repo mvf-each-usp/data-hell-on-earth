@@ -1066,11 +1066,6 @@ Formatos mais em uso hoje em dia:
 
 ## YAML
 
-- YAML = "YAML Ain't Markup Language" 
-- Linguagem de serialização de dados
-- Baseada em Unicode
-- Legibilidade humana
-
 ::: notes
 - YAML é um backronym (um acrônimo recursivo) que significa
   "YAML Ain't Markup Language" 
@@ -1078,8 +1073,10 @@ Formatos mais em uso hoje em dia:
   com o objetivo adicional de ser amigável à leitura humana
 :::
 
-
-<!-- TODO AQUI!!!! -->
+- YAML = "YAML Ain't Markup Language" 
+- Linguagem de serialização de dados
+- Baseada em Unicode
+- Legibilidade humana
 
 
 
