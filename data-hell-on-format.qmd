@@ -695,6 +695,22 @@ awk '/^"[^"]*",   {print $2}' arquivo.csv
 
 Uma árvore é um *grafo acíclico*
 
+::: notes
+- Uma árvore é um *grafo acíclico*
+- se escolhemos um nó para ser a *raíz* dessa árvore
+- ela é *enraizada* se tiver um nó escolhido como raiz
+  - nesse caso, consideramos esse grafo acíclico como sendo *direcional*
+    - DAG = Directed Acyclic Graph = grafo acíclico direcional
+  - aqui, *árvore* significará *árvore enraizada*
+  - o nó raiz não recebe setas
+  - os outros nós recebem uma única seta
+  - um nó pode ou não gerar setas
+    - se gerar, será chamado *nó interno* ou *ramos*
+    - se não gerar, será chamado *nó terminal* ou *folha*
+- também existem as *árvores livres*, que não têm um nó raiz
+  -  nesse caso, é um grafo acíclico *não direcional*
+:::
+
 ::::{.columns}
 :::{.column}
 ```{dot}
@@ -750,21 +766,6 @@ graph {
 ```
 :::
 ::::
-
-::: notes
-- Uma árvore é um *grafo acíclico*
-- se escolhemos um nó para ser a *raíz* dessa árvore
-- ela é *enraizada* se tiver um nó escolhido como raiz
-  - nesse caso, consideramos esse grafo acíclico como sendo *direcional*
-  - aqui, *árvore* significará *árvore enraizada*
-  - o nó raiz não recebe setas
-  - os outros nós recebem uma única seta
-  - um nó pode ou não gerar setas
-    - se gerar, será chamado *nó interno* ou *ramos*
-    - se não gerar, será chamado *nó terminal* ou *folha*
-- também existem as *árvores livres*, que não têm um nó raiz
-  -  nesse caso, é um grafo acíclico *não direcional*
-:::
 
 . . .
 
