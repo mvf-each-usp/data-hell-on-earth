@@ -4,7 +4,7 @@ Apresentação para a Série `R_Brasil |> bate::papo()` da Comunidade R Brasil n
 ## Teste
 
 ```mermaid
-Treeview-beta
+treeView-beta
   "data-hell-on-earth"
     "data-hell-on-byte"
     "data-hell-on-format"
