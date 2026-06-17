@@ -1,6 +1,7 @@
 ---
 title: "Data Hell<br>on the Catwalk"
-subtitle: >
+subtitle: >+
+    <br>
     Um desfile de horrores cotidianos que caem no colo 
     <br>
     de quem importa dados quando menos se espera
@@ -8,32 +9,11 @@ subtitle: >
     *ou*
     <br>
     Ah, qualé! Não é possível que isso pode acontecer!!!
-author: Marcelo Ventura Freire
-# date: 2026-??-??
-lang: pt-br
-format: 
-  revealjs: 
-    # ### formato 1920x1080
-    # width: 1920
-    # height: 1080
-    ### formato 1600x900
-    width: 1600
-    height: 900
-    #
-    theme: blood
-    slide-level: 3
-    slide-number: 
-      c/t
-      # true
-      # h/v
-    show-slide-number: speaker
-    transition: 
-      none
-      # zoom
-    # smaller: true   # a tentação é grande
-    chalkboard: true
+    <br>
+    <br>
 execute: 
   echo: true
+# as outras opções estão no arquivo _metadata.yml
 ---
 
 ```{r}

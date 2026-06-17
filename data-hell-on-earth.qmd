@@ -1,36 +1,17 @@
 ---
 title: Data Hell on Earth
-subtitle: >
-    As mais variadas formas de seus arquivos de dados textuais
+subtitle: >+
+    <br>
+    As mais variadas formas de seus arquivos de dados *textuais*
     <br>
     te darem dor de cabeça na hora da importação
     <br>
     *ou*
     <br>
-    Como algo que era para ser simples pode ser tão complicado?
-author: Marcelo Ventura Freire
-# date: 2026-??-??
-lang: pt-br
-format: 
-  revealjs: 
-    # # formato 1920x1080
-    # width: 1920
-    # height: 1080
-    # formato 1600x900
-    width: 1600
-    height: 900
-    theme: blood
-    slide-level: 3
-    slide-number: 
-      c/t
-      # true
-      # h/v
-    show-slide-number: speaker
-    transition: 
-      none
-      # zoom
-    # smaller: true   # a tentação é grande
-    chalkboard: true
+    Como algo que ***era*** para ser *simples* pode ser tão *complicado*?!?! 🤬
+    <br>
+    <br>
+# as outras opções estão no arquivo _metadata.yml
 ---
 
 ```{r}
