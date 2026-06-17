@@ -1,8 +1,9 @@
 ---
 title: "Data Hell on Hexa"
-subtitle: |
+subtitle: >+
+    <br>
     As mais variadas formas de seus números te darem dor de cabeça na hora da ler
-
+    <br>
     *ou*
     <br>
     Como é que foi parar ***letra*** nos meus números?!?! 🤬
@@ -13,9 +14,10 @@ subtitle: |
 
 # Números e Caracteres
 
-## Fazendo as bases com cuidado: <br> bases decimal, binária e hexadecimal
+## Fazendo as bases com cuidado
+### Bases Decimal, Binária e Hexadecimal
 
-## Decimais
+### Decimais
 
 - Base decimal
   - base 10: 10 digitos
@@ -32,7 +34,7 @@ subtitle: |
 [^centena]: *centum* (100 em latim) + *enus* > *centenus* > centena
 
 
-## Decimais e Binários
+### Decimais e Binários
 
 - Base binária 
   - base 2: 2 dígitos
@@ -53,7 +55,7 @@ subtitle: |
 <!-- `r which(intToBits(247)==1) - 1` -->
 
 
-## Decimais e Hexadecimais
+### Decimais e Hexadecimais
 
 - Base hexadecimal:
   - base 16: 16 dígitos
@@ -76,7 +78,7 @@ subtitle: |
 
 
 
-## Decimais e Hexadecimais
+### Decimais e Hexadecimais
 
 \ \ 
 
@@ -94,7 +96,7 @@ subtitle: |
    = (16251)~10~ 
 
 
-## Representação hexadecimal 
+### Representação hexadecimal 
 
 - No R: 
   - o caracter de tabulação: `"\t"` = `"\x09"`  `"\x9"`
@@ -119,7 +121,7 @@ subtitle: |
 
 
 
-## Representação hexadecimal 
+### Representação hexadecimal 
 
 - Porque o hexadecimal é tão utilizado até hoje?
   - Representação binária de um byte
@@ -137,7 +139,7 @@ subtitle: |
 
 
 
-## Representação hexadecimal 
+### Representação hexadecimal 
 
 - Porquê é mais fácil?
   - 1 grupo de 8 bits $\rightarrow$ 2 grupos de 4 bits
@@ -157,7 +159,7 @@ subtitle: |
 
 
 
-## Representação hexadecimal 
+### Representação hexadecimal 
 
 - Exemplo: o *colorcode* do HTML
   - RGB $\rightarrow$ Red, Green, Blue $\rightarrow$ 
