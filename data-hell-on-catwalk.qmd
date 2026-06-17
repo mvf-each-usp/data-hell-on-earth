@@ -683,7 +683,7 @@ str_c(
   "99999999999;Maria Elisabeta Antonia Celestamina;1999-12-31;Itaquaquecetuba;43333222,11",
   sep = "\n"
 ) |> I() |>
-  read::read_csv2()
+  readr::read_csv2()
 ```
 
 
