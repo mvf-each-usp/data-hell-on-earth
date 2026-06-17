@@ -99,19 +99,12 @@ Se você ainda não passou por isso, eu sugiro que você obtenha essa experiênc
 
 
 
-# Roadmap desta apresentação
 
-## Roadmap desta apresentação
+<!-- ----------------------- -->
+<!-- Roadmap da Apresentação -->
+<!-- ----------------------- -->
 
-- 1^o^ dia: [Aqui](data-hell-on-byte.html)
-  - Codificação do dado textual (*encoding*)
-  - Armazenamento do dado em memória/disco
-- 2^o^ dia: [Aqui](data-hell-on-format.html)
-  - Estrutura do arquivo
-  - Corrupção de dados 
-- 3^o^ dia: [Aqui](data-hell-on-catwalk.html)
-  - Um desfile de moda dos demônios dos sete círculos do inferno na passarela da
-    importação de dados
+{{< include roadmap.md >}}
 
 
 

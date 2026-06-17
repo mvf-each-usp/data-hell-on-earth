@@ -20,23 +20,11 @@ execute:
 library(tidyverse)
 ```
 
+<!-- Roadmap da Apresentação -->
 
-# Roadmap desta apresentação
+{{< include roadmap.md >}}
 
-## Roadmap desta apresentação
 
-- 1^o^ dia: [Aqui](data-hell-on-byte.html)
-  - Codificação do dado textual
-  - Representando os caracteres na memória
-  - Arquivos de Texto
-  - Padronizações da POSIX
-- 2^o^ dia: Esta apresentação
-  - Formatos do arquivo textuais
-  - Formatos tabulares
-  - Formatos hierárquicos
-- 3^o^ dia: [Aqui](data-hell-on-catwalk.html)
-  - Um desfile de moda dos demônios dos sete círculos do inferno na passarela da
-    importação de dados
 
 
 
