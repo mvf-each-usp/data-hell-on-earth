@@ -1329,6 +1329,40 @@ data3: !!timestamp 2002-02-20
 
 
 
+### YAML
+#### Brinde: aplicação no YAML dos arquivos `.qmd`!!! 😃
+
+Agora, começará a fazer sentido um pequeno detalhe de como o YAML inicial
+e os chunks funcionam no Quarto Markdown
+
+::::{.columns}
+:::{.column}
+```yaml
+---
+title: Meu Lindo Trabalho
+author: Euzinhe
+date: !expr 'Sys.Date()'
+---
+```
+:::
+:::{.column}
+`````{verbatim}
+```{r}
+#| caption: !expr 'paste0("Dia ", Sys.Date())'
+
+df |> glimpse()
+```
+`````
+:::
+::::
+
+Esse `!expr` antes de `'Sys.Date()'` e do `'paste0("Dia ", Sys.Date())'` indicam
+que os valores das chaves `date:` e `caption:` devem ser tratado como uma
+expressão por quem estiver processando esse conteúdo (que é o `knitr`, quando
+renderiza arquivos `.qmd`)
+
+
+
 ### YAML {.smaller}
 #### Estruturas
 
