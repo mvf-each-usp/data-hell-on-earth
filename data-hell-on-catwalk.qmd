@@ -435,13 +435,13 @@ str_c(
 ) |> I() |>
   readr::read_fwf(
     col_positions = 
-      fwf_widths(
+      readr::fwf_widths(
         widths = c(11, 50, 2, 2, 4, 20, 12),          # com a largura errada na coluna 2
         col_names = c("cpf", "nome", "dianasc", "mesnasc", "anonasc", "cidade", "saldo")
         ),        
     col_types = "ncnnncn"
   ) |> 
-  mutate(saldo = saldo / 100)
+  dplyr::mutate(saldo = saldo / 100)
 ```
 
 
@@ -1046,8 +1046,7 @@ lista:
   nasc: 1999-12-31
   cidade: Itaquaquecetuba
   saldo: 4333222.11
-" |>
-yaml::read_yaml(text = _)
+" |> yaml::read_yaml(text = _)
 ```
 :::
 ::::
@@ -1077,8 +1076,7 @@ yaml::read_yaml(text = _)
   nasc: 1999-12-31
   cidade: Itaquaquecetuba
   saldo: 4333222.11
-" |>
-  yaml::read_yaml(text = _)
+" |> yaml::read_yaml(text = _)
 ```
 :::
 :::{.column style="font-size: 0.8em;"}
@@ -1103,8 +1101,7 @@ yaml::read_yaml(text = _)
   nasc: 1999-12-31
   cidade: Itaquaquecetuba
   saldo: 4333222.11
-" |>
-  yaml::read_yaml(text = _)
+" |> yaml::read_yaml(text = _)
 ```
 :::
 ::::
