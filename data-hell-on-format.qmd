@@ -877,24 +877,25 @@ digraph {
     - etc.
   - no R, seriam os vetores de *tamanho unitário*
   - no python, seria o dado básico padrão
-- conjunto de pares chave-valor: 
-  - *chave* é o nome do dado, que nem o nome de uma variável
-  - *valor* é um dado, que nem o conteúdo da variável
-  - esse dado, por sua vez, pode ser 
-    - um escalar
-    - um *outro* conjunto de pares chave-valor *aninhado*
-    - uma lista de dados
+- dicionários:
+  - conjunto de pares chave-valor
+    - *chave* é o nome do dado, que nem o nome de uma variável
+    - *valor* é um dado, que nem o conteúdo da variável no R
+      - esse dado, por sua vez, pode ser 
+        - um escalar
+        - um *outro* dicionário *aninhado*
+        - uma sequência
   - um par *chave-valor* é uma chave acompanhada de um valor
   - não existe ordenação entre os pares
   - no R, seriam as listas nomeadas
     - cujos itens são acessados por *nome*
   - no python, seriam os dicionários
-- lista de dados:
+- sequências:
   - um grupo ordenado de valores, que são dados, que podem ser
     - escalares
     - conjuntos de pares chave-valor
-    - *outras* listas de valores *aninhadas*
-  - no R, seriam as listas não nomeadas
+    - *outras* sequências *aninhadas*
+  - no R, seriam as listas *não nomeadas*
     - cujos itens são acessados por *posição*
     - se for uma lista de valores escalares, então seria o vetor
 
@@ -923,7 +924,7 @@ NaN                       # não-número, tipo 0/0
 :::{.column}
 Estruturas
 
-- Conjuntos de pares chave-valor
+- Dicionários
 
 ```r
 list(
@@ -932,10 +933,9 @@ list(
   resposta = 3:5
 )
 ```
-- Listas de valores
+- Sequências
 
 ```r
-3:5
 list(
   3 + 2i,
   3:5,
@@ -1440,7 +1440,7 @@ objeto 2:
 
 
 ### YAML {.smaller}
-#### Objetos
+#### Dicionários
 
 Indicadores nos objetos
 
@@ -1475,9 +1475,9 @@ nome:dele: qual?
 
 
 ### YAML {.smaller}
-#### Objetos
+#### Dicionários
 
-Indicadores nos objetos
+Indicadores de chave e de valor
 
 ::::{.columns}
 :::{.column}
