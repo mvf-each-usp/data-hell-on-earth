@@ -948,8 +948,303 @@ list(
 
 
 
+## Representação de Dados como Árvore
+
+Os dados dentro de um aplicativo podem ser representados como uma árvore
+
+- Aplicativo → raiz
+- Estrutura → ramo
+- Escalar → folha
+
 ### Representação de Dados como Árvore
 
+
+Dentro do R
+
+::::{.columns}
+:::{.column width=33%}
+```r
+"olá!"
+```
+:::
+:::{.column width=33%}
+```r
+list(
+  inicio = "olá!", 
+  fim = "tchau!",
+  quanto = 0
+)
+```
+:::
+:::{.column width=33%}
+```r
+list(
+  "olá!", 
+  "tchau!",
+  0
+)
+```
+:::
+::::
+
+\ \ 
+
+Representação em árvore
+
+::::{.columns}
+:::{.column width=33%}
+```{dot}
+//| echo: false
+//| fig-align: left
+//| fig-width: 3
+//| fig-height: 2
+graph {
+  rankdir=LR
+  bgcolor=transparent
+  splines=ortho
+  ranksep=0
+  nodesep=0.5
+  margin=0
+  node [
+    shape=rectangle
+    // color=transparent
+    color=white
+    fontcolor=white
+    fontsize=40
+    width=3
+    fixedsize=true
+  ]
+  edge [
+    color=white
+  ]
+  // nós
+  raiz [ label="R" ]
+  v1 [ label="'olá!'\l" ]
+  p1 [ shape=point width=0 ]
+  invisivel [ style=invisible ]
+  // elos
+  raiz:s -- p1:n
+  p1:e -- v1:w [weight=20]
+  v1:e -- invisivel:w [ style=invisible ]
+  // camadas
+  {
+    rank=same;
+    raiz, p1
+  }
+  {
+    rank=same;
+    v1
+  }
+  {
+    rank=same;
+    invisivel
+  }
+}
+```
+:::
+:::{.column width=33%}
+```{dot}
+//| echo: false
+//| fig-align: left
+//| fig-width: 3
+//| fig-height: 2
+graph {
+  rankdir=LR
+  bgcolor=transparent
+  splines=ortho
+  ranksep=0
+  nodesep=0.5
+  margin=0
+  node [
+    shape=rectangle
+    //color=transparent
+    color=white
+    fontcolor=white
+    fontsize=40
+    width=3
+    fixedsize=true
+  ]
+  edge [
+    color=white
+  ]
+  // nós
+  raiz [ label="R" ]
+  v1 [ label="dicionário\l" ]
+  v11 [ label="'inicio': 'olá!'\l" ]
+  v12 [ label="'fim': 'tchau!'\l" ]
+  v13 [ label="'quanto': 0\l" ]
+  p1,p11,p12,p13 [ shape=point width=0 ]
+  // elos
+  raiz -- p1
+  v1 -- p11 -- p12 -- p13
+  p1 -- v1 [weight=20]
+  p11 -- v11 [weight=20]
+  p12 -- v12 [weight=20]
+  p13 -- v13 [weight=20]
+  // camadas
+  {
+    rank=same;
+    raiz, p1
+  }
+  {
+    rank=same;
+    v1, p11, p12, p13
+  }
+  {
+    rank=same;
+    v11, v12, v13
+  }
+}
+```
+:::
+:::{.column width=33%}
+```{dot}
+//| echo: false
+//| fig-align: left
+//| fig-width: 3
+//| fig-height: 2
+graph {
+  rankdir=LR
+  bgcolor=transparent
+  splines=ortho
+  ranksep=0
+  nodesep=0.5
+  margin=0
+  node [
+    shape=rectangle
+    //color=transparent
+    color=white
+    fontcolor=white
+    fontsize=40
+    width=3
+    fixedsize=true
+  ]
+  edge [
+    color=white
+  ]
+  // nós
+  raiz [ label="R" ]
+  p1,p11,p12,p13 [ shape=point width=0 ]
+  v1 [ label="sequência\l" ]
+  v11 [label="'olá!'\l"]
+  v12 [label="'tchau!'\l"]
+  v13 [label="0\l"]
+  // elos
+  raiz:s -- p1:n
+  p1:e -- v1:w [weight=20]
+  p11:e -- v11:w [weight=20]
+  p12:e -- v12:w [weight=20]
+  p13:e -- v13:w [weight=20]
+  v1:s -- p11 -- p12 -- p13:n
+  // camadas
+  {
+    rank=same;
+    raiz, p1
+  }
+  {
+    rank=same;
+    v1, p11, p12, p13
+  }
+  {
+    rank=same;
+    v11, v12, v13
+  }
+}
+
+```
+:::
+::::
+
+
+
+### Representação de Dados como Árvore
+
+::::{.columns}
+:::{.column width=33%}
+Dentro do R
+```r
+list(
+  inicio = "olá!",
+  perguntas = 
+    c(
+      "você vem sempre aqui?",
+      "que horas são?",
+      "qual é o seu nome?"
+    ),
+  fim = "tchau!"
+)
+```
+:::
+:::{.column width=66%}
+Representação em árvore
+```{dot}
+//| echo: false
+//| fig-align: left
+//| fig-width: 7
+//| fig-height: 3
+graph {
+  rankdir=LR
+  bgcolor=transparent
+  splines=ortho
+  ranksep=0
+  nodesep=0.5
+  node [
+    shape=rectangle
+    // color=transparent
+    color=white
+    fontcolor=white
+    fontsize=30
+    margin="0,0"
+    width=4
+    fixedsize=true
+  ]
+  edge [
+    color=white
+  ]
+  // nós
+  raiz [ label="R" ]
+  v1 [ label="dicionário\l" ]
+  v11 [ label="'inicio': 'olá!'\l" ]
+  v12 [ label="'perguntas': sequência\l" ]
+  v121 [ label="'você vem sempre aqui?'\l" ]
+  v122 [ label="'que horas são?'\l" ]
+  v123 [ label="'qual é o seu nome?'\l" ]
+  v13 [ label="'fim': 'tchau!'\l" ]
+  p1,p11,p12, p13, p121, p122, 
+    p121f, p122f, p123f, 
+    p123 [ shape=point width=0 ]
+  // elos
+  raiz:s -- p1:n
+  v1:s -- p11 -- p12 -- p121f -- p122f -- p123f -- p13:n
+  v12:s -- p121 -- p122 -- p123:n
+  p1:e -- v1:w [weight=20]
+  p11:e -- v11:w [weight=20]
+  p12:e -- v12:w [weight=20]
+  p121:e -- v121:w [weight=20]
+  p122:e -- v122:w [weight=20]
+  p123:e -- v123:w [weight=20]
+  p13:e -- v13:w [weight=20]
+  // camadas
+  {
+    rank=min;
+    raiz, p1
+  }
+  {
+    rank=same;
+    v1, p11, p12, p121f, p122f, p123f, p13
+  }
+  {
+    rank=same;
+    v11, v12, p121, p122, p123, v13
+  }
+  {
+    rank=max;
+    v121, v122, v123
+  }
+}
+```
+:::
+::::
 
 
 
