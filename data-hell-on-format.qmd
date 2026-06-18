@@ -105,17 +105,17 @@ cpf,nome,nasc,cidade,saldo
 ```
 ### YAML
 ```yaml
-- cpf: !!float 12345678901
+- cpf: "12345678901"
   nome: Pedro Paulo Eduardo Luís Carlos
   nasc: 2000-01-01
   cidade: Natal
   saldo: -10.00
-- cpf: !!float 11122233344
+- cpf: "11122233344"
   nome: Mari Ana Contacinco
   nasc: 1998-06-30
   cidade: Araraquara
   saldo: 543.21
-- cpf: !!float 99999999999
+- cpf: "99999999999"
   nome: Maria Elisabeta Antônia Celestamina
   nasc: 1999-12-31
   cidade: Itaquaquecetuba
@@ -124,9 +124,9 @@ cpf,nome,nasc,cidade,saldo
 ### YAML
 ```yaml
 cpf: 
-  - !!float 12345678901
-  - !!float 11122233344
-  - !!float 99999999999
+  - "12345678901"
+  - "11122233344"
+  - "99999999999"
 nome: 
   - Pedro Paulo Eduardo Luís Carlos
   - Mari Ana Contacinco
@@ -148,21 +148,21 @@ saldo:
 ```json
 [
   {
-    "cpf": 12345678901,
+    "cpf": "12345678901",
     "nome": "Pedro Paulo Eduardo Luís Carlos",
     "nasc": "01/01/2000",
     "cidade": "Natal",
     "saldo": -10.00
   },
   {
-    "cpf": 11122233344,
+    "cpf": "11122233344",
     "nome": "Mari Ana Contacinco",
     "nasc": "30/06/1998",
     "cidade": "Araraquara",
     "saldo": 543.21
   },
   {
-    "cpf": 99999999999,
+    "cpf": "99999999999",
     "nome": "Maria Elisabeta Antônia Celestamina",
     "nasc": "31/12/1999",
     "cidade": "Itaquaquecetuba",
@@ -173,7 +173,7 @@ saldo:
 ### JSON
 ```json
 {
-  "cpf": [12345678901, 11122233344, 99999999999],
+  "cpf": ["12345678901", "11122233344", "99999999999"],
   "nome": ["Pedro Paulo Eduardo Luís Carlos", "Mari Ana Contacinco", "Maria Elisabeta Antônia Celestamina"],
   "nasc": ["01/01/2000", "30/06/1998", "31/12/1999"],
   "cidade": ["Natal", "Araraquara", "Itaquaquecetuba"],
@@ -377,7 +377,7 @@ Arquivo de Dados
         widths = c(11, 50, 2, 2, 4, 20, 12),
         col_names = c("cpf", "nome", "dianasc", "mesnasc", "anonasc", "cidade", "saldo")
       ),        
-    col_types = "ncnnncn"
+    col_types = "ccnnncn"
   )
 ```
 
@@ -1371,17 +1371,17 @@ Formatos mais em uso hoje em dia:
 ## YAML {.smaller}
 
 ```yaml
-- cpf: 12345678901
+- cpf: "12345678901"
   nome: Pedro Paulo Eduardo Luís Carlos
   nasc: 2000-01-01
   cidade: Natal
   saldo: -10.00
-- cpf: 11122233344
+- cpf: "11122233344"
   nome: Mari Ana Contacinco
   nasc: 1998-06-30
   cidade: Araraquara
   saldo: 543.21
-- cpf: 99999999999
+- cpf: "99999999999"
   nome: Maria Elisabeta Antônia Celestamina
   nasc: 1999-12-31
   cidade: Itaquaquecetuba
@@ -2135,21 +2135,21 @@ Aplicativo `yq`
 ```json
 [
   {
-    "cpf": 12345678901,
+    "cpf": "12345678901",
     "nome": "Pedro Paulo Eduardo Luís Carlos",
     "nasc": "01/01/2000",
     "cidade": "Natal",
     "saldo": -10.00
   },
   {
-    "cpf": 11122233344,
+    "cpf": "11122233344",
     "nome": "Mari Ana Contacinco",
     "nasc": "30/06/1998",
     "cidade": "Araraquara",
     "saldo": 543.21
   },
   {
-    "cpf": 99999999999,
+    "cpf": "99999999999",
     "nome": "Maria Elisabeta Antônia Celestamina",
     "nasc": "31/12/1999",
     "cidade": "Itaquaquecetuba",
