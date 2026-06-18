@@ -29,7 +29,7 @@ library(tidyverse)
 
 
 # Formatos de Arquivos
-(*ou* "Num era pra texto ser o tipo de arquivo de dados mais simples?!?")
+(*ou* "Num era pra *texto* ser o tipo de arquivo de dados mais simples?!?")
 
 ## Formatos de Arquivos de Dados Textuais 
 
@@ -59,7 +59,7 @@ Vantagens
 ::::: {.panel-tabset}
 ### TXT
 
-::: {style="font-size: .5em;"}
+::: {style="font-size: .5em;" width=80%}
 EXTRATO DE MOVIMENTAÇÃO CADASTRAL
 
 \ 
@@ -875,7 +875,7 @@ digraph {
     - dados binários na forma de blob binários
       - que podem conter imagem bitmap ou raster, áudio, vídeo
     - etc.
-  - no R, seriam os vetores de tamanho unitário
+  - no R, seriam os vetores de *tamanho unitário*
   - no python, seria o dado básico padrão
 - conjunto de pares chave-valor: 
   - *chave* é o nome do dado, que nem o nome de uma variável
@@ -904,18 +904,20 @@ digraph {
 :::{.column}
 Escalares
 ```r
-"olá! 😃"                       # texto ou string
-2L                              # inteiro
-TRUE                            # lógico
-5.5                             # número (ponto flutuante)
-3 + 5i                          # complexo
-ymd("2026-01-01")               # data
-ymd_hmd("2026-01-01 12:34:56")  # timestamp
-NA                              # missing
-NA_character_                   # missing textual
-NA_integer_                     # missing numérico
-Inf                             # infinito (numérico)
-NaN                             # Not a Number (e.g., 0 / 0)
+"olá! 😃"                 # texto ou string
+2L                        # inteiro
+TRUE                      # lógico
+5.5                       # número
+3 + 5i                    # complexo
+"2026-01-01" |>
+    ymd()                 # data
+"2026-01-01 12:34:56" |>
+    ymd_hmd()             # timestamp
+NA                        # missing
+NA_character_             # missing textual
+NA_integer_               # missing numérico
+Inf                       # infinito (numérico)
+NaN                       # não-número, tipo 0/0
 ```
 :::
 :::{.column}
@@ -924,13 +926,22 @@ Estruturas
 - Conjuntos de pares chave-valor
 
 ```r
-list(primeira = "1a", segunda = 23, resposta = 3:5)
+list(
+  primeira = "1a", 
+  segunda = 23, 
+  resposta = 3:5
+)
 ```
 - Listas de valores
 
 ```r
 3:5
-list(3 + 2i,3:5,"mané", NA, list(opa = "ué", quanto = 2))
+list(
+  3 + 2i,
+  3:5,
+  "mané",
+  NA
+)
 ```
 :::
 ::::
@@ -1087,7 +1098,7 @@ Parece markdown, mas ***não é*** markdown
 
 
 
-### YAML {.smaller}
+### YAML
 #### Recursos
 
 - Estilos bloco e fluxo
@@ -1106,7 +1117,7 @@ Parece markdown, mas ***não é*** markdown
 
 
 
-### YAML {.smaller}
+### YAML
 #### Estilo Bloco e Estilo Fluxo 
 
 É possível escrever os mesmos dados de duas formas distintas e é possível
@@ -1170,7 +1181,7 @@ Freestyling! Uhuuuu!!!
 
 
 
-### YAML {.smaller}
+### YAML
 #### Escalares
 
 ::::{.columns}
@@ -1213,13 +1224,13 @@ nulos:
 
 
 
-### YAML {.smaller}
+### YAML
 #### Escalares
 
 Tipagem explícita com tags globais `!!` pré-definidas
 
 ::: notes
-- dá para obrigar a leitura de um valor com um tipo específico usando tags
+- dá para obrigar a leitura de um valor com um tipo específico usando *tags*
 - o YAML tem um conjunto de tags pré-definidas
 :::
 
@@ -1269,7 +1280,7 @@ binário: !!binary
 
 
 
-### YAML {.smaller}
+### YAML
 #### Escalares
 
 Manuseio com handlers para tags locais `!` e tags globais `!!`
