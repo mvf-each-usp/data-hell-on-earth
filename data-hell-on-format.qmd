@@ -272,7 +272,7 @@ Obs.: Lembra um data frame, não?
 - Todas as linhas têm o mesmo número de coluna
 - As variáveis estão sempre na mesma ordem
 
-::: note
+::: notes
 - Organizado em linhas e colunas
 - Cada linha é uma observação/unidade/instância/ocorrência/indivíduo/respondente/etc.
 - Cada coluna é uma característica/variável/atributo/campo da observação
