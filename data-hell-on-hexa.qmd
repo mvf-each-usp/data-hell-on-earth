@@ -22,7 +22,7 @@ subtitle: >+
 - Base decimal
   - base 10: 10 digitos
     - primeiro dígito é o número 0
-    - último dígito é o número 15 (último número antes da base)
+    - último dígito é o número 9 (último número antes da base)
   - unidades (10^0^), dezenas[^dezena] (10^1^), centenas[^centena] (10^2^), milhares (10^3^) etc.
   - 207 = (207)~10~ = 2 $\times$ 10^2^ + 0 $\times$ 10^1^ + 7 $\times$ 10^0^
 
@@ -60,7 +60,7 @@ subtitle: >+
 - Base hexadecimal:
   - base 16: 16 dígitos
     - primeiro dígito é o número 0
-    - último dígito é o número 9 (último número antes da base)
+    - último dígito é o número 15 (último número antes da base)
   - unidades (16^0^), sedecenas (16^1^), "ducentenasquinquagenassextetos"[^256] (16^2^)
     etc.
   - Usamos os caracteres `A`, `B`, `C`, `D`, `E` e `F` para representar os 
