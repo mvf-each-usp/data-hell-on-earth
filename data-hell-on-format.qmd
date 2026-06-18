@@ -371,9 +371,9 @@ Arquivo de Dados
 99999999999MARIA ELISABETA ANTONIA CELESTAMINA               31121999ITAQUAQUECETUBA     +0000433322211
 " |> 
   I() |>    # ← frescura do pacote {readr}
-  read_fwf(
+  readr::read_fwf(
     col_positions = 
-      fwf_widths(
+      readr::fwf_widths(
         widths = c(11, 50, 2, 2, 4, 20, 12),
         col_names = c("cpf", "nome", "dianasc", "mesnasc", "anonasc", "cidade", "saldo")
       ),        
@@ -427,7 +427,10 @@ cpf|nome|nasc|cidade|saldo
 11122233344|Mari Ana Contacinco|1998-06-30|Araraquara|543.21
 99999999999|Maria Elisabeta Antônia Celestamina|1999-12-31|Itaquaquecetuba|+4333222.11" |> 
   I() |>
-  read_delim(delim = "|")
+  readr::read_delim(
+    delim = "|",
+    col_types = "ccnnncn"
+  )
 ```
 
 
@@ -469,7 +472,7 @@ Mas na verdade é
 11122233344\tMari Ana Contacinco\t1998-06-30\tAraraquara\t543.21
 99999999999\tMaria Elisabeta Antônia Celestamina\t1999-12-31\tItaquaquecetuba\t+4333222.11" |>
   I() |>
-  read_tsv()
+  readr::read_tsv()
 ```
 
 
@@ -501,7 +504,7 @@ cpf,nome,nasc,cidade,saldo
 11122233344,Mari Ana Contacinco,1998-06-30,Araraquara,543.21
 99999999999,Maria Elisabeta Antônia Celestamina,1999-12-31,Itaquaquecetuba,+4333222.11" |> 
   I() |>
-  read_csv()
+  readr::read_csv()
 ```
 
 
@@ -534,7 +537,7 @@ cpf;nome;nasc;cidade;saldo
 11122233344;Mari Ana Contacinco;1998-06-30;Araraquara;543,21
 99999999999;Maria Elisabeta Antônia Celestamina;1999-12-31;Itaquaquecetuba;+4333222,11" |> 
   I() |>
-  read_csv2()
+  readr::read_csv2()
 ```
 
 
