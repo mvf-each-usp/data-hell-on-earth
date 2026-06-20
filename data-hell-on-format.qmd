@@ -1429,39 +1429,49 @@ Parece markdown, mas ***não é*** markdown
 ### YAML
 #### Estilo Bloco e Estilo Fluxo 
 
-É possível escrever os mesmos dados de duas formas distintas e é possível
-combinar livremente essas duas formas
-
 ::: notes
-- o estilo bloco depende da indentação para organizar a hierarquia da estrutura
-  dos dados
-- o estilo fluxo independe da formatação
-  - a formatação é mais para ajudar a ler, como acontece com o JSON
-  - esse estilo junto com um uso compulsório das aspas (opcionais no YAML, mas
-    obrigatórias no JSON) faz com que um arquivo JSON possa ser lido normalmente
-    pelo parser yaml
-  - a linguagem YAML foi desenvolvida desde o início com o objetivo de conter a
-    linguagem JSON
-
+- dois estilos: bloco e fluxo
+- o estilo define a estrutura e a hierarquia dos dados através da formatação com
+  a indentação do código
+- o estilo fluxo define através dos delimitadores `{}` e `[]` sem considerar a
+  formatação do código
+- no estilho bloco,
+  - o código fica parecido com o markdown e com o python
+- no estilo fluxo,
+  - a formatação é apenas um auxílio mais para ajudar a leitura
+  - o código fica parecendo com o JSON
+  - o YAML foi desenvolvido desde o início com o objetivo de conter a
+    linguagem JSON para conseguir parsear naturalmente um arquivo JSON
+    - o YAML é um superset do JSON
+- os dois estilos podem ser usados livremente
+  - mas o mais frequente é o estilo fluxo ser usado dentro do estilo bloco 
 :::
+
+- É possível escrever os mesmos dados de duas formas distintas
+  - Estilo bloco: a estrutura é estabelecida pela indentação
+  - Estilo fluxo: a estrutura é estabelecida por delimitadores 
+- É possível combinar essas dois estilos
+
+
+
+### YAML
+#### Estilo Bloco e Estilo Fluxo 
 
 ::::{.columns}
 :::{.column width=33%}
-Estilo Bloco (*block style*)
-```{r}
+Estilo Bloco
+```{{r}}
 "
 nome do mané: Eduardo Pereira
 joga:
   - futebol de botão
   - bolinha de gude
-" |> I() |> 
-  yaml::yaml.load()
+" |> yaml::yaml.load()
 ```
-Lembra markdown e python
 :::
 :::{.column width=33%}
-Estilo Fluxo (*flow style*)
-```{r}
+Estilo Fluxo
+```{{r}}
 "
 {
   nome do mané: Eduardo Pereira, 
@@ -1470,20 +1480,71 @@ Estilo Fluxo (*flow style*)
     bolinha de gude
   ]
 }
-" |> I() |> 
-  yaml::yaml.load()
+" |> yaml::yaml.load()
 ```
-Lembra JSON
 :::
 :::{.column width=33%}
 Ambos os estilos
-```{r}
+```{{r}}
 "
 nome do mané: Eduardo Pereira
-joga: [futebol de botão, bolinha de gude]
-" |> I() |> 
-  yaml::yaml.load()
+joga: [
+  futebol de botão, 
+  bolinha de gude
+]
+" |> yaml::yaml.load()
 ```
+:::
+::::
+
+::::{.columns}
+:::{.column width=33%}
+```{r}
+#| echo: false
+"
+nome do mané: Eduardo Pereira
+joga:
+  - futebol de botão
+  - bolinha de gude
+" |> yaml::yaml.load()
+```
+:::
+:::{.column width=33%}
+```{r}
+#| echo: false
+"
+{
+  nome do mané: Eduardo Pereira, 
+  joga: [
+    futebol de botão, 
+    bolinha de gude
+  ]
+}
+" |> yaml::yaml.load()
+```
+:::
+:::{.column width=33%}
+```{r}
+#| echo: false
+"
+nome do mané: Eduardo Pereira
+joga: [
+  futebol de botão, 
+  bolinha de gude
+]
+" |> yaml::yaml.load()
+```
+:::
+::::
+
+::::{.columns}
+:::{.column width=33%}
+Lembra markdown e python
+:::
+:::{.column width=33%}
+Lembra JSON
+:::
+:::{.column width=33%}
 Freestyling! Uhuuuu!!!
 :::
 ::::
