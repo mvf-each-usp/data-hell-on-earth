@@ -1942,8 +1942,74 @@ Estilo fluxo
 ```
 :::
 ::::
+
+
+
+### YAML
+#### Sequências
+
+::: notes
+- Sequências são grupos com uma ordem natural entre os seu itens
+- Cada item é um valor, que pode ser um escalar ou uma estrutura
+- Os itens não têm a obrigação de ser do mesmo tipo ou de ter a mesma estrutura
+- Também são chamadas listas ou *arrays*
+:::
+
+Sequências
+
+- Também chamadas listas ou *arrays*
+- Grupos com uma ordem natural entre os seu itens
+- Itens: 
+  - um escalar ou uma estrutura
+  - livres para terem tipos ou estruturas diferentes
+
+
+
+### YAML
+#### Sequências
+
+::: notes
+- uma sequência como valor de um par chave-valor permite uma indentação como
+  esse segundo exemplo
+:::
+
+::::{.columns}
 :::{.column}
+Estilo bloco
+
+- indicadores de sequência
+  - `-` para o valor
+  - `\n` para separar valores
+
 ```{r}
+"
+frutas:
+  - laranja
+  - maçã
+  - uva
+de novo:
+- laranja
+- maçã
+- uva
+" |> yaml::yaml.load()
+```
+:::
+:::{.column}
+Estilo fluxo
+
+- indicadores de sequência
+  - `[` e `]` para indicar início e fim
+  - `,` para separar valores
+
+```{r}
+"
+frutas: [laranja,  maçã,  uva]
+de novo: [
+  laranja,  
+  maçã,  
+  uva
+]
+" |> yaml::yaml.load()
 ```
 :::
 ::::
