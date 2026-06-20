@@ -1915,7 +1915,8 @@ Estilo bloco
 
 - `\n` para separar pares chave-valor
 - valor vira `null` se 
-    - não houver valor após o `:` e a próxima não for indentada
+    - não houver valor após o `:` 
+    - e o próximo par chave-valor não for indentado
 
 :::
 :::{.column}
