@@ -1767,7 +1767,7 @@ renderiza arquivos `.qmd`)
 
 
 
-### YAML {.smaller}
+### YAML
 #### Estruturas
 
 Indentação
@@ -1843,7 +1843,7 @@ objeto 2:
 
 
 
-### YAML {.smaller}
+### YAML
 #### Dicionários
 
 ::: notes
@@ -1904,7 +1904,7 @@ chave:com:dois:pontos: ah, qualé?
 
 
 
-### YAML {.smaller}
+### YAML
 #### Dicionários
 
 Indicadores de chave e de valor
