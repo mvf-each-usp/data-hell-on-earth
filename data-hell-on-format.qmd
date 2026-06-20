@@ -1878,14 +1878,14 @@ objeto 2:
 
 ::::{.columns}
 :::{.column}
-- `:` para o valor
-  - `:` tem que ser seguido de espaço `␣`, tab `\t` ou `\n`
-  - `:` sem espaço é continuação de string
+Indicadores de chave e de valor
+
+Estilo bloco
+
+- `:␣` após a chave para indicar o valor
 - `?␣` indicador explícito de chave
-  - `?` tem que ser seguido de espaço `␣`
-  - `:` só em linha seguinte e no mesmo nível do `?`
+  - `:␣` na linha seguinte e no mesmo nível do `?␣`
 - qualquer valor pode ser uma chave
-  - escalares, objetos ou até listas
 
 :::
 :::{.column}
