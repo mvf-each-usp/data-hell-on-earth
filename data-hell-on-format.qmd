@@ -1733,6 +1733,40 @@ renderiza arquivos `.qmd`)
 
 
 
+### YAML
+#### Estruturas
+
+::: notes
+- Dicionário
+  - Também chamados mapping, mapeamento ou objetos
+  - Grupos de itens *heterogêneos* e *sem* uma ordem natural entre eles
+  - Itens:
+    - pares chave-valor
+    - chave:
+      - geralmente um escalar
+      - mas também pode ser uma estrutura
+    - valor:
+      - escalar ou estutura
+- Sequências
+  - Também chamadas listas ou arrays
+  - Grupos de itens *heterogêneos* e *com* uma ordem natural entre eles
+  - Itens: 
+    - valores (escalar ou estrutura) sem uma chave
+      - eles já têm a posição deles na ordem
+:::
+
+- Dicionário
+  - Grupos de itens heterogêneos sem uma ordem natural entre eles
+  - Itens:
+    - pares chave-valor
+    - chave: geralmente um escalar
+    - valor: escalar ou estutura
+- Sequências
+  - Grupos de itens heterogêneos com uma ordem natural entre eles
+  - Itens: valores (escalar ou estrutura) sem uma chave
+
+
+
 ### YAML {.smaller}
 #### Estruturas
 
