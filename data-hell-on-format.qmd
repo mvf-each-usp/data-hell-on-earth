@@ -1942,6 +1942,10 @@ Estilo fluxo
     - não houver valor após o `:␣` 
     - não houver `:`
 
+```{r}
+"{nome: Zé, apelido1: , apelido2, sobrenome: da Silva}" |>
+  yaml::yaml.load()
+```
 :::
 :::{.column}
 ```{r}
