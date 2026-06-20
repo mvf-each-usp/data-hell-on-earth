@@ -2017,31 +2017,106 @@ de novo: [
 
 
 ### YAML {.smaller}
-#### Âncoras, Aliases e Mesclagem de Aliases
+#### Dicionários e Sequências
+
+::::{.columns}
+:::{.column width=25%}
+Dicionários de dicionários
+```{r}
+"
+a:
+  b: c
+  d: e
+f: 
+  g: h
+  i: j
+" |> yaml::yaml.load()
+```
+:::
+:::{.column width=25%}
+Dicionários de sequências
+```{r}
+"
+a: 
+- b
+- c
+d: 
+  - e
+  - f
+" |> yaml::yaml.load()
+```
+:::
+:::{.column width=25%}
+Sequências de dicionários
+```{r}
+"
+- a: b
+  c: d
+- e: f
+  g: h
+" |> yaml::yaml.load()
+```
+:::
+:::{.column width=25%}
+Sequências de Sequências
+```{r}
+"
+- - a
+  - b
+- - c
+  - d
+" |> yaml::yaml.load()
+```
+
+:::
+::::
+
+
+
+### YAML {.smaller}
+#### Âncoras e Aliases
+
+::: notes
+- âncoras permitem reutilizar valores (escalares, dicionários ou sequências) já
+  lidos sem precisar digitar tudo de novo
+- aliases marcam os lugares onde os valores já lidos serão reutilizados
+- âncoras e aliases podem aparecer antes de qualquer valor (escalar ou estrutura)
+  e em qualquer posição (como chave ou como valor)
+- a mesclagem de aliases permitem criar um novo dicionário adicionar novos pares
+  chave-valor aos pares chave-valor de um dicionário já ancorado
+    - apenas usar um aliás não permite incluir mais pares chave-valor a um
+      novo dicionário, mas sim apenas repetir apenas os pares já lidos
+- a mesclagem de aliases ***não é*** uma feature oficial do YAML, mas é
+  amplamente suportado pela comunidade de usuários do formato
+
+:::
 
 ::::{.columns}
 :::{.column width=33%}
 - Âncoras com `&`
+  - antes de qualquer valor
+  - em qualquer lugar
 - Aliases com `*`
+  - no lugar de qualquer valor
+  - em qualquer lugar
 - Mesclagem de aliases com `<<: *`
+  - inclui pares chave-valor de um dicionário ancorado em outro dicionário
+  - permite incluir outros pares chave-valor no novo dicionário
+
 :::
 :::{.column width=33%}
 ```r
 "
-autores: 
-  - &autor1
-    nome: &nome-do-otario Zé
-    sobrenome: Mané
-  - &autor2
-    nome: &nome-da-espertona Zefa
-    sobrenome: Manu
-quem fez a cagada: *nome-do-otario
-quem caguetou: *nome-da-espertona
-quem se fudeu:
-  quando rodou: 2023-12-31 23:59:59
-  <<: *autor1
-  se fudeu: muito
-quem se deu bem: *autor2
+&a abc: &b def
+*b: *a
+ghi: &c
+  - *a
+  - *b
+jkl: &d
+  mno: pqr
+  stu: *c
+vwx:
+  <<: *d
 " |> 
   yaml::yaml.load()
 ```
@@ -2050,62 +2125,19 @@ quem se deu bem: *autor2
 ```{r}
 #| echo: false
 "
-autores: 
-  - &autor1
-    nome: &nome-do-otario Zé
-    sobrenome: Mané
-  - &autor2
-    nome: &nome-da-espertona Zefa
-    sobrenome: Manu
-quem fez a cagada: *nome-do-otario
-quem caguetou: *nome-da-espertona
-quem se fudeu:
-  quando rodou: 2023-12-31 23:59:59
-  <<: *autor1
-  se fudeu: muito
-quem se deu bem: *autor2
+&a abc: &b def
+*b: *a
+ghi: &c
+  - *a
+  - *b
+jkl: &d
+  mno: pqr
+  stu: *c
+vwx:
+  <<: *d
 " |> 
   yaml::yaml.load()
 ```
-:::
-::::
-
-::: notes
-- âncoras permitem repetir valores (escalares, objetos ou listas) já lidos
-  sem precisar digitar tudo de novo
-- aliases marcam os lugares onde os valores já lidos serão repetidos
-- a mesclagem de aliases permitem adicionar os pares chave-valor de um objeto
-  aos pares chave-objeto de outro objeto
-    - simplesmente usar o aliás não permite incluir mais pares chave-valor a um
-    objeto, mas sim apenas usar os pares já lidos
-- a mesclagem de aliases ***não é*** uma feature oficial do YAML, mas é amplamente
-  suportado pela comunidade de usuários do formato
-    
-:::
-
-
-
-### YAML {.smaller}
-#### Listas
-
-::::{.columns}
-:::{.column}
-Estilo bloco
-
-- indicadores de lista
-  - `-` para o valor
-  - `\n` para separar valores
-
-<!-- TODO AQUI: exemplos !!!!!!!!!!!! -->
-:::
-:::{.column}
-Estilo fluxo
-
-- indicadores de sequênica
-  - `[` e `]` para indicar início e fim
-  - `,` para separar valores
-
-<!-- TODO AQUI: exemplos !!!!!!!!!!!! -->
 :::
 ::::
 
