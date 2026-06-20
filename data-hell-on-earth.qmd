@@ -68,6 +68,29 @@ exemplo
 
 ## Essa apresentação é para você?
 
+::: notes
+Vamos ver...
+
+Se você
+
+- tem o um prazer mórbido em conhecer várias formas de as coisas darem errado
+- já quebrou a cara tentando importar arquivos de dados, 
+- arrancou seus cabelos em fúria e som (geralmente xingamentos), 
+- chegou a avaliar como *razoável* a possibilidade de esmurrar o seu computador
+  até ele fazer o que você manda como forma de resolver o seu problema
+- e sente que quer *aumentar* o seu *repertório* de truques na manga para a
+  próxima vez que tiver que importar dados ingratos
+
+então, *sim*, essa apresentação é para você.
+
+Mesmo se você ainda não passou por isso,  
+você pode sim assistir esta apresentação,  
+mas eu sugiro que você assista esta apresentação  
+de novo no nosso canal no YouTube,  
+depois que você obtiver essa experiência ÍMPAR,   
+pois muuuuuita coisa fará mais sentido para você.
+:::
+
 \ \ 
 
 Se você 
