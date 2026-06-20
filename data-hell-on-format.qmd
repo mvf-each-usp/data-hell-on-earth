@@ -1891,13 +1891,11 @@ Estilo bloco
 :::{.column}
 ```{r}
 "
-nome: Zé
-? sobrenome do Zé
-: da Silva
-[nome: Zé]: mané
-? [sobrenome do Zé: da Silva]
-: putz
-nome:dele: qual?
+sujeito:
+  nome: Zé
+  ? sobrenome
+  : Mané
+chave:com:dois:pontos: ah, qualé?
 " |> 
   yaml::yaml.load()
 ```
