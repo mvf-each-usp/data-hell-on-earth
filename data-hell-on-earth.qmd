@@ -93,23 +93,31 @@ pois muuuuuita coisa fará mais sentido para você.
 
 \ \ 
 
-Se você 
+Vamos ver...
+
+\ \ 
+
+Se você
 
 . . .
 
-- já quebrou a cara tentando importar arquivos de dados, 
+- prazer mórbido
 
 . . .
 
-- arrancou seus cabelos em fúria e som (geralmente xingamentos), 
+- fratura facial
 
 . . .
 
-- chegou a avaliar como *razoável* a possibilidade de esmurrar o seu computador até ele fazer o que você manda como forma de resolver o seu problema
+- calvicie
 
 . . .
 
-- e sente que quer *aumentar* o seu *repertório* de truques na manga para a próxima vez que tiver que importar dados ingratos
+- violencia justificada
+
+. . .
+
+- *gotta catch'em all!*
 
 . . .
 
@@ -118,8 +126,9 @@ então essa apresentação é para você.
 
 . . .
 
-Se você ainda não passou por isso, eu sugiro que você obtenha essa experiência ímpar antes de assistir, pois muuuuuita coisa fará mais sentido para você.
+\ \ 
 
+Ainda não?  Tudo bem também. Fica que vai ter bolo.
 
 
 
@@ -129,6 +138,3 @@ Se você ainda não passou por isso, eu sugiro que você obtenha essa experiênc
 
 {{< include roadmap.md >}}
 
-
-
----
