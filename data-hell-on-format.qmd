@@ -2112,7 +2112,7 @@ Estilo fluxo
 
 
 ### YAML {.smaller}
-#### Aspas
+#### Aspas, Escape e Quotes
 
 ::: notes
 - Duplas
