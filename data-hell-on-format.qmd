@@ -1918,8 +1918,6 @@ Estilo bloco
     - não houver valor após o `:` 
     - e o próximo par chave-valor não for indentado
 
-:::
-:::{.column}
 ```{r}
 "
 nome: Zé
@@ -1929,11 +1927,6 @@ sobrenome: da Silva
   yaml::yaml.load()
 ```
 :::
-::::
-
-\ 
-
-::::{.columns}
 :::{.column}
 Estilo fluxo
 
@@ -1948,10 +1941,9 @@ Estilo fluxo
   yaml::yaml.load()
 ```
 :::
+::::
 :::{.column}
 ```{r}
-"{nome: Zé, apelido1: , apelido2, sobrenome: da Silva}" |>
-  yaml::yaml.load()
 ```
 :::
 ::::
