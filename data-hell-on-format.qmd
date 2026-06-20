@@ -1258,7 +1258,8 @@ graph {
 
 ### Serialização
 
-Árvores são compostas de nós e arestas 
+Processo de transformação uma estrutura de dados dentro de um aplicativo em um
+arquivo em disco 
 
 ```{dot}
 //| echo: false
@@ -1302,7 +1303,7 @@ digraph {
   Final2 -> Inicio2 [label="Carregando\n(Load)", labelloc=c]
   // separando
   subgraph {
-    label="Aplicação"
+    label="Aplicativo"
     color=white
     fontcolor=white
     fontsize=12
