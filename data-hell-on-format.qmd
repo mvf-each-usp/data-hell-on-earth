@@ -1405,19 +1405,24 @@ Parece markdown, mas ***não é*** markdown
 ### YAML
 #### Recursos
 
+::::{.columns}
+:::{.column}
 - Estilos bloco e fluxo
 - Tipos
   - Escalares
-    - Tipagem implícita ou explícita
   - Estruturas
-    - Indentação
-    - Dois tipos
-      - Dicionários: conjuntos de pares chave-valor
-      - Sequências: conjuntos de valores
-- Âncoras, aliases e mesclagem de aliases
-- Aspas
+    - Dicionários
+    - Sequências
+
+:::
+:::{.column}
+- Âncoras e aliases
+- Tags
+- Aspas, Escape e Quotes
 - Quebras de linha
 - Comentários
+:::
+::::
 
 
 
