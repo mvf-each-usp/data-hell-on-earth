@@ -1562,6 +1562,8 @@ Tipos de valores escalares:
 - inteiro
 - ponto flutuante
 - lógico
+- infinito
+- não-números
 - nulo
 :::
 :::{.column width=33%}
