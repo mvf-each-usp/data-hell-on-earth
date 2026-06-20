@@ -1846,7 +1846,35 @@ objeto 2:
 ### YAML {.smaller}
 #### Dicionários
 
-Indicadores nos objetos
+::: notes
+- Dicionários são conjuntos (grupos não ordenados) de pares chave-valor
+- As chaves podem ser explícitas ou implícitas
+- Em estilo bloco, o `:␣` após a chave é usado para indicar o valor
+  - `:` tem que ser seguido de espaço `␣`, tab `\t` ou `\n`
+  - o valor pode vir 
+    - na mesma linha que o `:` 
+    - ou indentado na linha seguinte
+  - `:` sem espaço é lido como continuação da chave
+  - no exemplo, 
+    - `nome` é uma chave do valor `Zé`
+    - `nome:dele` é uma chave do valor `qualé?`
+- `?␣` indicador explícito de chave
+  - `?` tem que ser seguido de espaço `␣`
+  - `:` na linha seguinte e no mesmo nível do `?`
+    - ou seja, *sem indentação*
+  - eu nunca vi ser usado, mas é um recurso disponível
+  - o mais comum mesmo é o par chave-valor ter chave implícita
+  - no exemplo, 
+    - `sobrenome do Zé` é uma chave explícita e `Mané` é o seu valor
+    - já `nome` é uma chave implícita 
+- *qualquer* valor pode ser uma chave de um dicionário
+  - escalares e até mesmo dicionários e/ou sequências
+  - porquê? pra quê? não sei, mas sei que o YAML aguenta
+  - no exemplo, 
+    - a sequência com um único dicionário `[sobrenome do Zé: da Silva]` é que é
+      a chave (explícita) do valor `putz`
+
+:::
 
 ::::{.columns}
 :::{.column}
