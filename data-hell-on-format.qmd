@@ -1607,16 +1607,16 @@ Tipagem explícita com tags globais `!!` pré-definidas
 
 ::::{.columns}
 :::{.column width=33%}
-- tags globais pré-definidas
-  - `!!str` (string)
-  - `!!int`	(inteiro)
-  - `!!float`	(ponto flutuante)
-  - `!!bool`	(lógico)
-  - `!!null`	(nulo)
-  - `!!seq`	(lista)
-  - `!!map`	(objeto)
-  - `!!timestamp`	(data/hora do YAML 1.1)
-  - `!!binary` (dados binário em `base64`)
+- Tags são propriedades dos nós 
+- Tags globais pré-definidas
+  - `!!str`    (string)
+  - `!!int`    (inteiro)
+  - `!!float`  (reais)
+  - `!!bool`   (lógico)
+  - `!!null`   (nulo)
+  - `!!seq`    (sequência)
+  - `!!map`    (dicionário)
+  - `!!binary` (binário em `base64`)
 :::
 :::{.column width=33%}
 ```{r}
@@ -1627,8 +1627,8 @@ dentes1: 28
 dentes2: !!float 28
 banguela1: false
 banguela2: !!str false
-# !!binary com base64
-binário: !!binary 
+# !!binary em base64
+binário: !!binary T2zDoSEg8J+YhA==
 " |>
   yaml::yaml.load() |> 
   map(class)
