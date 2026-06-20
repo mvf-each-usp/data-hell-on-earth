@@ -65,19 +65,33 @@ EXTRATO DE MOVIMENTAÇÃO CADASTRAL
 
 \ 
 
-Durante a revisão anual dos registros financeiros municipais, foi analisada a situação de diversos cidadãos constantes na base histórica. Entre eles encontra-se Pedro Paulo Eduardo Luís Carlos, inscrito sob o CPF 123.456.789-01, nascido em 01/01/20001 e identificado como residente em Natal. Consta em seu registro um saldo negativo de R$ 10,00, situação que motivou encaminhamento para conferência complementar.
+Durante a revisão anual dos registros financeiros municipais, foi analisada a
+situação de diversos cidadãos constantes na base histórica. Entre eles
+encontra-se Pedro Paulo Eduardo Luís Carlos, inscrito sob o CPF 123.456.789-01,
+nascido em 01/01/20001 e identificado como residente em Natal. Consta em seu
+registro um saldo negativo de R$ 10,00, situação que motivou encaminhamento
+para conferência complementar.
 
 \ 
 
-Também foi examinada a documentação referente a Mari Ana Contacinco, CPF 111.222.333-44, nascida em 30/06/1998 e vinculada ao município de Araraquara. Segundo os dados arquivados, seu saldo registrado era de R$ 543,21 na data da consolidação do relatório.
+Também foi examinada a documentação referente a Mari Ana Contacinco,
+CPF 111.222.333-44, nascida em 30/06/1998 e vinculada ao município de
+Araraquara. Segundo os dados arquivados, seu saldo registrado era de R$ 543,21
+na data da consolidação do relatório.
 
 \ 
 
-Em outro processo, verificou-se a existência de cadastro em nome de Maria Elisabeta Antônia Celestamina, portadora do CPF 999.999.999-99, nascida em 31/12/1999 e domiciliada em Itaquaquecetuba. O sistema apontava para essa contribuinte um saldo de R$ 4.333.222,11, valor significativamente superior à média observada nos demais registros avaliados durante o mesmo procedimento.
+Em outro processo, verificou-se a existência de cadastro em nome de Maria
+Elisabeta Antônia Celestamina, portadora do CPF 999.999.999-99, nascida em
+31/12/1999 e domiciliada em Itaquaquecetuba. O sistema apontava para essa
+contribuinte um saldo de R$ 4.333.222,11, valor significativamente superior
+à média observada nos demais registros avaliados durante o mesmo procedimento.
 
 \ 
 
-Os dados acima foram citados nos autos apenas para fins de auditoria e rastreabilidade documental, preservando-se integralmente as informações constantes nos registros originais consultados pela equipe técnica.
+Os dados acima foram citados nos autos apenas para fins de auditoria e
+rastreabilidade documental, preservando-se integralmente as informações
+constantes nos registros originais consultados pela equipe técnica.
 
 \ 
 
