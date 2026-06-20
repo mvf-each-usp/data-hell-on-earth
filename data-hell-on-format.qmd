@@ -1575,21 +1575,19 @@ inteiros: [29, +100, 0xFF]
 reais: [1.65, 3.1416, 1.5e+3]
 lógicos: [true, false]
 infinitos: [.inf, -.inf]
-nao_numero: .nan
-" |> 
-  yaml::yaml.load()
+" |> yaml::yaml.load()
 ```
 :::
 :::{.column width=33%}
-Tipagem implícita
+\ 
 ```{r}
 "
+nao_numero: .nan
 nulos:
   nulo1: null
   nulo2: ~
   nulo3:
-" |> 
-  yaml::yaml.load()  
+" |> yaml::yaml.load()
 ```
 :::
 ::::
