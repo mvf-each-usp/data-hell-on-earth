@@ -233,6 +233,7 @@ Obs.: Lembra um data frame, não?
   </pessoa>
 </cadastro>
 ```
+Os tags `<pessoa>` agora têm o atributo `id=` com os CPFs
 :::::
 
 # Formatos Não Estruturados
@@ -908,6 +909,9 @@ digraph {
 ::::{.columns}
 :::{.column}
 Escalares
+
+- No R, só vetores unitários
+
 ```r
 "olá! 😃"                 # texto ou string
 2L                        # inteiro
