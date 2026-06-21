@@ -21,6 +21,28 @@ subtitle: >+
 library(tidyverse)
 ```
 
+## Muito prazer!
+
+::: notes
+- doutorado no IME USP em 2005
+- mestrado no IMECC UNICAMP em 2001
+- bacharelado na ENCE IBGE em 1998
+- e o técnico em processamento de dados -- que é como chamavam *programação* na
+  época -- na Fundação Bradesco/RJ em 1992
+- estou no R Brasil desde fevereiro de 2017
+  - e sou admin desde novembro de 2017
+- desde 2007 dou aulas de estatística na USP Leste
+:::
+
+- Doutorado, mestrado e bacharelado em Estatística
+- Técnico em Processamento de Dados
+- Programador uma vida inteira
+- Admin do R Brasil no Telegram
+  - <https://t.me/rbrasiloficial>
+- Professor Doutor na EACH USP desde 2007
+
+
+
 # Introdução 
 
 . . .
