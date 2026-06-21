@@ -1,24 +1,55 @@
+title-slide-attributes:
+    ##### escolha
+    data-background-image: images/hell.webp
+    data-background-size: cover
+    data-background-opacity: "0.2"
+    source: 
+      - https://gifdb.com/gif/cute-bunny-hell-background-animation-u5hb0aa1alch5sgr.html
+      - https://gifdb.com/images/high/cute-bunny-hell-background-animation-u5hb0aa1alch5sgr.webp
+    # ##### alternativa 1
+    # data-background-image: images/hell1.gif
+    # data-background-size: cover
+    # data-background-opacity: "1"
+    # source: 
+    #   - https://www.reddit.com/r/Diablo/comments/16y8pny/diablo_the_hell_3_mod_one_year_in_development/
+    #   - https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2Fljeomqhbturb1.gif
+    # ##### alternativa 2
+    # data-background-image: images/hell2.gif
+    # data-background-size: auto
+    # data-background-repeat: repeat
+    # data-background-opacity: "0.2"
+    # source: 
+    #   - https://www.deviantart.com/hugmonster341/art/ambitious-inferno-avatar-140995114
+    #   - https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a41d6c56-df77-4760-b3d2-da27f2a7ca8a/d2by0iy-200e587d-1d5c-4347-b139-584e90141516.gif
 author: Marcelo Ventura Freire
 # date: 2026-??-??
 lang: pt-br
+embed-resources: true
 format: 
   revealjs:
-    #### formato 1600x900
+    ###############################
+    # formato da tela
     # tamanho da tela
+    #######
+    # ### formato default 1050x700
+    # width: 1050
+    # height: 700
+    ### formato 1600x900
     width: 1600
     height: 900
-    # #### formato 1920x1080
+    # ### formato 1920x1080
     # width: 1920
     # height: 1080
+    ###############################
     # tema dos slides
     theme: blood
+    ###############################
     # configurações dos slides
     slide-level: 3
     slide-number: c/t
     show-slide-number: speaker
     transition: none
-    # para poder ter quadro negro no qual escrever
-    chalkboard: true
+    ###############################
     # rodapé com o logo do github e o endereço do repositório
     footer: |
       <a href="https://github.com/mvf-each-usp/data-hell-on-earth" style="color:white;">
