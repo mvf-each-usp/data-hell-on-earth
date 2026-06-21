@@ -83,12 +83,8 @@ Se você
 
 então, *sim*, essa apresentação é para você.
 
-Mesmo se você ainda não passou por isso,  
-você pode sim assistir esta apresentação,  
-mas eu sugiro que você assista esta apresentação  
-de novo no nosso canal no YouTube,  
-depois que você obtiver essa experiência ÍMPAR,   
-pois muuuuuita coisa fará mais sentido para você.
+Mas...
+
 :::
 
 \ \ 
@@ -113,15 +109,30 @@ então essa apresentação é para você.
 
 
 
+## Ainda não? {background-video="images/vai-ter-bolo.mp4" background-video-loop="true" background-video-muted="true"}
 
+::: notes
 
+Mesmo se você ainda não passou por isso,  
+você pode sim assistir esta apresentação,  
+mas eu sugiro que você assista esta apresentação  
+de novo no nosso canal no YouTube  
+*depois* que você obtiver essa experiência ÍMPAR, que é quebrar a cara,  
+pois muuuuuita coisa fará mais sentido para você.
 
+<!-- 
+fonte da imagem do background:
+- https://giphy.com/gifs/ikasgifs-star-wars-c3po-ikas-Rk8Nozifz3kiY2tPhP
+- https://i.giphy.com/Rk8Nozifz3kiY2tPhP.webp
+- depois renomemei para vai-ter-bolo.webp
+- e rodei `convert vai-ter-bolo.webp vai-ter-bolo.mp4`
+-->
 
-. . .
+:::
 
-\ \ 
+Tudo bem também.
 
-Ainda não?  Tudo bem também. Fica que vai ter bolo.
+Fica, que vai ter bolo.
 
 
 
