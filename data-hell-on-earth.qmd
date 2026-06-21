@@ -45,32 +45,369 @@ library(tidyverse)
 
 # Introdução 
 
+::: notes
+Também conhecido como:
+:::
+
 . . .
 
 *ou* "PQ CMG?!?!?!?!? 😭"
 
 
 
-### Situação (que era para ser) típica
+## Era para ser sempre assim {.smaller}
 
-\ \ 
+::: notes
+- você recebe um arquivo CSV
+- você usa uma função de importação 
+- e *voi la*! os dados estão na memória
 
-exemplo
-
-\ \ 
-
-<!--- AQUI!!! ---> TODO: arrumar um bom exemplo
+- e porque é que funciona?
+:::
 
 
-### Situação típica de verdade
+```{r}
+#| label: gera-dados-limpos
+#| include: false
 
-\ \ 
+####
+# parâmetros iniciais ----
 
-exemplo
+set.seed(123)
+n_rows <- 15
+nomes <- 
+  c(
+    # nomes masculinos
+    "Adrian", "Adriano", "Alan", "Alberto", "Alessandro", "Alexandre", "Allan",
+    "Anderson", "André", "Andrei", "Antônio", "Arthur", "Artur", "Bruno",
+    "Carlos", "Cid", "Daniel", "Danilo", "Denis", "Dênis", "Diego", "Diogo",
+    "Douglas", "Ed", "Edmundo", "Edson", "Eduardo", "Enzo", "Felipe",
+    "Fernando", "Francisco", "Fred", "Frederico", "George", "Gil", "Giovanni",
+    "Guilherme", "Gustavo", "Henrique", "Hugo", "Ícaro", "Inácio", "Ítalo",
+    "Jardel", "João", "Jorge", "José", "Josué", "Julian", "Juliano", "Júlio",
+    "Jurandir", "Leonard", "Leonardo", "Luan", "Lucas", "Luccas", "Luís",
+    "Luiz", "Marcel", "Marcelo", "Marco", "Marcos", "Marcus", "Mário", "Mateus",
+    "Matheus", "Matteus", "Natan", "Nataniel", "Oscar", "Paul", "Paulo",
+    "Pedro", "Rafael", "Renan", "Ricardo", "Ricardo", "Richard", "Robert",
+    "Roberto", "Robson", "Rodolfo", "Rodrigo", "Roger", "Rogério", "Ronaldo",
+    "Samuel", "Társio", "Thiago", "Thomas", "Thomás", "Tiago", "Tito", "Tomas",
+    "Tomás", "Valter", "Victor", "Vitor", "Walter", "Adriana", "Adriane", 
+    # nomes femininos
+    "Ana", "Ana Bárbara", "Ana Beatriz", "Ana Carla", "Ana Carolina",
+    "Ana Júlia", "Ana Luiza", "Ana Maria", "Ana Paula", "Andréa", "Andréia",
+    "Ângela", "Anne", "Antônia", "Barbara", "Bárbara", "Beatriz", "Bruna",
+    "Carla", "Carol", "Carolina", "Cecília", "Celina", "Celine", "Claudia",
+    "Cláudia", "Daniela", "Daniele", "Daniella", "Danielle", "Dayse", "Denise",
+    "Eduarda", "Eliana", "Eliane", "Erica", "Érica", "Fernanda", "Giovanna",
+    "Gisela", "Gisele", "Gisella", "Giselle", "Heloisa", "Hilda", "Ingid",
+    "Jasmin", "Jéssica", "Joana", "Júlia", "Juliana", "Juliane", "Julliane",
+    "Larissa", "Letícia", "Lilian", "Lívia", "Louise", "Luísa", "Luiza",
+    "Marcela", "Margarida", "Maria", "Maria Antônia", "Maria Carolina",
+    "Maria Eduarda", "Maria Fernanda", "Maria Luiza", "Mariana", "Mariane",
+    "Marianna", "Marianne", "Marta", "Otávia", "Paloma", "Paula", "Priscila",
+    "Rafaela", "Rafaella", "Regina", "Rejane", "Roberta", "Rosa", "Rosana",
+    "Rosanna", "Rose", "Sandra", "Sílvia", "Simone", "Taís", "Talita", "Tania",
+    "Tânia", "Tatiana", "Vanessa", "Vera", "Yasmin", "Zara"
+  )
+sobrenomes <- 
+  c(
+    "Albuquerque", "Alencar", "Almeida", "Alvares", "Alvarez", "Amorim",
+    "Antunes", "Aquino", "Arantes", "Araújo", "Assis", "Barbalho", "Barbosa",
+    "Barcellos", "Barcelos", "Barreto", "Barros", "Batista", "Bezerra",
+    "Borges", "Camargo", "Cardoso", "Cavalcanti", "Colares", "Correa",
+    "Correia", "Costa", "Couto", "Cruz", "Cunha", "da Silva", "Dantas",
+    "de Assis", "de Campos", "Dias", "do Nascimento", "Dutra", "Farias",
+    "Feitosa", "Fernandes", "Ferraz", "Ferreira", "Fonseca", "França", "Freire",
+    "Freitas", "Iglesias", "Leal", "Leite", "Lemos", "Lins", "Lopes", "Machado",
+    "Marques", "Martins", "Matos", "Medeiros", "Mello", "Melo", "Menezes",
+    "Miranda", "Moreira", "Moreno", "Nunes", "Oliveira", "Padilha", "Peçanha",
+    "Peixoto", "Pereira", "Peres", "Pinto", "Pires", "Pontes", "Prado",
+    "Queiroz", "Ramalho", "Rangel", "Raposo", "Rego", "Reis", "Ribas",
+    "Ribeiro", "Rocha", "Rodrigues", "Saldanha", "Santana", "Santiago",
+    "Santos", "Silveira", "Siqueira", "Soares", "Sousa", "Souto", "Souza",
+    "Tavares", "Vasconcelos", "Ventura", "Viana", "Vidal", "Vieira"
+  )
+idades <- 21:57
+observações <- 
+  c(
+    "Cliente fiel",
+    "Ligar novamente",
+    "Sem problemas",
+    "Cliente VIP",
+    "Reclamou do preço"
+  )
+cidades <- 
+  c(
+    "Belém", "Belo Horizonte", "Campo Grande", "Fortaleza", "Porto Alegre",
+    "Recife", "Rio de Janeiro", "Salvador", "São Paulo", "Vitória"
+  )
 
-\ \ 
+####
+# geração de dados limpos
 
-<!--- AQUI!!! ---> TODO: arrumar um bom exemplo
+## dados de base ----
+id <- seq(n_rows)
+nome <- 
+  sample(nomes, n_rows, replace = TRUE) |> 
+  map_chr(
+    \(x) 
+      str_c(
+        x,
+        sobrenomes |> 
+          sample(2) |> 
+          str_c(collapse = " "),
+        sep = " "
+      )
+  )
+idade <- 
+  sample(
+    idades,
+    n_rows,
+    replace = TRUE
+  )
+renda <- 
+  rnorm(
+    n_rows, 
+    mean = 5000, 
+    sd = 1500
+  ) |> 
+  round(2)
+observacao <- 
+  sample(
+    observações,
+    n_rows, 
+    replace = TRUE
+  )
+
+## simulando uma coluna com um json extra ----
+json_extra <- 
+  str_c(
+    '{"cidade": "',
+    sample(cidades, n_rows, replace = TRUE),
+    '", "status": "ativo"}'
+  )
+
+####
+# exportando limpinho como CSV ----
+
+tibble(
+  id,
+  nome,
+  idade,
+  renda,
+  observacao,
+  json_extra
+) |> 
+  # View()
+  # glimpse()
+  write_csv("data/remessa-bom.csv", )
+```
+
+Importando um arquivo CSV
+
+```{r}
+#| label: importa-csv-bom
+#| echo: true
+#| output-location: fragment
+
+readr::read_csv("data/remessa-bom.csv")
+```
+
+. . .
+
+Funciona porquê?
+
+
+
+## Porque os dados estão bonitinho {.smaller}
+
+`dados/remessa-bom.csv`
+```{r}
+#| label: cat-dados-bons
+#| echo: false
+#| output: asis
+
+cat("```\n")
+readLines("data/remessa-bom.csv", ) |> 
+  cat(sep = "\n")
+cat("```\n")
+```
+
+
+
+## Mas frequentemente é assim
+
+```{r}
+#| label: injeta-erros
+#| include: false
+#| eval: true
+#| dependson: gera-dados-limpos
+
+####
+# parâmetros iniciais dos erros ----
+
+set.seed(456)
+
+## lugares onde injetar erros ----
+onde <- sample.int(n_rows, 6) # seis lugares onde injetar erro
+
+# onde[1] -> linha sem renda
+# onde[2] -> linha com aspas descasadas
+# onde[3] -> linha com separador faltando
+# onde[4] -> linha com quebra acidental
+# onde[5] -> linha com as chaves do json descasadas
+# onde[6] -> linha com um encoding diferente
+
+## erro de quebra de linha ----
+
+quebras.tipo <- 
+  c(
+    "\n",   # posix/linux
+    "\r\n", # windows
+    "\r"    # old mac
+  )
+quebras.probs <- c(.9, .05, .05)
+
+####
+# montando uma versão texto para injetar ruído ----
+
+## cabeçalho ----
+cabeçalho <- "id,nome,idade,renda,notas,json_extra"
+
+## linhas de dados ----
+linhas <- 
+  str_c(
+    id,
+    nome,
+    idade,
+    renda,
+    observacao,
+    str_c(
+      '"',
+      json_extra |> 
+        str_replace_all(fixed('"'),'""'),
+      '"'
+    ),
+    sep = ","
+  )
+
+####
+# injetando os erros ----
+
+## erro: sem renda renda ----
+linhas[onde[1]] <-
+  linhas[onde[1]] |>
+  str_replace(
+    "(,[0-9]+,)([0-9])",
+    ",\\2"
+  )
+
+## erro: aspas descasadas ----
+linhas[onde[2]] <- 
+  linhas[onde[2]] |> 
+  str_remove('"$')
+
+## erro: separador faltando entre idade e renda ----
+linhas[onde[3]] <- 
+  linhas[onde[3]] |> 
+  str_replace(
+    "([0-9]),([0-9])", 
+    "\\1\\2"
+  )
+
+## erro: quebra acidental no texto ----
+linhas[onde[4]] <- 
+  linhas[onde[4]] |> 
+  str_replace(
+    "([0-9],)([^ ]+) ([^ ]+)(,\")",
+    "\\1\\2\n\\3\\4"
+  )
+
+## erro: mismatch de chaves no JSON ----
+linhas[onde[5]] <- 
+  linhas[onde[5]] |> 
+  str_remove(fixed("}"))
+  
+## erro: problema de encoding ----
+linhas[onde[6]] <- 
+  linhas[onde[6]] |> 
+  str_replace(
+    '([0-9],)([^,]+)(,")',
+    "\\1Aten\xE3\xE7o: A\xE3\xE7o judicial\\3"
+  ) # "\xE3"=="ç" e "\xE7"=="ã" em ISO-8859-1==Latin1
+
+## prefixando com os nomes das colunas ----
+conteúdo <- 
+  c(
+    cabeçalho,
+    linhas
+  ) |> 
+  ## erro: quebras de linha diferentes ----
+  str_c(
+    sample(
+      quebras.tipo, 
+      size = n_rows + 1, 
+      replace = TRUE, 
+      prob = quebras.probs
+    ),
+    collapse = ""
+  )
+
+####
+# exportando a versão bichada como o CSV ----
+
+f <- file("data/remessa-ruim.csv", "wb")
+conteúdo |>
+  charToRaw() |> 
+  writeBin(f)
+close(f)
+```
+
+Importando um arquivo CSV
+
+```{r}
+#| label: importa-csv-ruim
+#| warning: true
+#| error: true
+#| echo: true
+#| output-location: fragment
+
+readr::read_csv("data/remessa-ruim.csv")
+```
+
+
+
+## Deu xabu porquê? {.smaller}
+
+::: notes
+- na linha `{r} onde[1]`, falta a coluna `renda`
+- na linha `{r} onde[2]`, as aspas estão descasadas
+- na linha `{r} onde[3]`, está faltando um separador entre as colunas `idade` e `renda`
+- na linha `{r} onde[4]`, ocorreu uma quebra de linha acidental
+- na linha `{r} onde[5]`, as chaves do json estão descasadas
+- na linha `{r} onde[6]`, foi usado um encoding diferente
+  (um `çã` armazenado como Latin-1 no meio de um monte de UTF-8)
+:::
+
+. . .
+
+Porque os dados estão uma bosta 
+
+. . . 
+
+`dados/remessa-ruim.csv`
+```{r}
+#| label: cat-dados-ruim
+#| echo: false
+#| output: asis
+
+cat("```\n")
+readLines("data/remessa-ruim.csv", ) |> 
+  cat(sep = "\n")
+cat("```\n")
+```
+
+
 
 
 # Roadmap de onde pode dar merda
