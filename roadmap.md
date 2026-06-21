@@ -1,6 +1,4 @@
-# Roadmap desta apresentação
-
-## Roadmap desta apresentação
+## Roadmap desta apresentação {.smaller}
 
 - 1^o^ dia: [Data Hell on Byte](data-hell-on-byte.html)
   - Codificação do dado textual
