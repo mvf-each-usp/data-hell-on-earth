@@ -78,11 +78,16 @@ Também conhecido como:
 ## Era para ser sempre assim {.smaller}
 
 ::: notes
-- você recebe um arquivo CSV
-- você usa uma função de importação 
-- e *voi la*! os dados estão na memória
+Era para ser assim: 
 
-- e porque é que funciona?
+- você recebe um arquivo CSV,
+- você usa uma função de importação...
+- ... e [mostre o output] e *voilà*! 
+- os dados estão na memória
+
+[avança]
+
+E porque é que funciona?
 :::
 
 
@@ -257,6 +262,32 @@ cat("```\n")
 
 ## Mas frequentemente é assim
 
+::: notes
+Mas, com um frequência *iiirritantemente* alta, a coisa funciona assim: 
+
+- você recebe um arquivo CSV,
+- você nem olha ele
+- você usa uma função de importação...
+- ... e [mostre o output] e *catapimba*! 
+- deu xabu!
+
+[scrolar] notem que 
+
+- a linha 3 tá com idade e renda zuadas
+- a linha 6 pulou do id 5 para o id 7 
+  - pq ?
+  - [rolar até o fim] 
+  - a linha 6 saiu colada no fim da linha 5
+  - por causa de algum erro de quebra de linha
+  - [voltar pro topo]
+- a linha 12 também saiu com idade e renda zuadas
+- as linhas 3 e 12 estão com a coluna notas zuada também
+- [scrolar]
+- a linha 8 tá ?? no lugar de algumas letras
+- e as linhas 3 e 12 estão com json_extra == NA
+:::
+
+
 ```{r}
 #| label: injeta-erros
 #| include: false
@@ -381,6 +412,9 @@ conteúdo |>
   charToRaw() |> 
   writeBin(f)
 close(f)
+
+options(tibble.width = Inf)
+
 ```
 
 Importando um arquivo CSV
@@ -396,11 +430,30 @@ readr::read_csv("data/remessa-ruim.csv")
 ```
 
 
+## Mesmo especificando os tipos das colunas
+
+```{r}
+#| label: importa-csv-ruim-tipado
+#| warning: true
+#| error: true
+#| echo: true
+#| output-location: fragment
+
+readr::read_csv(
+  "data/remessa-ruim.csv",
+  col_types = "icidcc"
+)
+```
+
+
+
 
 ## Deu xabu porquê? {.smaller}
 
 ::: notes
-- na linha `{r} onde[1]`, falta a coluna `renda`
+[leia]
+
+- na linha `{r} onde[1]`, falta a coluna `idade`
 - na linha `{r} onde[2]`, as aspas estão descasadas
 - na linha `{r} onde[3]`, está faltando um separador entre as colunas `idade` e `renda`
 - na linha `{r} onde[4]`, ocorreu uma quebra de linha acidental
@@ -452,7 +505,7 @@ Vamos ver...
 
 Se você
 
-- tem o um prazer mórbido em conhecer várias formas de as coisas darem errado
+- tem um prazer mórbido em conhecer várias formas de as coisas darem errado
 - já quebrou a cara tentando importar arquivos de dados, 
 - arrancou seus cabelos em fúria e som (geralmente xingamentos), 
 - chegou a avaliar como *razoável* a possibilidade de esmurrar o seu computador

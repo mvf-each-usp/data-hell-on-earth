@@ -2,7 +2,7 @@
 
 - 1^o^ dia: [Data Hell on Byte](data-hell-on-byte.html)
   - Codificação do dado textual
-  - Representando os caracteres na memória
+  - Representação dos caracteres na memória
   - Arquivos de Texto
 - 2^o^ dia: [Data Hell on Format](data-hell-on-format.html)
   - Formatos do arquivo textuais
