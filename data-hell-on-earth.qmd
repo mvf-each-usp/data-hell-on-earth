@@ -35,8 +35,11 @@ library(tidyverse)
 :::
 
 
-:::: columns
-::: {.column width=70%}
+::::: columns
+:::: {.column width=70%}
+
+\ \ 
+
 - Doutorado, mestrado e bacharelado em Estatística
 - Técnico em Processamento de Dados
 - Programador uma vida inteira
@@ -44,11 +47,19 @@ library(tidyverse)
   - <https://t.me/rbrasiloficial>
 - Professor Doutor na EACH USP desde 2007
 
-:::
-::: {.column width=30%}
-foto aqui
+::::
+:::: {.column width=25%}
+::: {layout="[[1], [1.05,1,1.75]]"}
+![](images/eu4.jpeg)
+
+![](images/eu2.jpeg)
+
+![](images/eu3.jpeg)
+
+![](images/eu1.jpeg)
 :::
 ::::
+:::::
 
 
 
