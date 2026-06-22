@@ -6,7 +6,7 @@ subtitle: >+
     <br>
     *ou*
     <br>
-    Como é que foi parar ***letra*** nos meus números?!?! 🤬
+    Como é que foi parar ***letra*** nos meus números?!?! 😕
     <br>
     <br>
 # as outras opções estão no arquivo _metadata.yml

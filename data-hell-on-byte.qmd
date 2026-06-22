@@ -6,7 +6,7 @@ subtitle: >
     <br>
     *ou*
     <br>
-    Como algo que era para ser simples pode ser tão complicado?
+    Cara! É só um bando de letras! Não era pra ser um troço simples? 🤔
 # as outras opções estão no arquivo _metadata.yml
 ---
 

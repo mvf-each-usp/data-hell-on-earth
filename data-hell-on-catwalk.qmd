@@ -8,7 +8,7 @@ subtitle: >+
     <br>
     *ou*
     <br>
-    Ah, qualé! Não é possível que isso pode acontecer!!!
+    Ah, qualé! Não é possível que isso pode acontecer!!! 😡
     <br>
     <br>
 execute: 

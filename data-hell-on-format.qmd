@@ -1,12 +1,13 @@
 ---
 title: "Data Hell on Format"
 subtitle: >
-    As mais variadas formas de seus arquivos de texto
+    As mais variadas formas de seus arquivos cmo formato baseado em *texto*
+    <br>
     te darem dor de cabeça na hora da importação
     <br>
     *ou*
     <br>
-    Como algo que era para ser simples pode ser tão complicado?
+    Cara! É texto! Tex-to!!! Como é que pode isso ser complicado? 😠
     <br>
     <br>
 execute: 
