@@ -580,4 +580,10 @@ Fica, que vai ter bolo.
 
 ![](images/sonic-sonic-the-hedgehog.gif){fig-align="center"}
 
+<!-- 
+source: 
+- https://tenor.com/pt-BR/view/sonic-sonic-the-hedgehog-sonic-exe-pixel-continue-gif-6551964232954027045
+- https://media.tenor.com/Wu1AwY5KHCUAAAAd/sonic-sonic-the-hedgehog.gif
+-->
+
 [Data Hell on Byte](data-hell-on-byte.html)
