@@ -574,3 +574,10 @@ Fica, que vai ter bolo.
 
 {{< include roadmap.md >}}
 
+
+
+# {background-color="#000000"}
+
+![](images/sonic-sonic-the-hedgehog.gif){fig-align="center"}
+
+[Data Hell on Byte](data-hell-on-byte.html)
