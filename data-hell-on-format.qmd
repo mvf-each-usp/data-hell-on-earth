@@ -2440,4 +2440,15 @@ Aplicativo `yq`
 
 
 
----
+<!-- TODO -->
+<!-- TODO -->
+<!-- TODO -->
+<!-- TODO -->
+
+
+
+# É isso aí, pessoal! Por hoje, é so. {background-color="#000000"}
+
+`:q!`
+
+

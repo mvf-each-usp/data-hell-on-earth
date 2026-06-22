@@ -1443,5 +1443,7 @@ com eles), se:
 
 
 
+# É isso aí, pessoal! Por hoje, é so. {background-color="#000000"}
 
+`:q!`
 
