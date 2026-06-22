@@ -31,15 +31,24 @@ library(tidyverse)
   época -- na Fundação Bradesco/RJ em 1992
 - estou no R Brasil desde fevereiro de 2017
   - e sou admin desde novembro de 2017
-- desde 2007 dou aulas de estatística na USP Leste
+- estou na USP Leste desde 2007
 :::
 
+
+:::: columns
+::: {.column width=70%}
 - Doutorado, mestrado e bacharelado em Estatística
 - Técnico em Processamento de Dados
 - Programador uma vida inteira
 - Admin do R Brasil no Telegram
   - <https://t.me/rbrasiloficial>
 - Professor Doutor na EACH USP desde 2007
+
+:::
+::: {.column width=30%}
+foto aqui
+:::
+::::
 
 
 
