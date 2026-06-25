@@ -94,8 +94,8 @@ Problemas:
 
 ::: notes
 - UTF-8 não respeitada:
-  Arquivo em Latin-1, Windows-1252, ISO-8859-1 causa caracteres estranhos
-  (`"SÃ£o Paulo"` ao invés de `"São Paulo"`)
+  Arquivo UTF-8 ser lido como se fosse em Latin-1, Windows-1252, ISO-8859-1
+  causa caracteres estranhos (`"SÃ£o Paulo"` ao invés de `"São Paulo"`)
 - UTF-16 ou UTF-32 lido como UTF-8:
   Arquivo entupido de `"\0"`
 - Codificação mista:
