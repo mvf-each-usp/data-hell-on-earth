@@ -233,26 +233,24 @@ Importando um arquivo CSV
 readr::read_csv("data/remessa-bom.csv")
 ```
 
-. . .
-
-Funciona porquê?
 
 
+## Funciona porquê?
 
-## Porque os dados estão bonitinho {.smaller}
+Porque os dados estão bonitinho[^Alberson]
 
-`dados/remessa-bom.csv`
 ```{r}
 #| label: cat-dados-bons
 #| echo: false
 #| output: asis
 
-cat("```\n")
+cat('::: {style="height: 600px; overflow-y: auto;"}\n```default\n')
 readLines("data/remessa-bom.csv", ) |> 
   cat(sep = "\n")
-cat("```\n")
+cat("```\n:::\n")
 ```
 
+[^Alberson]: baseado em um exemplo gentilmente criado por Alberson Miranda
 
 
 
@@ -443,7 +441,7 @@ readr::read_csv(
 
 
 
-## Deu xabu porquê? {.smaller}
+## Deu xabu porquê?
 
 ::: notes
 [leia]
@@ -457,19 +455,17 @@ readr::read_csv(
   (um `çã` armazenado como Latin-1 no meio de um monte de UTF-8)
 :::
 
-Porque os dados estão uma bosta 
+Porque os dados estão uma bosta[^Alberson]
 
-
-`dados/remessa-ruim.csv`
 ```{r}
 #| label: cat-dados-ruim
 #| echo: false
 #| output: asis
 
-cat("```\n")
+cat('::: {style="height: 600px; overflow-y: auto;"}\n```default\n')
 readLines("data/remessa-ruim.csv", ) |> 
   cat(sep = "\n")
-cat("```\n")
+cat("```\n:::\n")
 ```
 
 
