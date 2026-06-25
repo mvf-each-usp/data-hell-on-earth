@@ -246,9 +246,9 @@ Eram necessários
 |  24   |  18   |   CAN   |          | Cancel                    |
 |  25   |  19   |   EM    |          | End of Medium             |
 |  26   |  1A   |   SUB   |          | Substitute                |
-|  27   |  1B   |   ESC   |          | Escape                    |
+|  27   |  1B   |   ESC   |   \\e    | Escape                    |
 |  28   |  1C   |   FS    |          | File Separator            |
-|  29   |  1D   |   GS    |   \\e    | Group Separator           |
+|  29   |  1D   |   GS    |          | Group Separator           |
 |  30   |  1E   |   RS    |          | Record Separator          |
 |  31   |  1F   |   US    |          | Unit Separator            |
 |  127  |  7F   |   DEL   |          | Delete                    |
