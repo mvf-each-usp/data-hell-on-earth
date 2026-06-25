@@ -2443,8 +2443,13 @@ Aplicativo `yq`
 
 
 
-# É isso aí, pessoal! Por hoje, é so. {background-color="#000000"}
+## Por hoje é só, pessoal. {
+background-image="images/jojoTBC.jpg" 
+background-opacity=0.1
+}
 
-`:q!`
-
-
+```{r}
+#| echo: fenced
+# TODO ----
+# <--- To be continued
+```

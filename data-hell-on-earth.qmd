@@ -533,7 +533,12 @@ então essa apresentação é para você.
 
 
 
-## Ainda não? {background-video="images/vai-ter-bolo.mp4" background-video-loop="true" background-video-muted="true"}
+## Ainda não? {
+background-video="images/vai-ter-bolo.mp4" 
+background-video-loop="true" 
+background-video-muted="true"
+background-opacity=.5
+}
 
 ::: notes
 

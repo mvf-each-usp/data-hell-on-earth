@@ -39,17 +39,25 @@ Simples, certo?
 
 . . .
 
-> "Achou errado, otário!" --- Rogerinho do Ingá
+> "Achou errado, otário!"
+
+![](images/rogerinho.jpg){.absolute top=200 left=1000 width=500}
+
+
 
 ## *Encoding*
 
 ## *Encoding*
-
-> "There is no spoon" (Matrix)
 
 ::: notes
 pode paracer besta, mas é importante lembrar/descobrir que ...
 :::
+
+. . .
+
+> "There is no spoon" (Matrix)
+
+![](images/no-spoon.gif){.absolute top=100 left=1000 loop=false}
 
 . . .
 
@@ -1056,7 +1064,9 @@ Não existem linhas
 
 . . .
 
-> "There is no spoon" (*Matrix*)
+> "There is no spoon" (Matrix)
+
+![](images/no-spoon.gif){.absolute top=200 left=1000 loop=false}
 
 . . .
 
@@ -1283,7 +1293,10 @@ com eles), se:
 
 
 
-# É isso aí, pessoal! Por hoje, é so. {background-color="#000000"}
+## É isso aí, pessoal! Por hoje, é só. {background-image="images/jojoTBC.jpg" background-opacity=0.1}
 
-`:q!`
-
+```{r}
+#| echo: fenced
+# TODO ----
+# <--- To be continued
+```
