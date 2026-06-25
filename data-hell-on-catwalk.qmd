@@ -1808,8 +1808,24 @@ Problemas com:
 
 
 
-# *Achievement Unlocked* {background-color="#000000"}
+# *Achievement Unlocked* {
+background-image="images/dark-throne.jpg"
+background-opacity=.1
+}
 
- Chegar ao último slide 👍
+<!--
+fontes:
+- https://www.dexerto.fr/anime/solo-leveling-saison-3-informations-1607307/
+- https://www.dexerto.fr/cdn-image/wp-content/uploads/sites/2/2024/01/15/solo-leveling-statue-dieu-crunchyroll-1024x576.jpg
+-->
+
+::: notes
+- agradecer à audiência, aos hosts
+- informar contatos
+:::
+
+`<Chegar ao último slide>` 👍
+
+Derrotaste o chefão final! 👏
  
- Parabéns! Level up para você! 😄
+Parabéns! Level up para você! 😄

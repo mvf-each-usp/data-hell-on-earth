@@ -43,6 +43,11 @@ Simples, certo?
 
 ![](images/rogerinho.jpg){.absolute top=200 left=1000 width=500}
 
+<!-- 
+fonte:
+https://cdn.vlipsy.com/clips/l4lo2Fpe/preview.jpg
+-->
+
 
 
 ## *Encoding*
@@ -58,6 +63,12 @@ pode paracer besta, mas é importante lembrar/descobrir que ...
 > "There is no spoon" (Matrix)
 
 ![](images/no-spoon.gif){.absolute top=100 left=1000 loop=false}
+
+<!-- 
+fonte:
+- https://media1.tenor.com/m/sfW1oYgi6PwAAAAC/matrix-there-is-no-spoon.gif
+- https://c.tenor.com/sfW1oYgi6PwAAAAC/tenor.gif
+-->
 
 . . .
 
@@ -1193,10 +1204,17 @@ lembrar do endianness
 
 ### UTF-32 (o "não falamos do Bruno" do Unicode)
 
+<!-- 
+fonte:
+- https://www.looper.com/669427/why-bruno-from-encanto-sounds-so-familiar/
+- https://www.looper.com/img/gallery/why-bruno-from-encanto-sounds-so-familiar/l-intro-1637731676.jpg
+-->
+
+![](images/bruno.jpg){.absolute top=100 left=1000 width=400}
+
 usar 4 bytes sempre
 
 desperdício de espaço e de transmissão
-
 
 <!--- HERE TODO --->
 <!--- HERE TODO --->
@@ -1293,7 +1311,15 @@ com eles), se:
 
 
 
-## É isso aí, pessoal! Por hoje, é só. {background-image="images/jojoTBC.jpg" background-opacity=0.1}
+## É isso aí, pessoal! Por hoje, é só. {
+background-image="images/jojoTBC.jpg"
+background-opacity=0.1
+}
+<!-- 
+fonte:
+- https://knowyourmeme.com/photos/970863-yes-roundabout-to-be-continued
+- https://tse1.mm.bing.net/th/id/OIP.pkO1fHDtfCstJ7_syghGxQHaEK
+-->
 
 ```{r}
 #| echo: fenced
