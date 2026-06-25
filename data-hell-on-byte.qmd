@@ -25,8 +25,6 @@ library(tidyverse)
 
 ## Começando do princípio
 
-. . . 
-
 (*ou* "E no princípio era ~~o verbo~~ \ ~~o ascii~~ \ ~~o byte~~ \ o bit")
 
 ## Bits e bytes
@@ -473,8 +471,6 @@ Saiu do ASCII, fudeu!
 
 ## *Code Pages*
 
-. . . 
-
 (*ou* "A gente fazemos o que a gente podemos")
 
 
@@ -603,8 +599,6 @@ Lembre disso na hora do `read.csv(encoding = ???)` no seu script
 
 ## Unicode: a solução final! 
 
-. . .
-
 (ou, pelo menos, era para ser)
 
 
@@ -651,8 +645,6 @@ hora, volta a fuder tudo de novo de volta.
 
 
 # Representando os caracteres na memória
-
-. . . 
 
 (*ou* "Ué, não era aquela história de 1 byte = 1 caractere?!?")
 
@@ -1035,8 +1027,6 @@ Como fica apagando o `xF0` inicial de 👩🏼‍🦱
 
 # Arquivos de Texto
 
-. . .
-
 (*ou* "Num era pra arquivo de texto ser o tipo de arquivo mais simples?!?")
 
 . . .
@@ -1077,8 +1067,6 @@ atrapalha.
 
 
 ## Linhas nos arquivos
-
-. . .
 
 (*ou* Vamos falar sobre as quebras de linhas que te quebram as perna?)
 
@@ -1282,8 +1270,6 @@ com eles), se:
 
 
 # Padronizações do POSIX
-
-. . .
 
 (*ou* "Tentando botar *alguma* ordem nos galinheiros")
 

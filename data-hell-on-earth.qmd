@@ -65,12 +65,6 @@ library(tidyverse)
 
 # Introdução 
 
-::: notes
-Também conhecido como:
-:::
-
-. . .
-
 *ou* "PQ CMG?!?!?!?!? 😭"
 
 
@@ -462,11 +456,9 @@ readr::read_csv(
   (um `çã` armazenado como Latin-1 no meio de um monte de UTF-8)
 :::
 
-. . .
 
 Porque os dados estão uma bosta 
 
-. . . 
 
 `dados/remessa-ruim.csv`
 ```{r}

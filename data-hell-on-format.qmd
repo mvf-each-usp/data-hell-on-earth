@@ -29,8 +29,6 @@ library(tidyverse)
 
 # Formatos de Arquivos
 
-. . . 
-
 (*ou* "Num era pra *texto* ser o tipo de arquivo de dados mais simples?!?")
 
 ## Formatos de Arquivos de Dados Textuais 
@@ -754,8 +752,6 @@ graph {
 ```
 :::
 ::::
-
-. . .
 
 \ \ 
 
