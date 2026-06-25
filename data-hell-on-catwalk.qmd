@@ -24,8 +24,6 @@ library(tidyverse)
 options(width = 200)
 ```
 
-<!-- Roadmap da Apresentação -->
-
 {{< include roadmap.md >}}
 
 

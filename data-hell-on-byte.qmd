@@ -27,6 +27,8 @@ library(tidyverse)
 
 (*ou* "E no princípio era ~~o verbo~~ \ ~~o ascii~~ \ ~~o byte~~ \ o bit")
 
+
+
 ## Bits e bytes
 
 - 1 bit = 0 ou 1
@@ -86,6 +88,7 @@ fonte:
     de letra
 - Pode haver várias formas de fazer essa associação entre valor numérico e 
   caractere
+
 :::
 
 . . .
@@ -113,6 +116,7 @@ Não havia nenhum tipo de padronização do que quer que seja!!!
     - alguns fabricantes usavam bytes de 6 bits
     - outros usavam bytes de 7 
     - outros ainda usavam bytes de 8 bits
+
 :::
 
 \ \ 
@@ -160,6 +164,7 @@ Eram necessários
 - TAMBÉM precisava de caracteres pro computador se comunicar com outros
   computadores
 - esses são os caracteres de controle
+
 :::
 
 
@@ -258,6 +263,7 @@ Eram necessários
 - O byte `\0` ainda é usado em diversas funções internas no computador
     - mas não tente usar a não ser que você saiba exatamente o que você está
       fazendo
+
 :::
 
 
@@ -589,6 +595,7 @@ e `E1` em ISO/IEAC 8859-1 a 8859-16:
 
 
 
+
 ## De quais vale a pena lembrar hoje em dia?
 
 *Code pages* candidatos a *encoding* daqueles dados ilegíveis:
@@ -666,6 +673,8 @@ hora, volta a fuder tudo de novo de volta.
 # Representando os caracteres na memória
 
 (*ou* "Ué, não era aquela história de 1 byte = 1 caractere?!?")
+
+
 
 ## UTF: botando o Unicode para funcionar
 
@@ -1082,7 +1091,7 @@ Não existem linhas
 . . .
 
 As linhas são uma ficção benévola --- uma mentirinha que mais ajuda do que
-atrapalha.
+atrapalha
 
 
 
@@ -1093,7 +1102,7 @@ atrapalha.
 
 
 
-### Linhas nos arquivos 
+## Linhas nos arquivos 
 
 - Arquivos são grandes sequências *contínuas* de caracteres
 - Não existem realmente linhas

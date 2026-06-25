@@ -32,6 +32,7 @@ library(tidyverse)
 - estou no R Brasil desde fevereiro de 2017
   - e sou admin desde novembro de 2017
 - estou na USP Leste desde 2007
+
 :::
 
 
@@ -254,6 +255,7 @@ cat("```\n")
 
 
 
+
 ## Mas frequentemente é assim
 
 ::: notes
@@ -279,8 +281,8 @@ Mas, com um frequência *iiirritantemente* alta, a coisa funciona assim:
 - [scrolar]
 - a linha 8 tá ?? no lugar de algumas letras
 - e as linhas 3 e 12 estão com json_extra == NA
-:::
 
+:::
 
 ```{r}
 #| label: injeta-erros
@@ -408,7 +410,6 @@ conteúdo |>
 close(f)
 
 options(tibble.width = Inf)
-
 ```
 
 Importando um arquivo CSV
@@ -422,6 +423,7 @@ Importando um arquivo CSV
 
 readr::read_csv("data/remessa-ruim.csv")
 ```
+
 
 
 ## Mesmo especificando os tipos das colunas
@@ -441,7 +443,6 @@ readr::read_csv(
 
 
 
-
 ## Deu xabu porquê? {.smaller}
 
 ::: notes
@@ -455,7 +456,6 @@ readr::read_csv(
 - na linha `{r} onde[6]`, foi usado um encoding diferente
   (um `çã` armazenado como Latin-1 no meio de um monte de UTF-8)
 :::
-
 
 Porque os dados estão uma bosta 
 
@@ -471,7 +471,6 @@ readLines("data/remessa-ruim.csv", ) |>
   cat(sep = "\n")
 cat("```\n")
 ```
-
 
 
 
