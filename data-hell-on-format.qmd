@@ -1661,6 +1661,7 @@ binário: !!binary T2zDoSEg8J+YhA==
 :::
 ::::
 
+Obs.: [Não entendeu o que é `T2zDoSEg8J+YhA==`?](data-hell-on-base.html)
 
 
 ### YAML

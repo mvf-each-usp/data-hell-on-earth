@@ -205,7 +205,7 @@ Eram necessários
 
 
 
-## Caracteres de Controle do ASCII
+## Caracteres de Controle do ASCII {#ascii}
 
 :::::: {style="font-size: 0.6em;"}
 ::::: {.columns}
@@ -256,6 +256,8 @@ Eram necessários
 ::::
 :::::
 ::::::
+
+What the fucking porra is 1A, 1B, 1C etc.? [Veja aqui](data-hell-on-hexa.html)
 
 ::: notes
 - A maioria dessas funções ninguém mais usa do jeito original
